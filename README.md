@@ -4,7 +4,7 @@
 # Contents
 
 |Ch.| File							| Algorithm								| Page |
-|:-:|---------------------------|-------------------------------------------|-----:|
+|:-:|-------------------------------|---------------------------------------|-----:|
 | 2 | InsertSort.cpp				| Insersion Sort						|   18 |
 | 2 | MergeSort.cpp					| Merge									|   31 |
 | 2 | MergeSort.cpp					| Merge Sort							|   34 |
@@ -14,4 +14,3 @@
 | 4 | SquareMatrixMultiply.cpp		| Square Matrix Multiply Recursive		|   77 |
 | 4 | SquareMatrixMultiply.cpp		| Square Matrix Multiply Strassen		|   82 |
 | 5 | HireAssistant.cpp				| Hire Assistant						|  115 |
-
