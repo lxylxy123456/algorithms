@@ -14,3 +14,6 @@
 | 4 | SquareMatrixMultiply.cpp		| Square Matrix Multiply Recursive		|   77 |
 | 4 | SquareMatrixMultiply.cpp		| Square Matrix Multiply Strassen		|   82 |
 | 5 | HireAssistant.cpp				| Hire Assistant						|  115 |
+| 5 | HireAssistant.cpp				| Randomized Hire Assistant				|  124 |
+| 6 | RandomPermute.cpp				| Permute By Sorting					|  124 |
+| 6 | RandomPermute.cpp				| Randomize In Place					|  124 |

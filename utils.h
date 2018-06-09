@@ -25,7 +25,7 @@
 #include <vector>
 #include <sstream>
 
-void random_integers(std::vector<int>& a, size_t l, size_t u, size_t size) {
+void random_integers(std::vector<int>& a, int l, int u, size_t size) {
 	// 随机生成整数列表
 	a.reserve(size); 
     std::random_device rd; 
