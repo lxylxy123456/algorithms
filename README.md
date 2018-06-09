@@ -3,17 +3,15 @@
 
 # Contents
 
-## Chapter 2
-* InsertSort.cpp: Insersion Sort (page 18)
-* MergeSort.cpp: Merge (page 31)
-* MergeSort.cpp: Merge Sort (page 34)
+|Ch.| File							| Algorithm								| Page |
+|:-:|---------------------------|-------------------------------------------|-----:|
+| 2 | InsertSort.cpp				| Insersion Sort						|   18 |
+| 2 | MergeSort.cpp					| Merge									|   31 |
+| 2 | MergeSort.cpp					| Merge Sort							|   34 |
+| 4 | FindMaximumSubarray.cpp		| Find Max Crossing Subarray			|   71 |
+| 4 | FindMaximumSubarray.cpp		| Find Maximum Subarray					|   72 |
+| 4 | SquareMatrixMultiply.cpp		| Square Matrix Multiply				|   75 |
+| 4 | SquareMatrixMultiply.cpp		| Square Matrix Multiply Recursive		|   77 |
+| 4 | SquareMatrixMultiply.cpp		| Square Matrix Multiply Strassen		|   82 |
+| 5 | HireAssistant.cpp				| Hire Assistant						|  115 |
 
-## Chapter 4
-* FindMaximumSubarray.cpp: Find Max Crossing Subarray (page 71)
-* FindMaximumSubarray.cpp: Find Maximum Subarray (page 72)
-* SquareMatrixMultiply.cpp: Square Matrix Multiply (page 75)
-* SquareMatrixMultiply.cpp: Square Matrix Multiply Recursive (page 77)
-* SquareMatrixMultiply.cpp: Square Matrix Multiply Strassen (page 82)
-
-## Chapter 5
-* HireAssistant.cpp: Hire Assistant (page 115)
