@@ -26,7 +26,6 @@
 #include <sstream>
 
 void random_integers(std::vector<int>& a, int l, int u, size_t size) {
-	// 随机生成整数列表
 	a.reserve(size); 
     std::random_device rd; 
     std::uniform_int_distribution<int> d(l, u); 
@@ -37,7 +36,6 @@ void random_integers(std::vector<int>& a, int l, int u, size_t size) {
 
 template <typename T>
 void input_integers(std::vector<T>& a) {
-	// 让用户输入整数列表
 	std::copy(	std::istream_iterator<T>(std::cin), 
 				std::istream_iterator<T>(), 
 				std::insert_iterator<std::vector<T>>(a, a.begin())); 
@@ -45,7 +43,6 @@ void input_integers(std::vector<T>& a) {
 
 template <typename T>
 void output_integers(const std::vector<T>& a) {
-	// 打印整数列表
 	std::copy(a.begin(), a.end(), std::ostream_iterator<T>(std::cout, " ")); 
 	std::cout << std::endl; 
 }
