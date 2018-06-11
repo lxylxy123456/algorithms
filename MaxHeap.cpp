@@ -143,6 +143,7 @@ int main(int argc, char *argv[]) {
 			output_integers(c); 
 			c.HeapIncreaseKey(c.heap_size - 1, 11); 
 			output_integers(c); 
+			break; 
 		case 4: // test BuildMaxHeap_prime
 			random_integers(b, 0, n - 1, n); 
 			output_integers(b); 
@@ -151,6 +152,7 @@ int main(int argc, char *argv[]) {
 			c.BuildMaxHeap(); 
 			output_integers(b); 
 			output_integers(c); 
+			break; 
 		default: 
 			std::cout << "No Action" << std::endl; 
 			break; 
