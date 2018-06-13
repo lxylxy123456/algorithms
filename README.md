@@ -26,3 +26,7 @@
 | 6 | MaxHeap.cpp					| Heap Increase Key						|  164 |
 | 6 | MaxHeap.cpp					| Max Heap Insert						|  164 |
 | 6 | MaxHeap.cpp					| Build Max Heap prime					|  167 |
+| 7 | Quicksort.cpp					| Quicksort								|  171 |
+| 7 | Quicksort.cpp					| Partition								|  171 |
+| 7 | Quicksort.cpp					| Randomized Partition					|  179 |
+| 7 | Quicksort.cpp					| Randomized Quicksort					|  179 |
