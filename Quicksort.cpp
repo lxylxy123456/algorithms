@@ -26,7 +26,6 @@
 
 #include <vector>
 #include "utils.h"
-#include "InsertSort.cpp"
 
 template <typename T>
 T Partition(T p, T r) {
@@ -72,6 +71,9 @@ void RandomizedQuicksort(T p, T r) {
 #endif
 
 #ifdef MAIN_Quicksort
+
+#include "InsertSort.cpp"
+
 int main(int argc, char *argv[]) {
 	std::vector<int> a; 
 	const size_t n = get_argv(argc, argv, 1, 10); 

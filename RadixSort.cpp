@@ -18,55 +18,56 @@
 
 #ifndef MAIN
 #define MAIN
-#define MAIN_CountingSort
+#define MAIN_RadixSort
 #endif
 
-#ifndef FUNC_CountingSort
-#define FUNC_CountingSort
+#ifndef FUNC_RadixSort
+#define FUNC_RadixSort
 
 #include <vector>
+#include <algorithm>
 #include "utils.h"
+#include "CountingSort.cpp"
 
 template <typename T>
-inline size_t Self(T x) {
-	return x; 
-}
+class GetBit {
+	public:
+		GetBit(size_t b): bit(b) {}
+		size_t operator()(T x) { return (x >> bit) & 1; }
+		size_t bit; 
+}; 
 
-template <typename T, typename Predicate>
-void CountingSort(std::vector<T>& A, std::vector<T>& B, size_t k, Predicate f) {
-	// for i in A: i in range(k); T must be int-like
-	std::vector<size_t> C(k, 0); 
-	for (typename std::vector<T>::iterator i = A.begin(); i != A.end(); i++)
-		C[f(*i)]++; 
-	for (typename std::vector<size_t>::iterator i = C.begin() + 1; 
-		i != C.end(); i++)
-		*i += *(i - 1); 
-	for (typename std::vector<T>::reverse_iterator i = A.rbegin(); 
-		i < A.rend(); i++)
-		B[--C[f(*i)]] = *i; 
+template <typename T>
+void RadixSort(std::vector<T>& A, size_t b) {
+	std::vector<T> B(A.size(), 0); 
+	for (size_t i = 0; i < b; i++) {
+		CountingSort(A, B, 2, GetBit<T>(i)); 
+		std::copy(B.begin(), B.end(), A.begin()); 
+	}
 }
 #endif
 
-#ifdef MAIN_CountingSort
+#ifdef MAIN_RadixSort
 
+#include <cmath>
 #include "InsertSort.cpp"
 
 int main(int argc, char *argv[]) {
 	std::vector<int> a; 
 	const size_t n = get_argv(argc, argv, 1, 10); 
-	const int k = get_argv(argc, argv, 2, n); 
+	const int k = get_argv(argc, argv, 2, int(log(n) / log(2))); 
 	const size_t compute = get_argv(argc, argv, 3, 3); 
-	random_integers(a, 0, k - 1, n); 
-	std::vector<int> b(a), c(n, 0); 
+	random_integers(a, 0, pow(2, k) - 1, n); 
+	std::vector<int> b(a); 
 	if ((compute >> 0) & 1) {
 		InsertSort(a); 
 		output_integers(a); 
 	}
 	if ((compute >> 1) & 1) {
-		CountingSort(b, c, k, Self<int>); 
-		output_integers(c); 
+		RadixSort(b, k); 
+		output_integers(b); 
 		if ((compute >> 0) & 1)
-			std::cout << std::boolalpha << (a == c) << std::endl; 
+			std::cout << std::boolalpha << (a == b) << std::endl; 
 	}
 	return 0; 
 }
