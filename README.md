@@ -33,3 +33,6 @@
 | 8 | CountingSort.cpp				| Counting Sort							|  195 |
 | 8 | RadixSort.cpp					| Radix Sort							|  198 |
 | 8 | BucketSort.cpp				| Bucket Sort							|  201 |
+| 9 | Minimum.cpp					| Minimum								|  214 |
+| 9 | Minimum.cpp					| Maximum								|  214 |
+| 9 | Minimum.cpp					| Min Max								|  214 |
