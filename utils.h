@@ -55,5 +55,4 @@ T get_argv(int argc, char *argv[], int index, T def) {
 	std::istringstream(argv[index]) >> ans; 
 	return ans; 
 }
-
 #endif
