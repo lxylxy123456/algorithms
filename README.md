@@ -32,3 +32,4 @@
 | 7 | Quicksort.cpp					| Randomized Quicksort					|  179 |
 | 8 | CountingSort.cpp				| Counting Sort							|  195 |
 | 8 | RadixSort.cpp					| Radix Sort							|  198 |
+| 8 | BucketSort.cpp				| Bucket Sort							|  201 |
