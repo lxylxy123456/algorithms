@@ -36,3 +36,5 @@
 | 9 | Minimum.cpp					| Minimum								|  214 |
 | 9 | Minimum.cpp					| Maximum								|  214 |
 | 9 | Minimum.cpp					| Min Max								|  214 |
+| 9 | RandomizedSelect.cpp			| Randomized Select						|  216 |
+| 9 | RandomizedSelect.cpp			| Randomized Select Iter				|  219 |
