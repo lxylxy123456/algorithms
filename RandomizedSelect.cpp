@@ -93,7 +93,7 @@ int main(int argc, char *argv[]) {
 		if (compute >> 0 & 1)
 			std::cout << std::boolalpha << (ans1 == ans2) << std::endl; 
 	}
-	if (compute >> 1 & 1) {
+	if (compute >> 2 & 1) {
 		ans3 = RandomizedSelectIter(a, i); 
 		std::cout << ans3 << std::endl; 
 		if (compute >> 0 & 1)
