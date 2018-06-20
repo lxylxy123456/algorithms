@@ -338,23 +338,23 @@ int main(int argc, char *argv[]) {
 	std::cout << A << std::endl; 
 	std::cout << B << std::endl; 
 	Matrix<int> ans1(A); 
-	if ((compute >> 0) & 1) {
+	if (compute >> 0 & 1) {
 		std::cout << "SquareMatrixMultiply" << std::endl; 
 		ans1 = SquareMatrixMultiply(A, B, 0); 
 		std::cout << ans1 << std::endl; 
 	}
-	if ((compute >> 1) & 1) {
+	if (compute >> 1 & 1) {
 		std::cout << "SquareMatrixMultiplyRecursive" << std::endl; 
 		Matrix<int> ans2 = SquareMatrixMultiplyRecursive(A, B, 0); 
 		std::cout << ans2 << std::endl; 
-		if ((compute >> 0) & 1)
+		if (compute >> 0 & 1)
 			std::cout << std::boolalpha << (ans1 == ans2) << std::endl; 
 	}
-	if ((compute >> 2) & 1) {
+	if (compute >> 2 & 1) {
 		std::cout << "SquareMatrixMultiplyStrassen" << std::endl; 
 		Matrix<int> ans3 = SquareMatrixMultiplyStrassen<int, 0>(A, B); 
 		std::cout << ans3 << std::endl; 
-		if ((compute >> 0) & 1)
+		if (compute >> 0 & 1)
 			std::cout << std::boolalpha << (ans1 == ans3) << std::endl; 
 	}
 	return 0; 

@@ -80,20 +80,20 @@ int main(int argc, char *argv[]) {
 	const size_t compute = get_argv(argc, argv, 2, 7); 
 	random_integers(a, 0, n - 1, n); 
 	std::vector<int> b(a), c(a); 
-	if ((compute >> 0) & 1) {
+	if (compute >> 0 & 1) {
 		InsertSort(a); 
 		output_integers(a); 
 	}
-	if ((compute >> 1) & 1) {
+	if (compute >> 1 & 1) {
 		Quicksort(b.begin(), b.end()); 
 		output_integers(b); 
-		if ((compute >> 0) & 1)
+		if (compute >> 0 & 1)
 			std::cout << std::boolalpha << (a == b) << std::endl; 
 	}
-	if ((compute >> 2) & 1) {
+	if (compute >> 2 & 1) {
 		RandomizedQuicksort(c.begin(), c.end()); 
 		output_integers(c); 
-		if ((compute >> 0) & 1)
+		if (compute >> 0 & 1)
 			std::cout << std::boolalpha << (a == c) << std::endl; 
 	}
 	return 0; 

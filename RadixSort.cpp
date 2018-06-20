@@ -59,14 +59,14 @@ int main(int argc, char *argv[]) {
 	const size_t compute = get_argv(argc, argv, 3, 3); 
 	random_integers(a, 0, pow(2, k) - 1, n); 
 	std::vector<int> b(a); 
-	if ((compute >> 0) & 1) {
+	if (compute >> 0 & 1) {
 		InsertSort(a); 
 		output_integers(a); 
 	}
-	if ((compute >> 1) & 1) {
+	if (compute >> 1 & 1) {
 		RadixSort(b, k); 
 		output_integers(b); 
-		if ((compute >> 0) & 1)
+		if (compute >> 0 & 1)
 			std::cout << std::boolalpha << (a == b) << std::endl; 
 	}
 	return 0; 

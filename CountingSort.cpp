@@ -58,14 +58,14 @@ int main(int argc, char *argv[]) {
 	const size_t compute = get_argv(argc, argv, 3, 3); 
 	random_integers(a, 0, k - 1, n); 
 	std::vector<int> b(a), c(n, 0); 
-	if ((compute >> 0) & 1) {
+	if (compute >> 0 & 1) {
 		InsertSort(a); 
 		output_integers(a); 
 	}
-	if ((compute >> 1) & 1) {
+	if (compute >> 1 & 1) {
 		CountingSort(b, c, k, Self<int>); 
 		output_integers(c); 
-		if ((compute >> 0) & 1)
+		if (compute >> 0 & 1)
 			std::cout << std::boolalpha << (a == c) << std::endl; 
 	}
 	return 0; 
