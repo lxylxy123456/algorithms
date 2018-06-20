@@ -25,8 +25,6 @@
 #define FUNC_RandomizedSelect
 
 #include <vector>
-#include <algorithm>
-#include <cassert>
 #include "utils.h"
 #include "Quicksort.cpp"
 
