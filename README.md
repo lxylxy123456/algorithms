@@ -42,3 +42,5 @@
 | 10 | Stack.cpp					| StackEmpty							|  233 |
 | 10 | Stack.cpp					| Push									|  233 |
 | 10 | Stack.cpp					| Pop									|  233 |
+| 10 | Queue.cpp					| Enqueue								|  235 |
+| 10 | Queue.cpp					| Dequeue								|  235 |
