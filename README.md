@@ -50,3 +50,5 @@
 | 11 | LinkedList.cpp				| List Delete prime						|  238 |
 | 11 | LinkedList.cpp				| List Search prime						|  239 |
 | 11 | LinkedList.cpp				| List Insert prime						|  239 |
+| 11 | StorageManage.cpp			| Allocate Object						|  244 |
+| 11 | StorageManage.cpp			| Free Object							|  244 |
