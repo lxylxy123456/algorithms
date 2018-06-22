@@ -49,7 +49,8 @@ class ChainedHash {
 		Data<Pair<T>>* ChainedHashSearch(size_t k) {
 			return data[h(k)].ListSearch(k); 
 		}
-		void ChainedHashDelete(size_t k) {
+		void ChainedHashDelete(Data<Pair<T>>* p) {
+			data[h(p->key.key)].ListDelete(p); 
 		}
 		size_t h(size_t k) {
 			return k % size; 
@@ -89,7 +90,7 @@ int main(int argc, char *argv[]) {
 				D.ChainedHashInsert(k, v); 
 				break; 
 			case 'd': 
-				D.ChainedHashDelete(k); 
+				D.ChainedHashDelete(D.ChainedHashSearch(k)); 
 				break; 
 			case 's':
 				Data<Pair<int>>* ans = D.ChainedHashSearch(k); 

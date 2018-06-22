@@ -55,3 +55,6 @@
 | 12 | DirectAddress.cpp			| Direct Address Search					|  254 |
 | 12 | DirectAddress.cpp			| Direct Address Insert					|  254 |
 | 12 | DirectAddress.cpp			| Direct Address Delete					|  254 |
+| 12 | ChainedHash.cpp				| Chained Hash Insert					|  258 |
+| 12 | ChainedHash.cpp				| Chained Hash Search					|  258 |
+| 12 | ChainedHash.cpp				| Chained Hash Delete					|  258 |
