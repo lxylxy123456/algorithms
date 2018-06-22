@@ -58,3 +58,6 @@
 | 12 | ChainedHash.cpp				| Chained Hash Insert					|  258 |
 | 12 | ChainedHash.cpp				| Chained Hash Search					|  258 |
 | 12 | ChainedHash.cpp				| Chained Hash Delete					|  258 |
+| 12 | Hash.cpp						| Division Hash							|  263 |
+| 12 | Hash.cpp						| Multiplication Hash					|  263 |
+| 12 | Hash.cpp						| Universal Hash						|  263 |
