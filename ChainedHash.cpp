@@ -18,53 +18,61 @@
 
 #ifndef MAIN
 #define MAIN
-#define MAIN_DirectAddress
+#define MAIN_ChainedHash
 #endif
 
-#ifndef FUNC_DirectAddress
-#define FUNC_DirectAddress
+#ifndef FUNC_ChainedHash
+#define FUNC_ChainedHash
 
 #include <vector>
 #include "utils.h"
+#include "LinkedList.cpp"
 
 template <typename T>
-class DirectAddress {
+class Pair {
+	public: 
+		Pair(size_t k): key(k) {}
+		Pair(size_t k, T v): key(k), value(v) {}
+		bool operator==(const Pair& rhs) const { return key == rhs.key; }
+		bool operator!=(const Pair& rhs) const { return key != rhs.key; }
+		size_t key; 
+		T value; 
+}; 
+
+template <typename T>
+class ChainedHash {
 	public:
-		DirectAddress(size_t s): size(s), data(new T*[size]) {}
-		T* DirectAddressSearch(size_t k) {
-			return data[k]; 
+		ChainedHash(size_t s): size(s), data(new LinkedList<Pair<T>>[size]) {}
+		void ChainedHashInsert(size_t k, T x) {
+			data[h(k)].ListInsert(Pair<T>(k, x)); 
 		}
-		void DirectAddressInsert(size_t k, T x) {
-			if (data[k])
-				delete data[k]; 
-			data[k] = new T(x); 
+		Data<Pair<T>>* ChainedHashSearch(size_t k) {
+			return data[h(k)].ListSearch(k); 
 		}
-		void DirectAddressDelete(size_t k) {
-			delete data[k]; 
-			data[k] = nullptr; 
+		void ChainedHashDelete(size_t k) {
 		}
-		~DirectAddress() {
-			for (size_t i = 0; i < size; i++)
-				if (data[i])
-					delete data[i]; 
+		size_t h(size_t k) {
+			return k % size; 
+		}
+		~ChainedHash() {
 			delete [] data; 
 		}
 	private:
 		size_t size; 
-		T** data; 
+		LinkedList<Pair<T>>* data; 
 }; 
 #endif
 
-#ifdef MAIN_DirectAddress
+#ifdef MAIN_ChainedHash
 int main(int argc, char *argv[]) {
 	const size_t n = get_argv(argc, argv, 1, 16); 
-	DirectAddress<int> D(n); 
+	ChainedHash<int> D(n); 
 	std::cout << "d: delete" << std::endl; 
 	std::cout << "i: insert" << std::endl; 
 	std::cout << "s: search" << std::endl; 
 	std::cout << "q: quit" << std::endl; 
 	while (true) {
-		char c; size_t k; int x; 
+		char c; size_t k; int v; 
 		std::cout << ">> "; 
 		if (!(std::cin >> c)) {
 			std::cout << std::endl; 
@@ -76,17 +84,18 @@ int main(int argc, char *argv[]) {
 		std::cin >> k; 
 		switch (c) {
 			case 'i': 
-				std::cout << "x = "; 
-				std::cin >> x; 
-				D.DirectAddressInsert(k, x); 
+				std::cout << "v = "; 
+				std::cin >> v; 
+				D.ChainedHashInsert(k, v); 
 				break; 
 			case 'd': 
-				D.DirectAddressDelete(k); 
+				D.ChainedHashDelete(k); 
 				break; 
 			case 's':
-				int* ans = D.DirectAddressSearch(k); 
+				Data<Pair<int>>* ans = D.ChainedHashSearch(k); 
 				if (ans)
-					std::cout << *ans << std::endl; 
+					std::cout << ans->key.key << ": "
+							 << ans->key.value << std::endl; 
 				else
 					std::cout << "nullptr" << std::endl; 
 				break; 
