@@ -30,5 +30,5 @@ $(TARGETS): %: %.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 clean:
-	rm -f $(TARGETS)
+	rm -f $(TARGETS) a.out
 

@@ -52,3 +52,6 @@
 | 11 | LinkedList.cpp				| List Insert prime						|  239 |
 | 11 | StorageManage.cpp			| Allocate Object						|  244 |
 | 11 | StorageManage.cpp			| Free Object							|  244 |
+| 12 | DirectAddress.cpp			| Direct Address Search					|  254 |
+| 12 | DirectAddress.cpp			| Direct Address Insert					|  254 |
+| 12 | DirectAddress.cpp			| Direct Address Delete					|  254 |
