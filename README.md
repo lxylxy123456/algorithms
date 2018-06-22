@@ -61,3 +61,5 @@
 | 12 | Hash.cpp						| Division Hash							|  263 |
 | 12 | Hash.cpp						| Multiplication Hash					|  263 |
 | 12 | Hash.cpp						| Universal Hash						|  263 |
+| 12 | OpenAddress.cpp				| Hash Insert							|  270 |
+| 12 | OpenAddress.cpp				| Hash Search							|  271 |
