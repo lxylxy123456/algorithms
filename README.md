@@ -44,25 +44,31 @@
 | 10 | Stack.cpp					| Pop									|  233 |
 | 10 | Queue.cpp					| Enqueue								|  235 |
 | 10 | Queue.cpp					| Dequeue								|  235 |
-| 11 | LinkedList.cpp				| List Search							|  237 |
-| 11 | LinkedList.cpp				| List Insert							|  238 |
-| 11 | LinkedList.cpp				| List Delete							|  238 |
-| 11 | LinkedList.cpp				| List Delete prime						|  238 |
-| 11 | LinkedList.cpp				| List Search prime						|  239 |
-| 11 | LinkedList.cpp				| List Insert prime						|  239 |
-| 11 | StorageManage.cpp			| Allocate Object						|  244 |
-| 11 | StorageManage.cpp			| Free Object							|  244 |
-| 12 | DirectAddress.cpp			| Direct Address Search					|  254 |
-| 12 | DirectAddress.cpp			| Direct Address Insert					|  254 |
-| 12 | DirectAddress.cpp			| Direct Address Delete					|  254 |
-| 12 | ChainedHash.cpp				| Chained Hash Insert					|  258 |
-| 12 | ChainedHash.cpp				| Chained Hash Search					|  258 |
-| 12 | ChainedHash.cpp				| Chained Hash Delete					|  258 |
-| 12 | Hash.cpp						| Division Hash							|  263 |
-| 12 | Hash.cpp						| Multiplication Hash					|  263 |
-| 12 | Hash.cpp						| Universal Hash						|  263 |
-| 12 | OpenAddress.cpp				| Hash Insert							|  270 |
-| 12 | OpenAddress.cpp				| Hash Search							|  271 |
-| 13 | BinaryTree.cpp				| Inorder Tree Walk						|  288 |
-| 13 | BinaryTree.cpp				| Preorder Tree Walk					|  289 |
-| 13 | BinaryTree.cpp				| Postorder Tree Walk					|  289 |
+| 10 | LinkedList.cpp				| List Search							|  237 |
+| 10 | LinkedList.cpp				| List Insert							|  238 |
+| 10 | LinkedList.cpp				| List Delete							|  238 |
+| 10 | LinkedList.cpp				| List Delete prime						|  238 |
+| 10 | LinkedList.cpp				| List Search prime						|  239 |
+| 10 | LinkedList.cpp				| List Insert prime						|  239 |
+| 10 | StorageManage.cpp			| Allocate Object						|  244 |
+| 10 | StorageManage.cpp			| Free Object							|  244 |
+| 11 | DirectAddress.cpp			| Direct Address Search					|  254 |
+| 11 | DirectAddress.cpp			| Direct Address Insert					|  254 |
+| 11 | DirectAddress.cpp			| Direct Address Delete					|  254 |
+| 11 | ChainedHash.cpp				| Chained Hash Insert					|  258 |
+| 11 | ChainedHash.cpp				| Chained Hash Search					|  258 |
+| 11 | ChainedHash.cpp				| Chained Hash Delete					|  258 |
+| 11 | Hash.cpp						| Division Hash							|  263 |
+| 11 | Hash.cpp						| Multiplication Hash					|  263 |
+| 11 | Hash.cpp						| Universal Hash						|  263 |
+| 11 | OpenAddress.cpp				| Hash Insert							|  270 |
+| 11 | OpenAddress.cpp				| Hash Search							|  271 |
+| 12 | BinaryTree.cpp				| Inorder Tree Walk						|  288 |
+| 12 | BinaryTree.cpp				| Preorder Tree Walk					|  289 |
+| 12 | BinaryTree.cpp				| Postorder Tree Walk					|  289 |
+| 12 | BinarySearchTree.cpp			| Tree Search							|  290 |
+| 12 | BinarySearchTree.cpp			| Iterative Tree Search					|  291 |
+| 12 | BinarySearchTree.cpp			| Tree Minimum							|  291 |
+| 12 | BinarySearchTree.cpp			| Tree Maximum							|  291 |
+| 12 | BinarySearchTree.cpp			| Tree Successor						|  292 |
+| 12 | BinarySearchTree.cpp			| Tree Predecessor						|  293 |

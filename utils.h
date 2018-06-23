@@ -24,6 +24,8 @@
 #include <random>
 #include <vector>
 #include <sstream>
+#include <string>
+#include <sstream>
 
 void random_integers(std::vector<int>& a, int l, int u, size_t size) {
 	a.reserve(size); 
@@ -54,5 +56,17 @@ T get_argv(int argc, char *argv[], int index, T def) {
 	T ans; 
 	std::istringstream(argv[index]) >> ans; 
 	return ans; 
+}
+
+template <typename T>
+std::string pptr(T p) {
+	// print a pointer of type T
+	void* vp = static_cast<void*>(p); 
+	if (vp) {
+		std::ostringstream os; 
+		os << vp; 
+		return os.str(); 
+	} else
+		return "nullptr"; 
 }
 #endif
