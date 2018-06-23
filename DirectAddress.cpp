@@ -84,11 +84,7 @@ int main(int argc, char *argv[]) {
 				D.DirectAddressDelete(k); 
 				break; 
 			case 's':
-				int* ans = D.DirectAddressSearch(k); 
-				if (ans)
-					std::cout << *ans << std::endl; 
-				else
-					std::cout << "nullptr" << std::endl; 
+				std::cout << pptr(D.DirectAddressSearch(k)) << std::endl; 
 				break; 
 		}
 	}

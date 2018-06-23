@@ -155,11 +155,7 @@ int main(int argc, char *argv[]) {
 				S->ListDelete(S->ListSearch(x)); 
 				break; 
 			case 's':
-				Data<int>* ans = S->ListSearch(x); 
-				if (ans)
-					std::cout << ans->key << std::endl; 
-				else
-					std::cout << "nullptr" << std::endl; 
+				std::cout << pptr(S->ListSearch(x)) << std::endl; 
 				break; 
 		}
 	}
