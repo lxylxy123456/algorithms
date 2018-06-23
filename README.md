@@ -63,3 +63,6 @@
 | 12 | Hash.cpp						| Universal Hash						|  263 |
 | 12 | OpenAddress.cpp				| Hash Insert							|  270 |
 | 12 | OpenAddress.cpp				| Hash Search							|  271 |
+| 13 | BinaryTree.cpp				| Inorder Tree Walk						|  288 |
+| 13 | BinaryTree.cpp				| Preorder Tree Walk					|  289 |
+| 13 | BinaryTree.cpp				| Postorder Tree Walk					|  289 |
