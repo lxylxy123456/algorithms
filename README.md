@@ -72,3 +72,6 @@
 | 12 | BinarySearchTree.cpp			| Tree Maximum							|  291 |
 | 12 | BinarySearchTree.cpp			| Tree Successor						|  292 |
 | 12 | BinarySearchTree.cpp			| Tree Predecessor						|  293 |
+| 12 | BinarySearchTree.cpp			| Tree Insert							|  294 |
+| 12 | BinarySearchTree.cpp			| Transplant							|  296 |
+| 12 | BinarySearchTree.cpp			| Tree Delete							|  298 |

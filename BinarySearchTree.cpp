@@ -25,6 +25,7 @@
 #define FUNC_BinarySearchTree
 
 #include <vector>
+#include <cassert>
 #include "utils.h"
 #include "BinaryTree.cpp"
 
@@ -91,6 +92,51 @@ class BinarySearchTree: public BinaryTree<T> {
 			}
 			return y; 
 		}
+		void TreeInsert(T v) {
+			Node<T>* y = nullptr; 
+			Node<T>* x = BinaryTree<T>::root; 
+			while (x) {
+				y = x; 
+				if (v < x->data)
+					x = x->left; 
+				else
+					x = x->right; 
+			}
+			if (!y)
+				BinaryTree<T>::root = new Node<T>(v); 
+			else if (v < y->data)
+				y->left = new Node<T>(v, y); 
+			else
+				y->right = new Node<T>(v, y); 
+		}
+		void Transplant(Node<T>* u, Node<T>* v) {
+			if (!u->parent)
+				BinaryTree<T>::root = v; 
+			else if (u == u->parent->left)
+				u->parent->left = v; 
+			else
+				u->parent->right = v; 
+			if (v)
+				v->parent = u->parent; 
+		}
+		void TreeDelete(Node<T>* z) {
+			if (!z->left)
+				Transplant(z, z->right); 
+			else if (!z->right)
+				Transplant(z, z->left); 
+			else {
+				Node<T>* y = TreeMinimum(z->right); 
+				if (y->parent != z) {
+					Transplant(y, y->right); 
+					y->right = z->right; 
+					y->right->parent = y; 
+				}
+				Transplant(z, y); 
+				y->left = z->left; 
+				y->left->parent = y; 
+			}
+			delete z; 
+		}
 		~BinarySearchTree() {}
 }; 
 #endif
@@ -98,26 +144,78 @@ class BinarySearchTree: public BinaryTree<T> {
 #ifdef MAIN_BinarySearchTree
 int main(int argc, char *argv[]) {
 	BinarySearchTree<int> BT; 
-	BT.root = new Node<int>(4); 							/*       4       */
-	BT.root->left = new Node<int>(2, BT.root); 				/*     /   \     */
-	BT.root->left->left = new Node<int>(1, BT.root->left); 	/*   2       6   */
-	BT.root->left->right = new Node<int>(3, BT.root->left); /*  / \     / \  */
-	BT.root->right = new Node<int>(6, BT.root); 			/* 1   3   5   7 */
-	BT.root->right->left = new Node<int>(5, BT.root->right); 
-	BT.root->right->right = new Node<int>(7, BT.root->right); 
-	for (int i = 0; i <= 8; i++) {
-		Node<int> *ans = BT.TreeSearch(i); 
-		std::cout << i << '\t'; 
-		std::cout << pptr(ans) << " \t"; 
-		std::cout << pptr(BT.IterativeTreeSearch(i)) << " \t"; 
-		if (ans) {
-			std::cout << pptr(BT.TreeSuccessor(ans)) << " \t"; 
-			std::cout << pptr(BT.TreePredecessor(ans)) << " \t"; 
+	std::cout << "d: delete" << std::endl; 
+	std::cout << "i: insert" << std::endl; 
+	std::cout << "s: search" << std::endl; 
+	std::cout << "-: minimum" << std::endl; 
+	std::cout << "+: maximum" << std::endl; 
+	std::cout << "S: successor" << std::endl; 
+	std::cout << "P: predecessor" << std::endl; 
+	std::cout << "0: preorder tree walk" << std::endl; 
+	std::cout << "1: inorder tree walk" << std::endl; 
+	std::cout << "2: postorder tree walk" << std::endl; 
+	std::cout << "q: quit" << std::endl; 
+	Node<int>* var = BT.root; 
+	while (true) {
+		char c; size_t k; std::vector<int> v; 
+		std::cout << ">> "; 
+		if (!(std::cin >> c)) {
+			std::cout << std::endl; 
+			break; 
 		}
-		std::cout << std::endl; 
+		if (c == 'q')
+			break; 
+		switch (c) {
+			case 'i': 
+				std::cout << "k = "; 
+				std::cin >> k; 
+				BT.TreeInsert(k); 
+				break; 
+			case 'd':
+				BT.TreeDelete(var); 
+				break; 
+			case 's':
+				std::cout << "k = "; 
+				std::cin >> k; 
+				var = BT.TreeSearch(k); 
+				assert(var == BT.IterativeTreeSearch(k)); 
+				std::cout << "var = " << pptr(var) << std::endl; 
+				break; 
+			case '-':
+				std::cout << "min = " << BT.TreeMinimum()->data << std::endl; 
+				break; 
+			case '+':
+				std::cout << "max = " << BT.TreeMaximum()->data << std::endl; 
+				break; 
+			case 'S':
+				var = BT.TreeSuccessor(var); 
+				std::cout << "var = " << pptr(var) << std::endl; 
+				if (var)
+					std::cout << "val = " << var->data << std::endl; 
+				break; 
+			case 'P':
+				var = BT.TreePredecessor(var); 
+				std::cout << "var = " << pptr(var) << std::endl; 
+				if (var)
+					std::cout << "val = " << var->data << std::endl; 
+				break; 
+			case '0':
+				BT.PreorderTreeWalk(v); 
+				output_integers(v); 
+				v.clear(); 
+				break; 
+			case '1':
+				BT.InorderTreeWalk(v); 
+				output_integers(v); 
+				v.clear(); 
+				break; 
+			case '2':
+				BT.PostorderTreeWalk(v); 
+				output_integers(v); 
+				v.clear(); 
+				break; 
+		}
 	}
-	std::cout << "min: " << BT.TreeMinimum()->data << std::endl; 
-	std::cout << "max: " << BT.TreeMaximum()->data << std::endl; 
 	return 0; 
 }
 #endif
