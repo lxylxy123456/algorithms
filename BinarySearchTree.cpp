@@ -34,7 +34,7 @@ class BinarySearchTree: public BinaryTree<T> {
 	public:
 		BinarySearchTree(void) {}
 		Node<T>* TreeSearch(Node<T>* x, T k) {
-			if (!x || k == x->data)
+			if (x == this->nil || k == x->data)
 				return x; 
 			if (k < x->data)
 				return TreeSearch(x->left, k); 
@@ -42,11 +42,11 @@ class BinarySearchTree: public BinaryTree<T> {
 				return TreeSearch(x->right, k); 
 		}
 		Node<T>* TreeSearch(T k) {
-			return TreeSearch(BinaryTree<T>::root, k); 
+			return TreeSearch(this->root, k); 
 		}
 		Node<T>* IterativeTreeSearch(T k) {
-			Node<T>* x = BinaryTree<T>::root; 
-			while (x && k != x->data) {
+			Node<T>* x = this->root; 
+			while (x != this->nil && k != x->data) {
 				if (k < x->data)
 					x = x->left; 
 				else
@@ -55,74 +55,74 @@ class BinarySearchTree: public BinaryTree<T> {
 			return x; 
 		}
 		Node<T>* TreeMinimum(Node<T>* x) {
-			if (x)
-				while (x->left)
+			if (x != this->nil)
+				while (x->left != this->nil)
 					x = x->left; 
 			return x; 
 		}
 		Node<T>* TreeMinimum() {
-			return TreeMinimum(BinaryTree<T>::root); 
+			return TreeMinimum(this->root); 
 		}
 		Node<T>* TreeMaximum(Node<T>* x) {
-			if (x)
-				while (x->right)
+			if (x != this->nil)
+				while (x->right != this->nil)
 					x = x->right; 
 			return x; 
 		}
 		Node<T>* TreeMaximum() {
-			return TreeMaximum(BinaryTree<T>::root); 
+			return TreeMaximum(this->root); 
 		}
 		Node<T>* TreeSuccessor(Node<T>* x) {
-			if (x->right)
+			if (x->right != this->nil)
 				return TreeMinimum(x->right); 
 			Node<T>* y = x->parent; 
-			while (y && x == y->right) {
+			while (y != this->nil && x == y->right) {
 				x = y; 
 				y = x->parent; 
 			}
 			return y; 
 		}
 		Node<T>* TreePredecessor(Node<T>* x) {
-			if (x->left)
+			if (x->left != this->nil)
 				return TreeMaximum(x->left); 
 			Node<T>* y = x->parent; 
-			while (y && x == y->left) {
+			while (y != this->nil && x == y->left) {
 				x = y; 
 				y = x->parent; 
 			}
 			return y; 
 		}
 		void TreeInsert(T v) {
-			Node<T>* y = nullptr; 
-			Node<T>* x = BinaryTree<T>::root; 
-			while (x) {
+			Node<T>* y = this->nil; 
+			Node<T>* x = this->root; 
+			while (x != this->nil) {
 				y = x; 
 				if (v < x->data)
 					x = x->left; 
 				else
 					x = x->right; 
 			}
-			if (!y)
-				BinaryTree<T>::root = new Node<T>(v); 
+			if (y == this->nil)
+				this->root = new Node<T>(v); 
 			else if (v < y->data)
 				y->left = new Node<T>(v, y); 
 			else
 				y->right = new Node<T>(v, y); 
 		}
 		void Transplant(Node<T>* u, Node<T>* v) {
-			if (!u->parent)
-				BinaryTree<T>::root = v; 
+			if (u->parent == this->nil)
+				this->root = v; 
 			else if (u == u->parent->left)
 				u->parent->left = v; 
 			else
 				u->parent->right = v; 
-			if (v)
+			if (v != this->nil)
 				v->parent = u->parent; 
 		}
 		void TreeDelete(Node<T>* z) {
-			if (!z->left)
+			if (z->left == this->nil)
 				Transplant(z, z->right); 
-			else if (!z->right)
+			else if (z->right == this->nil)
 				Transplant(z, z->left); 
 			else {
 				Node<T>* y = TreeMinimum(z->right); 

@@ -46,9 +46,9 @@ class Node {
 template <typename T>
 class BinaryTree {
 	public:
-		BinaryTree(void): root(nullptr) {}
+		BinaryTree(void): root(nullptr), nil(nullptr) {}
 		void InorderTreeWalk(std::vector<T>& v, Node<T>* x) {
-			if (x) {
+			if (x != nil) {
 				InorderTreeWalk(v, x->left); 
 				v.push_back(x->data); 
 				InorderTreeWalk(v, x->right); 
@@ -56,7 +56,7 @@ class BinaryTree {
 		}
 		void InorderTreeWalk(std::vector<T>& v) { InorderTreeWalk(v, root); }
 		void PreorderTreeWalk(std::vector<T>& v, Node<T>* x) {
-			if (x) {
+			if (x != nil) {
 				v.push_back(x->data); 
 				PreorderTreeWalk(v, x->left); 
 				PreorderTreeWalk(v, x->right); 
@@ -64,7 +64,7 @@ class BinaryTree {
 		}
 		void PreorderTreeWalk(std::vector<T>& v) { PreorderTreeWalk(v, root); }
 		void PostorderTreeWalk(std::vector<T>& v, Node<T>* x) {
-			if (x) {
+			if (x != nil) {
 				PostorderTreeWalk(v, x->left); 
 				PostorderTreeWalk(v, x->right); 
 				v.push_back(x->data); 
@@ -72,7 +72,7 @@ class BinaryTree {
 		}
 		void PostorderTreeWalk(std::vector<T>& v) { PostorderTreeWalk(v, root); }
 		~BinaryTree() { if(root) delete root->recursive_destruct(); }
-		Node<T>* root; 
+		Node<T> *root, *nil; 
 }; 
 #endif
 
