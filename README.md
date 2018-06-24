@@ -75,3 +75,7 @@
 | 12 | BinarySearchTree.cpp			| Tree Insert							|  294 |
 | 12 | BinarySearchTree.cpp			| Transplant							|  296 |
 | 12 | BinarySearchTree.cpp			| Tree Delete							|  298 |
+| 13 | RedBlackTree.cpp				| Left Rotate							|  313 |
+| 13 | RedBlackTree.cpp				| Right Rotate							|  313 |
+| 13 | RedBlackTree.cpp				| RB Insert								|  315 |
+| 13 | RedBlackTree.cpp				| RB Insert Fixup						|  316 |

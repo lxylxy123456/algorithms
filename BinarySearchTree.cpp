@@ -33,6 +33,7 @@ template <typename T>
 class BinarySearchTree: public BinaryTree<T> {
 	public:
 		BinarySearchTree(void) {}
+		BinarySearchTree(Node<T>* n): BinaryTree<T>(n) {}
 		Node<T>* TreeSearch(Node<T>* x, T k) {
 			if (x == this->nil || k == x->data)
 				return x; 
@@ -157,7 +158,7 @@ int main(int argc, char *argv[]) {
 	std::cout << "q: quit" << std::endl; 
 	Node<int>* var = BT.root; 
 	while (true) {
-		char c; size_t k; std::vector<int> v; 
+		char c; int k; std::vector<int> v; 
 		std::cout << ">> "; 
 		if (!(std::cin >> c)) {
 			std::cout << std::endl; 

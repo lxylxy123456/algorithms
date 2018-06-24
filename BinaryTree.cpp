@@ -30,13 +30,14 @@
 template <typename T>
 class Node {
 	public:
+		Node() {}
 		Node(T d): data(d) {}
-		Node(T d, Node* p): data(d), parent(p) {}
-		Node<T>* recursive_destruct() {
-			if (left)
-				delete left->recursive_destruct(); 
-			if (right)
-				delete right->recursive_destruct(); 
+		Node(T d, Node<T>* p): data(d), parent(p) {}
+		Node<T>* recursive_destruct(Node<T>* nil) {
+			if (left != nil)
+				delete left->recursive_destruct(nil); 
+			if (right != nil)
+				delete right->recursive_destruct(nil); 
 			return this; 
 		}
 		T data; 
@@ -47,6 +48,7 @@ template <typename T>
 class BinaryTree {
 	public:
 		BinaryTree(void): root(nullptr), nil(nullptr) {}
+		BinaryTree(Node<T>* n): root(n), nil(n) {}
 		void InorderTreeWalk(std::vector<T>& v, Node<T>* x) {
 			if (x != nil) {
 				InorderTreeWalk(v, x->left); 
@@ -70,8 +72,19 @@ class BinaryTree {
 				v.push_back(x->data); 
 			}
 		}
+		void print_tree(Node<T>* x, size_t level) {
+			if (x != nil) {
+				std::cout << std::string(level, ' '); 
+				std::cout << x->data << std::endl; 
+				print_tree(x->left, level + 1); 
+				print_tree(x->right, level + 1); 
+			}
+		}
+		void print_tree() {
+			print_tree(root, 0); 
+		}
 		void PostorderTreeWalk(std::vector<T>& v) { PostorderTreeWalk(v, root); }
-		~BinaryTree() { if(root) delete root->recursive_destruct(); }
+		~BinaryTree() { if(root) delete root->recursive_destruct(nil); }
 		Node<T> *root, *nil; 
 }; 
 #endif
