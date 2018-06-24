@@ -26,13 +26,15 @@
 
 #include <vector>
 #include "utils.h"
+#include "printtree.h"
 
 template <typename T>
 class Node {
 	public:
-		Node() {}
-		Node(T d): data(d) {}
-		Node(T d, Node<T>* p): data(d), parent(p) {}
+		Node(): left(nullptr), right(nullptr), parent(nullptr) {}
+		Node(T d): data(d), left(nullptr), right(nullptr), parent(nullptr) {}
+		Node(T d, Node<T>* p): data(d), left(nullptr), right(nullptr), 
+								parent(p) {}
 		Node<T>* recursive_destruct(Node<T>* nil) {
 			if (left != nil)
 				delete left->recursive_destruct(nil); 
@@ -42,6 +44,21 @@ class Node {
 		}
 		T data; 
 		Node<T> *left, *right, *parent; 
+}; 
+
+template <typename T>
+class NodeDescriptor {
+	public:
+		NodeDescriptor(Node<T>* p, Node<T>* n): node(p), nil(n) {}
+		bool isNull() { return node == nil; }
+		String key() {
+			std::ostringstream os; 
+			os << node->data; 
+			return String(os.str()); 
+		}
+		NodeDescriptor<T> left() { return NodeDescriptor<T>(node->left, nil);}
+		NodeDescriptor<T> right() { return NodeDescriptor<T>(node->right, nil);}
+		Node<T> *node, *nil; 
 }; 
 
 template <typename T>
@@ -72,16 +89,8 @@ class BinaryTree {
 				v.push_back(x->data); 
 			}
 		}
-		void print_tree(Node<T>* x, size_t level) {
-			if (x != nil) {
-				std::cout << std::string(level, ' '); 
-				std::cout << x->data << std::endl; 
-				print_tree(x->left, level + 1); 
-				print_tree(x->right, level + 1); 
-			}
-		}
 		void print_tree() {
-			print_tree(root, 0); 
+			printTree(NodeDescriptor<T>(root, nil)); 
 		}
 		void PostorderTreeWalk(std::vector<T>& v) { PostorderTreeWalk(v, root); }
 		~BinaryTree() { if(root) delete root->recursive_destruct(nil); }
@@ -114,6 +123,7 @@ int main(int argc, char *argv[]) {
 		}
 		output_integers(ans); 
 	}
+	BT.print_tree(); 
 	return 0; 
 }
 #endif

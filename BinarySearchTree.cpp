@@ -155,6 +155,7 @@ int main(int argc, char *argv[]) {
 	std::cout << "0: preorder tree walk" << std::endl; 
 	std::cout << "1: inorder tree walk" << std::endl; 
 	std::cout << "2: postorder tree walk" << std::endl; 
+	std::cout << "p: print tree" << std::endl; 
 	std::cout << "q: quit" << std::endl; 
 	Node<int>* var = BT.root; 
 	while (true) {
@@ -214,6 +215,9 @@ int main(int argc, char *argv[]) {
 				BT.PostorderTreeWalk(v); 
 				output_integers(v); 
 				v.clear(); 
+				break; 
+			case 'p':
+				BT.print_tree(); 
 				break; 
 		}
 	}

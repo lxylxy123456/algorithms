@@ -56,6 +56,33 @@ class CData {
 }; 
 
 template <typename T>
+class CNodeDescriptor {
+	public:
+		CNodeDescriptor(Node<CData<T>>* p, Node<CData<T>>* n): node(p), nil(n){}
+		bool isNull() { return node == nil; }
+		String key() {
+			std::ostringstream os; 
+			os << node->data.data; 
+			std::string ans = os.str(); 
+			if (node->data.color == black)
+				return String(ans); 
+			else {
+				String ret(ans); 
+				ret.data[0] = "\033[31m" + ret.data[0]; 
+				ret.data[ret.size() - 1] += "\033[0m"; 
+				return ret; 
+			}
+		}
+		CNodeDescriptor<T> left() { 
+			return CNodeDescriptor<T>(node->left, nil); 
+		}
+		CNodeDescriptor<T> right() {
+			return CNodeDescriptor<T>(node->right, nil); 
+		}
+		Node<CData<T>> *node, *nil; 
+}; 
+
+template <typename T>
 class RedBlackTree: public BinarySearchTree<CData<T>> {
 	public:
 		RedBlackTree(void): BinarySearchTree<CData<T>>(new Node<CData<T>>()) {}
@@ -148,13 +175,26 @@ class RedBlackTree: public BinarySearchTree<CData<T>> {
 			z->right = this->nil; 
 			RBInsertFixup(z); 
 		}
+		void print_tree() {
+			printTree(CNodeDescriptor<T>(this->root, this->nil)); 
+		}
 		~RedBlackTree() { delete this->nil; }
+	private:
+		void TreeInsert(T v); 
+		void TreeDelete(Node<T>* z); 
 }; 
 #endif
 
 #ifdef MAIN_RedBlackTree
 int main(int argc, char *argv[]) {
+	size_t n = get_argv(argc, argv, 1, 0); 
 	RedBlackTree<int> RB; 
+	if (n) {
+		std::vector<int> a; 
+		random_integers(a, 0, n - 1, n); 
+		for (std::vector<int>::iterator i = a.begin(); i != a.end(); i++)
+			RB.RBInsert(*i); 
+	}
 	std::cout << "d: delete" << std::endl; 
 	std::cout << "i: insert" << std::endl; 
 	std::cout << "s: search" << std::endl; 
@@ -232,7 +272,7 @@ int main(int argc, char *argv[]) {
 				output_integers(v); 
 				v.clear(); 
 				break; 
-			case 't':
+			case 'p':
 				RB.print_tree(); 
 				break; 
 		}
