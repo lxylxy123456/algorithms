@@ -36,9 +36,9 @@ class Node {
 		Node(T d, Node<T>* p): data(d), left(nullptr), right(nullptr), 
 								parent(p) {}
 		Node<T>* recursive_destruct(Node<T>* nil) {
-			if (left != nil)
+			if (left && left != nil)
 				delete left->recursive_destruct(nil); 
-			if (right != nil)
+			if (right && right != nil)
 				delete right->recursive_destruct(nil); 
 			return this; 
 		}
