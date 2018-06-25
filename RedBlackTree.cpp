@@ -175,6 +175,101 @@ class RedBlackTree: public BinarySearchTree<CData<T>> {
 			z->right = this->nil; 
 			RBInsertFixup(z); 
 		}
+		void RBTransplant(Node<CData<T>>* u, Node<CData<T>>* v) {
+			if (u->parent == this->nil)
+				this->root = v; 
+			else if (u == u->parent->left)
+				u->parent->left = v; 
+			else
+				u->parent->right = v; 
+			v->parent = u->parent; 
+		}
+		void RBDeleteFixup(Node<CData<T>>* x) {
+			while (x != this->root && x->data.color == black) {
+				if (x == x->parent->left) {
+					Node<CData<T>>* w = x->parent->right; 
+					if (w->data.color == red) {
+						w->data.color = black; 
+						x->parent->data.color = red; 
+						LeftRotate(x->parent); 
+						w = x->parent->right; 
+					}
+					if (w->left->data.color == black && 
+						w->right->data.color == black) {
+						w->data.color = red; 
+						x = x->parent; 
+					} else {
+						if (w->right->data.color == black) {
+							w->left->data.color = black; 
+							w->data.color = red; 
+							RightRotate(w); 
+							w = x->parent->right; 
+						}
+						w->data.color = x->parent->data.color; 
+						x->parent->data.color = black; 
+						w->right->data.color = black; 
+						LeftRotate(x->parent); 
+						x = this->root; 
+					}
+				} else {
+					Node<CData<T>>* w = x->parent->left; 
+					if (w->data.color == red) {
+						w->data.color = black; 
+						x->parent->data.color = red; 
+						RightRotate(x->parent); 
+						w = x->parent->left; 
+					}
+					if (w->right->data.color == black && 
+						w->left->data.color == black) {
+						w->data.color = red; 
+						x = x->parent; 
+					} else {
+						if (w->left->data.color == black) {
+							w->right->data.color = black; 
+							w->data.color = red; 
+							LeftRotate(w); 
+							w = x->parent->left; 
+						}
+						w->data.color = x->parent->data.color; 
+						x->parent->data.color = black; 
+						w->left->data.color = black; 
+						RightRotate(x->parent); 
+						x = this->root; 
+					}
+				}
+			}
+			x->data.color = black; 
+		}
+		void RBDelete(Node<CData<T>>* z) {
+			Node<CData<T>>* x; 
+			Node<CData<T>>* y = z; 
+			Color y_original_color = y->data.color; 
+			if (z->left == this->nil) {
+				x = z->right; 
+				RBTransplant(z, z->right); 
+			} else if (z->right == this->nil) {
+				x = z->left; 
+				RBTransplant(z, z->left); 
+			} else {
+				y = this->TreeMinimum(z->right); 
+				y_original_color = y->data.color; 
+				x = y->right; 
+				if (y->parent == z)
+					x->parent = y; 	// unnecessary?
+				else {
+					RBTransplant(y, y->right); 
+					y->right = z->right; 
+					y->right->parent = y; 
+				}
+				RBTransplant(z, y); 
+				y->left = z->left; 
+				y->left->parent = y; 
+				y->data.color = z->data.color; 
+			}
+			delete z; 
+			if (y_original_color == black)
+				RBDeleteFixup(x); 
+		}
 		void print_tree() {
 			printTree(CNodeDescriptor<T>(this->root, this->nil)); 
 		}
@@ -182,6 +277,7 @@ class RedBlackTree: public BinarySearchTree<CData<T>> {
 	private:
 		void TreeInsert(T v); 
 		void TreeDelete(Node<T>* z); 
+		void Transplant(Node<T>* u, Node<T>* v); 
 }; 
 #endif
 
@@ -224,7 +320,7 @@ int main(int argc, char *argv[]) {
 				RB.RBInsert(k); 
 				break; 
 			case 'd':
-				// RB.RBDelete(var); 
+				RB.RBDelete(var); 
 				break; 
 			case 's':
 				std::cout << "k = "; 

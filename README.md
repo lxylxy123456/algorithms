@@ -79,3 +79,6 @@
 | 13 | RedBlackTree.cpp				| Right Rotate							|  313 |
 | 13 | RedBlackTree.cpp				| RB Insert								|  315 |
 | 13 | RedBlackTree.cpp				| RB Insert Fixup						|  316 |
+| 13 | RedBlackTree.cpp				| RB Transplant							|  323 |
+| 13 | RedBlackTree.cpp				| RB Delete								|  324 |
+| 13 | RedBlackTree.cpp				| RB Delete Fixup						|  326 |
