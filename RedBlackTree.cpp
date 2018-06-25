@@ -255,7 +255,7 @@ class RedBlackTree: public BinarySearchTree<CData<T>> {
 				y_original_color = y->data.color; 
 				x = y->right; 
 				if (y->parent == z)
-					x->parent = y; 	// unnecessary?
+					x->parent = y; 
 				else {
 					RBTransplant(y, y->right); 
 					y->right = z->right; 
