@@ -29,6 +29,11 @@ class String {
 				os << *i; 
 			return os; 
 		}
+		String& operator+=(std::string rhs) {
+			for (std::string::iterator i = rhs.begin(); i < rhs.end(); i++)
+				data.push_back(std::string(1, *i)); 
+			return *this; 
+		}
 		size_t size() { return data.size(); }
 		size_t length() { return data.size(); }
 		std::string& operator[](size_t index) { return data[index]; }

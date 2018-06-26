@@ -82,3 +82,5 @@
 | 13 | RedBlackTree.cpp				| RB Transplant							|  323 |
 | 13 | RedBlackTree.cpp				| RB Delete								|  324 |
 | 13 | RedBlackTree.cpp				| RB Delete Fixup						|  326 |
+| 14 | OrderStatisticTree.cpp		| OS Select								|  341 |
+| 14 | OrderStatisticTree.cpp		| OS Rank								|  342 |

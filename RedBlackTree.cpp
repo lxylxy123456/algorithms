@@ -37,7 +37,6 @@ class CData {
 	public:
 		CData(): color(black) {}
 		CData(T d): data(d), color(black) {}
-		CData(Color c): color(c) {}
 		CData(T d, Color c): data(d), color(c) {}
 		bool operator<(const CData<T>& rhs) const { return data < rhs.data; }
 		bool operator>(const CData<T>& rhs) const { return data > rhs.data; }
@@ -86,7 +85,7 @@ template <typename T>
 class RedBlackTree: public BinarySearchTree<CData<T>> {
 	public:
 		RedBlackTree(void): BinarySearchTree<CData<T>>(new Node<CData<T>>()) {}
-		void LeftRotate(Node<CData<T>>* x) {
+		virtual void LeftRotate(Node<CData<T>>* x) {
 			Node<CData<T>>* y = x->right; 
 			x->right = y->left; 
 			if (y->left != this->nil)
@@ -101,7 +100,7 @@ class RedBlackTree: public BinarySearchTree<CData<T>> {
 			y->left = x; 
 			x->parent = y; 
 		}
-		void RightRotate(Node<CData<T>>* x) {
+		virtual void RightRotate(Node<CData<T>>* x) {
 			Node<CData<T>>* y = x->left; 
 			x->left = y->right; 
 			if (y->right != this->nil)
