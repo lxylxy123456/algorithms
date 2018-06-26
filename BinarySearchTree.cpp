@@ -139,14 +139,26 @@ class BinarySearchTree: public BinaryTree<T> {
 			delete z; 
 		}
 }; 
-#endif
 
-#ifdef MAIN_BinarySearchTree
-int main(int argc, char *argv[]) {
-	BinarySearchTree<int> BT; 
+template <typename T>
+void print_ptr(T ptr, T nil) {
+	std::cout << "ptr = " << pptr(ptr) << std::endl; 
+	if (ptr == nil)
+		std::cout << "    = nil" << std::endl; 
+	else
+		std::cout << "val = " << ptr->data << std::endl; 
+}
+
+void tf(char& c, void* T, void* ptr) {
+	return; 
+}
+
+template <typename TreeType, typename NodeType, typename DataType, typename Tf>
+void tree_interact(TreeType T, std::string help_info, Tf func) {
 	std::cout << "d: delete" << std::endl; 
 	std::cout << "i: insert" << std::endl; 
 	std::cout << "s: search" << std::endl; 
+	std::cout << "R: root" << std::endl; 
 	std::cout << "-: minimum" << std::endl; 
 	std::cout << "+: maximum" << std::endl; 
 	std::cout << "S: successor" << std::endl; 
@@ -155,10 +167,11 @@ int main(int argc, char *argv[]) {
 	std::cout << "1: inorder tree walk" << std::endl; 
 	std::cout << "2: postorder tree walk" << std::endl; 
 	std::cout << "p: print tree" << std::endl; 
+	std::cout << help_info; 
 	std::cout << "q: quit" << std::endl; 
-	Node<int>* var = BT.root; 
+	Node<NodeType>* ptr = T.root; 
 	while (true) {
-		char c; int k; std::vector<int> v; 
+		char c; DataType k; std::vector<NodeType> v; 
 		std::cout << ">> "; 
 		if (!(std::cin >> c)) {
 			std::cout << std::endl; 
@@ -170,56 +183,73 @@ int main(int argc, char *argv[]) {
 			case 'i': 
 				std::cout << "k = "; 
 				std::cin >> k; 
-				BT.TreeInsert(k); 
+				T.TreeInsert(k); 
 				break; 
 			case 'd':
-				BT.TreeDelete(var); 
+				T.TreeDelete(ptr); 
 				break; 
 			case 's':
 				std::cout << "k = "; 
 				std::cin >> k; 
-				var = BT.TreeSearch(k); 
-				assert(var == BT.IterativeTreeSearch(k)); 
-				std::cout << "var = " << pptr(var) << std::endl; 
+				ptr = T.TreeSearch(k); 
+				print_ptr(ptr, T.nil); 
+				break; 
+			case 'R':
+				ptr = T.root; 
+				print_ptr(ptr, T.nil); 
 				break; 
 			case '-':
-				std::cout << "min = " << BT.TreeMinimum()->data << std::endl; 
+				ptr = T.TreeMinimum(ptr); 
+				print_ptr(ptr, T.nil); 
 				break; 
 			case '+':
-				std::cout << "max = " << BT.TreeMaximum()->data << std::endl; 
+				ptr = T.TreeMaximum(ptr); 
+				print_ptr(ptr, T.nil); 
 				break; 
 			case 'S':
-				var = BT.TreeSuccessor(var); 
-				std::cout << "var = " << pptr(var) << std::endl; 
-				if (var)
-					std::cout << "val = " << var->data << std::endl; 
+				ptr = T.TreeSuccessor(ptr); 
+				print_ptr(ptr, T.nil); 
 				break; 
 			case 'P':
-				var = BT.TreePredecessor(var); 
-				std::cout << "var = " << pptr(var) << std::endl; 
-				if (var)
-					std::cout << "val = " << var->data << std::endl; 
+				ptr = T.TreePredecessor(ptr); 
+				print_ptr(ptr, T.nil); 
 				break; 
 			case '0':
-				BT.PreorderTreeWalk(v); 
+				T.PreorderTreeWalk(v); 
 				output_integers(v); 
 				v.clear(); 
 				break; 
 			case '1':
-				BT.InorderTreeWalk(v); 
+				T.InorderTreeWalk(v); 
 				output_integers(v); 
 				v.clear(); 
 				break; 
 			case '2':
-				BT.PostorderTreeWalk(v); 
+				T.PostorderTreeWalk(v); 
 				output_integers(v); 
 				v.clear(); 
 				break; 
 			case 'p':
-				BT.print_tree(); 
+				T.print_tree(); 
 				break; 
+			default:
+				func(c, &T, &ptr); 
 		}
 	}
+}
+#endif
+
+#ifdef MAIN_BinarySearchTree
+int main(int argc, char *argv[]) {
+	size_t n = get_argv(argc, argv, 1, 0); 
+	BinarySearchTree<int> BT; 
+	if (n) {
+		std::vector<int> a; 
+		random_integers(a, 0, n - 1, n); 
+		for (std::vector<int>::iterator i = a.begin(); i != a.end(); i++)
+			BT.TreeInsert(*i); 
+	}
+	tree_interact<BinarySearchTree<int>, int, int>(BT, "", tf); 
 	return 0; 
 }
 #endif

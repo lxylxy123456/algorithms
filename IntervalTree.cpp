@@ -174,6 +174,12 @@ class AugmentRedBlackTree: public RedBlackTree<T> {
 			if (y_original_color == black)
 				RedBlackTree<T>::RBDeleteFixup(x); 
 		}
+		// TreeInsert = RBInsert, TreeDelete = RBDelete, TreeSearch
+		void TreeInsert(T v) { RBInsert(v); }
+		void TreeDelete(Node<CData<T>>* z) { RBDelete(z); }
+		Node<CData<T>>* TreeSearch(T k) {
+			return BinarySearchTree<CData<T>>::TreeSearch(k); 
+		}
 }; 
 
 template<typename T>
@@ -196,6 +202,10 @@ class IntervalTree: public AugmentRedBlackTree<MData<T>> {
 			}
 			return x; 
 		}
+		// TreeSearch = IntervalSearch
+		Node<CData<MData<T>>>* TreeSearch(Interval<T> k) {
+			return IntervalSearch(k); 
+		}
 	private:
 		Node<CData<MData<T>>>* TreeSearch(Node<CData<MData<T>>>* x, T k); 
 		Node<CData<MData<T>>>* TreeSearch(T k); 
@@ -214,84 +224,7 @@ int main(int argc, char *argv[]) {
 			IT.RBInsert(Interval<int>(std::min(*i, *j), std::max(*i, *j))); 
 		}
 	}
-	std::cout << "d: delete" << std::endl; 
-	std::cout << "i: insert" << std::endl; 
-	std::cout << "s: search" << std::endl; 
-	std::cout << "R: root" << std::endl; 
-	std::cout << "-: minimum" << std::endl; 
-	std::cout << "+: maximum" << std::endl; 
-	std::cout << "S: successor" << std::endl; 
-	std::cout << "P: predecessor" << std::endl; 
-	std::cout << "0: preorder tree walk" << std::endl; 
-	std::cout << "1: inorder tree walk" << std::endl; 
-	std::cout << "2: postorder tree walk" << std::endl; 
-	std::cout << "p: print tree" << std::endl; 
-	std::cout << "q: quit" << std::endl; 
-	Node<CData<MData<int>>>* ptr = IT.root; 
-	while (true) {
-		char c; Interval<int> k; std::vector<CData<MData<int>>> v; 
-		std::cout << ">> "; 
-		if (!(std::cin >> c)) {
-			std::cout << std::endl; 
-			break; 
-		}
-		if (c == 'q')
-			break; 
-		switch (c) {
-			case 'i': 
-				std::cout << "l, h = "; 
-				std::cin >> k; 
-				IT.RBInsert(k); 
-				break; 
-			case 'd':
-				IT.RBDelete(ptr); 
-				break; 
-			case 's':
-				std::cout << "l, h = "; 
-				std::cin >> k; 
-				ptr = IT.IntervalSearch(k); 
-				print_ptr(ptr, IT.nil); 
-				break; 
-			case 'R':
-				ptr = IT.root; 
-				print_ptr(ptr, IT.nil); 
-				break; 
-			case '-':
-				ptr = IT.TreeMinimum(ptr); 
-				print_ptr(ptr, IT.nil); 
-				break; 
-			case '+':
-				ptr = IT.TreeMaximum(ptr); 
-				print_ptr(ptr, IT.nil); 
-				break; 
-			case 'S':
-				ptr = IT.TreeSuccessor(ptr); 
-				print_ptr(ptr, IT.nil); 
-				break; 
-			case 'P':
-				ptr = IT.TreePredecessor(ptr); 
-				print_ptr(ptr, IT.nil); 
-				break; 
-			case '0':
-				IT.PreorderTreeWalk(v); 
-				output_integers(v); 
-				v.clear(); 
-				break; 
-			case '1':
-				IT.InorderTreeWalk(v); 
-				output_integers(v); 
-				v.clear(); 
-				break; 
-			case '2':
-				IT.PostorderTreeWalk(v); 
-				output_integers(v); 
-				v.clear(); 
-				break; 
-			case 'p':
-				IT.print_tree(); 
-				break; 
-		}
-	}
+	tree_interact<IntervalTree<int>,CData<MData<int>>,Interval<int>>(IT,"",tf); 
 	return 0; 
 }
 #endif

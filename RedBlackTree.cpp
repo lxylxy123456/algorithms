@@ -273,20 +273,12 @@ class RedBlackTree: public BinarySearchTree<CData<T>> {
 			printTree(CNodeDescriptor<T>(this->root, this->nil)); 
 		}
 		~RedBlackTree() { delete this->nil; }
+		// TreeInsert = RBInsert, TreeDelete = RBDelete
+		void TreeInsert(T v) { RBInsert(v); }
+		void TreeDelete(Node<CData<T>>* z) { RBDelete(z); }
 	private:
-		void TreeInsert(T v); 
-		void TreeDelete(Node<T>* z); 
 		void Transplant(Node<T>* u, Node<T>* v); 
 }; 
-
-template <typename T>
-void print_ptr(T ptr, T nil) {
-	std::cout << "ptr = " << pptr(ptr) << std::endl; 
-	if (ptr == nil)
-		std::cout << "    = nil" << std::endl; 
-	else
-		std::cout << "val = " << ptr->data << std::endl; 
-}
 #endif
 
 #ifdef MAIN_RedBlackTree
@@ -299,85 +291,7 @@ int main(int argc, char *argv[]) {
 		for (std::vector<int>::iterator i = a.begin(); i != a.end(); i++)
 			RB.RBInsert(*i); 
 	}
-	std::cout << "d: delete" << std::endl; 
-	std::cout << "i: insert" << std::endl; 
-	std::cout << "s: search" << std::endl; 
-	std::cout << "R: root" << std::endl; 
-	std::cout << "-: minimum" << std::endl; 
-	std::cout << "+: maximum" << std::endl; 
-	std::cout << "S: successor" << std::endl; 
-	std::cout << "P: predecessor" << std::endl; 
-	std::cout << "0: preorder tree walk" << std::endl; 
-	std::cout << "1: inorder tree walk" << std::endl; 
-	std::cout << "2: postorder tree walk" << std::endl; 
-	std::cout << "p: print tree" << std::endl; 
-	std::cout << "q: quit" << std::endl; 
-	Node<CData<int>>* ptr = RB.root; 
-	while (true) {
-		char c; size_t k; std::vector<CData<int>> v; 
-		std::cout << ">> "; 
-		if (!(std::cin >> c)) {
-			std::cout << std::endl; 
-			break; 
-		}
-		if (c == 'q')
-			break; 
-		switch (c) {
-			case 'i': 
-				std::cout << "k = "; 
-				std::cin >> k; 
-				RB.RBInsert(k); 
-				break; 
-			case 'd':
-				RB.RBDelete(ptr); 
-				break; 
-			case 's':
-				std::cout << "k = "; 
-				std::cin >> k; 
-				ptr = RB.TreeSearch(k); 
-				assert(ptr == RB.IterativeTreeSearch(k)); 
-				print_ptr(ptr, RB.nil); 
-				break; 
-			case 'R':
-				ptr = RB.root; 
-				print_ptr(ptr, RB.nil); 
-				break; 
-			case '-':
-				ptr = RB.TreeMinimum(ptr); 
-				print_ptr(ptr, RB.nil); 
-				break; 
-			case '+':
-				ptr = RB.TreeMaximum(ptr); 
-				print_ptr(ptr, RB.nil); 
-				break; 
-			case 'S':
-				ptr = RB.TreeSuccessor(ptr); 
-				print_ptr(ptr, RB.nil); 
-				break; 
-			case 'P':
-				ptr = RB.TreePredecessor(ptr); 
-				print_ptr(ptr, RB.nil); 
-				break; 
-			case '0':
-				RB.PreorderTreeWalk(v); 
-				output_integers(v); 
-				v.clear(); 
-				break; 
-			case '1':
-				RB.InorderTreeWalk(v); 
-				output_integers(v); 
-				v.clear(); 
-				break; 
-			case '2':
-				RB.PostorderTreeWalk(v); 
-				output_integers(v); 
-				v.clear(); 
-				break; 
-			case 'p':
-				RB.print_tree(); 
-				break; 
-		}
-	}
+	tree_interact<RedBlackTree<int>, CData<int>, int>(RB, "", tf); 
 	return 0; 
 }
 #endif

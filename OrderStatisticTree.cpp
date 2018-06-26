@@ -175,6 +175,12 @@ class OrderStatisticTree: public RedBlackTree<SData<T>> {
 			}
 			return r; 
 		}
+		// TreeInsert = RBInsert, TreeDelete = RBDelete, TreeSearch
+		void TreeInsert(T v) { OSInsert(v); }
+		void TreeDelete(Node<CData<SData<T>>>* z) { OSDelete(z); }
+		Node<CData<SData<T>>>* TreeSearch(T k) {
+			return BinarySearchTree<CData<SData<T>>>::TreeSearch(SData<T>(k)); 
+		}
 	private:
 		void RBInsert(T d); 
 		void RBDelete(Node<CData<T>>* z); 
@@ -182,6 +188,23 @@ class OrderStatisticTree: public RedBlackTree<SData<T>> {
 #endif
 
 #ifdef MAIN_OrderStatisticTree
+void f(char& c, OrderStatisticTree<int>* T, Node<CData<SData<int>>>** p) {
+	OrderStatisticTree<int>& OS = *T; 
+	Node<CData<SData<int>>>*& ptr = *p; 
+	size_t k; 
+	switch(c) {
+		case 'l':
+			std::cout << "r = "; 
+			std::cin >> k; 
+			ptr = OS.OSSelect(k); 
+			print_ptr(ptr, OS.nil); 
+			break; 
+		case 'r':
+			std::cout << "rank = " << OS.OSRank(ptr) << std::endl; 
+			break; 
+	}
+}
+
 int main(int argc, char *argv[]) {
 	size_t n = get_argv(argc, argv, 1, 0); 
 	OrderStatisticTree<int> OS; 
@@ -191,96 +214,8 @@ int main(int argc, char *argv[]) {
 		for (std::vector<int>::iterator i = a.begin(); i != a.end(); i++)
 			OS.OSInsert(*i); 
 	}
-	std::cout << "d: delete" << std::endl; 
-	std::cout << "i: insert" << std::endl; 
-	std::cout << "s: search" << std::endl; 
-	std::cout << "R: root" << std::endl; 
-	std::cout << "-: minimum" << std::endl; 
-	std::cout << "+: maximum" << std::endl; 
-	std::cout << "S: successor" << std::endl; 
-	std::cout << "P: predecessor" << std::endl; 
-	std::cout << "0: preorder tree walk" << std::endl; 
-	std::cout << "1: inorder tree walk" << std::endl; 
-	std::cout << "2: postorder tree walk" << std::endl; 
-	std::cout << "p: print tree" << std::endl; 
-	std::cout << "l: select" << std::endl; 
-	std::cout << "r: rank" << std::endl; 
-	std::cout << "q: quit" << std::endl; 
-	Node<CData<SData<int>>>* ptr = OS.root; 
-	while (true) {
-		char c; size_t k; std::vector<CData<SData<int>>> v; 
-		std::cout << ">> "; 
-		if (!(std::cin >> c)) {
-			std::cout << std::endl; 
-			break; 
-		}
-		if (c == 'q')
-			break; 
-		switch (c) {
-			case 'i': 
-				std::cout << "k = "; 
-				std::cin >> k; 
-				OS.OSInsert(k); 
-				break; 
-			case 'd':
-				OS.OSDelete(ptr); 
-				break; 
-			case 's':
-				std::cout << "k = "; 
-				std::cin >> k; 
-				ptr = OS.TreeSearch(SData<int>(k)); 
-				assert(ptr == OS.IterativeTreeSearch(SData<int>(k))); 
-				print_ptr(ptr, OS.nil); 
-				break; 
-			case 'R':
-				ptr = OS.root; 
-				print_ptr(ptr, OS.nil); 
-				break; 
-			case '-':
-				ptr = OS.TreeMinimum(ptr); 
-				print_ptr(ptr, OS.nil); 
-				break; 
-			case '+':
-				ptr = OS.TreeMaximum(ptr); 
-				print_ptr(ptr, OS.nil); 
-				break; 
-			case 'S':
-				ptr = OS.TreeSuccessor(ptr); 
-				print_ptr(ptr, OS.nil); 
-				break; 
-			case 'P':
-				ptr = OS.TreePredecessor(ptr); 
-				print_ptr(ptr, OS.nil); 
-				break; 
-			case '0':
-				OS.PreorderTreeWalk(v); 
-				output_integers(v); 
-				v.clear(); 
-				break; 
-			case '1':
-				OS.InorderTreeWalk(v); 
-				output_integers(v); 
-				v.clear(); 
-				break; 
-			case '2':
-				OS.PostorderTreeWalk(v); 
-				output_integers(v); 
-				v.clear(); 
-				break; 
-			case 'l':
-				std::cout << "r = "; 
-				std::cin >> k; 
-				ptr = OS.OSSelect(k); 
-				print_ptr(ptr, OS.nil); 
-				break; 
-			case 'r':
-				std::cout << "rank = " << OS.OSRank(ptr) << std::endl; 
-				break; 
-			case 'p':
-				OS.print_tree(); 
-				break; 
-		}
-	}
+	std::string s = "l: select\nr: rank\n"; 
+	tree_interact<OrderStatisticTree<int>, CData<SData<int>>, int>(OS, s, f); 
 	return 0; 
 }
 #endif
