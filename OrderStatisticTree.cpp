@@ -155,10 +155,26 @@ class OrderStatisticTree: public RedBlackTree<SData<T>> {
 			if (y_original_color == black)
 				RedBlackTree<SData<T>>::RBDeleteFixup(x); 
 		}
-		void print_tree() {
-			printTree(CNodeDescriptor<SData<T>>(this->root, this->nil)); 
+		Node<CData<SData<T>>>* OSSelect(Node<CData<SData<T>>>* x, size_t i) {
+			size_t& r = x->left->data.data.size; 
+			if (i == r)
+				return x; 
+			else if (i < r)
+				return OSSelect(x->left, i); 
+			else
+				return OSSelect(x->right, i - r - 1); 
 		}
-		~OrderStatisticTree() { delete this->nil; }
+		Node<CData<SData<T>>>* OSSelect(size_t i) {
+			return OSSelect(this->root, i); 
+		}
+		size_t OSRank(Node<CData<SData<T>>>* x) {
+			size_t r = x->left->data.data.size; 
+			for (Node<CData<SData<T>>>* y = x; y != this->root; y = y->parent) {
+				if (y == y->parent->right)
+					r += y->parent->left->data.data.size + 1; 
+			}
+			return r; 
+		}
 	private:
 		void RBInsert(T d); 
 		void RBDelete(Node<CData<T>>* z); 
@@ -186,6 +202,8 @@ int main(int argc, char *argv[]) {
 	std::cout << "1: inorder tree walk" << std::endl; 
 	std::cout << "2: postorder tree walk" << std::endl; 
 	std::cout << "p: print tree" << std::endl; 
+	std::cout << "l: select" << std::endl; 
+	std::cout << "r: rank" << std::endl; 
 	std::cout << "q: quit" << std::endl; 
 	Node<CData<SData<int>>>* var = OS.root; 
 	while (true) {
@@ -251,6 +269,19 @@ int main(int argc, char *argv[]) {
 				OS.PostorderTreeWalk(v); 
 				output_integers(v); 
 				v.clear(); 
+				break; 
+			case 'l':
+				std::cout << "r = "; 
+				std::cin >> k; 
+				var = OS.OSSelect(k); 
+				std::cout << "var = " << pptr(var) << std::endl; 
+				if (var == OS.nil)
+					std::cout << "    = nil" << std::endl; 
+				else
+					std::cout << "val = " << var->data << std::endl; 
+				break; 
+			case 'r':
+				std::cout << "rank = " << OS.OSRank(var) << std::endl; 
 				break; 
 			case 'p':
 				OS.print_tree(); 

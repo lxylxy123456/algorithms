@@ -138,7 +138,6 @@ class BinarySearchTree: public BinaryTree<T> {
 			}
 			delete z; 
 		}
-		~BinarySearchTree() {}
 }; 
 #endif
 
