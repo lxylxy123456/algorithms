@@ -278,6 +278,15 @@ class RedBlackTree: public BinarySearchTree<CData<T>> {
 		void TreeDelete(Node<T>* z); 
 		void Transplant(Node<T>* u, Node<T>* v); 
 }; 
+
+template <typename T>
+void print_ptr(T ptr, T nil) {
+	std::cout << "ptr = " << pptr(ptr) << std::endl; 
+	if (ptr == nil)
+		std::cout << "    = nil" << std::endl; 
+	else
+		std::cout << "val = " << ptr->data << std::endl; 
+}
 #endif
 
 #ifdef MAIN_RedBlackTree
@@ -293,6 +302,7 @@ int main(int argc, char *argv[]) {
 	std::cout << "d: delete" << std::endl; 
 	std::cout << "i: insert" << std::endl; 
 	std::cout << "s: search" << std::endl; 
+	std::cout << "R: root" << std::endl; 
 	std::cout << "-: minimum" << std::endl; 
 	std::cout << "+: maximum" << std::endl; 
 	std::cout << "S: successor" << std::endl; 
@@ -302,7 +312,7 @@ int main(int argc, char *argv[]) {
 	std::cout << "2: postorder tree walk" << std::endl; 
 	std::cout << "p: print tree" << std::endl; 
 	std::cout << "q: quit" << std::endl; 
-	Node<CData<int>>* var = RB.root; 
+	Node<CData<int>>* ptr = RB.root; 
 	while (true) {
 		char c; size_t k; std::vector<CData<int>> v; 
 		std::cout << ">> "; 
@@ -319,38 +329,34 @@ int main(int argc, char *argv[]) {
 				RB.RBInsert(k); 
 				break; 
 			case 'd':
-				RB.RBDelete(var); 
+				RB.RBDelete(ptr); 
 				break; 
 			case 's':
 				std::cout << "k = "; 
 				std::cin >> k; 
-				var = RB.TreeSearch(k); 
-				assert(var == RB.IterativeTreeSearch(k)); 
-				std::cout << "var = " << pptr(var) << std::endl; 
-				if (var == RB.nil)
-					std::cout << "    = nil" << std::endl; 
+				ptr = RB.TreeSearch(k); 
+				assert(ptr == RB.IterativeTreeSearch(k)); 
+				print_ptr(ptr, RB.nil); 
+				break; 
+			case 'R':
+				ptr = RB.root; 
+				print_ptr(ptr, RB.nil); 
 				break; 
 			case '-':
-				std::cout << "min = " << RB.TreeMinimum()->data << std::endl; 
+				ptr = RB.TreeMinimum(ptr); 
+				print_ptr(ptr, RB.nil); 
 				break; 
 			case '+':
-				std::cout << "max = " << RB.TreeMaximum()->data << std::endl; 
+				ptr = RB.TreeMaximum(ptr); 
+				print_ptr(ptr, RB.nil); 
 				break; 
 			case 'S':
-				var = RB.TreeSuccessor(var); 
-				std::cout << "var = " << pptr(var) << std::endl; 
-				if (var == RB.nil)
-					std::cout << "    = nil" << std::endl; 
-				else
-					std::cout << "val = " << var->data << std::endl; 
+				ptr = RB.TreeSuccessor(ptr); 
+				print_ptr(ptr, RB.nil); 
 				break; 
 			case 'P':
-				var = RB.TreePredecessor(var); 
-				std::cout << "var = " << pptr(var) << std::endl; 
-				if (var == RB.nil)
-					std::cout << "    = nil" << std::endl; 
-				else
-					std::cout << "val = " << var->data << std::endl; 
+				ptr = RB.TreePredecessor(ptr); 
+				print_ptr(ptr, RB.nil); 
 				break; 
 			case '0':
 				RB.PreorderTreeWalk(v); 

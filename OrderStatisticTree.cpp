@@ -194,6 +194,7 @@ int main(int argc, char *argv[]) {
 	std::cout << "d: delete" << std::endl; 
 	std::cout << "i: insert" << std::endl; 
 	std::cout << "s: search" << std::endl; 
+	std::cout << "R: root" << std::endl; 
 	std::cout << "-: minimum" << std::endl; 
 	std::cout << "+: maximum" << std::endl; 
 	std::cout << "S: successor" << std::endl; 
@@ -205,7 +206,7 @@ int main(int argc, char *argv[]) {
 	std::cout << "l: select" << std::endl; 
 	std::cout << "r: rank" << std::endl; 
 	std::cout << "q: quit" << std::endl; 
-	Node<CData<SData<int>>>* var = OS.root; 
+	Node<CData<SData<int>>>* ptr = OS.root; 
 	while (true) {
 		char c; size_t k; std::vector<CData<SData<int>>> v; 
 		std::cout << ">> "; 
@@ -222,38 +223,34 @@ int main(int argc, char *argv[]) {
 				OS.OSInsert(k); 
 				break; 
 			case 'd':
-				OS.OSDelete(var); 
+				OS.OSDelete(ptr); 
 				break; 
 			case 's':
 				std::cout << "k = "; 
 				std::cin >> k; 
-				var = OS.TreeSearch(SData<int>(k)); 
-				assert(var == OS.IterativeTreeSearch(SData<int>(k))); 
-				std::cout << "var = " << pptr(var) << std::endl; 
-				if (var == OS.nil)
-					std::cout << "    = nil" << std::endl; 
+				ptr = OS.TreeSearch(SData<int>(k)); 
+				assert(ptr == OS.IterativeTreeSearch(SData<int>(k))); 
+				print_ptr(ptr, OS.nil); 
+				break; 
+			case 'R':
+				ptr = OS.root; 
+				print_ptr(ptr, OS.nil); 
 				break; 
 			case '-':
-				std::cout << "min = " << OS.TreeMinimum()->data << std::endl; 
+				ptr = OS.TreeMinimum(ptr); 
+				print_ptr(ptr, OS.nil); 
 				break; 
 			case '+':
-				std::cout << "max = " << OS.TreeMaximum()->data << std::endl; 
+				ptr = OS.TreeMaximum(ptr); 
+				print_ptr(ptr, OS.nil); 
 				break; 
 			case 'S':
-				var = OS.TreeSuccessor(var); 
-				std::cout << "var = " << pptr(var) << std::endl; 
-				if (var == OS.nil)
-					std::cout << "    = nil" << std::endl; 
-				else
-					std::cout << "val = " << var->data << std::endl; 
+				ptr = OS.TreeSuccessor(ptr); 
+				print_ptr(ptr, OS.nil); 
 				break; 
 			case 'P':
-				var = OS.TreePredecessor(var); 
-				std::cout << "var = " << pptr(var) << std::endl; 
-				if (var == OS.nil)
-					std::cout << "    = nil" << std::endl; 
-				else
-					std::cout << "val = " << var->data << std::endl; 
+				ptr = OS.TreePredecessor(ptr); 
+				print_ptr(ptr, OS.nil); 
 				break; 
 			case '0':
 				OS.PreorderTreeWalk(v); 
@@ -273,15 +270,11 @@ int main(int argc, char *argv[]) {
 			case 'l':
 				std::cout << "r = "; 
 				std::cin >> k; 
-				var = OS.OSSelect(k); 
-				std::cout << "var = " << pptr(var) << std::endl; 
-				if (var == OS.nil)
-					std::cout << "    = nil" << std::endl; 
-				else
-					std::cout << "val = " << var->data << std::endl; 
+				ptr = OS.OSSelect(k); 
+				print_ptr(ptr, OS.nil); 
 				break; 
 			case 'r':
-				std::cout << "rank = " << OS.OSRank(var) << std::endl; 
+				std::cout << "rank = " << OS.OSRank(ptr) << std::endl; 
 				break; 
 			case 'p':
 				OS.print_tree(); 
