@@ -85,3 +85,9 @@
 | 14 | OrderStatisticTree.cpp		| OS Select								|  341 |
 | 14 | OrderStatisticTree.cpp		| OS Rank								|  342 |
 | 14 | IntervalTree.cpp				| Interval Search						|  351 |
+| 15 | CutRod.cpp					| Cut Rod								|  363 |
+| 15 | CutRod.cpp					| Momorized Cut Rod						|  365 |
+| 15 | CutRod.cpp					| Momorized Cut Rod Aux					|  366 |
+| 15 | CutRod.cpp					| Bottom Up Cut Rod						|  366 |
+| 15 | CutRod.cpp					| Extended Bottom Up Cut Rod			|  369 |
+| 15 | CutRod.cpp					| Print Cut Rod Solution				|  369 |
