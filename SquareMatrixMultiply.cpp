@@ -187,8 +187,8 @@ Matrix<T> SquareMatrixMultiply(Matrix<T>&A, Matrix<T>&B, T T0){
 	Matrix<T> C(A.rows, B.cols, T0); 
 	for (size_t i = 0; i < C.rows; i++) {
 		for(size_t j = 0; j < C.cols; j++) {
+			int& loc = C.data[i][j]; 
 			for(size_t k = 0; k < A.cols; k++) {
-				int& loc = C.data[i][j]; 
 				loc += A[i][k] * B[k][j]; 
 			}
 		}

@@ -36,6 +36,15 @@ void random_integers(std::vector<int>& a, int l, int u, size_t size) {
 		a.push_back(d(rd)); 
 }
 
+void random_integers(std::vector<size_t>& a, size_t l, size_t u, size_t size) {
+	a.reserve(size); 
+    std::random_device rd; 
+    std::uniform_int_distribution<size_t> d(l, u); 
+	a.reserve(size); 
+	for (size_t i = 0; i < size; i++)
+		a.push_back(d(rd)); 
+}
+
 template <typename T>
 void input_integers(std::vector<T>& a) {
 	std::copy(	std::istream_iterator<T>(std::cin), 

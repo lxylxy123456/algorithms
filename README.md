@@ -91,3 +91,6 @@
 | 15 | CutRod.cpp					| Bottom Up Cut Rod						|  366 |
 | 15 | CutRod.cpp					| Extended Bottom Up Cut Rod			|  369 |
 | 15 | CutRod.cpp					| Print Cut Rod Solution				|  369 |
+| 15 | MatrixChainOrder.cpp			| Matrix Multiply						|  371 |
+| 15 | MatrixChainOrder.cpp			| Matrix Chain Order					|  375 |
+| 15 | MatrixChainOrder.cpp			| Print Optimal Parens					|  377 |
