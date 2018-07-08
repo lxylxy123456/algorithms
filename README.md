@@ -97,3 +97,5 @@
 | 15 | MatrixChainOrder.cpp			| Recursive Matrix Chain				|  385 |
 | 15 | MatrixChainOrder.cpp			| Memorized Matrix Chain				|  388 |
 | 15 | MatrixChainOrder.cpp			| Lookup Chain							|  388 |
+| 15 | LCSLength.cpp				| LCS Length							|  394 |
+| 15 | LCSLength.cpp				| Print LCS								|  395 |

@@ -129,7 +129,7 @@ int main(int argc, char *argv[]) {
 	if (n) {	// Matrix-Chain Multiplication problem
 		VECT_SIZT p; 
 		std::vector<VECT_SIZT> s(n, VECT_SIZT(n + 1, 0)); 
-		random_integers(p, 1, a, n + 1); 
+		random_integers<size_t>(p, 1, a, n + 1); 
 		output_integers(p); 
 		if (b >> 0 & 1) {
 			std::cout << MatrixChainOrder(p, s) << std::endl; 
