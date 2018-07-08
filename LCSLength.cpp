@@ -27,10 +27,7 @@
 #define VECT_SIZT std::vector<size_t>
 
 #include <algorithm>
-#include <exception>
-#include <cassert>
 #include "utils.h"
-#include "SquareMatrixMultiply.cpp"
 
 template <typename T>
 std::vector<VECT_SIZT> LCSLength(std::vector<T> X, std::vector<T> Y) {

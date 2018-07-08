@@ -72,7 +72,7 @@ class CNodeDescriptor {
 				return ret; 
 			}
 		}
-		CNodeDescriptor<T> left() { 
+		CNodeDescriptor<T> left() {
 			return CNodeDescriptor<T>(node->left, nil); 
 		}
 		CNodeDescriptor<T> right() {
