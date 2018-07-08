@@ -33,7 +33,7 @@
 #include "SquareMatrixMultiply.cpp"
 
 template <typename T>
-Matrix<T> MatrixMultiply(Matrix<T>&A, Matrix<T>&B){
+Matrix<T> MatrixMultiply(Matrix<T>&A, Matrix<T>&B) {
 	if (A.cols != B.rows)
 		throw std::invalid_argument("incompatible dimensions"); 
 	Matrix<T> C(A.rows, B.cols, A[0][0]); 
@@ -48,13 +48,13 @@ Matrix<T> MatrixMultiply(Matrix<T>&A, Matrix<T>&B){
 	return C; 
 }
 
-size_t MatrixChainOrder(VECT_SIZT& p, std::vector<VECT_SIZT>& s){
+size_t MatrixChainOrder(VECT_SIZT& p, std::vector<VECT_SIZT>& s) {
 	size_t n = p.size() - 1; 
 	std::vector<VECT_SIZT> m(n, VECT_SIZT(n + 1, 0)); 
 	for (size_t l = 2; l <= n; l++) {
 		for (size_t i = 0; i <= n - l; i++) {
 			size_t j = l + i; 
-			m[i][j] = 0 - 1; 
+			m[i][j] = -1; 
 			for (size_t k = i + 1; k < j; k++) {
 				size_t q = m[i][k] + m[k][j] + p[i] * p[k] * p[j]; 
 				if (q < m[i][j]) {
@@ -78,22 +78,70 @@ void PrintOptimalParens(std::vector<VECT_SIZT>& s, size_t i, size_t j) {
 		std::cout << ")"; 
 	}
 }
+
+size_t RecursiveMatrixChain(VECT_SIZT& p, size_t i, size_t j) {
+	if (i == j - 1)
+		return 0; 
+	size_t m = -1; 
+	for (size_t k = i + 1; k < j; k++) {
+		size_t q = RecursiveMatrixChain(p, i, k)
+				 + RecursiveMatrixChain(p, k, j)
+				 + p[i] * p[k] * p[j]; 
+		if (q < m)
+			m = q; 
+	}
+	return m; 
+}
+
+size_t RecursiveMatrixChain(VECT_SIZT& p) {
+	return RecursiveMatrixChain(p, 0, p.size() - 1); 
+}
+
+size_t LookupChain(std::vector<VECT_SIZT>& m, VECT_SIZT& p, size_t i, size_t j){
+	if (m[i][j] != (size_t)-1)
+		return m[i][j]; 
+	if (i + 1 == j) 
+		m[i][j] = 0; 
+	else {
+		for (size_t k = i + 1; k < j; k++) {
+			size_t q = LookupChain(m, p, i, k) + LookupChain(m, p, k, j)
+					 + p[i] * p[k] * p[j]; 
+			if (q < m[i][j])
+				m[i][j] = q; 
+		}
+	}
+	return m[i][j]; 
+}
+
+size_t MemorizedMatrixChain(VECT_SIZT& p) {
+	size_t n = p.size() - 1; 
+	std::vector<VECT_SIZT> m(n, VECT_SIZT(n + 1, -1)); 
+	return LookupChain(m, p, 0, n); 
+}
 #endif
 
 #ifdef MAIN_MatrixChainOrder
 int main(int argc, char *argv[]) {
 	const size_t n = get_argv(argc, argv, 1, 10); 
-	const size_t a = get_argv(argc, argv, 2, 5); 
-	const size_t b = get_argv(argc, argv, 3, 6); 
-	const size_t c = get_argv(argc, argv, 4, 7); 
+	const size_t a = get_argv(argc, argv, 2, 6); 
+	const size_t b = get_argv(argc, argv, 3, 7); 
+	const size_t c = get_argv(argc, argv, 4, 8); 
 	if (n) {	// Matrix-Chain Multiplication problem
 		VECT_SIZT p; 
 		std::vector<VECT_SIZT> s(n, VECT_SIZT(n + 1, 0)); 
 		random_integers(p, 1, a, n + 1); 
 		output_integers(p); 
-		std::cout << MatrixChainOrder(p, s) << std::endl; 
-		PrintOptimalParens(s, 0, n); 
-		std::cout << std::endl; 
+		if (b >> 0 & 1) {
+			std::cout << MatrixChainOrder(p, s) << std::endl; 
+			PrintOptimalParens(s, 0, n); 
+			std::cout << std::endl; 
+		}
+		if (b >> 1 & 1) {
+			std::cout << RecursiveMatrixChain(p) << std::endl; 
+		}
+		if (b >> 2 & 1) {
+			std::cout << MemorizedMatrixChain(p) << std::endl; 
+		}
 	} else {	// test MatrixMultiply
 		std::vector<int> buf_a, buf_b; 
 		random_integers(buf_a, 0, b, a * b); 

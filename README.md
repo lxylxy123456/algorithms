@@ -94,3 +94,6 @@
 | 15 | MatrixChainOrder.cpp			| Matrix Multiply						|  371 |
 | 15 | MatrixChainOrder.cpp			| Matrix Chain Order					|  375 |
 | 15 | MatrixChainOrder.cpp			| Print Optimal Parens					|  377 |
+| 15 | MatrixChainOrder.cpp			| Recursive Matrix Chain				|  385 |
+| 15 | MatrixChainOrder.cpp			| Memorized Matrix Chain				|  388 |
+| 15 | MatrixChainOrder.cpp			| Lookup Chain							|  388 |
