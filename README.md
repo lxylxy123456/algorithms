@@ -100,3 +100,5 @@
 | 15 | LCSLength.cpp				| LCS Length							|  394 |
 | 15 | LCSLength.cpp				| Print LCS								|  395 |
 | 15 | OptimalBST.cpp				| Optimal BST							|  402 |
+| 16 | ActivitySelector.cpp			| Recursive Activity Selector			|  419 |
+| 16 | ActivitySelector.cpp			| Greedy Activity Selector				|  421 |

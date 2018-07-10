@@ -58,12 +58,6 @@ void PrintLCS(std::vector<VECT_SIZT>& c, std::vector<T> X, size_t i, size_t j) {
 #endif
 
 #ifdef MAIN_LCSLength
-std::ostream& operator<<(std::ostream& os, std::vector<char> rhs) {
-	for (std::vector<char>::iterator i = rhs.begin(); i != rhs.end(); i++)
-		os << *i; 
-	return os; 
-}
-
 int main(int argc, char *argv[]) {
 	const size_t x = get_argv(argc, argv, 1, 8); 
 	const size_t y = get_argv(argc, argv, 2, 9); 
@@ -71,8 +65,8 @@ int main(int argc, char *argv[]) {
 	std::vector<char> X, Y; 
 	random_integers<char>(X, 'a', 'a' + n, x); 
 	random_integers<char>(Y, 'a', 'a' + n, y); 
-	std::cout << X << std::endl; 
-	std::cout << Y << std::endl; 
+	output_integers<char>(X, ""); 
+	output_integers<char>(Y, ""); 
 	std::vector<VECT_SIZT> c = LCSLength(X, Y); 
 	PrintLCS(c, X, x, y); 
 	std::cout << std::endl; 
