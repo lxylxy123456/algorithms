@@ -102,3 +102,4 @@
 | 15 | OptimalBST.cpp				| Optimal BST							|  402 |
 | 16 | ActivitySelector.cpp			| Recursive Activity Selector			|  419 |
 | 16 | ActivitySelector.cpp			| Greedy Activity Selector				|  421 |
+| 16 | Huffman.cpp					| Huffman								|  431 |

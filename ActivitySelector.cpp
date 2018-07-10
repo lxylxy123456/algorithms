@@ -36,7 +36,7 @@ class Event {
 			if (s > f)
 				std::swap(s, f); 
 		}
-		bool operator<(const Event<T>& rhs) const { return f < rhs.f; }
+		bool operator<=(const Event<T>& rhs) const { return f <= rhs.f; }
 		friend std::ostream& operator<<(std::ostream& os, const Event<T>& rhs) {
 			return os << rhs.s << '~' << rhs.f; 
 		}
@@ -69,15 +69,20 @@ void GreedyActivitySelector(const EVENTS& e, EVENTS& ans) {
 #endif
 
 #ifdef MAIN_ActivitySelector
+
+#include "Quicksort.cpp"
+
 int main(int argc, char *argv[]) {
 	const size_t n = get_argv(argc, argv, 1, 10); 
 	std::vector<Event<int>> e, ans1, ans2; 
+	// prepare event list
 	std::vector<int> time_list; 
 	random_integers(time_list, 0, n - 1, 2 * n); 
 	for (size_t i = 0; i < n; i++)
 		e.push_back(Event<int>(time_list[2 * i], time_list[2 * i + 1])); 
-	std::sort(e.begin(), e.end()); 
+	Quicksort(e.begin(), e.end()); 
 	output_integers(e); 
+	// compute
 	RecursiveActivitySelector(e, 0, ans1); 
 	output_integers(ans1); 
 	GreedyActivitySelector(e, ans2); 

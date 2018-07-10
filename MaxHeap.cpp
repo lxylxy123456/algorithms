@@ -103,7 +103,7 @@ class PriorityQueue: public Heap<T> {
 		}
 		void BuildMaxHeap_prime() {
 			Heap<T>::heap_size = 1; 
-			for(size_t i = 1; i < std::vector<T>::length; i++)
+			for(size_t i = 1; i < std::vector<T>::size(); i++)
 				MaxHeapInsert((*this)[i]); 
 		}
 }; 
@@ -149,7 +149,7 @@ int main(int argc, char *argv[]) {
 			output_integers(b); 
 			c = PriorityQueue<int>(b); 
 			b.BuildMaxHeap(); 
-			c.BuildMaxHeap(); 
+			c.BuildMaxHeap_prime(); 
 			output_integers(b); 
 			output_integers(c); 
 			break; 
