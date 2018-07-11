@@ -25,21 +25,21 @@
 #define FUNC_Greedy
 
 #include <algorithm>
-#include <unordered_set>
+#include <set>
 #include <map>
 #include "utils.h"
 
 template <typename T>
 class Matroid {
 	public :
-		Matroid(std::unordered_set<T>& s): S(s) {}
-		virtual bool I(std::unordered_set<T> A) const { return true; }
-		std::unordered_set<T> S; 
+		Matroid(const std::set<T>& s): S(s) {}
+		virtual bool I(const std::set<T>& A) const { return true; }
+		std::set<T> S; 
 }; 
 
 template <typename T, typename W>
-void Greedy(const Matroid<T>& M, W(*w)(T), std::unordered_set<T>& A) {
-	using MSI = typename std::unordered_set<T>::const_iterator; 
+void Greedy(const Matroid<T>& M, W(*w)(T), std::set<T>& A) {
+	using MSI = typename std::set<T>::const_iterator; 
 	using SI = typename std::multimap<W, T>::reverse_iterator; 
 	A.clear(); 
 	std::multimap<W, T> S; 
@@ -58,15 +58,14 @@ void Greedy(const Matroid<T>& M, W(*w)(T), std::unordered_set<T>& A) {
 size_t f(size_t x) { return (x * 10 + 3) % 17 % 7 + 1; }
 
 int main(int argc, char *argv[]) {
-	using MSI = std::unordered_set<size_t>::iterator; 
 	const size_t n = get_argv(argc, argv, 1, 6); 
 	// prepare data
-	std::unordered_set<size_t> S, ans; 
+	std::set<size_t> S, ans; 
 	for (size_t i = 0; i < n; i++)
 		S.insert(i); 
 	Matroid<size_t> M(S); 
 	std::vector<size_t> weights; 
-	for (MSI i = M.S.begin(); i != M.S.end(); i++)
+	for (std::set<size_t>::iterator i = M.S.begin(); i != M.S.end(); i++)
 		weights.push_back(f(*i)); 
 	output_integers(M.S, "\t"); 
 	output_integers(weights, "\t"); 
