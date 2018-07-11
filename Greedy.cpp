@@ -39,13 +39,11 @@ class Matroid {
 
 template <typename T, typename W>
 void Greedy(const Matroid<T>& M, W(*w)(T), std::set<T>& A) {
-	using MSI = typename std::set<T>::const_iterator; 
-	using SI = typename std::multimap<W, T>::reverse_iterator; 
 	A.clear(); 
 	std::multimap<W, T> S; 
-	for (MSI i = M.S.begin(); i != M.S.end(); i++)
+	for (auto i = M.S.begin(); i != M.S.end(); i++)
 		S.insert(std::pair<W, T>(w(*i), *i)); 
-	for (SI i = S.rbegin(); i != S.rend(); i++) {
+	for (auto i = S.rbegin(); i != S.rend(); i++) {
 		T& x = i->second; 
 		A.insert(x); 
 		if (!M.I(A))
@@ -55,8 +53,6 @@ void Greedy(const Matroid<T>& M, W(*w)(T), std::set<T>& A) {
 #endif
 
 #ifdef MAIN_Greedy
-size_t f(size_t x) { return (x * 10 + 3) % 17 % 7 + 1; }
-
 int main(int argc, char *argv[]) {
 	const size_t n = get_argv(argc, argv, 1, 6); 
 	// prepare data
@@ -65,6 +61,7 @@ int main(int argc, char *argv[]) {
 		S.insert(i); 
 	Matroid<size_t> M(S); 
 	std::vector<size_t> weights; 
+	size_t (*f)(size_t) = [](size_t a) { return a; }; 
 	for (std::set<size_t>::iterator i = M.S.begin(); i != M.S.end(); i++)
 		weights.push_back(f(*i)); 
 	output_integers(M.S, "\t"); 

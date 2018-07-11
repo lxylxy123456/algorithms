@@ -55,9 +55,8 @@ class TaskMatroid: public Matroid<Task<T>> {
 	public:
 		TaskMatroid(std::set<Task<T>> s): Matroid<Task<T>>(s) {}
 		virtual bool I(const std::set<Task<T>>& A) const {
-			using AI = typename std::set<Task<T>>::const_iterator; 
 			size_t t = 0; 
-			for (AI i = A.begin(); i != A.end(); i++)
+			for (auto i = A.begin(); i != A.end(); i++)
 				if (i->d <= t++)
 					return false; 
 			return true; 
@@ -66,12 +65,11 @@ class TaskMatroid: public Matroid<Task<T>> {
 
 template <typename T>
 void TaskSchedule(const TaskMatroid<T>& M, std::vector<Task<T>>& ans) {
-	using AI = typename std::set<Task<T>>::const_iterator; 
 	std::set<Task<T>> A; 
 	Greedy(M, Task<T>::get_p, A); 
-	for (AI i = A.begin(); i != A.end(); i++)
+	for (auto i = A.begin(); i != A.end(); i++)
 		ans.push_back(*i); 
-	for (AI i = M.S.begin(); i != M.S.end(); i++)
+	for (auto i = M.S.begin(); i != M.S.end(); i++)
 		if (A.find(*i) == A.end())
 			ans.push_back(*i); 
 }
