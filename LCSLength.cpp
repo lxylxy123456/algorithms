@@ -65,8 +65,8 @@ int main(int argc, char *argv[]) {
 	std::vector<char> X, Y; 
 	random_integers<char>(X, 'a', 'a' + n, x); 
 	random_integers<char>(Y, 'a', 'a' + n, y); 
-	output_integers<char>(X, ""); 
-	output_integers<char>(Y, ""); 
+	output_integers(X, ""); 
+	output_integers(Y, ""); 
 	std::vector<VECT_SIZT> c = LCSLength(X, Y); 
 	PrintLCS(c, X, x, y); 
 	std::cout << std::endl; 

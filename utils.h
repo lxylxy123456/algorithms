@@ -54,13 +54,14 @@ void input_integers(std::vector<T>& a) {
 }
 
 template <typename T>
-void output_integers(const std::vector<T>& a, const char* sep) {
-	std::copy(a.begin(), a.end(), std::ostream_iterator<T>(std::cout, sep)); 
+void output_integers(const T& a, const char* sep) {
+	std::copy(a.begin(), a.end(), 
+				std::ostream_iterator<typename T::value_type>(std::cout, sep)); 
 	std::cout << std::endl; 
 }
 
 template <typename T>
-void output_integers(const std::vector<T>& a) {
+void output_integers(const T& a) {
 	output_integers(a, " "); 
 }
 
