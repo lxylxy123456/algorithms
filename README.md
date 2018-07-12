@@ -105,3 +105,4 @@
 | 16 | Huffman.cpp					| Huffman								|  431 |
 | 16 | Greedy.cpp					| Greedy								|  440 |
 | 16 | TaskSchedule.cpp				| Task Schedule							|  446 |
+| 17 | Stack.cpp					| Multi Pop								|  453 |

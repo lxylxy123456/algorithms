@@ -40,6 +40,10 @@ class Stack {
 			else
 				return data[--top]; 
 		}
+		void MultiPop(size_t k) {
+			while (!StackEmpty() && k--)
+				Pop(); 
+		}
 		~Stack() { delete [] data; }
 	private:
 		size_t top; 
@@ -54,6 +58,7 @@ int main(int argc, char *argv[]) {
 	std::cout << "e / E: test empty" << std::endl; 
 	std::cout << "p / u: push" << std::endl; 
 	std::cout << "P / o: pop" << std::endl; 
+	std::cout << "m / M: multi pop" << std::endl; 
 	std::cout << "q / Q: quit" << std::endl; 
 	while (true) {
 		char c; int x; 
@@ -76,6 +81,12 @@ int main(int argc, char *argv[]) {
 			case 'P': 
 			case 'o': 
 				std::cout << S.Pop() << std::endl; 
+				break; 
+			case 'm': 
+			case 'M': 
+				std::cout << "k = "; 
+				std::cin >> x; 
+				S.MultiPop(x); 
 				break; 
 			case 'q': 
 			case 'Q': 
