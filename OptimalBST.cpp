@@ -27,7 +27,6 @@
 #define SIZT_1D std::vector<size_t>
 #define SIZT_2D std::vector<std::vector<size_t>>
 
-#include <map>
 #include "utils.h"
 
 SIZT_2D OptimalBST(SIZT_1D& p, SIZT_1D& q, size_t n) {

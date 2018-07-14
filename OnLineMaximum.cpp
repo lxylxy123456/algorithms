@@ -24,7 +24,6 @@
 #ifndef FUNC_OnLineMaximum
 #define FUNC_OnLineMaximum
 
-#include <cassert>
 #include <algorithm>
 #include "utils.h"
 

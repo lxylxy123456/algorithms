@@ -24,7 +24,6 @@
 #ifndef FUNC_LinkedList
 #define FUNC_LinkedList
 
-#include <exception>
 #include "utils.h"
 
 template <typename T>

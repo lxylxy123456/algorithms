@@ -24,7 +24,6 @@
 #ifndef FUNC_BinarySearchTree
 #define FUNC_BinarySearchTree
 
-#include <cassert>
 #include "utils.h"
 #include "BinaryTree.cpp"
 

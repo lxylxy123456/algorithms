@@ -27,7 +27,6 @@
 #define VECT_SIZT std::vector<size_t>
 
 #include <exception>
-#include <cassert>
 #include "utils.h"
 #include "SquareMatrixMultiply.cpp"
 

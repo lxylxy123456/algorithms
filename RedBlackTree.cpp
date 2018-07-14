@@ -24,7 +24,6 @@
 #ifndef FUNC_RedBlackTree
 #define FUNC_RedBlackTree
 
-#include <cassert>
 #include "utils.h"
 #include "BinarySearchTree.cpp"
 
