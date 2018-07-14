@@ -26,17 +26,64 @@
 
 #include "utils.h"
 
+#include "RedBlackTree.cpp"
+
 template <typename T>
 class FNode {
 	public:
 		FNode(T k, FNode<T>* P): key(k), degree(0), p(P), child(nullptr), 
 								left(nullptr), right(nullptr), mark(false) {}
-//		FNode<T>* recursive_destruct() {}
+		FNode<T>* recursive_destruct() {
+			while (child)
+				delete DLLRemove(child, child)->recursive_destruct(); 
+			return this; 
+		}
 		T key; 
 		size_t degree; 
 		FNode<T> *p, *child, *left, *right; 
 		bool mark; 
 }; 
+
+template <typename T>
+class FNodeDeg {
+	public:
+		FNodeDeg(): data(nullptr) {}
+		FNodeDeg(FNode<T>* d): data(d) {}
+		bool operator<(const FNodeDeg& rhs) const {
+			return data->degree < rhs.data->degree; 
+		}
+		bool operator==(const FNodeDeg& rhs) const {
+			return data->degree == rhs.data->degree; 
+		}
+		FNode<T>* data; 
+}; 
+
+template <typename T>
+void DLLInsert(FNode<T>*& root, FNode<T>* x) {
+	if (root) {
+		x->left = root->left; 
+		x->left->right = x; 
+		x->right = root; 
+		root->left = x; 
+	} else {
+		root = x; 
+		root->left = root; 
+		root->right = root; 
+	}
+}
+
+template <typename T>
+FNode<T>* DLLRemove(FNode<T>*& root, FNode<T>* x) {
+	if (root == root->right)
+		root = nullptr; 
+	else {
+		if (root == x)
+			root = root->right; 
+		x->left->right = x->right; 
+		x->right->left = x->left; 
+	}
+	return x; 
+}
 
 template <typename T>
 class FibHeap {
@@ -48,18 +95,9 @@ class FibHeap {
 		}
 		FNode<T>* FibHeapInsert(const T& k) {
 			FNode<T>* x = new FNode<T>(k, nullptr); 
-			if (!min) {
-				x->left = x; 
-				x->right = x; 
+			DLLInsert(min, x); 
+			if (x->key < min->key)
 				min = x; 
-			} else {
-				x->left = min->left; 
-				x->right = min; 
-				min->left = x; 
-				x->left->right = x; 
-				if (x->key < min->key)
-					min = x; 
-			}
 			n++; 
 			return x; 
 		}
@@ -86,7 +124,71 @@ class FibHeap {
 			rhs.MakeFibHeap(); 
 			return H; 
 		}
-//		~FibHeap() { if (min) { delete min->recursive_destruct(); } }
+		FNode<T>* FibHeapLink(FNode<T>* x, FNode<T>* y) {
+			if (x->key > y->key)
+				std::swap(x, y); 
+			DLLInsert(x->child, y); 
+			x->degree++; 
+			y->mark = false; 
+			return x; 
+		}
+		void Consolidate() {
+			RedBlackTree<FNodeDeg<T>> A; 
+			while (min) {
+				FNode<T>* x = DLLRemove(min, min); 
+				while (true) {
+					Node<CData<FNodeDeg<T>>>* Y = A.TreeSearch(FNodeDeg<T>(x)); 
+					if (Y == A.nil)
+						break; 
+					FNode<T>* y = Y->data.data.data; 
+					A.RBDelete(Y); 
+					x = FibHeapLink(x, y); 
+				}
+				A.RBInsert(FNodeDeg<T>(x)); 
+			}
+			for (auto i = A.TreeMinimum(); i != A.nil; i = A.TreeSuccessor(i)) {
+				FNode<T>* x = i->data.data.data; 
+				DLLInsert(min, x); 
+				if (x->key < min->key)
+					min = x; 
+			}
+		}
+		FNode<T>* FibHeapExtractMin() {
+			FNode<T>* z = min; 
+			if (z) {
+				while(z->child)
+					DLLInsert(min, DLLRemove(z->child, z->child)); 
+				DLLRemove(min, z); 
+				if (min)
+					Consolidate(); 
+				n--; 
+			}
+			return z; 
+		}
+		void print_tree(FNode<T>* x, size_t indent) {
+			if (!x) {
+				std::cout << std::endl; 
+				return; 
+			}
+			std::cout << x->key << '\t'; 
+			print_tree(x->child, indent + 1); 
+			for (FNode<T>* i = x->right; i != x; i = i->right) {
+				std::cout << std::string(indent, '\t') << i->key << '\t'; 
+				print_tree(i->child, indent + 1); 
+			}
+		}
+		void print_tree() {
+			std::cout << std::endl; 
+			if (min)
+				print_tree(min, 0); 
+			else
+				std::cout << "(empty)" << std::endl; 
+			std::cout << std::endl; 
+		}
+		~FibHeap() {
+			while (min)
+				delete DLLRemove(min, min)->recursive_destruct(); 
+		}
 		FNode<T>* min; 
 		size_t n; 
 }; 
@@ -100,7 +202,8 @@ int main(int argc, char *argv[]) {
 	std::cout << "i: insert" << std::endl; 
 	std::cout << "m: minimum" << std::endl; 
 	std::cout << "u: union" << std::endl; 
-//	std::cout << "p: print tree" << std::endl; 
+	std::cout << "e: extract minimum" << std::endl; 
+	std::cout << "p: print tree" << std::endl; 
 	std::cout << "q: quit" << std::endl; 
 	FNode<int>* ptr = nullptr; 
 	size_t n = 0; 
@@ -134,6 +237,18 @@ int main(int argc, char *argv[]) {
 				std::cout << "n = "; 
 				std::cin >> n2; 
 				*FH = FH->FibHeapUnion(FH_list[n2]); 
+				break; 
+			case 'e': 
+				ptr = FH->FibHeapExtractMin(); 
+				if (ptr) {
+					std::cout << "min = " << ptr->key << std::endl; 
+					delete ptr; 
+					ptr = FH->min; 
+				} else
+					std::cout << "empty heap" << std::endl; 
+				break; 
+			case 'p': 
+				FH->print_tree(); 
 				break; 
 			case 'q': 
 				return 0; 

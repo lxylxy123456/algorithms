@@ -118,3 +118,6 @@
 | 19 | FibHeap.cpp					| Fib Heap Insert						|  510 |
 | 19 | FibHeap.cpp					| Fib Heap Minimum						|  511 |
 | 19 | FibHeap.cpp					| Fib Heap Union						|  512 |
+| 19 | FibHeap.cpp					| Fib Heap Extract Min					|  513 |
+| 19 | FibHeap.cpp					| Consolidate							|  516 |
+| 19 | FibHeap.cpp					| Fib Heap Link							|  516 |
