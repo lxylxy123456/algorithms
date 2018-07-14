@@ -114,3 +114,7 @@
 | 18 | BTree.cpp					| B Tree Insert							|  495 |
 | 18 | BTree.cpp					| B Tree Insert Nonfull					|  495 |
 | 18 | BTree.cpp					| B Tree Insert Delete					|  502 |
+| 19 | FibHeap.cpp					| Make Fib Heap							|  510 |
+| 19 | FibHeap.cpp					| Fib Heap Insert						|  510 |
+| 19 | FibHeap.cpp					| Fib Heap Minimum						|  511 |
+| 19 | FibHeap.cpp					| Fib Heap Union						|  512 |
