@@ -24,7 +24,6 @@
 #ifndef FUNC_DynamicTable
 #define FUNC_DynamicTable
 
-#include <algorithm>
 #include "utils.h"
 
 template <typename T>

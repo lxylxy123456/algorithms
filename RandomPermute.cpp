@@ -26,7 +26,6 @@
 
 #include <vector>
 #include <map>
-#include <algorithm>
 #include "utils.h"
 
 template <typename T>

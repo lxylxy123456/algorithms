@@ -24,7 +24,6 @@
 #ifndef FUNC_Greedy
 #define FUNC_Greedy
 
-#include <algorithm>
 #include <set>
 #include <map>
 #include "utils.h"

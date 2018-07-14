@@ -26,7 +26,6 @@
 
 #define VECT_SIZT std::vector<size_t>
 
-#include <algorithm>
 #include "utils.h"
 
 template <typename T>

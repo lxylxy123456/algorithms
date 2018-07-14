@@ -25,7 +25,6 @@
 #define FUNC_RadixSort
 
 #include <vector>
-#include <algorithm>
 #include "utils.h"
 #include "CountingSort.cpp"
 

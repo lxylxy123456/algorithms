@@ -25,7 +25,6 @@
 #define FUNC_BucketSort
 
 #include <vector>
-#include <algorithm>
 #include <cassert>
 #include "utils.h"
 #include "InsertSort.cpp"

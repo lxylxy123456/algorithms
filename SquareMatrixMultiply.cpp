@@ -24,7 +24,6 @@
 #ifndef FUNC_SquareMatrixMultiply
 #define FUNC_SquareMatrixMultiply
 
-#include <algorithm>
 #include <cassert>
 #include "utils.h"
 template <typename T>

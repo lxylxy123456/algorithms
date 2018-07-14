@@ -24,7 +24,6 @@
 #ifndef FUNC_TaskSchedule
 #define FUNC_TaskSchedule
 
-#include <algorithm>
 #include "utils.h"
 
 #include "Greedy.cpp"

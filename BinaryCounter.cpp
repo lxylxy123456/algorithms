@@ -24,7 +24,6 @@
 #ifndef FUNC_BinaryCounter
 #define FUNC_BinaryCounter
 
-#include <algorithm>
 #include "utils.h"
 
 class BinaryCounter {

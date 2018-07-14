@@ -26,7 +26,6 @@
 
 #define EVENTS std::vector<Event<T>>
 
-#include <algorithm>
 #include "utils.h"
 #include "printtree.h"
 
