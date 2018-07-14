@@ -25,6 +25,7 @@
 #define FUNC_BTree
 
 #include <map>
+#include <iomanip>
 #include "utils.h"
 
 size_t debug; 
@@ -324,20 +325,35 @@ class BTree {
 			}
 			return ans; 
 		}
-		void print_tree(BNode<T>* x, size_t depth) {
-			std::string indent(4 * depth, ' '); 
-			std::cout << indent << "___" << std::endl; 
+		void print_tree(BNode<T>* x, size_t depth, bool term) {
+			const size_t ind = 4; 
+			const std::string indent(ind * depth, ' '); 
+			if (!term)
+				std::cout << indent << std::string(3, '_') << std::endl; 
 			for (size_t i = 0; i <= x->n; i++) {
 				if (!x->leaf)
-					print_tree(x->c[i], depth + 1); 
+					print_tree(x->c[i], depth + 1, term); 
 				if (i == x->n)
 					break; 
-				std::cout << indent << x->key[i] << std::endl; 
+				std::cout << indent; 
+				if (term) {
+					if (i == 0)
+						std::cout << "\033[53m"; 
+					if (i == x->n - 1)
+						std::cout << "\033[4m"; 
+				}
+				std::cout << std::left << std::setw(ind - 1) << x->key[i]; 
+				if (term)
+					std::cout << "\033[0m"; 
+				std::cout << std::endl; 
 			}
-			std::cout << indent << "^^^" << std::endl; 
+			if (!term)
+				std::cout << indent << std::string(3, '^') << std::endl; 
 		}
-		void print_tree() {
-			print_tree(root, 0); 
+		void print_tree(bool term) {
+			std::cout << std::endl; 
+			print_tree(root, 0, term); 
+			std::cout << std::endl; 
 		}
 		~BTree() { delete root->recursive_destruct(); }
 		BNode<T> *root; 
@@ -353,7 +369,7 @@ int main(int argc, char *argv[]) {
 	std::cout << "s / S: search" << std::endl; 
 	std::cout << "i / I: insert" << std::endl; 
 	std::cout << "d / D: delete" << std::endl; 
-	std::cout << "p / P: print tree" << std::endl; 
+	std::cout << "p / P: print tree (two styles)" << std::endl; 
 	std::cout << "q / Q: quit" << std::endl; 
 	// Generate tree in Page 498, Figure 18.7 (a): 
 	// 	i10 i11 i13 i14 i15 i1 i3 i7 i4 i5 i16 i18 i19 i24 i25 i26 i20 i21 i22
@@ -388,8 +404,10 @@ int main(int argc, char *argv[]) {
 				std::cout << std::boolalpha << BT.BTreeDelete(x) << std::endl; 
 				break; 
 			case 'p': 
+				BT.print_tree(true); 
+				break; 
 			case 'P': 
-				BT.print_tree(); 
+				BT.print_tree(false); 
 				break; 
 			case 'q': 
 			case 'Q': 
