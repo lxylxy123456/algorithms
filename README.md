@@ -113,3 +113,4 @@
 | 18 | BTree.cpp					| B Tree Split Child					|  494 |
 | 18 | BTree.cpp					| B Tree Insert							|  495 |
 | 18 | BTree.cpp					| B Tree Insert Nonfull					|  495 |
+| 18 | BTree.cpp					| B Tree Insert Delete					|  502 |
