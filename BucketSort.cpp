@@ -24,7 +24,6 @@
 #ifndef FUNC_BucketSort
 #define FUNC_BucketSort
 
-#include <vector>
 #include <cassert>
 #include "utils.h"
 #include "InsertSort.cpp"

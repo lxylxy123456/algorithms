@@ -24,7 +24,6 @@
 #ifndef FUNC_OpenAddress
 #define FUNC_OpenAddress
 
-#include <vector>
 #include <exception>
 #include "utils.h"
 

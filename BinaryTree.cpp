@@ -24,7 +24,6 @@
 #ifndef FUNC_BinaryTree
 #define FUNC_BinaryTree
 
-#include <vector>
 #include "utils.h"
 #include "printtree.h"
 

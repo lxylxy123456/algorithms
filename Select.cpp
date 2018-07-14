@@ -24,7 +24,6 @@
 #ifndef FUNC_Select
 #define FUNC_Select
 
-#include <vector>
 #include "utils.h"
 #include "InsertSort.cpp"
 

@@ -24,7 +24,6 @@
 #ifndef FUNC_HireAssistant
 #define FUNC_HireAssistant
 
-#include <vector>
 #include <cassert>
 #include "utils.h"
 

@@ -24,7 +24,6 @@
 #ifndef FUNC_Hash
 #define FUNC_Hash
 
-#include <vector>
 #include "utils.h"
 
 class DivisionHash {

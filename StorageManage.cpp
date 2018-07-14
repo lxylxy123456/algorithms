@@ -24,7 +24,6 @@
 #ifndef FUNC_StorageManage
 #define FUNC_StorageManage
 
-#include <vector>
 #include <cassert>
 #include <exception>
 #include "utils.h"

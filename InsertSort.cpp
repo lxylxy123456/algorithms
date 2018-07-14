@@ -24,7 +24,6 @@
 #ifndef FUNC_InsertSort
 #define FUNC_InsertSort
 
-#include <vector>
 #include "utils.h"
 
 template <typename T>

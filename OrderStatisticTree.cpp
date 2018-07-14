@@ -24,7 +24,6 @@
 #ifndef FUNC_OrderStatisticTree
 #define FUNC_OrderStatisticTree
 
-#include <vector>
 #include <cassert>
 #include "utils.h"
 #include "RedBlackTree.cpp"

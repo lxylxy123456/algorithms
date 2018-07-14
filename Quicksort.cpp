@@ -24,7 +24,6 @@
 #ifndef FUNC_Quicksort
 #define FUNC_Quicksort
 
-#include <vector>
 #include "utils.h"
 
 template <typename T>

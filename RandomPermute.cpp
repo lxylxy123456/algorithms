@@ -24,7 +24,6 @@
 #ifndef FUNC_RandomPermute
 #define FUNC_RandomPermute
 
-#include <vector>
 #include <map>
 #include "utils.h"
 

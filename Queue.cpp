@@ -24,7 +24,6 @@
 #ifndef FUNC_Queue
 #define FUNC_Queue
 
-#include <vector>
 #include <exception>
 #include "utils.h"
 

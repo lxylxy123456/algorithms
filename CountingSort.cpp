@@ -24,7 +24,6 @@
 #ifndef FUNC_CountingSort
 #define FUNC_CountingSort
 
-#include <vector>
 #include "utils.h"
 
 template <typename T>

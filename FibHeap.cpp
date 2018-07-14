@@ -24,7 +24,6 @@
 #ifndef FUNC_FibHeap
 #define FUNC_FibHeap
 
-#include <vector>
 #include "utils.h"
 
 template <typename T>

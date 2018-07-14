@@ -24,7 +24,6 @@
 #ifndef FUNC_Stack
 #define FUNC_Stack
 
-#include <vector>
 #include <exception>
 #include "utils.h"
 

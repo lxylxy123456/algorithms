@@ -24,7 +24,6 @@
 #ifndef FUNC_Minimum
 #define FUNC_Minimum
 
-#include <vector>
 #include "utils.h"
 
 class Value {

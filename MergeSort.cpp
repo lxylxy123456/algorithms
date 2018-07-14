@@ -24,7 +24,6 @@
 #ifndef FUNC_MergeSort
 #define FUNC_MergeSort
 
-#include <vector>
 #include <list>
 #include <cassert>
 #include "utils.h"

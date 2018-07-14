@@ -24,7 +24,6 @@
 #ifndef FUNC_DirectAddress
 #define FUNC_DirectAddress
 
-#include <vector>
 #include "utils.h"
 
 template <typename T>

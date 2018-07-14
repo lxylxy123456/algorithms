@@ -24,7 +24,6 @@
 #ifndef FUNC_BTree
 #define FUNC_BTree
 
-#include <vector>
 #include <map>
 #include "utils.h"
 

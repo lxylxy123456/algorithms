@@ -24,7 +24,6 @@
 #ifndef FUNC_ChainedHash
 #define FUNC_ChainedHash
 
-#include <vector>
 #include "utils.h"
 #include "LinkedList.cpp"
 

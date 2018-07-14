@@ -24,7 +24,6 @@
 #ifndef FUNC_MaxHeap
 #define FUNC_MaxHeap
 
-#include <vector>
 #include <exception>
 #include "utils.h"
 

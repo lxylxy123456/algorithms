@@ -24,7 +24,6 @@
 #ifndef FUNC_IntervalTree
 #define FUNC_IntervalTree
 
-#include <vector>
 #include <cassert>
 #include "utils.h"
 #include "RedBlackTree.cpp"
