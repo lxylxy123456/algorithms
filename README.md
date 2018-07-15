@@ -121,3 +121,7 @@
 | 19 | FibHeap.cpp					| Fib Heap Extract Min					|  513 |
 | 19 | FibHeap.cpp					| Consolidate							|  516 |
 | 19 | FibHeap.cpp					| Fib Heap Link							|  516 |
+| 19 | FibHeap.cpp					| Fib Heap Decrease Key					|  519 |
+| 19 | FibHeap.cpp					| Cut									|  519 |
+| 19 | FibHeap.cpp					| Cascading Cut							|  519 |
+| 19 | FibHeap.cpp					| Fib Heap Delete						|  522 |

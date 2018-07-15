@@ -24,6 +24,7 @@
 #ifndef FUNC_FibHeap
 #define FUNC_FibHeap
 
+#include <exception>
 #include "utils.h"
 
 #include "RedBlackTree.cpp"
@@ -129,6 +130,7 @@ class FibHeap {
 				std::swap(x, y); 
 			DLLInsert(x->child, y); 
 			x->degree++; 
+			y->p = x; 
 			y->mark = false; 
 			return x; 
 		}
@@ -156,14 +158,53 @@ class FibHeap {
 		FNode<T>* FibHeapExtractMin() {
 			FNode<T>* z = min; 
 			if (z) {
-				while(z->child)
-					DLLInsert(min, DLLRemove(z->child, z->child)); 
+				while(z->child) {
+					FNode<T>* c = DLLRemove(z->child, z->child); 
+					DLLInsert(min, c); 
+					c->p = nullptr; 
+				}
 				DLLRemove(min, z); 
 				if (min)
 					Consolidate(); 
 				n--; 
 			}
 			return z; 
+		}
+		void Cut(FNode<T>* x, FNode<T>* y) {
+			DLLRemove(y->child, x); 
+			y->degree--; 
+			DLLInsert(min, x); 
+			x->p = nullptr; 
+			x->mark = false; 
+		}
+		void CascadingCut(FNode<T>* y) {
+			FNode<T>* z = y->p; 
+			if (z) {
+				if (y->mark) {
+					Cut(y, z); 
+					CascadingCut(z); 
+				} else
+					y->mark = true; 
+			}
+		}
+		void FibHeapDecreaseKey(FNode<T>* x, T k) {
+			if (k > x->key)
+				throw std::invalid_argument("new key > current key"); 
+			x->key = k; 
+			FNode<T>* y = x->p; 
+			if (y && x->key < y->key) {
+				Cut(x, y); 
+				CascadingCut(y); 
+			}
+			if (x->key < min->key)
+				min = x; 
+		}
+		void FibHeapDelete(FNode<T>* x) {
+			T minf = min->key - 1; 
+			if (minf >= min->key)
+				throw std::invalid_argument("cannot create minf"); 
+			FibHeapDecreaseKey(x, minf); 
+			FibHeapExtractMin(); 
 		}
 		void print_tree(FNode<T>* x, size_t indent) {
 			if (!x) {
@@ -203,7 +244,13 @@ int main(int argc, char *argv[]) {
 	std::cout << "m: minimum" << std::endl; 
 	std::cout << "u: union" << std::endl; 
 	std::cout << "e: extract minimum" << std::endl; 
-	std::cout << "p: print tree" << std::endl; 
+	std::cout << "d: decrease key" << std::endl; 
+	std::cout << "D: delete" << std::endl; 
+	std::cout << "p: parent" << std::endl; 
+	std::cout << "c: child" << std::endl; 
+	std::cout << "l: left" << std::endl; 
+	std::cout << "r: right" << std::endl; 
+	std::cout << "P: print tree" << std::endl; 
 	std::cout << "q: quit" << std::endl; 
 	FNode<int>* ptr = nullptr; 
 	size_t n = 0; 
@@ -211,6 +258,8 @@ int main(int argc, char *argv[]) {
 		char c; int x; size_t n2; 
 		std::cout << "n   = " << n << std::endl; 
 		std::cout << "ptr = " << pptr(ptr) << std::endl; 
+		if (ptr)
+			std::cout << "    = " << ptr->key << std::endl; 
 		std::cout << ">> "; 
 		if (!(std::cin >> c)) {
 			std::cout << std::endl; 
@@ -247,7 +296,28 @@ int main(int argc, char *argv[]) {
 				} else
 					std::cout << "empty heap" << std::endl; 
 				break; 
+			case 'd': 
+				std::cout << "x = "; 
+				std::cin >> x; 
+				FH->FibHeapDecreaseKey(ptr, x); 
+				break; 
+			case 'D': 
+				FH->FibHeapDelete(ptr); 
+				ptr = FH->min; 
+				break; 
 			case 'p': 
+				ptr = ptr->p; 
+				break; 
+			case 'c': 
+				ptr = ptr->child; 
+				break; 
+			case 'l': 
+				ptr = ptr->left; 
+				break; 
+			case 'r': 
+				ptr = ptr->right; 
+				break; 
+			case 'P': 
 				FH->print_tree(); 
 				break; 
 			case 'q': 
