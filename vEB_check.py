@@ -10,7 +10,7 @@ def generate_data() :
 	ans = ''
 	u = 65536
 	for i in range(random.randint(50000, 60000)) :
-		c = random.choice('m-+psidP')
+		c = random.choice('m-+psid')
 		if c == 'm' :
 			ans += c + ' '
 			if d and random.choice(range(2)) :
@@ -65,13 +65,13 @@ if __name__ == '__main__' :
 	for i in range(n) :
 		tic()
 		data = generate_data()
-		print(toc(), end='\t')
+		print('%.6f' % toc(), end='\t')
 		tic()
 		o1 = run(name1, data)
-		print(toc(), end='\t')
+		print('%.6f' % toc(), end='\t')
 		tic()
 		o2 = run(name2, data)
-		print(toc())
+		print('%.6f' % toc())
 		if o1 != o2 :
 			print('error')
 			open('/tmp/i', 'w').write(data)
