@@ -125,3 +125,8 @@
 | 19 | FibHeap.cpp					| Cut									|  519 |
 | 19 | FibHeap.cpp					| Cascading Cut							|  519 |
 | 19 | FibHeap.cpp					| Fib Heap Delete						|  522 |
+| 20 | ProtovEB.cpp					| Proto vEB Member						|  541 |
+| 20 | ProtovEB.cpp					| Proto vEB Minimum						|  542 |
+| 20 | ProtovEB.cpp					| Proto vEB Successor					|  543 |
+| 20 | ProtovEB.cpp					| Proto vEB Insert						|  544 |
+| 20 | ProtovEB.cpp					| Proto vEB Delete						|  544 |
