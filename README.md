@@ -130,3 +130,15 @@
 | 20 | ProtovEB.cpp					| Proto vEB Successor					|  543 |
 | 20 | ProtovEB.cpp					| Proto vEB Insert						|  544 |
 | 20 | ProtovEB.cpp					| Proto vEB Delete						|  544 |
+| 20 | vEB.cpp						| vEB Tree Minimum						|  550 |
+| 20 | vEB.cpp						| vEB Tree Maximum						|  550 |
+| 20 | vEB.cpp						| vEB Tree Member						|  550 |
+| 20 | vEB.cpp						| vEB Tree Successor					|  551 |
+| 20 | vEB.cpp						| vEB Tree Predecessor					|  552 |
+| 20 | vEB.cpp						| vEB Empty Tree Insert					|  553 |
+| 20 | vEB.cpp						| vEB Tree Insert						|  553 |
+| 20 | vEB.cpp						| vEB Tree Delete						|  554 |
+
+# Supplementary Programs
+* include_check.py: identifies unnecessary includes
+* vEB_check.py: compare results of ProtovEB.cpp and vEB.cpp
