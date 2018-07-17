@@ -146,5 +146,5 @@
 | 21 | DisjointSet.cpp				| Find Set								|  571 |
 
 # Supplementary Programs
-* include_check.py: identifies unnecessary includes
-* vEB_check.py: compare results of ProtovEB.cpp and vEB.cpp
+* `include_check.py`: identifies unnecessary includes
+* `vEB_check.py`: compare results of `ProtovEB.cpp` and `vEB.cpp`
