@@ -138,6 +138,12 @@
 | 20 | vEB.cpp						| vEB Empty Tree Insert					|  553 |
 | 20 | vEB.cpp						| vEB Tree Insert						|  553 |
 | 20 | vEB.cpp						| vEB Tree Delete						|  554 |
+| 21 | DisjointSet.cpp				| Connected Components					|  563 |
+| 21 | DisjointSet.cpp				| Same Component						|  563 |
+| 21 | DisjointSet.cpp				| Make Set								|  571 |
+| 21 | DisjointSet.cpp				| Union									|  571 |
+| 21 | DisjointSet.cpp				| Link									|  571 |
+| 21 | DisjointSet.cpp				| Find Set								|  571 |
 
 # Supplementary Programs
 * include_check.py: identifies unnecessary includes
