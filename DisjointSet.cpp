@@ -24,9 +24,9 @@
 #ifndef FUNC_DisjointSet
 #define FUNC_DisjointSet
 
-#include <set>
-#include <map>
 #include "utils.h"
+
+#include "Graph.cpp"
 
 const size_t NIL = -1; 
 
@@ -59,27 +59,14 @@ class DisjointSetForest {
 		std::vector<size_t> p, rank; 
 }; 
 
-template <typename T>
-class Graph {
-	public:
-		Graph(): V(), E() {}
-		void add_edge(T a, T b) {
-			V.insert(a); 
-			V.insert(b); 
-			E.insert(std::pair<T, T>(a, b)); 
-		}
-		std::set<T> V; 
-		std::set<std::pair<T, T>> E; 
-}; 
-
 class ConnectedComponents {
 	public:
-		ConnectedComponents(size_t n, const Graph<size_t>& G): F(n) {
+		ConnectedComponents(size_t n, GraphAdjList<size_t>& G): F(n) {
 			for (auto i = G.V.begin(); i != G.V.end(); i++)
 				F.MakeSet(*i); 
-			for (auto i = G.E.begin(); i != G.E.end(); i++)
-				if (F.FindSet(i->first) != F.FindSet(i->second))
-					F.Union(i->first, i->second); 
+			for (auto i = G.all_edges(); !i.end(); i++)
+				if (F.FindSet(i.s()) != F.FindSet(i.d()))
+					F.Union(i.s(), i.d()); 
 		}
 		bool SameComponent(size_t u, size_t v) {
 			return F.FindSet(u) == F.FindSet(v); 
@@ -90,21 +77,17 @@ class ConnectedComponents {
 
 #ifdef MAIN_DisjointSet
 int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 100); 
-	const size_t m1 = get_argv(argc, argv, 2, 100); 
-	const size_t m2 = get_argv(argc, argv, 3, 100); 
-	std::vector<size_t> a, b, c, d; 
-	random_integers<size_t>(a, 0, n - 1, m1); 
-	random_integers<size_t>(b, 0, n - 1, m1); 
-	random_integers<size_t>(c, 0, n - 1, m2); 
-	random_integers<size_t>(d, 0, n - 1, m2); 
-	Graph<size_t> G; 
-	for (size_t i = 0; i < m1; i++) {
-		G.add_edge(a[i], b[i]); 
-		std::cout << a[i] << "\t" << b[i] << "\tconnect" << std::endl; 
-	}
+	const size_t v = get_argv(argc, argv, 1, 10); 
+	const size_t e = get_argv(argc, argv, 2, 10); 
+	const size_t n = get_argv(argc, argv, 3, 10); 
+	std::vector<size_t> c, d; 
+	random_integers<size_t>(c, 0, v - 1, n); 
+	random_integers<size_t>(d, 0, v - 1, n); 
+	GraphAdjList<size_t> G(false); 
+	random_graph(G, v, e); 
+	graphviz(G); 
 	ConnectedComponents CC(n, G); 
-	for (size_t i = 0; i < m2; i++) {
+	for (size_t i = 0; i < n; i++) {
 		std::cout << c[i] << "\t" << d[i] << "\tconnected = " << std::boolalpha;
 		std::cout << CC.SameComponent(c[i], d[i]) << std::endl; 
 	}

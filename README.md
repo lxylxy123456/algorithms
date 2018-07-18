@@ -145,6 +145,10 @@
 | 21 | DisjointSet.cpp				| Link									|  571 |
 | 21 | DisjointSet.cpp				| Find Set								|  571 |
 
+# Supplementary Files
+* `utils.h`: Utils
+* `Graph.cpp`: Graph classes
+
 # Supplementary Programs
 * `include_check.py`: identifies unnecessary includes
 * `vEB_check.py`: compare results of `ProtovEB.cpp` and `vEB.cpp`
