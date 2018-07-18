@@ -26,11 +26,10 @@
 
 #include <unordered_set>
 #include <unordered_map>
-#include <iterator>
 #include "utils.h"
 
-#define set typename std::unordered_set
-#define map typename std::unordered_map
+#define uset typename std::unordered_set
+#define umap typename std::unordered_map
 
 template <typename T>
 class Edge {
@@ -49,7 +48,7 @@ class Edge {
 template <typename T>
 class EdgeIteratorAL1 {
 	public:
-		EdgeIteratorAL1(map<T, set<T>>& E, bool direction): dir(direction) {
+		EdgeIteratorAL1(umap<T, uset<T>>& E, bool direction): dir(direction) {
 			mbegin = E.begin(); 
 			mend = E.end(); 
 			sbegin = mbegin->second.begin(); 
@@ -83,14 +82,14 @@ class EdgeIteratorAL1 {
 		T s() { return mbegin->first; }
 		T d() { return *sbegin; }
 		bool dir; 
-		map<T, set<T>>::iterator mbegin, mend; 
-		set<T>::iterator sbegin, send; 
+		umap<T, uset<T>>::iterator mbegin, mend; 
+		uset<T>::iterator sbegin, send; 
 }; 
 
 template <typename T>
 class EdgeIteratorAL2 {
 	public:
-		EdgeIteratorAL2(T ss, set<T>& E, bool direction): S(ss), dir(direction){
+		EdgeIteratorAL2(T ss, uset<T>& E, bool direction): S(ss),dir(direction){
 			sbegin = E.begin(); 
 			send = E.end(); 
 		}
@@ -108,13 +107,13 @@ class EdgeIteratorAL2 {
 		T d() { return *sbegin; }
 		T S; 
 		bool dir; 
-		set<T>::iterator sbegin, send; 
+		uset<T>::iterator sbegin, send; 
 }; 
 
 template <typename T>
 class EdgeIteratorAM1 {
 	public:
-		EdgeIteratorAM1(map<T, map<T, bool>>& E, bool direction) {
+		EdgeIteratorAM1(umap<T, umap<T, bool>>& E, bool direction) {
 			dir = direction; 
 			mbegin = E.begin(); 
 			mend = E.end(); 
@@ -149,14 +148,14 @@ class EdgeIteratorAM1 {
 		T s() { return mbegin->first; }
 		T d() { return sbegin->first; }
 		bool dir; 
-		map<T, map<T, bool>>::iterator mbegin, mend; 
-		map<T, bool>::iterator sbegin, send; 
+		umap<T, umap<T, bool>>::iterator mbegin, mend; 
+		umap<T, bool>::iterator sbegin, send; 
 }; 
 
 template <typename T>
 class EdgeIteratorAM2 {
 	public:
-		EdgeIteratorAM2(T ss, map<T, bool>& E, bool direction): S(ss) {
+		EdgeIteratorAM2(T ss, umap<T, bool>& E, bool direction): S(ss) {
 			dir = direction; 
 			sbegin = E.begin(); 
 			send = E.end(); 
@@ -181,7 +180,7 @@ class EdgeIteratorAM2 {
 		T d() { return sbegin->first; }
 		T S; 
 		bool dir; 
-		map<T, bool>::iterator sbegin, send; 
+		umap<T, bool>::iterator sbegin, send; 
 }; 
 
 template <typename T>
@@ -194,11 +193,15 @@ class Graph {
 			V.insert(u); 
 			return true; 
 		}
+		void add_edge(Edge<T> e) {
+			this->add_edge(e.s, e.d); 
+		}
 		virtual void add_edge(T, T) = 0; 
 		virtual bool is_edge(T u, T v) = 0; 
 		virtual ~Graph() {}
+		typedef T vertix_type; 
 		bool dir; 
-		set<T> V; 
+		uset<T> V; 
 }; 
 
 template <typename T>
@@ -222,7 +225,7 @@ class GraphAdjList: public Graph<T> {
 			return EdgeIteratorAL2<T>(s, E[s], this->dir); 
 		}
 		virtual ~GraphAdjList() {}
-		map<T, set<T>> E; 
+		umap<T, uset<T>> E; 
 }; 
 
 template <typename T>
@@ -256,7 +259,7 @@ class GraphAdjMatrix: public Graph<T> {
 			return EdgeIteratorAM2<T>(s, E[s], this->dir); 
 		}
 		virtual ~GraphAdjMatrix() {}
-		map<T, map<T, bool>> E; 
+		umap<T, umap<T, bool>> E; 
 }; 
 
 template <typename T>
@@ -269,57 +272,63 @@ void random_graph(Graph<T>& G, T v, T e) {
 		G.add_edge(d[2 * i], d[2 * i + 1]); 
 }
 
-template <typename T>
-void graphviz(T& G) {
+template <typename T, typename F1, typename F2>
+void graphviz(T& G, F1 f1, F2 f2) {
 	if (G.dir)
 		std::cout << "digraph G {" << std::endl; 
 	else
 		std::cout << "graph G {" << std::endl; 
 	std::cout << '\t'; 
-	for (auto i = G.V.begin(); i != G.V.end(); i++)
-		std::cout << *i << "; "; 
+	for (auto i = G.V.begin(); i != G.V.end(); i++) {
+		std::cout << *i; 
+		if (f1(*i))
+			std::cout << "; \n\t"; 
+		else
+			std::cout << "; "; 
+	}
 	std::cout << std::endl; 
 	for (auto i = G.all_edges(); !i.end(); i++)
-		if (G.dir || i.s() < i.d())
-			std::cout << '\t' << *i << "; " << std::endl; 
+		if (G.dir || i.s() < i.d()) {
+			std::cout << '\t' << *i; 
+			f2(*i); 
+			std::cout << "; " << std::endl; 
+		}
 	std::cout << "}" << std::endl; 
+}
+
+template <typename T>
+void graphviz(T& G) {
+	auto f1 = [](typename T::vertix_type v) { return false; }; 
+	auto f2 = [](Edge<typename T::vertix_type>) {}; 
+	graphviz(G, f1, f2); 
 }
 #endif
 
 #ifdef MAIN_Graph
+template <typename T>
+void graph_test(const size_t v, const size_t e) {
+	for (size_t dir = 0; dir <= 1; dir++) {
+		T G(dir); 
+		random_graph(G, v, e); 
+		for (auto i = G.all_edges(); !i.end(); i++)
+			std::cout << *i << std::endl; 
+		std::cout << std::endl; 
+		for (auto i = G.V.begin(); i != G.V.end(); i++) {
+			std::cout << *i << std::endl; 
+			for (auto j = G.edges_from(*i); !j.end(); j++)
+				std::cout << '\t' << *j << std::endl; 
+		}
+		std::cout << std::endl; 
+		graphviz(G); 
+		std::cout << std::endl; 
+	}
+}
+
 int main(int argc, char *argv[]) {
 	const size_t v = get_argv(argc, argv, 1, 5); 
 	const size_t e = get_argv(argc, argv, 2, 10); 
-	for (size_t dir = 0; dir <= 1; dir++) {
-		GraphAdjList<size_t> G(dir); 
-		random_graph(G, v, e); 
-		for (auto i = G.all_edges(); !i.end(); i++)
-			std::cout << *i << std::endl; 
-		std::cout << std::endl; 
-		for (auto i = G.V.begin(); i != G.V.end(); i++) {
-			std::cout << *i << std::endl; 
-			for (auto j = G.edges_from(*i); !j.end(); j++)
-				std::cout << '\t' << *j << std::endl; 
-		}
-		std::cout << std::endl; 
-		graphviz(G); 
-		std::cout << std::endl; 
-	}
-	for (size_t dir = 0; dir <= 1; dir++) {
-		GraphAdjMatrix<size_t> G(dir); 
-		random_graph(G, v, e); 
-		for (auto i = G.all_edges(); !i.end(); i++)
-			std::cout << *i << std::endl; 
-		std::cout << std::endl; 
-		for (auto i = G.V.begin(); i != G.V.end(); i++) {
-			std::cout << *i << std::endl; 
-			for (auto j = G.edges_from(*i); !j.end(); j++)
-				std::cout << '\t' << *j << std::endl; 
-		}
-		std::cout << std::endl; 
-		graphviz(G); 
-		std::cout << std::endl; 
-	}
+	graph_test<GraphAdjList<size_t>>(v, e); 
+	graph_test<GraphAdjMatrix<size_t>>(v, e); 
 	return 0; 
 }
 #endif

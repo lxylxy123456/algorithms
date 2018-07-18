@@ -18,7 +18,7 @@ for i in os.listdir() :
 				assert 'std::invalid_argument' in a
 			elif j == 'map' :
 				assert 'std::map' in a or 'std::pair' in a
-			elif j in ['list', 'set'] :
+			elif j in ['list', 'set', 'unordered_set', 'unordered_map'] :
 				assert 'std::' + j in a
 			else :
 				assert(False)

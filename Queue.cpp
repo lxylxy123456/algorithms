@@ -46,6 +46,9 @@ class Queue {
 				head = 0; 
 			return ans; 
 		}
+		bool Empty() {
+			return head == tail; 
+		}
 		~Queue() { delete [] data; }
 	private:
 		size_t head, tail, length; 
@@ -59,6 +62,7 @@ int main(int argc, char *argv[]) {
 	Queue<int> S(n); 
 	std::cout << "d: dequeue" << std::endl; 
 	std::cout << "e: enqueue" << std::endl; 
+	std::cout << "E: empty" << std::endl; 
 	std::cout << "q: quit" << std::endl; 
 	while (true) {
 		char c; int x; 
@@ -75,6 +79,9 @@ int main(int argc, char *argv[]) {
 				break; 
 			case 'd': 
 				std::cout << S.Dequeue() << std::endl; 
+				break; 
+			case 'E': 
+				std::cout << std::boolalpha << S.Empty() << std::endl; 
 				break; 
 			case 'q': 
 				return 0; 
