@@ -109,11 +109,10 @@ int main(int argc, char *argv[]) {
 			std::cout << "d = INF"; 
 		else
 			std::cout << "d = " << i.d << "; pi = " << i.pi; 
-		std::cout << "\""; 
-		std::cout << "]"; 
+		std::cout << "\"]"; 
 		return true; 
 	}; 
-	auto f2 = [dir](Edge<size_t> e) {}; 
+	auto f2 = [](Edge<size_t> e) {}; 
 	graphviz(G, f1, f2); 
 	for (auto i = G.V.begin(); i != G.V.end(); i++) {
 		std::vector<size_t> ans; 

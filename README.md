@@ -146,6 +146,8 @@
 | 21 | DisjointSet.cpp				| Find Set								|  571 |
 | 22 | BFS.cpp						| BFS									|  595 |
 | 22 | BFS.cpp						| Print Path							|  601 |
+| 22 | DFS.cpp						| DFS									|  604 |
+| 22 | DFS.cpp						| DFS Visit								|  604 |
 
 # Supplementary Files
 * `utils.h`: Utils

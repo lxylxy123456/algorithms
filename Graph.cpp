@@ -41,9 +41,28 @@ class Edge {
 			else
 				return os << rhs.s << " -- " << rhs.d; 
 		}
+		bool operator==(const Edge& rhs) const {
+			return dir == rhs.dir && s == rhs.s && d == rhs.d; 
+		}
+		Edge<T> reverse() const {
+			return Edge<T>(d, s, dir); 
+		}
 		T s, d; 
 		bool dir; 
 }; 
+
+template <typename T>
+struct EdgeHash {
+    std::size_t operator()(Edge<T> t) const
+    {
+        size_t shift = sizeof(size_t) * 4; 
+        size_t a = std::hash<T>()(t.s); 
+        size_t b = std::hash<T>()(t.d); 
+        size_t B = b >> shift | b << shift; 
+        size_t C = t.dir << (shift - 1); 
+        return a ^ B ^ C; 
+    }
+};
 
 template <typename T>
 class EdgeIteratorAL1 {
@@ -62,7 +81,7 @@ class EdgeIteratorAL1 {
 		}
 		void next() {
 			if (mbegin != mend)
-				while (sbegin == send || s() > d()) {
+				while (sbegin == send || (!dir && s() > d())) {
 					if (sbegin == send) {
 						mbegin++; 
 						if (mbegin == mend)
@@ -128,7 +147,7 @@ class EdgeIteratorAM1 {
 		}
 		void next() {
 			if (mbegin != mend)
-				while (sbegin == send || !sbegin->second || s() > d()) {
+				while (sbegin == send || !sbegin->second || !dir && s() > d()) {
 					if (sbegin == send) {
 						mbegin++; 
 						if (mbegin == mend)
@@ -287,12 +306,11 @@ void graphviz(T& G, F1 f1, F2 f2) {
 			std::cout << "; "; 
 	}
 	std::cout << std::endl; 
-	for (auto i = G.all_edges(); !i.end(); i++)
-		if (G.dir || i.s() < i.d()) {
-			std::cout << '\t' << *i; 
-			f2(*i); 
-			std::cout << "; " << std::endl; 
-		}
+	for (auto i = G.all_edges(); !i.end(); i++) {
+		std::cout << '\t' << *i; 
+		f2(*i); 
+		std::cout << "; " << std::endl; 
+	}
 	std::cout << "}" << std::endl; 
 }
 
