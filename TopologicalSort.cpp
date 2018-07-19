@@ -55,6 +55,16 @@ void DFS_TS(GT& G, VT& inf, std::deque<T>& ans) {
 			DFSVisit_TS(G, inf, ans, *i, time); 
 }
 
+template <typename GT, typename VT, typename T>
+void TopologicalSort(GT& G, VT& inf, std::deque<T>& ans) {
+	DFS_TS(G, inf, ans); 
+}
+
+template <typename GT, typename T>
+void TopologicalSort(GT& G, std::deque<T>& ans) {
+	umap<T, DFSInfo<T>> inf; 
+	TopologicalSort(G, inf, ans); 
+}
 #endif
 
 #ifdef MAIN_TopologicalSort
@@ -66,7 +76,7 @@ int main(int argc, char *argv[]) {
 	random_graph(G, v, e); 
 	umap<size_t, DFSInfo<size_t>> inf; 
 	std::deque<size_t> ans; 
-	DFS_TS(G, inf, ans); 
+	TopologicalSort(G, inf, ans); 
 	auto f1 = [inf](size_t v) mutable {
 		DFSInfo<size_t>& i = inf[v]; 
 		std::cout << " [label=\"" << v << "\\nd = " << i.d << "; f = " << i.f; 

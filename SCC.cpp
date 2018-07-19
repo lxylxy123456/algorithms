@@ -27,7 +27,7 @@
 #include <map>
 #include "utils.h"
 
-#include "DFS.cpp"
+#include "TopologicalSort.cpp"
 #include "DisjointSet.cpp"
 
 template <typename GT, typename T, typename VT>
@@ -47,30 +47,26 @@ void DFSVisit_SCC(GT& G, VT& inf, DisjointSetForest<T>& D, T u, size_t& time) {
 }
 
 template <typename GT, typename T>
-void DFS_SCC(GT& G, std::map<size_t, T>& f_order, DisjointSetForest<T>& D) {
+void DFS_SCC(GT& G, std::deque<T>& order, DisjointSetForest<T>& D) {
 	umap<T, DFSInfo<T>> inf; 
 	for (auto i = G.V.begin(); i != G.V.end(); i++)
 		inf[*i] = DFSInfo<T>(); 
 	size_t time = 0; 
-	for (auto i = f_order.rbegin(); i != f_order.rend(); i++) {
-		T v = i->second; 
-		if (inf[v].color == white)
-			DFSVisit_SCC(G, inf, D, v, time); 
+	for (auto i = order.begin(); i != order.end(); i++) {
+		if (inf[*i].color == white)
+			DFSVisit_SCC(G, inf, D, *i, time); 
 	}
 }
 
 template <typename GT, typename T>
 void StronglyConnectedComponents(GT& G, DisjointSetForest<T>& D) {
-	umap<T, DFSInfo<T>> inf; 
-	DFS<T>(G, inf, nullptr); 
+	std::deque<T> order; 
+	TopologicalSort(G, order); 
 	GT G_transpose = G; 
 	G_transpose.transpose(); 
-	std::map<size_t, T> f_order; 
-	for (auto i = inf.begin(); i != inf.end(); i++) {
-		f_order[i->second.f] = i->first; 
-		D.MakeSet(i->first); 
-	}
-	DFS_SCC(G_transpose, f_order, D); 
+	for (auto i = G.V.begin(); i != G.V.end(); i++)
+		D.MakeSet(*i); 
+	DFS_SCC(G_transpose, order, D); 
 }
 #endif
 
