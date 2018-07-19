@@ -149,7 +149,7 @@
 | 22 | DFS.cpp						| DFS									|  604 |
 | 22 | DFS.cpp						| DFS Visit								|  604 |
 | 22 | TopologicalSort.cpp			| Topological Sort						|  613 |
-| 23 | SCC.cpp						| Strongly Connected Components			|  617 |
+| 22 | SCC.cpp						| Strongly Connected Components			|  617 |
 
 # Supplementary Files
 * `utils.h`: Utils
