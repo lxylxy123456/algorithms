@@ -118,9 +118,8 @@ void DFSVisit(GT& G, VT& ans, ET edge_ans, T u, size_t& time) {
 	info.set_color(black, time); 
 }
 
-template <typename GT, typename VT, typename ET>
-void DFS(GT& G, VT& ans, ET edge_ans) {
-	using T = typename GT::vertix_type; 
+template <typename T, typename GT, typename VT>
+void DFS(GT& G, VT& ans, umap<Edge<T>, DFSEdgeType, EdgeHash<T>>* edge_ans) {
 	for (auto i = G.V.begin(); i != G.V.end(); i++)
 		ans[*i] = DFSInfo<T>(); 
 	size_t time = 0; 

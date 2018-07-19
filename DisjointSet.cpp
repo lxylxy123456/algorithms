@@ -24,20 +24,22 @@
 #ifndef FUNC_DisjointSet
 #define FUNC_DisjointSet
 
+#include <map>
 #include "utils.h"
 
 #include "Graph.cpp"
 
 const size_t NIL = -1; 
 
+template <typename T>
 class DisjointSetForest {
 	public:
-		DisjointSetForest(size_t n): p(n, NIL), rank(n, 0) {}
-		void MakeSet(size_t x) {
+		DisjointSetForest() {}
+		void MakeSet(T x) {
 			p[x] = x; 
 			rank[x] = 0; 
 		}
-		void Link(size_t x, size_t y) {
+		void Link(T x, T y) {
 			if (rank[x] > rank[y])
 				p[y] = x; 
 			else {
@@ -46,32 +48,34 @@ class DisjointSetForest {
 					rank[y]++; 
 			}
 		}
-		size_t FindSet(size_t x) {
+		T FindSet(T x) {
 			if (p[x] == NIL)
 				return x; 
 			if (x != p[x])
 				p[x] = FindSet(p[x]); 
 			return p[x]; 
 		}
-		void Union(size_t x, size_t y) {
+		void Union(T x, T y) {
 			Link(FindSet(x), FindSet(y)); 
 		}
-		std::vector<size_t> p, rank; 
+		std::map<T, T> p; 
+		std::map<T, size_t> rank; 
 }; 
 
+template <typename T>
 class ConnectedComponents {
 	public:
-		ConnectedComponents(size_t n, GraphAdjList<size_t>& G): F(n) {
+		ConnectedComponents(T n, GraphAdjList<T>& G) {
 			for (auto i = G.V.begin(); i != G.V.end(); i++)
 				F.MakeSet(*i); 
 			for (auto i = G.all_edges(); !i.end(); i++)
 				if (F.FindSet(i.s()) != F.FindSet(i.d()))
 					F.Union(i.s(), i.d()); 
 		}
-		bool SameComponent(size_t u, size_t v) {
+		bool SameComponent(T u, T v) {
 			return F.FindSet(u) == F.FindSet(v); 
 		}
-		DisjointSetForest F; 
+		DisjointSetForest<T> F; 
 }; 
 #endif
 
@@ -86,7 +90,7 @@ int main(int argc, char *argv[]) {
 	GraphAdjList<size_t> G(false); 
 	random_graph(G, v, e); 
 	graphviz(G); 
-	ConnectedComponents CC(n, G); 
+	ConnectedComponents<size_t> CC(n, G); 
 	for (size_t i = 0; i < n; i++) {
 		std::cout << c[i] << "\t" << d[i] << "\tconnected = " << std::boolalpha;
 		std::cout << CC.SameComponent(c[i], d[i]) << std::endl; 

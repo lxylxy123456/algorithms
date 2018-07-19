@@ -24,7 +24,6 @@
 #ifndef FUNC_BFS
 #define FUNC_BFS
 
-#include <cassert>
 #include "utils.h"
 
 #include "Queue.cpp"

@@ -24,6 +24,7 @@
 #ifndef FUNC_Graph
 #define FUNC_Graph
 
+#include <cassert>
 #include <unordered_set>
 #include <unordered_map>
 #include "utils.h"
@@ -147,7 +148,7 @@ class EdgeIteratorAM1 {
 		}
 		void next() {
 			if (mbegin != mend)
-				while (sbegin == send || !sbegin->second || !dir && s() > d()) {
+				while (sbegin == send || !sbegin->second || (!dir && s()>d())) {
 					if (sbegin == send) {
 						mbegin++; 
 						if (mbegin == mend)
@@ -217,6 +218,7 @@ class Graph {
 		}
 		virtual void add_edge(T, T) = 0; 
 		virtual bool is_edge(T u, T v) = 0; 
+		virtual void transpose() = 0; 
 		virtual ~Graph() {}
 		typedef T vertix_type; 
 		bool dir; 
@@ -242,6 +244,14 @@ class GraphAdjList: public Graph<T> {
 		}
 		EdgeIteratorAL2<T> edges_from(T s) {
 			return EdgeIteratorAL2<T>(s, E[s], this->dir); 
+		}
+		virtual void transpose() {
+			assert(this->dir); 
+			umap<T, uset<T>> old_E = E; 
+			E.clear(); 
+			for (auto i = old_E.begin(); i != old_E.end(); i++)
+				for (auto j = i->second.begin(); j != i->second.end(); j++)
+					E[*j].insert(i->first); 
 		}
 		virtual ~GraphAdjList() {}
 		umap<T, uset<T>> E; 
@@ -276,6 +286,13 @@ class GraphAdjMatrix: public Graph<T> {
 		}
 		EdgeIteratorAM2<T> edges_from(T s) {
 			return EdgeIteratorAM2<T>(s, E[s], this->dir); 
+		}
+		virtual void transpose() {
+			assert(this->dir); 
+			for (auto i = this->V.begin(); i != this->V.end(); i++)
+				for (auto j = this->V.begin(); j != this->V.end(); j++)
+					if (*i < *j)
+						std::swap(E[*i][*j], E[*j][*i]); 
 		}
 		virtual ~GraphAdjMatrix() {}
 		umap<T, umap<T, bool>> E; 
@@ -338,6 +355,10 @@ void graph_test(const size_t v, const size_t e) {
 		}
 		std::cout << std::endl; 
 		graphviz(G); 
+		if (dir) {
+			G.transpose(); 
+			graphviz(G); 
+		}
 		std::cout << std::endl; 
 	}
 }
