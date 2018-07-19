@@ -76,8 +76,8 @@ std::ostream& operator<<(std::ostream& os, const DFSEdgeType& rhs) {
 	}
 }
 
-template <typename T>
-bool is_ancestor(umap<T, DFSInfo<T>>& ans, T u, T v) {
+template <typename T, typename VT>
+bool is_ancestor(VT& ans, T u, T v) {
 	if (u == v)
 		return true; 
 	DFSInfo<T>& info = ans[v]; 
@@ -88,7 +88,7 @@ bool is_ancestor(umap<T, DFSInfo<T>>& ans, T u, T v) {
 }
 
 template <typename GT, typename T, typename VT, typename ET>
-void DFSVisit(GT& G, VT& ans, ET& edge_ans, T u, size_t& time) {
+void DFSVisit(GT& G, VT& ans, ET edge_ans, T u, size_t& time) {
 	DFSInfo<T>& info = ans[u]; 
 	info.set_color(gray, time); 
 	for (auto i = G.edges_from(u); !i.end(); i++) {
@@ -96,18 +96,22 @@ void DFSVisit(GT& G, VT& ans, ET& edge_ans, T u, size_t& time) {
 		DFSInfo<T>& vinfo = ans[v]; 
 		switch (vinfo.color) {
 			case white: 
-				edge_ans[*i] = tree; 
+				if (edge_ans)
+					(*edge_ans)[*i] = tree; 
 				vinfo.set_pi(u); 
 				DFSVisit(G, ans, edge_ans, v, time); 
 				break; 
 			case gray: 
-				edge_ans[*i] = back; 
+				if (edge_ans)
+					(*edge_ans)[*i] = back; 
 				break; 
 			case black: 
-				if (is_ancestor(ans, u, v))
-					edge_ans[*i] = forward; 
-				else
-					edge_ans[*i] = cross; 
+				if (edge_ans) {
+					if (is_ancestor(ans, u, v))
+						(*edge_ans)[*i] = forward; 
+					else
+						(*edge_ans)[*i] = cross; 
+				}
 				break; 
 		}
 	}
@@ -115,7 +119,7 @@ void DFSVisit(GT& G, VT& ans, ET& edge_ans, T u, size_t& time) {
 }
 
 template <typename GT, typename VT, typename ET>
-void DFS(GT& G, VT& ans, ET& edge_ans) {
+void DFS(GT& G, VT& ans, ET edge_ans) {
 	using T = typename GT::vertix_type; 
 	for (auto i = G.V.begin(); i != G.V.end(); i++)
 		ans[*i] = DFSInfo<T>(); 
@@ -123,15 +127,15 @@ void DFS(GT& G, VT& ans, ET& edge_ans) {
 	for (auto i = G.V.begin(); i != G.V.end(); i++)
 		if (ans[*i].color == white)
 			DFSVisit(G, ans, edge_ans, *i, time); 
-	if (!G.dir)
+	if (!G.dir && edge_ans) {
+		auto& ea = *edge_ans; 
 		for (auto i = G.all_edges(); !i.end(); i++)
 			if (i.s() < i.d()) {
 				Edge<T> j = (*i).reverse(); 
-				if (edge_ans[*i] != edge_ans[j]) {
-					edge_ans[j] = std::min(edge_ans[*i], edge_ans[j]); 
-					edge_ans[*i] = edge_ans[j]; 
-				}
+				if (ea[*i] != ea[j])
+					ea[*i] = ea[j] = std::min(ea[*i], ea[j]); 
 			}
+	}
 }
 #endif
 
@@ -144,7 +148,7 @@ int main(int argc, char *argv[]) {
 	random_graph(G, v, e); 
 	umap<size_t, DFSInfo<size_t>> inf; 
 	umap<Edge<size_t>, DFSEdgeType, EdgeHash<size_t>> edge_inf; 
-	DFS(G, inf, edge_inf); 
+	DFS(G, inf, &edge_inf); 
 	auto f1 = [inf](size_t v) mutable {
 		DFSInfo<size_t>& i = inf[v]; 
 		std::cout << " ["; 

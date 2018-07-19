@@ -148,6 +148,7 @@
 | 22 | BFS.cpp						| Print Path							|  601 |
 | 22 | DFS.cpp						| DFS									|  604 |
 | 22 | DFS.cpp						| DFS Visit								|  604 |
+| 22 | TopologicalSort.cpp			| Topological Sort						|  613 |
 
 # Supplementary Files
 * `utils.h`: Utils
