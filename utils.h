@@ -30,7 +30,6 @@ void random_integers(std::vector<int>& a, int l, int u, size_t size) {
 	a.reserve(size); 
     std::random_device rd; 
     std::uniform_int_distribution<int> d(l, u); 
-	a.reserve(size); 
 	for (size_t i = 0; i < size; i++)
 		a.push_back(d(rd)); 
 }
@@ -40,7 +39,6 @@ void random_integers(std::vector<T>& a, T l, T u, size_t size) {
 	a.reserve(size); 
     std::random_device rd; 
     std::uniform_int_distribution<T> d(l, u); 
-	a.reserve(size); 
 	for (size_t i = 0; i < size; i++)
 		a.push_back(d(rd)); 
 }

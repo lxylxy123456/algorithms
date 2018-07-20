@@ -43,7 +43,8 @@ class Edge {
 				return os << rhs.s << " -- " << rhs.d; 
 		}
 		bool operator==(const Edge& rhs) const {
-			return dir == rhs.dir && s == rhs.s && d == rhs.d; 
+			return dir == rhs.dir && ((s == rhs.s && d == rhs.d) || 
+					(d == rhs.s && s == rhs.d && !dir)); 
 		}
 		Edge<T> reverse() const {
 			return Edge<T>(d, s, dir); 
@@ -54,14 +55,15 @@ class Edge {
 
 template <typename T>
 struct EdgeHash {
-    std::size_t operator()(Edge<T> t) const
-    {
-        size_t shift = sizeof(size_t) * 4; 
-        size_t a = std::hash<T>()(t.s); 
-        size_t b = std::hash<T>()(t.d); 
-        size_t B = b >> shift | b << shift; 
-        size_t C = t.dir << (shift - 1); 
-        return a ^ B ^ C; 
+    std::size_t operator()(Edge<T> t) const {
+	    size_t a = std::hash<T>()(t.s); 
+	    size_t b = std::hash<T>()(t.d); 
+    	if (t.dir) {
+		    const size_t shift = sizeof(size_t) * 4; 
+		    size_t B = b >> shift | b << shift; 
+		    return a ^ B; 
+        } else
+        	return a ^ b ^ (a * b); 
     }
 };
 
@@ -306,6 +308,14 @@ void random_graph(Graph<T>& G, T v, T e) {
 	random_integers<T>(d, 0, v - 1, 2 * e); 
 	for (size_t i = 0; i < e; i++)
 		G.add_edge(d[2 * i], d[2 * i + 1]); 
+}
+
+template <typename WT, typename T, typename GT>
+void random_weight(GT& G, umap<Edge<T>, WT, EdgeHash<T>>& w, WT l, WT u) {
+    std::random_device rd; 
+    std::uniform_int_distribution<T> d(l, u); 
+	for (auto i = G.all_edges(); !i.end(); i++)
+		w[*i] = d(rd); 
 }
 
 template <typename T, typename F1, typename F2>
