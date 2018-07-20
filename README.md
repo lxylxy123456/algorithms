@@ -151,6 +151,7 @@
 | 22 | TopologicalSort.cpp			| Topological Sort						|  613 |
 | 22 | SCC.cpp						| Strongly Connected Components			|  617 |
 | 23 | MST.cpp						| MST Kruskal							|  631 |
+| 23 | MST.cpp						| MST Prim								|  634 |
 
 # Supplementary Files
 * `utils.h`: Utils
