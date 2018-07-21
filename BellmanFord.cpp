@@ -24,12 +24,9 @@
 #ifndef FUNC_BellmanFord
 #define FUNC_BellmanFord
 
-#include <map>
 #include "utils.h"
 
 #include "Graph.cpp"
-#include "DisjointSet.cpp"
-#include "FibHeap.cpp"
 
 template <typename T, typename WT>
 class RelaxInfo {
