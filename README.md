@@ -156,6 +156,7 @@
 | 24 | BellmanFord.cpp				| Relax									|  649 |
 | 24 | BellmanFord.cpp				| Bellman Ford							|  651 |
 | 24 | DagShortestPaths.cpp			| Dag Shortest Paths					|  655 |
+| 24 | Dijkstra.cpp					| Dijkstra								|  658 |
 
 # Supplementary Files
 * `utils.h`: Utils

@@ -73,8 +73,10 @@ class EdgeIteratorAL1 {
 		EdgeIteratorAL1(umap<T, uset<T>>& E, bool direction): dir(direction) {
 			mbegin = E.begin(); 
 			mend = E.end(); 
-			sbegin = mbegin->second.begin(); 
-			send = mbegin->second.end(); 
+			if (mbegin != mend) {
+				sbegin = mbegin->second.begin(); 
+				send = mbegin->second.end(); 
+			}
 			next(); 
 		}
 		void operator++(int) {
@@ -139,8 +141,10 @@ class EdgeIteratorAM1 {
 			dir = direction; 
 			mbegin = E.begin(); 
 			mend = E.end(); 
-			sbegin = mbegin->second.begin(); 
-			send = mbegin->second.end(); 
+			if (mbegin != mend) {
+				sbegin = mbegin->second.begin(); 
+				send = mbegin->second.end(); 
+			}
 			next(); 
 		}
 		void operator++(int) {
