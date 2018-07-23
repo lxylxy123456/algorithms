@@ -162,6 +162,7 @@
 | 25 | AllPairsShortestPaths.cpp	| Slow All Pairs Shortest Paths			|  689 |
 | 25 | AllPairsShortestPaths.cpp	| Faster All Pairs Shortest Paths		|  691 |
 | 25 | FloydWarshall.cpp			| Floyd Warshall						|  695 |
+| 25 | TransitiveClosure.cpp		| Transitive Closure					|  698 |
 
 # Supplementary Files
 * `utils.h`: Utils
