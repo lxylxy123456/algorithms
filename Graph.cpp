@@ -29,6 +29,8 @@
 #include <unordered_map>
 #include "utils.h"
 
+#include "SquareMatrixMultiply.cpp"
+
 #define uset typename std::unordered_set
 #define umap typename std::unordered_map
 
@@ -66,6 +68,57 @@ struct EdgeHash {
         	return a ^ b ^ (a * b); 
     }
 };
+
+template <typename T>
+class Weight {
+	public:
+		typedef T value_type; 
+		Weight(): inf(1) {}
+		Weight(T x): val(x), inf(0) {}
+		Weight(T x, int i): val(x), inf(i) {}
+		bool operator<(const Weight<T>& rhs) const {
+			if (inf || rhs.inf)
+				return inf < rhs.inf; 
+			else
+				return val < rhs.val; 
+		}
+		bool operator==(const Weight<T>& rhs) const {
+			if (inf || rhs.inf)
+				return inf == rhs.inf; 
+			else
+				return val == rhs.val; 
+		}
+		Weight<T> operator+(const Weight<T>& rhs) const {
+			if (inf + rhs.inf > 0)
+				return Weight<T>(0, 1); 
+			if (inf + rhs.inf < 0)
+				return Weight<T>(0, -1); 
+			assert(!inf && !rhs.inf); 
+			return Weight<T>(val + rhs.val); 
+		}
+		Weight<T> operator-(const Weight<T>& rhs) const {
+			if (inf - rhs.inf > 0)
+				return Weight<T>(0, 1); 
+			if (inf - rhs.inf < 0)
+				return Weight<T>(0, -1); 
+			assert(!inf && !rhs.inf); 
+			return Weight<T>(val - rhs.val); 
+		}
+		friend std::ostream& operator<<(std::ostream& os, const Weight<T>& rhs){
+			switch (rhs.inf) {
+				case -1: 
+					return os << "-inf"; 
+				case 0: 
+					return os << rhs.val; 
+				case 1: 
+					return os << "inf"; 
+				default: 
+					return os; 
+			}
+		}
+		T val; 
+		int inf; 
+}; 
 
 template <typename T>
 class EdgeIteratorAL1 {
@@ -304,8 +357,103 @@ class GraphAdjMatrix: public Graph<T> {
 		umap<T, umap<T, bool>> E; 
 }; 
 
+template <typename T, typename WT>
+class WeightedAdjMatrix {
+	public:
+		WeightedAdjMatrix(bool direction): dir(direction) {}
+		bool add_vertex(T u) {
+			if (V.find(u) != V.end())
+				return false; 
+			V.insert(u); 
+			for (auto i = V.begin(); i != V.end(); i++) {
+				const T& v = *i; 
+				if (u == v)
+					E[u][u] = Weight<WT>(0); 
+				else
+					E[u][v] = E[v][u] = Weight<WT>(); 
+			}
+			return true; 
+		}
+		void add_edge(T s, T d, WT w) {
+			add_vertex(s); 
+			if (s != d) {
+				add_vertex(d); 
+				E[s][d] = w; 
+				if (!dir)
+					E[d][s] = w; 
+			}
+		}
+		bool is_edge(T u, T v) {
+			return u != v && !E[u][v].inf; 
+		}
+		Weight<WT> get_edge(T u, T v) {
+			return E[u][v]; 
+		}
+		void random_graph(T v, size_t e, WT l, WT h) {
+			for (T i = 0; i < v; i++)
+				add_vertex(i); 
+			std::vector<T> d; 
+			std::vector<WT> w; 
+			random_integers<T>(d, 0, v - 1, 2 * e); 
+			random_integers<WT>(w, l, h, e); 
+			for (size_t i = 0; i < e; i++)
+				add_edge(d[2 * i], d[2 * i + 1], w[i]); 
+		}
+		template <typename F1, typename F2>
+		void graphviz(F1 f1, F2 f2) {
+			if (dir)
+				std::cout << "digraph G {" << std::endl; 
+			else
+				std::cout << "graph G {" << std::endl; 
+			std::cout << '\t'; 
+			for (auto i = V.begin(); i != V.end(); i++) {
+				std::cout << *i; 
+				if (f1(*i))
+					std::cout << "; \n\t"; 
+				else
+					std::cout << "; "; 
+			}
+			std::cout << std::endl; 
+			for (auto i = E.begin(); i != E.end(); i++) {
+				for (auto j = i->second.begin(); j != i->second.end(); j++) {
+					if (i->first != j->first && !j->second.inf && 
+						(dir || i->first < j->first)) {
+						Edge<T> e(i->first, j->first, dir); 
+						std::cout << '\t' << e; 
+						std::cout << " [label=\"" << j->second << "\""; 
+						f2(e, j->second); 
+						std::cout << "]; " << std::endl; 
+					}
+				}
+			}
+			std::cout << "}" << std::endl; 
+		}
+		void graphviz() {
+			auto f1 = [](T v) { return false; }; 
+			auto f2 = [](Edge<T> e, Weight<WT> w) {}; 
+			graphviz(f1, f2); 
+		}
+		void to_matrix(Matrix<Weight<WT>>& ans) {
+			const size_t n = V.size(); 
+			for (size_t i = 0; i < n; i++)
+				assert(V.find(i) != V.end()); 
+			ans.cols = ans.rows = n; 
+			ans.data.reserve(n); 
+			for (size_t i = 0; i < n; i++) {
+				MatrixRow<Weight<WT>> row; 
+				row.reserve(n); 
+				for (size_t j = 0; j < n; j++)
+					row.push_back(E[i][j]); 
+				ans.data.push_back(row); 
+			}
+		}
+		bool dir; 
+		uset<T> V; 
+		umap<T, umap<T, Weight<WT>>> E; 
+}; 
+
 template <typename T>
-void random_graph(Graph<T>& G, T v, T e) {
+void random_graph(Graph<T>& G, T v, size_t e) {
 	for (T i = 0; i < v; i++)
 		G.add_vertex(i); 
 	std::vector<T> d; 
@@ -315,7 +463,7 @@ void random_graph(Graph<T>& G, T v, T e) {
 }
 
 template <typename T>
-void random_dag(Graph<T>& G, T v, T e) {
+void random_dag(Graph<T>& G, T v, size_t e) {
 	for (T i = 0; i < v; i++)
 		G.add_vertex(i); 
 	std::vector<T> d; 
@@ -392,11 +540,29 @@ void graph_test(const size_t v, const size_t e) {
 	}
 }
 
+template <typename T, typename WT>
+void graph_weighted_test(const size_t v, const size_t e) {
+	for (size_t dir = 0; dir <= 1; dir++) {
+		WeightedAdjMatrix<T, WT> G(dir); 
+		G.random_graph(v, e, 1 - e, e); 
+		G.graphviz(); 
+		std::cout << std::endl; 
+		Matrix<Weight<int>> M(v, v); 
+		G.to_matrix(M); 
+		std::cout << M; 
+		std::cout << std::endl; 
+	}
+}
+
 int main(int argc, char *argv[]) {
 	const size_t v = get_argv(argc, argv, 1, 5); 
 	const size_t e = get_argv(argc, argv, 2, 10); 
+	std::cout << "GraphAdjList" << std::endl; 
 	graph_test<GraphAdjList<size_t>>(v, e); 
+	std::cout << "GraphAdjMatrix" << std::endl; 
 	graph_test<GraphAdjMatrix<size_t>>(v, e); 
+	std::cout << "WeightedAdjMatrix" << std::endl; 
+	graph_weighted_test<size_t, int>(v, e); 
 	return 0; 
 }
 #endif
