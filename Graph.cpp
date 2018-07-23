@@ -121,6 +121,21 @@ class Weight {
 }; 
 
 template <typename T>
+class T_ptr {
+	public:
+		T_ptr(): nil(true) {}
+		T_ptr(T v): val(v), nil(false) {}
+		friend std::ostream& operator<<(std::ostream& os, const T_ptr<T>& rhs) {
+			if (rhs.nil)
+				return os << "NIL"; 
+			else
+				return os << rhs.val; 
+		}
+		T val; 
+		bool nil; 
+}; 
+
+template <typename T>
 class EdgeIteratorAL1 {
 	public:
 		EdgeIteratorAL1(umap<T, uset<T>>& E, bool direction): dir(direction) {

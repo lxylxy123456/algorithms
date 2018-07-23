@@ -157,9 +157,11 @@
 | 24 | BellmanFord.cpp				| Bellman Ford							|  651 |
 | 24 | DagShortestPaths.cpp			| Dag Shortest Paths					|  655 |
 | 24 | Dijkstra.cpp					| Dijkstra								|  658 |
+| 25 | FloydWarshall.cpp			| Print All Pairs Shortest Path			|  685 |
 | 25 | AllPairsShortestPaths.cpp	| Extend Shortest Paths					|  688 |
 | 25 | AllPairsShortestPaths.cpp	| Slow All Pairs Shortest Paths			|  689 |
 | 25 | AllPairsShortestPaths.cpp	| Faster All Pairs Shortest Paths		|  691 |
+| 25 | FloydWarshall.cpp			| Floyd Warshall						|  695 |
 
 # Supplementary Files
 * `utils.h`: Utils
