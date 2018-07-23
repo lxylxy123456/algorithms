@@ -31,7 +31,7 @@
 
 template <typename GT, typename T, typename WT>
 Matrix<Weight<WT>> Johnson(GT& G, umap<Edge<T>, WT, EdgeHash<size_t>>& w) {
-	static_assert(std::is_same<T, size_t>::value); 
+	static_assert(std::is_same<T, size_t>::value, "Only supports T = size_t"); 
 	const size_t n = G.V.size(); 
 	T s; 
 	GT G_prime = G; 
