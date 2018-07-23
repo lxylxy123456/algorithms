@@ -28,8 +28,6 @@
 
 #include "Graph.cpp"
 
-const size_t INF = -1; 
-
 enum DFSColor { white, gray, black }; 
 
 enum DFSEdgeType { tree, back, forward, cross }; 
@@ -37,7 +35,7 @@ enum DFSEdgeType { tree, back, forward, cross };
 template <typename T>
 class DFSInfo {
 	public:
-		DFSInfo(): color(white), d(INF), f(INF), pi_exist(false) {}
+		DFSInfo(): color(white), d(-1), f(-1) {}
 		void set_color(DFSColor c, size_t& time) {
 			color = c; 
 			switch (color) {
@@ -51,14 +49,12 @@ class DFSInfo {
 					break; 
 			}
 		}
-		void set_pi(T p) {
+		void set_pi(T_ptr<T> p) {
 			pi = p; 
-			pi_exist = true; 
 		}
 		enum DFSColor color; 
 		size_t d, f; 
-		T pi; 
-		bool pi_exist; 
+		T_ptr<T> pi; 
 }; 
 
 std::ostream& operator<<(std::ostream& os, const DFSEdgeType& rhs) {
@@ -81,8 +77,8 @@ bool is_ancestor(VT& ans, T u, T v) {
 	if (u == v)
 		return true; 
 	DFSInfo<T>& info = ans[v]; 
-	if (info.pi_exist)
-		return is_ancestor(ans, u, info.pi); 
+	if (!info.pi.nil)
+		return is_ancestor(ans, u, info.pi.val); 
 	else
 		return false; 
 }
@@ -161,11 +157,8 @@ int main(int argc, char *argv[]) {
 				std::cout << "color=gray style=filled "; 
 				break; 
 		}
-		std::cout << "label=\"" << v << "\\n"; 
-		std::cout << "d = " << i.d << "; f = " << i.f; 
-		if (i.pi_exist)
-			std::cout << "; pi = " << i.pi; 
-		std::cout << "\"]"; 
+		std::cout << "label=\"" << v << "\\n" << "d = " << i.d; 
+		std::cout << "; f = " << i.f << "; pi = " << i.pi << "\"]"; 
 		return true; 
 	}; 
 	auto f2 = [edge_inf](Edge<size_t> e) mutable {

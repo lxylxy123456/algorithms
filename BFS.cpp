@@ -29,18 +29,16 @@
 #include "Queue.cpp"
 #include "Graph.cpp"
 
-const size_t INF = -1; 
-
 enum BFSColor { white, gray, black }; 
 
 template <typename T>
 class BFSInfo {
 	public:
-		BFSInfo(): color(white), d(INF) {}
+		BFSInfo(): color(white) {}
 		BFSInfo(enum BFSColor c, size_t dist): color(c), d(dist) {}
 		BFSInfo(enum BFSColor c, size_t dist, T p): color(c), d(dist), pi(p) {}
 		enum BFSColor color; 
-		size_t d; 
+		Weight<size_t> d; 
 		T pi; 
 }; 
 
@@ -71,7 +69,7 @@ template <typename T>
 void PrintPath(T s, T v, umap<T, BFSInfo<T>> inf, std::vector<T>& ans) {
 	if (v == s)
 		ans.push_back(v); 
-	else if (inf[v].d != INF) {
+	else if (!inf[v].d.inf) {
 		PrintPath(s, inf[v].pi, inf, ans); 
 		ans.push_back(v); 
 	}
@@ -102,10 +100,8 @@ int main(int argc, char *argv[]) {
 				break; 
 		}
 		std::cout << "label=\"" << v << "\\n"; 
-		if (i.d == 0)
+		if (i.d == 0 || i.d.inf)
 			std::cout << "d = " << i.d; 
-		else if (i.d == INF)
-			std::cout << "d = INF"; 
 		else
 			std::cout << "d = " << i.d << "; pi = " << i.pi; 
 		std::cout << "\"]"; 

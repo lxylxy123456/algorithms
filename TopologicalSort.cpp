@@ -80,9 +80,7 @@ int main(int argc, char *argv[]) {
 	auto f1 = [inf](size_t v) mutable {
 		DFSInfo<size_t>& i = inf[v]; 
 		std::cout << " [label=\"" << v << "\\nd = " << i.d << "; f = " << i.f; 
-		if (i.pi_exist)
-			std::cout << "; pi = " << i.pi; 
-		std::cout << "\"]"; 
+		std::cout << "; pi = " << i.pi << "\"]"; 
 		return true; 
 	}; 
 	auto f2 = [](Edge<size_t> e) mutable {}; 
