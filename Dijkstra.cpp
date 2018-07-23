@@ -74,7 +74,7 @@ int main(int argc, char *argv[]) {
 	}; 
 	auto f2 = [w, ans](Edge<size_t> e) mutable {
 		std::cout << " [label=\"" << w[e] << "\""; 
-		if (!ans[e.d].pi_nil && ans[e.d].pi == e.s)
+		if (ans[e.d].pi == e.s)
 			std::cout << " style=bold"; 
 		std::cout << "]"; 
 	}; 

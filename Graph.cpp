@@ -125,6 +125,9 @@ class T_ptr {
 	public:
 		T_ptr(): nil(true) {}
 		T_ptr(T v): val(v), nil(false) {}
+		bool operator==(const T_ptr<T>& rhs) const {
+			return nil ? nil == rhs.nil : val == rhs.val; 
+		}
 		friend std::ostream& operator<<(std::ostream& os, const T_ptr<T>& rhs) {
 			if (rhs.nil)
 				return os << "NIL"; 

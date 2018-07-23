@@ -31,52 +31,26 @@
 template <typename T, typename WT>
 class RelaxInfo {
 	public:
-		RelaxInfo(): pi_nil(true), d_inf(1) {}
-		RelaxInfo(WT k): d(k), pi_nil(true), d_inf(0) {}
-		void set_pi(T p) {
-			pi = p; 
-			pi_nil = false; 
-		}
-		void set_d(WT k) {
-			d = k; 
-			d_inf = false; 
-		}
-		void set_d(const RelaxInfo<T, WT>& k) {
-			d = k.d; 
-			d_inf = k.d_inf; 
-		}
+		RelaxInfo() {}
+		RelaxInfo(Weight<WT> k): d(k) {}
+		void set_pi(T_ptr<T> p) { pi = p; }
+		void set_d(Weight<WT> k) { d = k; }
+		void set_d(const RelaxInfo<T, WT>& k) { d = k.d; }
 		bool operator<(const RelaxInfo<T, WT>& rhs) const {
-			if (d_inf || rhs.d_inf)
-				return d_inf < rhs.d_inf; 
-			else
-				return d < rhs.d; 
+			return d < rhs.d; 
 		}
 		bool operator>(const RelaxInfo<T, WT>& rhs) const {
 			return rhs < *this; 
 		}
 		RelaxInfo<T, WT> operator+(WT rhs) const {
-			if (d_inf)
-				return *this; 
-			else
-				return RelaxInfo<T, WT>(d + rhs); 
+			return RelaxInfo<T, WT>(d + rhs); 
 		}
 		friend std::ostream& operator<<(std::ostream& os, 
 										const RelaxInfo<T, WT>& rhs) {
-			switch (rhs.d_inf) {
-				case -1: 
-					return os << "-inf"; 
-				case 0: 
-					return os << rhs.d; 
-				case 1: 
-					return os << "inf"; 
-				default: 
-					return os; 
-			}
+			return os << rhs.d; 
 		}
-		T pi; 
-		WT d; 
-		bool pi_nil; 
-		int d_inf; 
+		T_ptr<T> pi; 
+		Weight<WT> d; 
 }; 
 
 template <typename GT, typename T, typename WT>
@@ -130,7 +104,7 @@ int main(int argc, char *argv[]) {
 	}; 
 	auto f2 = [w, ans](Edge<size_t> e) mutable {
 		std::cout << " [label=\"" << w[e] << "\""; 
-		if (!ans[e.d].pi_nil && ans[e.d].pi == e.s)
+		if (!ans[e.d].pi.nil && ans[e.d].pi == e.s)
 			std::cout << " style=bold"; 
 		std::cout << "]"; 
 	}; 
