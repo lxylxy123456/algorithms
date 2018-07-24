@@ -164,6 +164,7 @@
 | 25 | FloydWarshall.cpp			| Floyd Warshall						|  695 |
 | 25 | TransitiveClosure.cpp		| Transitive Closure					|  698 |
 | 25 | Johnson.cpp					| Johnson								|  704 |
+| 26 | FordFulkerson.cpp			| Ford Fulkerson						|  724 |
 
 # Supplementary Files
 * `utils.h`: Utils

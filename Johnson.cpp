@@ -71,8 +71,8 @@ int main(int argc, char *argv[]) {
 	const size_t v = get_argv(argc, argv, 1, 5); 
 	const size_t e = get_argv(argc, argv, 2, 10); 
 	const bool dir = get_argv<int>(argc, argv, 3, 1); 
-	const int weight_lower = get_argv<int>(argc, argv, 3, (0-e) / 4); 
-	const int weight_upper = get_argv<int>(argc, argv, 4, e); 
+	const int weight_lower = get_argv<int>(argc, argv, 4, (0-e) / 4); 
+	const int weight_upper = get_argv<int>(argc, argv, 5, e); 
 	GraphAdjList<size_t> G(dir); 
 	random_graph(G, v, e); 
 	umap<Edge<size_t>, int, EdgeHash<size_t>> w; 
