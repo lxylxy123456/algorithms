@@ -31,7 +31,7 @@
 template <typename GT>
 class Bipartite: public GT {
 	public:
-		using T = typename GT::vertix_type; 
+		using T = typename GT::vertex_type; 
 		Bipartite(bool direction): GT(direction) {}
 		template <typename F1, typename F2>
 		void graphviz(F1 f1, F2 f2) {

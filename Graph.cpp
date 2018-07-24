@@ -297,7 +297,7 @@ class Graph {
 		virtual bool is_edge(T u, T v) = 0; 
 		virtual void transpose() = 0; 
 		virtual ~Graph() {}
-		typedef T vertix_type; 
+		typedef T vertex_type; 
 		bool dir; 
 		uset<T> V; 
 }; 
@@ -528,8 +528,8 @@ void graphviz(T& G, F1 f1, F2 f2) {
 
 template <typename T>
 void graphviz(T& G) {
-	auto f1 = [](typename T::vertix_type v) { return false; }; 
-	auto f2 = [](Edge<typename T::vertix_type>) {}; 
+	auto f1 = [](typename T::vertex_type v) { return false; }; 
+	auto f2 = [](Edge<typename T::vertex_type>) {}; 
 	graphviz(G, f1, f2); 
 }
 #endif
