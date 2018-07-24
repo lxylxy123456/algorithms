@@ -165,6 +165,7 @@
 | 25 | TransitiveClosure.cpp		| Transitive Closure					|  698 |
 | 25 | Johnson.cpp					| Johnson								|  704 |
 | 26 | FordFulkerson.cpp			| Ford Fulkerson						|  724 |
+| 26 | MaximumBipartiteMatching.cpp	| Maximum Bipartite Matching			|  733 |
 
 # Supplementary Files
 * `utils.h`: Utils
