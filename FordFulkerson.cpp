@@ -29,8 +29,7 @@
 #include "BFS.cpp"
 
 template <typename GT, typename T, typename WT>
-void FordFulkerson(GT& G, umap<Edge<T>, WT, EdgeHash<size_t>>& c, 
-					T s, T t, umap<Edge<T>, WT, EdgeHash<size_t>>& f) {
+void FordFulkerson(GT& G, umap_WT& c, T s, T t, umap_WT& f) {
 	for (auto i = G.all_edges(); !i.end(); i++)
 		f[*i] = 0; 
 	auto get_c = [&G, &c, &f](T u, T v) mutable -> WT {

@@ -30,8 +30,7 @@
 #include "BellmanFord.cpp"
 
 template <typename GT, typename T, typename WT>
-void Dijkstra(GT& G, umap<Edge<T>, WT, EdgeHash<size_t>>& w, T s, 
-				umap<T, RelaxInfo<T, WT>>& ans) {
+void Dijkstra(GT& G, umap_WT& w, T s, umap<T, RelaxInfo<T, WT>>& ans) {
 	using QT = std::pair<RelaxInfo<T, WT>, T>; 
 	InitializeSingleSource(G, s, ans); 
 	uset<T> S; 

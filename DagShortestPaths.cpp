@@ -31,8 +31,7 @@
 #include "BellmanFord.cpp"
 
 template <typename GT, typename T, typename WT>
-void DagShortestPaths(GT& G, umap<Edge<T>, WT, EdgeHash<size_t>>& w, T s, 
-				umap<T, RelaxInfo<T, WT>>& ans) {
+void DagShortestPaths(GT& G, umap_WT& w, T s, umap<T, RelaxInfo<T, WT>>& ans) {
 	std::deque<T> order; 
 	TopologicalSort(G, order); 
 	InitializeSingleSource(G, s, ans); 

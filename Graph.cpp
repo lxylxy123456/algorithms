@@ -33,6 +33,7 @@
 
 #define uset typename std::unordered_set
 #define umap typename std::unordered_map
+#define umap_WT typename std::unordered_map<Edge<T>, WT, EdgeHash<T>>
 
 template <typename T>
 class Edge {
@@ -496,7 +497,7 @@ void random_dag(Graph<T>& G, T v, size_t e) {
 }
 
 template <typename WT, typename T, typename GT>
-void random_weight(GT& G, umap<Edge<T>, WT, EdgeHash<T>>& w, WT l, WT u) {
+void random_weight(GT& G, umap_WT& w, WT l, WT u) {
     std::random_device rd; 
     std::uniform_int_distribution<T> d(l, u); 
 	for (auto i = G.all_edges(); !i.end(); i++)

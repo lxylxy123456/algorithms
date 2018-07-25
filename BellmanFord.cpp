@@ -61,8 +61,7 @@ void InitializeSingleSource(GT& G, T s, umap<T, RelaxInfo<T, WT>>& inf) {
 }
 
 template <typename T, typename WT>
-void Relax(T u, T v, umap<Edge<T>, WT, EdgeHash<size_t>>& w, 
-			umap<T, RelaxInfo<T, WT>>& inf) {
+void Relax(T u, T v, umap_WT& w, umap<T, RelaxInfo<T, WT>>& inf) {
 	WT weight = w[Edge<T>(u, v, true)]; 
 	if (inf[v] > inf[u] + weight) {
 		inf[v].set_d(inf[u] + weight); 
@@ -71,8 +70,7 @@ void Relax(T u, T v, umap<Edge<T>, WT, EdgeHash<size_t>>& w,
 }
 
 template <typename GT, typename T, typename WT>
-bool BellmanFord(GT& G, umap<Edge<T>, WT, EdgeHash<size_t>>& w, T s, 
-				umap<T, RelaxInfo<T, WT>>& ans) {
+bool BellmanFord(GT& G, umap_WT& w, T s, umap<T, RelaxInfo<T, WT>>& ans) {
 	InitializeSingleSource(G, s, ans); 
 	for (size_t i = 0; i < G.V.size() - 1; i++)
 		for (auto j = G.all_edges(); !j.end(); j++)

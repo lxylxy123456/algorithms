@@ -30,12 +30,12 @@
 #include "Dijkstra.cpp"
 
 template <typename GT, typename T, typename WT>
-Matrix<Weight<WT>> Johnson(GT& G, umap<Edge<T>, WT, EdgeHash<size_t>>& w) {
+Matrix<Weight<WT>> Johnson(GT& G, umap_WT& w) {
 	static_assert(std::is_same<T, size_t>::value, "Only supports T = size_t"); 
 	const size_t n = G.V.size(); 
 	T s; 
 	GT G_prime = G; 
-	umap<Edge<T>, WT, EdgeHash<size_t>> w_prime = w; 
+	umap_WT w_prime = w; 
 	for (s = n; G.V.find(s) != G.V.end(); s++); 
 	for (auto i = G.V.begin(); i != G.V.end(); i++) {
 		G_prime.add_edge(s, *i); 
@@ -49,7 +49,7 @@ Matrix<Weight<WT>> Johnson(GT& G, umap<Edge<T>, WT, EdgeHash<size_t>>& w) {
 		assert(!BF_ans[v].d.inf); 
 		h[v] = BF_ans[v].d.val; 
 	}
-	umap<Edge<T>, WT, EdgeHash<size_t>> w_hat; 
+	umap_WT w_hat; 
 	for (auto i = G.all_edges(); !i.end(); i++)
 		w_hat[*i] = w[*i] + h[i.s()] - h[i.d()]; 
 	Matrix<Weight<WT>> D(n, n, WT()); 
