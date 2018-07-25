@@ -496,6 +496,20 @@ void random_dag(Graph<T>& G, T v, size_t e) {
 	}
 }
 
+template <typename T>
+void random_flow(Graph<T>& G, T v, size_t e) {
+	// disables (u, v) and (v, u)
+	for (T i = 0; i < v; i++)
+		G.add_vertex(i); 
+	std::vector<T> d; 
+	random_integers<T>(d, 0, v - 1, 2 * e); 
+	for (size_t i = 0; i < e; i++) {
+		T a = d[2 * i], b = d[2 * i + 1]; 
+		if (a != b && !G.is_edge(a, b) && !G.is_edge(b, a))
+			G.add_edge(a, b); 
+	}
+}
+
 template <typename WT, typename T, typename GT>
 void random_weight(GT& G, umap_WT& w, WT l, WT u) {
     std::random_device rd; 

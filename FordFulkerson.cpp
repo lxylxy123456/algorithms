@@ -32,7 +32,7 @@ template <typename GT, typename T, typename WT>
 void FordFulkerson(GT& G, umap_WT& c, T s, T t, umap_WT& f) {
 	for (auto i = G.all_edges(); !i.end(); i++)
 		f[*i] = 0; 
-	auto get_c = [&G, &c, &f](T u, T v) mutable -> WT {
+	auto cf = [&G, &c, &f](T u, T v) mutable -> WT {
 		if (G.is_edge(u, v)) {
 			Edge<T> e = Edge<T>(u, v, G.dir); 
 			return c[e] - f[e]; 
@@ -45,9 +45,9 @@ void FordFulkerson(GT& G, umap_WT& c, T s, T t, umap_WT& f) {
 		GT Gf(G.dir); 
 		for (auto i = G.all_edges(); !i.end(); i++) {
 			T u = i.s(), v = i.d(); 
-			if (get_c(u, v))
+			if (cf(u, v))
 				Gf.add_edge(u, v); 
-			if (get_c(v, u))
+			if (cf(v, u))
 				Gf.add_edge(v, u); 
 		}
 		umap<T, BFSInfo<T>> BFS_ans; 
@@ -56,9 +56,9 @@ void FordFulkerson(GT& G, umap_WT& c, T s, T t, umap_WT& f) {
 		PrintPath(s, t, BFS_ans, p); 
 		if (!p.size())
 			break; 
-		WT cfp = get_c(p[0], p[1]); 
+		WT cfp = cf(p[0], p[1]); 
 		for (size_t i = 2; i < p.size(); i++)
-			cfp = std::min(cfp, get_c(p[i - 1], p[i])); 
+			cfp = std::min(cfp, cf(p[i - 1], p[i])); 
 		for (size_t i = 1; i < p.size(); i++) {
 			if (G.is_edge(p[i - 1], p[i]))
 				f[Edge<T>(p[i - 1], p[i], G.dir)] += cfp; 
@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
 	const int weight_lower = get_argv<int>(argc, argv, 3, 0); 
 	const int weight_upper = get_argv<int>(argc, argv, 4, e); 
 	GraphAdjList<size_t> G(dir); 
-	random_graph(G, v, e); 
+	random_flow(G, v, e); 
 	umap<Edge<size_t>, int, EdgeHash<size_t>> c; 
 	random_weight(G, c, weight_lower, weight_upper); 
 	umap<Edge<size_t>, int, EdgeHash<size_t>> f; 
