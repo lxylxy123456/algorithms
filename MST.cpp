@@ -58,7 +58,7 @@ class MSTPrimInfo {
 }; 
 
 template <typename GT, typename T, typename WT, typename AT>
-void MSTKruskal(GT& G, umap<Edge<T>, WT, EdgeHash<T>>& w, AT& A) {
+void MSTKruskal(GT& G, umap_WT& w, AT& A) {
 	A.clear(); 
 	DisjointSetForest<T> DF; 
 	for (auto i = G.V.begin(); i != G.V.end(); i++)
@@ -74,7 +74,7 @@ void MSTKruskal(GT& G, umap<Edge<T>, WT, EdgeHash<T>>& w, AT& A) {
 }
 
 template <typename GT, typename T, typename WT, typename IT>
-void MSTPrim(GT& G, umap<Edge<T>, WT, EdgeHash<T>>& w, T r, IT& ans) {
+void MSTPrim(GT& G, umap_WT& w, T r, IT& ans) {
 	using QT = std::pair<MSTPrimInfo<T, WT>, T>; 
 	FibHeap<QT> Q; 
 	umap<T, FNode<QT>*> Q_ptr; 
