@@ -171,6 +171,8 @@
 | 26 | RelabelToFront.cpp			| Initialize Preflow					|  740 |
 | 26 | RelabelToFront.cpp			| Discharge								|  751 |
 | 26 | RelabelToFront.cpp			| Relabel To Front						|  755 |
+| 27 | Fib.cpp						| Fib									|  775 |
+| 27 | Fib.cpp						| P Fib									|  776 |
 
 # Supplementary Files
 * `utils.h`: Utils

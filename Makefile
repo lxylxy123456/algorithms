@@ -16,7 +16,7 @@
 #  along with this program.  If not, see <https:#www.gnu.org/licenses/>.
 #  
 
-CXXFLAGS=-Wall -g -std=c++11
+CXXFLAGS=-Wall -g -std=c++11 -pthread
 
 SOURCES = $(wildcard *.cpp)
 
