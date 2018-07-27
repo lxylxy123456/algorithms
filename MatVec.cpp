@@ -29,6 +29,18 @@
 
 #include "SquareMatrixMultiply.cpp"
 
+template <typename T, typename F>
+void parallel_for(T i1, T i2, F func) {
+	if (i1 == i2 - 1)
+		func(i1); 
+	else {
+		T mid = (i1 + i2) / 2; 
+		std::thread t1(parallel_for<T, F>, i1, mid, func); 
+		parallel_for<T, F>(mid, i2, func); 
+		t1.join(); 
+	}
+}
+
 template <typename T>
 void MatVecMainLoop(Matrix<T>* A, Matrix<T>* x, Matrix<T>* y, size_t n, 
 					size_t i1, size_t i2) {
@@ -44,63 +56,60 @@ void MatVecMainLoop(Matrix<T>* A, Matrix<T>* x, Matrix<T>* y, size_t n,
 }
 
 template <typename T>
-void MatVec(Matrix<T>& A, Matrix<T>& x, Matrix<T>& y) {
+void MatVecRecursive(Matrix<T>& A, Matrix<T>& x, Matrix<T>& y) {
 	size_t n = A.rows; 
 	MatVecMainLoop(&A, &x, &y, n, 0, n); 
 }
 
 template <typename T>
-void MatVecWrongLoop2(Matrix<T>* A, Matrix<T>* x, Matrix<T>* y, size_t n, 
-					size_t i, size_t j1, size_t j2) {
-	if (j1 == j2 - 1)
-		(*y)[i][0] += (*A)[i][j1] * (*x)[j1][0]; 
-	else {
-		size_t mid = (j1 + j2) / 2; 
-		std::thread t1(MatVecWrongLoop2<T>, A, x, y, n, i, j1, mid); 
-		MatVecWrongLoop2(A, x, y, n, i, mid, j2); 
-		t1.join(); 
-	}
-}
-
-template <typename T>
-void MatVecWrongLoop1(Matrix<T>* A, Matrix<T>* x, Matrix<T>* y, size_t n, 
-					size_t i1, size_t i2) {
-	if (i1 == i2 - 1)
-		MatVecWrongLoop2(A, x, y, n, i1, 0, n); 
-	else {
-		size_t mid = (i1 + i2) / 2; 
-		std::thread t1(MatVecWrongLoop1<T>, A, x, y, n, i1, mid); 
-		MatVecWrongLoop1(A, x, y, n, mid, i2); 
-		t1.join(); 
-	}
+void MatVec(Matrix<T>& A, Matrix<T>& x, Matrix<T>& y) {
+	size_t n = A.rows; 
+	parallel_for<size_t>(0, n, [&](size_t i){
+		for (size_t j = 0; j < n; j++)
+			y[i][0] += A[i][j] * x[j][0]; 
+	}); 
 }
 
 template <typename T>
 void MatVecWrong(Matrix<T>& A, Matrix<T>& x, Matrix<T>& y) {
 	size_t n = A.rows; 
-	MatVecWrongLoop1(&A, &x, &y, n, 0, n); 
+	parallel_for<size_t>(0, n, [&](size_t i){
+		parallel_for<size_t>(0, n, [&](size_t j){
+			y[i][0] += A[i][j] * x[j][0]; 
+		}); 
+	}); 
 }
 #endif
 
 #ifdef MAIN_MatVec
 int main(int argc, char *argv[]) {
 	size_t n = get_argv(argc, argv, 1, 10); 
-	size_t compute = get_argv(argc, argv, 2, 1); 
+	size_t compute = get_argv(argc, argv, 2, 7); 
 	std::vector<int> buf_A, buf_x; 
 	random_integers(buf_A, 0, n, n * n); 
 	random_integers(buf_x, 0, n, n); 
 	Matrix<int> A(n, n, buf_A); 
 	Matrix<int> x(n, 1, buf_x); 
-	Matrix<int> y(n, 1, 0); 
-	MatVec(A, x, y); 
 	std::cout << A << std::endl; 
 	std::cout << x << std::endl; 
-	std::cout << y << std::endl; 
-	if (compute) {
-		Matrix<int> yw(n, 1, 0); 
-		MatVecWrong(A, x, yw); 
-		std::cout << yw << std::endl; 
-		std::cout << std::boolalpha << (y == yw) << std::endl; 
+	Matrix<int> y1(n, 1, 0), y2(n, 1, 0), y3(n, 1, 0); 
+	if (compute >> 0 & 1) {
+		MatVec(A, x, y1); 
+		std::cout << y1 << std::endl; 
+	}
+	if (compute >> 1 & 1) {
+		MatVecRecursive(A, x, y2); 
+		std::cout << y2; 
+		if (compute >> 0 & 1)
+			std::cout << std::boolalpha << (y1 == y2) << std::endl; 
+		std::cout << std::endl; 
+	}
+	if (compute >> 2 & 1) {
+		MatVecWrong(A, x, y3); 
+		std::cout << y3; 
+		if (compute >> 0 & 1)
+			std::cout << std::boolalpha << (y1 == y3) << std::endl; 
+		std::cout << std::endl; 
 	}
 	return 0; 
 }
