@@ -180,6 +180,10 @@
 | 27 | PSquareMatrixMultiply.cpp	| P Square Matrix Multiply				|  793 |
 | 27 | PSquareMatrixMultiply.cpp	| P Matrix Multiply Recursive			|  794 |
 | 27 | PSquareMatrixMultiply.cpp	| P Matrix Multiply Strassen			|  794 |
+| 27 | PMergeSort.cpp				| Merge Sort prime						|  797 |
+| 27 | PMergeSort.cpp				| Binary Search							|  799 |
+| 27 | PMergeSort.cpp				| P Merge								|  800 |
+| 27 | PMergeSort.cpp				| P Merge Sort							|  803 |
 
 # Supplementary Files
 * `utils.h`: Utils
