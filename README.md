@@ -177,6 +177,9 @@
 | 27 | MatVec.cpp					| Mat Vec Main Loop						|  785 |
 | 27 | RaceExample.cpp				| Race Example							|  788 |
 | 27 | MatVec.cpp					| Mat Vec Wrong							|  790 |
+| 27 | PSquareMatrixMultiply.cpp	| P Square Matrix Multiply				|  793 |
+| 27 | PSquareMatrixMultiply.cpp	| P Matrix Multiply Recursive			|  794 |
+| 27 | PSquareMatrixMultiply.cpp	| P Matrix Multiply Strassen			|  794 |
 
 # Supplementary Files
 * `utils.h`: Utils

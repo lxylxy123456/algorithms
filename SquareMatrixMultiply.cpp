@@ -249,9 +249,9 @@ Matrix<T> SquareMatrixMultiplyStrassen(SubMatrix<T> A, SubMatrix<T> B) {
 	assert(a_col == b_row); 
 	switch(a_row * a_col * b_col) {
 		case 1: 
-			return Matrix<T> (1, 1, A.get_elem(0, 0) * B.get_elem(0, 0)); 
+			return Matrix<T>(1, 1, A.get_elem(0, 0) * B.get_elem(0, 0)); 
 		case 0:
-			return Matrix<T> (0, 0); 
+			return Matrix<T>(0, 0); 
 		default: 
 			size_t a_mid = a_row / 2; 	// Rows of A & C
 			size_t b_mid = b_col / 2; 	// Cols of B & C
@@ -300,7 +300,7 @@ Matrix<T> SquareMatrixMultiplyStrassen(SubMatrix<T> A, SubMatrix<T> B) {
 			}
 			if (c_end != a_col) {
 				assert(c_end == a_col - 1); 
-				for (size_t i = 0; i < a_end; i++) 
+				for (size_t i = 0; i < a_end; i++)
 					for (size_t j = 0; j < b_end; j++)
 						C[i][j] += A.get_elem(i, c_end) * B.get_elem(c_end, j); 
 			}
