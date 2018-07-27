@@ -48,11 +48,44 @@ void MatVec(Matrix<T>& A, Matrix<T>& x, Matrix<T>& y) {
 	size_t n = A.rows; 
 	MatVecMainLoop(&A, &x, &y, n, 0, n); 
 }
+
+template <typename T>
+void MatVecWrongLoop2(Matrix<T>* A, Matrix<T>* x, Matrix<T>* y, size_t n, 
+					size_t i, size_t j1, size_t j2) {
+	if (j1 == j2 - 1)
+		(*y)[i][0] += (*A)[i][j1] * (*x)[j1][0]; 
+	else {
+		size_t mid = (j1 + j2) / 2; 
+		std::thread t1(MatVecWrongLoop2<T>, A, x, y, n, i, j1, mid); 
+		MatVecWrongLoop2(A, x, y, n, i, mid, j2); 
+		t1.join(); 
+	}
+}
+
+template <typename T>
+void MatVecWrongLoop1(Matrix<T>* A, Matrix<T>* x, Matrix<T>* y, size_t n, 
+					size_t i1, size_t i2) {
+	if (i1 == i2 - 1)
+		MatVecWrongLoop2(A, x, y, n, i1, 0, n); 
+	else {
+		size_t mid = (i1 + i2) / 2; 
+		std::thread t1(MatVecWrongLoop1<T>, A, x, y, n, i1, mid); 
+		MatVecWrongLoop1(A, x, y, n, mid, i2); 
+		t1.join(); 
+	}
+}
+
+template <typename T>
+void MatVecWrong(Matrix<T>& A, Matrix<T>& x, Matrix<T>& y) {
+	size_t n = A.rows; 
+	MatVecWrongLoop1(&A, &x, &y, n, 0, n); 
+}
 #endif
 
 #ifdef MAIN_MatVec
 int main(int argc, char *argv[]) {
 	size_t n = get_argv(argc, argv, 1, 10); 
+	size_t compute = get_argv(argc, argv, 2, 1); 
 	std::vector<int> buf_A, buf_x; 
 	random_integers(buf_A, 0, n, n * n); 
 	random_integers(buf_x, 0, n, n); 
@@ -63,6 +96,12 @@ int main(int argc, char *argv[]) {
 	std::cout << A << std::endl; 
 	std::cout << x << std::endl; 
 	std::cout << y << std::endl; 
+	if (compute) {
+		Matrix<int> yw(n, 1, 0); 
+		MatVecWrong(A, x, yw); 
+		std::cout << yw << std::endl; 
+		std::cout << std::boolalpha << (y == yw) << std::endl; 
+	}
 	return 0; 
 }
 #endif

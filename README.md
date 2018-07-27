@@ -176,6 +176,7 @@
 | 27 | MatVec.cpp					| Mat Vec								|  785 |
 | 27 | MatVec.cpp					| Mat Vec Main Loop						|  785 |
 | 27 | RaceExample.cpp				| Race Example							|  788 |
+| 27 | MatVec.cpp					| Mat Vec Wrong							|  790 |
 
 # Supplementary Files
 * `utils.h`: Utils
