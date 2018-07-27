@@ -175,6 +175,7 @@
 | 27 | Fib.cpp						| P Fib									|  776 |
 | 27 | MatVec.cpp					| Mat Vec								|  785 |
 | 27 | MatVec.cpp					| Mat Vec Main Loop						|  785 |
+| 27 | RaceExample.cpp				| Race Example							|  788 |
 
 # Supplementary Files
 * `utils.h`: Utils
