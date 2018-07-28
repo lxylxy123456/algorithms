@@ -130,6 +130,13 @@ class Matrix {
 		ans.rows += rhs.rows; 
 		return ans; 
 	}
+	Matrix<T> transpose() {
+		Matrix<T> ans(cols, rows, 0); 
+		for (size_t i = 0; i < cols; i++)
+			for (size_t j = 0; j < rows; j++)
+				ans[i][j] = (*this)[j][i]; 
+		return ans; 
+	}
 	void add_row(T T0) {
 		rows += 1; 
 		data.push_back(MatrixRow<T>(cols, T0)); 

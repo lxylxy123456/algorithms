@@ -188,6 +188,7 @@
 | 28 | LUPSolve.cpp					| LU Decomposition						|  821 |
 | 28 | LUPSolve.cpp					| LUP Decomposition						|  824 |
 | 28 | MatrixInverse.cpp			| Matrix Inverse						|  828 |
+| 28 | LeastSquareApprox.cpp		| Least Square Approx					|  837 |
 
 # Supplementary Files
 * `utils.h`: Utils
