@@ -31,6 +31,132 @@
 using PT = std::vector<size_t>; 
 
 template <typename T>
+class Fraction
+{
+	public:
+		Fraction(): numerator(0), denominator(0) {}
+		Fraction(T a): numerator(a), denominator(1) {}
+		Fraction(T a, T b): numerator(a), denominator(b) {
+			if (!b)
+				throw std::invalid_argument("zero denominator"); 
+			reduce_fraction(); 
+		}
+		Fraction& operator= (const Fraction& rhs) {
+			if (&rhs == this)
+				return *this; 
+			if (!rhs.denominator)
+				throw std::invalid_argument("zero denominator"); 
+			this->numerator = rhs.numerator; 
+			this->denominator = rhs.denominator; 
+			return *this; 
+		}
+		const Fraction operator- () const {
+			if (!denominator)
+				throw std::invalid_argument("zero denominator"); 
+			return Fraction(-numerator, denominator); 
+		}
+		const Fraction operator+ (const Fraction& a) const {
+			if (!denominator || !a.denominator)
+				throw std::invalid_argument("zero denominator"); 
+			int num = numerator * a.denominator + denominator * a.numerator; 
+			int den = denominator * a.denominator; 
+			return Fraction(num, den); 
+		}
+		const Fraction operator- (const Fraction& a) const {
+			if (!denominator || !a.denominator)
+				throw std::invalid_argument("zero denominator"); 
+			int num = numerator * a.denominator - denominator * a.numerator; 
+			int den = denominator * a.denominator; 
+			return Fraction(num, den); 
+		}
+		const Fraction operator* (const Fraction& a) const {
+			if (!denominator || !a.denominator)
+				throw std::invalid_argument("zero denominator"); 
+			int num = numerator * a.numerator; 
+			int den = denominator * a.denominator; 
+			return Fraction(num, den); 
+		}
+		const Fraction operator/ (const Fraction& a) const {
+			if (!denominator || !a.denominator)
+				throw std::invalid_argument("zero denominator"); 
+			int num = numerator * a.denominator; 
+			int den = denominator * a.numerator; 
+			return Fraction(num, den); 
+		}
+		Fraction& operator+= (const Fraction& a) {
+			if (!denominator || !a.denominator)
+				throw std::invalid_argument("zero denominator"); 
+			int num = numerator * a.denominator + denominator * a.numerator; 
+			int den = denominator * a.denominator; 
+			numerator = num; 
+			denominator = den; 
+			reduce_fraction(); 
+			return *this; 
+		}
+		Fraction& operator-= (const Fraction& a) {
+			if (!denominator || !a.denominator)
+				throw std::invalid_argument("zero denominator"); 
+			int num = numerator * a.denominator - denominator * a.numerator; 
+			int den = denominator * a.denominator; 
+			numerator = num; 
+			denominator = den; 
+			reduce_fraction(); 
+			return *this; 
+		}
+		Fraction& operator*= (const Fraction& a) {
+			if (!denominator || !a.denominator)
+				throw std::invalid_argument("zero denominator"); 
+			numerator *= a.numerator; 
+			denominator *= a.denominator; 
+			reduce_fraction(); 
+			return *this; 
+		}
+		Fraction& operator/= (const Fraction& a) {
+			if (!denominator || !a.denominator)
+				throw std::invalid_argument("zero denominator"); 
+			numerator *= a.denominator; 
+			denominator *= a.numerator; 
+			reduce_fraction(); 
+			return *this; 
+		}
+		bool operator< (const Fraction& a) const {
+			if (!denominator || !a.denominator)
+				throw std::invalid_argument("zero denominator"); 
+			return numerator * a.denominator < denominator * a.numerator; 
+		}
+		bool operator== (const Fraction& a) const {
+			if (!denominator || !a.denominator)
+				throw std::invalid_argument("zero denominator"); 
+			return numerator == a.numerator && denominator == a.denominator; 
+		}
+		friend std::ostream& operator<< (std::ostream& os, const Fraction& v) {
+			if (!v.denominator)
+				throw std::invalid_argument("zero denominator"); 
+			if (v.denominator == 1)
+				return os << v.numerator; 
+			else 
+				return os << v.numerator << '/' << v.denominator; 
+		}
+		T numerator; 
+		T denominator; 
+		void reduce_fraction() {
+			// some idea from "reduce_fraction.c"
+			T a = numerator, b = denominator, tmp; 
+			while (b) {
+				tmp = a % b; 
+				a = b; 
+				b = tmp; 
+			}
+			// now abs(a) == abs(gcd(a, b))
+			if ((denominator > 0) ^ (a > 0))
+				a = -a; 
+			// now a == abs(gcd(a, b)) * sgn(b)
+			numerator /= a; 
+			denominator /= a; 
+		}
+}; 
+
+template <typename T>
 Matrix<T> LUPSolve(Matrix<T>& L, Matrix<T>& U, PT& pi, Matrix<T>& b) {
 	size_t n = L.rows; 
 	Matrix<T> x(n, 1, 0), y(n, 1, 0); 
@@ -78,13 +204,13 @@ PT LUPDecomposition(Matrix<T>& A) {
 		T p = 0; 
 		size_t kk; 
 		for (size_t i = k; i < n; i++) {
-			T abs = A[i][k] < 0 ? -A[i][k] : A[i][k]; 
-			if (abs > p) {
+			T abs = A[i][k] < (T) 0 ? -A[i][k] : A[i][k]; 
+			if (p < abs) {
 				p = abs; 
 				kk = i; 
 			}
 		}
-		if (p == 0)
+		if (p == (T) 0)
 			throw std::invalid_argument("singular matrix"); 
 		std::swap(pi[k], pi[kk]); 
 		for (size_t i = 0; i < n; i++)
@@ -100,13 +226,11 @@ PT LUPDecomposition(Matrix<T>& A) {
 #endif
 
 #ifdef MAIN_LUPSolve
-int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 16); 
-	const size_t compute = get_argv(argc, argv, 2, 3); 
+template <typename T>
+void main_T(const size_t n, const size_t compute) {
 	std::vector<int> int_a, int_b; 
 	random_integers(int_a, -n, n, n * n); 
 	random_integers(int_b, -n, n, n); 
-	using T = double; 
 	std::vector<T> buf_a(n * n), buf_b(n); 
 	for (size_t i = 0; i < int_a.size(); i++)
 		buf_a[i] = int_a[i]; 
@@ -144,6 +268,16 @@ int main(int argc, char *argv[]) {
 		output_integers(ans2[i], "\t"); 
 	}
 	std::cout << std::endl; 
+}
+
+int main(int argc, char *argv[]) {
+	const size_t type = get_argv(argc, argv, 1, 0); 
+	const size_t n = get_argv(argc, argv, 2, 5); 
+	const size_t compute = get_argv(argc, argv, 3, 3); 
+	if (!type)
+		main_T<double>(n, compute); 
+	else
+		main_T<Fraction<int>>(n, compute); 
 	return 0; 
 }
 #endif

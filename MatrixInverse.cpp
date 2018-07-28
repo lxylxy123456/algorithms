@@ -44,11 +44,10 @@ Matrix<T> MatrixInverse(Matrix<T>& A) {
 #endif
 
 #ifdef MAIN_MatrixInverse
-int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 6); 
+template <typename T>
+void main_T(const size_t n) {
 	std::vector<int> int_a, int_b; 
 	random_integers(int_a, -n, n, n * n); 
-	using T = double; 
 	std::vector<T> buf_a(n * n), buf_b(n); 
 	for (size_t i = 0; i < int_a.size(); i++)
 		buf_a[i] = int_a[i]; 
@@ -58,6 +57,15 @@ int main(int argc, char *argv[]) {
 	std::cout << B << std::endl; 
 	Matrix<T> C = SquareMatrixMultiply(A, B, (T) 0); 
 	std::cout << C << std::endl; 
+}
+
+int main(int argc, char *argv[]) {
+	const size_t type = get_argv(argc, argv, 1, 0); 
+	const size_t n = get_argv(argc, argv, 2, 5); 
+	if (!type)
+		main_T<double>(n); 
+	else
+		main_T<Fraction<int>>(n); 
 	return 0; 
 }
 #endif
