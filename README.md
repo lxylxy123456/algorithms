@@ -184,6 +184,9 @@
 | 27 | PMergeSort.cpp				| Binary Search							|  799 |
 | 27 | PMergeSort.cpp				| P Merge								|  800 |
 | 27 | PMergeSort.cpp				| P Merge Sort							|  803 |
+| 28 | LUPSolve.cpp					| LUP Solve								|  817 |
+| 28 | LUPSolve.cpp					| LU Decomposition						|  821 |
+| 28 | LUPSolve.cpp					| LUP Decomposition						|  824 |
 
 # Supplementary Files
 * `utils.h`: Utils

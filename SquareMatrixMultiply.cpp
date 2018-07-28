@@ -79,6 +79,15 @@ class Matrix {
 			os << rhs.data[i] << std::endl; 
 		return os; 
 	}
+	std::ostream& octave(std::ostream& os) {
+		os << '['; 
+		for (size_t i = 0; i < rows; i++) {
+			os << data[i]; 
+			if (i != rows - 1)
+				os << ';'; 
+		}
+		return os << ']' << std::endl; 
+	}
 	MatrixRow<T>& operator[](size_t index) { return data[index]; }
 	bool operator==(const Matrix<T>& rhs) const {
 		return data == rhs.data; 
@@ -186,7 +195,7 @@ Matrix<T> SquareMatrixMultiply(Matrix<T>&A, Matrix<T>&B, T T0){
 	Matrix<T> C(A.rows, B.cols, T0); 
 	for (size_t i = 0; i < C.rows; i++) {
 		for(size_t j = 0; j < C.cols; j++) {
-			int& loc = C.data[i][j]; 
+			T& loc = C.data[i][j]; 
 			for(size_t k = 0; k < A.cols; k++) {
 				loc += A[i][k] * B[k][j]; 
 			}
