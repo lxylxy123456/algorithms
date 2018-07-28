@@ -187,6 +187,7 @@
 | 28 | LUPSolve.cpp					| LUP Solve								|  817 |
 | 28 | LUPSolve.cpp					| LU Decomposition						|  821 |
 | 28 | LUPSolve.cpp					| LUP Decomposition						|  824 |
+| 28 | MatrixInverse.cpp			| Matrix Inverse						|  828 |
 
 # Supplementary Files
 * `utils.h`: Utils
