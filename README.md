@@ -189,6 +189,9 @@
 | 28 | LUPSolve.cpp					| LUP Decomposition						|  824 |
 | 28 | MatrixInverse.cpp			| Matrix Inverse						|  828 |
 | 28 | LeastSquareApprox.cpp		| Least Square Approx					|  837 |
+| 29 | Simplex.cpp					| Pivot									|  869 |
+| 29 | Simplex.cpp					| Simplex								|  871 |
+| 29 | Simplex.cpp					| Initialize Simplex					|  887 |
 
 # Supplementary Files
 * `utils.h`: Utils
