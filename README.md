@@ -192,6 +192,9 @@
 | 29 | Simplex.cpp					| Pivot									|  869 |
 | 29 | Simplex.cpp					| Simplex								|  871 |
 | 29 | Simplex.cpp					| Initialize Simplex					|  887 |
+| 30 | RecursiveFFT.cpp				| Recursive FFT							|  911 |
+| 30 | RecursiveFFT.cpp				| Inverse FFT							|  913 |
+| 30 | RecursiveFFT.cpp				| Polynomial Multiply					|  914 |
 
 # Supplementary Files
 * `utils.h`: Utils
