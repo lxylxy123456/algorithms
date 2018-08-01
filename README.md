@@ -195,6 +195,8 @@
 | 30 | RecursiveFFT.cpp				| Recursive FFT							|  911 |
 | 30 | RecursiveFFT.cpp				| Inverse FFT							|  913 |
 | 30 | RecursiveFFT.cpp				| Polynomial Multiply					|  914 |
+| 30 | IterativeFTT.cpp				| Iterative FTT							|  917 |
+| 30 | IterativeFTT.cpp				| Bit Reversal Copy						|  918 |
 
 # Supplementary Files
 * `utils.h`: Utils
