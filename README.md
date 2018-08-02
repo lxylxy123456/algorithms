@@ -199,6 +199,7 @@
 | 30 | IterativeFFT.cpp				| Bit Reversal Copy						|  918 |
 | 31 | Euclid.cpp					| Euclid								|  935 |
 | 31 | Euclid.cpp					| Extended Euclid						|  937 |
+| 31 | ModLinEquationSolver.cpp		| Modular Linear Equation Solver		|  949 |
 
 # Supplementary Files
 * `utils.h`: Utils
