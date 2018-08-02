@@ -200,6 +200,7 @@
 | 31 | Euclid.cpp					| Euclid								|  935 |
 | 31 | Euclid.cpp					| Extended Euclid						|  937 |
 | 31 | ModLinEquationSolver.cpp		| Modular Linear Equation Solver		|  949 |
+| 31 | ModularExponentiation.cpp	| Modular Exponentiation				|  957 |
 
 # Supplementary Files
 * `utils.h`: Utils

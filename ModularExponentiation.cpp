@@ -18,46 +18,45 @@
 
 #ifndef MAIN
 #define MAIN
-#define MAIN_ModLinEquationSolver
+#define MAIN_ModularExponentiation
 #endif
 
-#ifndef FUNC_ModLinEquationSolver
-#define FUNC_ModLinEquationSolver
+#ifndef FUNC_ModularExponentiation
+#define FUNC_ModularExponentiation
 
 #include "utils.h"
 
 #include "Euclid.cpp"
 
 template <typename T>
-void ModularLinearEquationSolver(T a, T b, T n, std::vector<T>& ans) {
-	T x, y; 
-	T d = ExtendedEuclid(a, n, x, y); 
-	if (b % d == 0) {
-		T x0 = x * (b / d) % n; 
-		ans.reserve(d); 
-		for (T i = 0; i < d; i++)
-			ans.push_back(((x0 + i * (n / d)) % n + n) % n); 
+T ModularExponentiation(T a, T b, T n) {
+	T c = 0; 
+	T d = 1; 
+	for (T i = log2(b); i >= 0; i--) {
+		c *= 2; 
+		d = d * d % n; 
+		if (b & 1 << i) {
+			c++; 
+			d = d * a % n; 
+		}
 	}
+	assert(c == b); 
+	return d; 
 }
 #endif
 
-#ifdef MAIN_ModLinEquationSolver
+#ifdef MAIN_ModularExponentiation
 int main(int argc, char *argv[]) {
 	const size_t nn = get_argv(argc, argv, 1, 4); 
 	using T = long long int; 
     std::random_device rd; 
     std::uniform_int_distribution<T> dis(0, 1 << nn); 
+    std::uniform_int_distribution<T> disn(1, 1 << nn); 
 	T a = get_argv(argc, argv, 2, dis(rd)); 
 	T b = get_argv(argc, argv, 3, dis(rd)); 
-	T n = get_argv(argc, argv, 4, dis(rd)); 
-	std::vector<T> ans; 
-	ModularLinearEquationSolver(a, b, n, ans); 
-	std::cout << a << " * x === " << b << " (mod " << n << ")" << std::endl; 
-	if (ans.size()) {
-		std::cout << "x = "; 
-		output_integers(ans); 
-	} else
-		std::cout << "no solutions" << std::endl; 
+	T n = get_argv(argc, argv, 4, disn(rd)); 
+	T ans = ModularExponentiation(a, b, n); 
+	std::cout << a << " ** " << b << " % " << n << " = " << ans << std::endl; 
 	return 0; 
 }
 #endif
