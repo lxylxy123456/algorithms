@@ -9,7 +9,7 @@ for i in os.listdir() :
 			if j == 'cassert' :
 				assert 'assert(' in a
 			elif j == 'algorithm' :
-				assert 'std::max_element' in a
+				assert 'std::max_element' in a or 'std::min_element' in a
 			elif j == 'cmath' :
 				assert 'pow' in a
 			elif j == 'iomanip' :
@@ -18,7 +18,8 @@ for i in os.listdir() :
 				assert 'std::invalid_argument' in a
 			elif j == 'map' :
 				assert 'std::map' in a or 'std::pair' in a
-			elif j in ['list', 'set', 'unordered_set', 'unordered_map'] :
+			elif j in ['list', 'set', 'unordered_set', 'unordered_map', 
+						'deque', 'thread'] :
 				assert 'std::' + j in a
 			else :
 				assert(False)

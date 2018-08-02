@@ -24,7 +24,6 @@
 #ifndef FUNC_IterativeFFT
 #define FUNC_IterativeFFT
 
-#include <cmath>
 #include "utils.h"
 
 #include "RecursiveFFT.cpp"

@@ -24,7 +24,6 @@
 #ifndef FUNC_RecursiveFFT
 #define FUNC_RecursiveFFT
 
-#include <cmath>
 #include "utils.h"
 
 #include "SquareMatrixMultiply.cpp"
