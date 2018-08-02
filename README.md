@@ -197,6 +197,8 @@
 | 30 | RecursiveFFT.cpp				| Polynomial Multiply					|  914 |
 | 30 | IterativeFFT.cpp				| Iterative FFT							|  917 |
 | 30 | IterativeFFT.cpp				| Bit Reversal Copy						|  918 |
+| 31 | Euclid.cpp					| Euclid								|  935 |
+| 31 | Euclid.cpp					| Extended Euclid						|  937 |
 
 # Supplementary Files
 * `utils.h`: Utils
