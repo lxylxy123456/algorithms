@@ -204,6 +204,7 @@
 | 31 | Pseudoprime.cpp				| Pseudoprime							|  967 |
 | 31 | MillerRabin.cpp				| Witness								|  969 |
 | 31 | MillerRabin.cpp				| Miller Rabin							|  970 |
+| 31 | PollardRho.cpp				| Pollard Rho							|  977 |
 
 # Supplementary Files
 * `utils.h`: Utils
