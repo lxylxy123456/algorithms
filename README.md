@@ -205,6 +205,7 @@
 | 31 | MillerRabin.cpp				| Witness								|  969 |
 | 31 | MillerRabin.cpp				| Miller Rabin							|  970 |
 | 31 | PollardRho.cpp				| Pollard Rho							|  977 |
+| 32 | NaiveStringMatcher.cpp		| Naive String Matcher					|  988 |
 
 # Supplementary Files
 * `utils.h`: Utils
