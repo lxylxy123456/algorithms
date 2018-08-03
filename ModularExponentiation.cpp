@@ -32,7 +32,10 @@ template <typename T>
 T ModularExponentiation(T a, T b, T n) {
 	T c = 0; 
 	T d = 1; 
-	for (T i = log2(b); i >= 0; i--) {
+	assert(b >= 0); 
+	if (b == 0)
+		return 1; 
+	for (T i = log2(b) + 1; i-- > 0;) {
 		c *= 2; 
 		d = d * d % n; 
 		if (b & 1 << i) {

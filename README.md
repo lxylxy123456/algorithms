@@ -206,6 +206,7 @@
 | 31 | MillerRabin.cpp				| Miller Rabin							|  970 |
 | 31 | PollardRho.cpp				| Pollard Rho							|  977 |
 | 32 | NaiveStringMatcher.cpp		| Naive String Matcher					|  988 |
+| 32 | RabinKarpMatcher.cpp			| Rabin Karp Matcher					|  993 |
 
 # Supplementary Files
 * `utils.h`: Utils
