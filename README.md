@@ -207,6 +207,8 @@
 | 31 | PollardRho.cpp				| Pollard Rho							|  977 |
 | 32 | NaiveStringMatcher.cpp		| Naive String Matcher					|  988 |
 | 32 | RabinKarpMatcher.cpp			| Rabin Karp Matcher					|  993 |
+| 32 | FiniteAutomatonMatcher.cpp	| Finite Automaton Matcher				|  999 |
+| 32 | FiniteAutomatonMatcher.cpp	| Compute Transition Function			| 1001 |
 
 # Supplementary Files
 * `utils.h`: Utils
