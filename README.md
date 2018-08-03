@@ -209,6 +209,8 @@
 | 32 | RabinKarpMatcher.cpp			| Rabin Karp Matcher					|  993 |
 | 32 | FiniteAutomatonMatcher.cpp	| Finite Automaton Matcher				|  999 |
 | 32 | FiniteAutomatonMatcher.cpp	| Compute Transition Function			| 1001 |
+| 32 | KMPMatcher.cpp				| KMP Matcher							| 1005 |
+| 32 | KMPMatcher.cpp				| Compute Prefix Function				| 1006 |
 
 # Supplementary Files
 * `utils.h`: Utils
