@@ -180,11 +180,6 @@ int main(int argc, char *argv[]) {
 	std::cout << "\t<text x=\"" << n << "\" y=\"" << n << "\">"
 				 << std::boolalpha << AnySegmentsIntersect(S)
 				 << "</text>" << std::endl; 
-	//* 0/0
-	std::cout << "\t<text x=\"" << n << "\" y=\"" << n + 200 << "\">"; 
-	output_integers(b); 
-	std::cout << "</text>" << std::endl; 
-	//*/
 	std::cout << "</svg>" << std::endl; 
 	return 0; 
 }
