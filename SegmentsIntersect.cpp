@@ -38,11 +38,21 @@ class Vector {
 		Vector<T> operator-(const Vector<T>& rhs) const {
 			return Vector<T>(x - rhs.x, y - rhs.y); 
 		}
+		bool operator==(const Vector<T>& rhs) const {
+			return x == rhs.x && y == rhs.y; 
+		}
 		friend std::ostream& operator<<(std::ostream& os, const Vector<T>& rhs){
 			return os << "(" << rhs.x << ", " << rhs.y << ")"; 
 		}
 		T x, y; 
 }; 
+
+template <typename T>
+void print_seg(Vector<T>& p1, Vector<T>& p2, T n, std::string stroke) {
+	std::cout << "\t<line x1=\"" << n + p1.x + 1 << "\" y1=\"" << n + p1.y + 1
+			 << "\" x2=\"" << n + p2.x + 1 << "\" y2=\"" << n + p2.y + 1
+			 << "\" style=\"stroke:" << stroke << ";\"/>" << std::endl; 
+}
 
 template <typename T>
 bool OnSegment(const Vector<T>& i, const Vector<T>& j, const Vector<T>& k) {
@@ -88,24 +98,14 @@ int main(int argc, char *argv[]) {
 				 << std::endl; 
 	std::cout << "<svg height=\"" << 2 * n << "\" width=\"" << 2 * n << "\">"
 				 << std::endl; 
-	std::cout << "<rect fill=\"#ffffff\" x=\"0\" y=\"0\" width=\"" << 2 * n
+	std::cout << "\t<rect fill=\"#ffffff\" x=\"0\" y=\"0\" width=\"" << 2 * n
 				 << "\" height=\"" << 2 * n << "\"/>" << std::endl; 
-	std::cout << "\t<line x1=\"" << n + p1.x + 1 << "\" y1=\"" << n + p1.y + 1
-				 << "\" x2=\"" << n + p2.x + 1 << "\" y2=\"" << n + p2.y + 1
-				 << "\" style=\"stroke:#ff0000;\"/>" << std::endl; 
-	std::cout << "\t<line x1=\"" << n + p3.x + 1 << "\" y1=\"" << n + p3.y + 1
-				 << "\" x2=\"" << n + p4.x + 1 << "\" y2=\"" << n + p4.y + 1
-				 << "\" style=\"stroke:#00ff00;\"/>" << std::endl; 
+	print_seg(p1, p2, (T) n, "#ff0000"); 
+	print_seg(p3, p4, (T) n, "#00ff00"); 
 	std::cout << "\t<text x=\"" << n << "\" y=\"" << n << "\">"
 				 << std::boolalpha << SegmentsIntersect(p1, p2, p3, p4)
 				 << "</text>" << std::endl; 
 	std::cout << "</svg>" << std::endl; 
-	/*
-	std::cout << p1 << " -- " << p2 << std::endl; 
-	std::cout << p3 << " -- " << p4 << std::endl; 
-	bool ans = SegmentsIntersect(p1, p2, p3, p4); 
-	std::cout << std::boolalpha << ans << std::endl; 
-	*/
 	return 0; 
 }
 #endif

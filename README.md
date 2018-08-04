@@ -214,6 +214,7 @@
 | 33 | SegmentsIntersect.cpp		| Segments Intersect					| 1018 |
 | 33 | SegmentsIntersect.cpp		| Direction								| 1018 |
 | 33 | SegmentsIntersect.cpp		| On Segment							| 1018 |
+| 33 | AnySegmentsIntersect.cpp		| Any Segments Intersect				| 1025 |
 
 # Supplementary Files
 * `utils.h`: Utils
