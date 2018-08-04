@@ -214,6 +214,10 @@
 | 33 | SegmentsIntersect.cpp		| Segments Intersect					| 1018 |
 | 33 | SegmentsIntersect.cpp		| Direction								| 1018 |
 | 33 | SegmentsIntersect.cpp		| On Segment							| 1018 |
+| 33 | AnySegmentsIntersect.cpp		| Insert								| 1024 |
+| 33 | AnySegmentsIntersect.cpp		| Delete								| 1024 |
+| 33 | AnySegmentsIntersect.cpp		| Above									| 1024 |
+| 33 | AnySegmentsIntersect.cpp		| Below									| 1024 |
 | 33 | AnySegmentsIntersect.cpp		| Any Segments Intersect				| 1025 |
 
 # Supplementary Files
