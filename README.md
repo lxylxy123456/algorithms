@@ -211,6 +211,9 @@
 | 32 | FiniteAutomatonMatcher.cpp	| Compute Transition Function			| 1001 |
 | 32 | KMPMatcher.cpp				| KMP Matcher							| 1005 |
 | 32 | KMPMatcher.cpp				| Compute Prefix Function				| 1006 |
+| 33 | SegmentsIntersect.cpp		| Segments Intersect					| 1018 |
+| 33 | SegmentsIntersect.cpp		| Direction								| 1018 |
+| 33 | SegmentsIntersect.cpp		| On Segment							| 1018 |
 
 # Supplementary Files
 * `utils.h`: Utils
