@@ -32,6 +32,9 @@ class Vector {
 		Vector(): x(0), y(0) {}
 		Vector(T X, T Y): x(X), y(Y) {}
 		T Cross(const Vector<T>& rhs) const { return x * rhs.y - y * rhs.x; }
+		T Length() const {
+			return x * x + y * y; 
+		}
 		Vector<T> operator+(const Vector<T>& rhs) const {
 			return Vector<T>(x + rhs.x, y + rhs.y); 
 		}
