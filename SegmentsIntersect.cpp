@@ -51,6 +51,17 @@ class Vector {
 }; 
 
 template <typename T>
+struct VectorHash {
+    std::size_t operator()(Vector<T> t) const {
+	    size_t a = std::hash<T>()(t.x); 
+	    size_t b = std::hash<T>()(t.y); 
+	    const size_t shift = sizeof(size_t) * 4; 
+	    size_t B = b >> shift | b << shift; 
+	    return a ^ B; 
+    }
+}; 
+
+template <typename T>
 void print_seg(Vector<T>& p1, Vector<T>& p2, T n, std::string stroke) {
 	std::cout << "\t<line x1=\"" << n + p1.x + 1 << "\" y1=\"" << n + p1.y + 1
 			 << "\" x2=\"" << n + p2.x + 1 << "\" y2=\"" << n + p2.y + 1
