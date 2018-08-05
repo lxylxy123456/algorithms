@@ -219,7 +219,7 @@
 | 33 | AnySegmentsIntersect.cpp		| Above									| 1024 |
 | 33 | AnySegmentsIntersect.cpp		| Below									| 1024 |
 | 33 | AnySegmentsIntersect.cpp		| Any Segments Intersect				| 1025 |
-| 33 |
+| 33 | GrahamScan.cpp				| Graham Scan							| 1031 |
 
 # Supplementary Files
 * `utils.h`: Utils
