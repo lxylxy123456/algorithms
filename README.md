@@ -226,6 +226,9 @@
 | 35 | ApproxTSPTour.cpp			| Approx TSP Tour						| 1112 |
 | 35 | GreedySetCover.cpp			| Greedy Set Cover						| 1119 |
 | 35 | ApproxMinWeightVC.cpp		| Approx Min Weight VC					| 1126 |
+| 35 | SubsetSum.cpp				| Exact Subset Sum						| 1129 |
+| 35 | SubsetSum.cpp				| Trim									| 1130 |
+| 35 | SubsetSum.cpp				| Approx Subset Sum						| 1131 |
 
 # Supplementary Files
 * `utils.h`: Utils
