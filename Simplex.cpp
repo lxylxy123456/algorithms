@@ -84,7 +84,7 @@ void InitializeSimplex(usetst& N, usetst& B, matst& A, vectst& b, vectst& c,
 	vectst Lc; 
 	T Lv = 0; 
 	for (auto i = B.begin(); i != B.end(); i++)
-		A[*i][0] = 1; 
+		A[*i][0] = -1; 
 	Lc[0] = -1; 
 	for (auto j = N.begin(); j != N.end(); j++)
 		Lc[*j] = 0; 
@@ -130,9 +130,9 @@ void InitializeSimplex(usetst& N, usetst& B, matst& A, vectst& b, vectst& c,
 				c[*j] = 0; 
 		for (auto i = B.begin(); i != B.end(); i++) {
 			if (c.find(*i) != c.end()) {
-				v += b[*i]; 
+				v += b[*i] * c[*i]; 
 				for (auto j = N.begin(); j != N.end(); j++)
-					c[*j] -= A[*i][*j]; 
+					c[*j] -= A[*i][*j] * c[*i]; 
 				c.erase(*i); 
 			}
 		}
@@ -194,7 +194,6 @@ void main_T(const size_t n, const size_t m) {
 	for (size_t i = 1; i <= m; i++)
 		for (size_t j = 1; j <= n; j++)
 			A[n + i][j] = int_a[(i - 1) * n + (j - 1)]; 
-	vectst x = Simplex(A, b, c); 
 	for (size_t i = 1; i <= m; i++) {
 		for (size_t j = 1; j <= n; j++)
 			std::cout << A[n + i][j] << " "; 
@@ -207,6 +206,7 @@ void main_T(const size_t n, const size_t m) {
 	for (size_t i = 1; i <= n; i++)
 		std::cout << c[i] << " "; 
 	std::cout << std::endl; 
+	vectst x = Simplex(A, b, c); 
 	for (size_t i = 1; i <= n; i++)
 		std::cout << x[i] << " "; 
 	std::cout << std::endl; 
@@ -214,8 +214,8 @@ void main_T(const size_t n, const size_t m) {
 
 int main(int argc, char *argv[]) {
 	const size_t type = get_argv(argc, argv, 1, 0); 
-	const size_t m = get_argv(argc, argv, 2, 10); 
-	const size_t n = get_argv(argc, argv, 3, 5); 
+	const size_t m = get_argv(argc, argv, 2, 4); 
+	const size_t n = get_argv(argc, argv, 3, 2); 
 	if (!type)
 		main_T<double>(n, m); 
 	else
