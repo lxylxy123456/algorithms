@@ -222,6 +222,7 @@
 | 33 | GrahamScan.cpp				| Graham Scan							| 1031 |
 | 33 | JarvisMarch.cpp				| Jarvis March							| 1038 |
 | 33 | ClosestPairPoints.cpp		| Closest Pair Points					| 1043 |
+| 35 | ApproxVertexCover.cpp		| Approx Vertex Cover					| 1109 |
 
 # Supplementary Files
 * `utils.h`: Utils
