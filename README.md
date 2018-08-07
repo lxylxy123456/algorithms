@@ -224,6 +224,7 @@
 | 33 | ClosestPairPoints.cpp		| Closest Pair Points					| 1043 |
 | 35 | ApproxVertexCover.cpp		| Approx Vertex Cover					| 1109 |
 | 35 | ApproxTSPTour.cpp			| Approx TSP Tour						| 1112 |
+| 35 | GreedySetCover.cpp			| Greedy Set Cover						| 1119 |
 
 # Supplementary Files
 * `utils.h`: Utils
