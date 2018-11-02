@@ -152,7 +152,7 @@ void tf(char& c, void* T, void* ptr) {
 }
 
 template <typename TreeType, typename NodeType, typename DataType, typename Tf>
-void tree_interact(TreeType T, std::string help_info, Tf func) {
+void tree_interact(TreeType& T, std::string help_info, Tf func) {
 	std::cout << "d: delete" << std::endl; 
 	std::cout << "i: insert" << std::endl; 
 	std::cout << "s: search" << std::endl; 
