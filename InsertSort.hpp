@@ -16,16 +16,35 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //  
 
-#include "InsertSort.hpp"
-#include "utils.h"
+#ifndef ALGORITHMS_INSERTSORT
+#define ALGORITHMS_INSERTSORT
 
-using namespace algorithms;
+#include <vector>
 
-int main(int argc, char *argv[]) {
-	std::vector<int> a;
-	int n = get_argv(argc, argv, 1, 10);
-	random_integers(a, 0, n - 1, n);
-	InsertSort(a);
-	output_integers(a);
-	return 0;
+namespace algorithms {
+
+template <typename T>
+void InsertSort(std::vector<T>& list) {
+	for (size_t i = 1; i < list.size(); i++) {
+		T tmp = list[i];
+		size_t j;
+		for (j = i; j > 0 && tmp < list[j - 1]; j--)
+			list[j] = list[j - 1];
+		list[j] = tmp;
+	}
 }
+
+template <typename T>
+void InsertSort(T p, T r) {
+	for (T i = p + 1; i < r; i++) {
+		typename T::value_type tmp = *i;
+		T j;
+		for (j = i - 1; j != r && tmp < *j; j--)
+			*(j + 1) = *j;
+		*(j + 1) = tmp;
+	}
+}
+
+}
+
+#endif
