@@ -3,13 +3,13 @@
 
 # Contents
 
-| Ch.| File							| Algorithm								| Page |
-|:--:|------------------------------|---------------------------------------|-----:|
-|  2 | InsertSort.cpp				| Insersion Sort						|   18 |
-|  2 | MergeSort.cpp				| Merge									|   31 |
-|  2 | MergeSort.cpp				| Merge Sort							|   34 |
-|  4 | FindMaximumSubarray.cpp		| Find Max Crossing Subarray			|   71 |
-|  4 | FindMaximumSubarray.cpp		| Find Maximum Subarray					|   72 |
+| Ch.| Name						| Algorithm								| Page |
+|:--:|--------------------------|---------------------------------------|-----:|
+|  2 | InsertSort				| Insersion Sort						|   18 |
+|  2 | MergeSort				| Merge									|   31 |
+|  2 | MergeSort				| Merge Sort							|   34 |
+|  4 | FindMaximumSubarray		| Find Max Crossing Subarray			|   71 |
+|  4 | FindMaximumSubarray		| Find Maximum Subarray					|   72 |
 |  4 | SquareMatrixMultiply.cpp		| Square Matrix Multiply				|   75 |
 |  4 | SquareMatrixMultiply.cpp		| Square Matrix Multiply Recursive		|   77 |
 |  4 | SquareMatrixMultiply.cpp		| Square Matrix Multiply Strassen		|   82 |
@@ -229,6 +229,12 @@
 | 35 | SubsetSum.cpp				| Exact Subset Sum						| 1129 |
 | 35 | SubsetSum.cpp				| Trim									| 1130 |
 | 35 | SubsetSum.cpp				| Approx Subset Sum						| 1131 |
+
+# Directory Structure
+(TODO; see `Makefile`)
+
+# Continuous Integration
+(TODO; see `.github/workflows/build.yml`)
 
 # Supplementary Files
 * `utils.h`: Utils
