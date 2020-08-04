@@ -18,17 +18,32 @@
 
 CXXFLAGS=-Wall -g -std=c++11 -pthread
 
-SOURCES = $(wildcard *.cpp)
+SOURCES_OLD = $(wildcard *.cpp)
+TARGETS_OLD = $(SOURCES_OLD:.cpp=)
 
-TARGETS = $(SOURCES:.cpp=)
+SOURCES := $(wildcard src/*.cpp)
+TARGETS := $(patsubst src/%.cpp,bin/%,$(SOURCES))
+-include $(patsubst %,%.d,$(TARGETS))
+
+TESTS := $(patsubst bin/%,test/%,$(filter %Test,$(TARGETS)))
 
 all:
 
-ALL: $(TARGETS)
+ALL: $(TARGETS_OLD) $(TARGETS)
 
-$(TARGETS): %: %.cpp
+ALL_NEW: $(TARGETS)
+
+test: $(TESTS)
+
+$(TARGETS_OLD): %: %.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
+$(TARGETS): bin/%: src/%.cpp
+	$(CXX) $(CXXFLAGS) -MMD -MF $(patsubst %,%.d,$@) -I include/ -I . -o $@ $^
+
+$(TESTS): test/%: bin/%
+	./$^
+
 clean:
-	rm -f $(TARGETS) a.out
+	rm -f $(TARGETS_OLD) $(TARGETS) a.out
 
