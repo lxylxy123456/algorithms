@@ -16,7 +16,7 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //  
 
-#include <MergeSort.hpp>
+#include "MergeSort.hpp"
 #include "utils.h"
 
 #include <cassert>

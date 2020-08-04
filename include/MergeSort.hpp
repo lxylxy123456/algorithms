@@ -44,7 +44,7 @@ void Merge(std::vector<T>& A, size_t p, size_t q, size_t r) {
 
 template <typename T>
 void MergeSort(std::vector<T>& A, size_t p, size_t r) {
-	if (p < r - 1) {
+	if (p + 1 < r) {
 		size_t q = (p + r) / 2; 
 		MergeSort(A, p, q); 
 		MergeSort(A, q, r); 

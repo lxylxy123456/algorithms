@@ -23,7 +23,8 @@ TARGETS_OLD = $(SOURCES_OLD:.cpp=)
 
 SOURCES := $(wildcard src/*.cpp)
 TARGETS := $(patsubst src/%.cpp,bin/%,$(SOURCES))
--include $(patsubst %,%.d,$(TARGETS))
+DEPENDS := $(patsubst %,%.d,$(TARGETS))
+-include $(DEPENDS)
 
 TESTS := $(patsubst bin/%,test/%,$(filter %Test,$(TARGETS)))
 
@@ -39,11 +40,11 @@ $(TARGETS_OLD): %: %.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 $(TARGETS): bin/%: src/%.cpp
-	$(CXX) $(CXXFLAGS) -MMD -MF $(patsubst %,%.d,$@) -I include/ -I . -o $@ $^
+	$(CXX) $(CXXFLAGS) -MMD -MF $(patsubst %,%.d,$@) -I include/ -I . -o $@ $<
 
 $(TESTS): test/%: bin/%
 	./$^
 
 clean:
-	rm -f $(TARGETS_OLD) $(TARGETS) a.out
+	rm -f $(TARGETS_OLD) $(TARGETS) $(DEPENDS) a.out
 
