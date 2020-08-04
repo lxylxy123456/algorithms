@@ -16,16 +16,14 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //  
 
-#ifndef MAIN
-#define MAIN
-#define MAIN_FindMaximumSubarray
-#endif
+#ifndef ALGORITHMS_FINDMAXIMUMSUBARRAY
+#define ALGORITHMS_FINDMAXIMUMSUBARRAY
 
-#ifndef FUNC_FindMaximumSubarray
-#define FUNC_FindMaximumSubarray
-
+#include <vector>
 #include <algorithm>
-#include "utils.h"
+
+namespace algorithms {
+
 
 template <typename T>
 class sinfo {
@@ -79,19 +77,6 @@ sinfo<T> FindMaximumSubarray_On(std::vector<T>& A) {
 	return best; 
 }
 
-#endif
-
-#ifdef MAIN_FindMaximumSubarray
-int main(int argc, char *argv[]) {
-	std::vector<int> a; 
-	int n = get_argv(argc, argv, 1, 10); 
-	random_integers(a, -n, n, n); 
-	output_integers(a); 
-	// sinfo<int> ans = FindMaximumSubarray(a); 
-	sinfo<int> ans = FindMaximumSubarray_On<int, 0>(a); 
-	std::vector<int> sub_array(a.begin() + ans.begin, a.begin() + ans.end); 
-	output_integers(sub_array); 
-	return 0; 
 }
-#endif
 
+#endif
