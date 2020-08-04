@@ -36,6 +36,7 @@ bool is_increasing_order(T p, T r) {
 int test_vector(int n) {
 	std::vector<int> a;
 	random_integers(a, 0, n - 1, n);
+	output_integers(a);
 	MergeSort(a);
 	assert(is_increasing_order(a.begin(), a.end()));
 	return 0;

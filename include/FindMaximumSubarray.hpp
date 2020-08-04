@@ -37,9 +37,24 @@ class sinfo {
 
 template <typename T>
 sinfo<T> FindMaxCrossingSubarray(std::vector<T>& A,size_t l,size_t m,size_t h) {
-	auto left  = std::min_element(A.begin() + l, A.begin() + m); 
-	auto right = std::max_element(A.begin() + m, A.begin() + h); 
-	return sinfo<T>(left - A.begin(), right + 1 - A.begin(), *right - *left); 
+	T lsum, rsum, sum = 0;
+	size_t lmax, rmax;
+	for (size_t i = m; (i--) > l; ) {
+		sum += A[i];
+		if (i == m - 1 || sum > lsum) {
+			lsum = sum;
+			lmax = i;
+		}
+	}
+	sum = 0;
+	for (size_t j = m; j < h; j++) {
+		sum += A[j];
+		if (j == m || sum > rsum) {
+			rsum = sum;
+			rmax = j + 1;
+		}
+	}
+	return sinfo<T>(lmax, rmax, lsum + rsum); 
 }
 
 template <typename T>
@@ -73,6 +88,11 @@ sinfo<T> FindMaximumSubarray_On(std::vector<T>& A) {
 		}
 		bcv += A[i]; 
 		best = std::max(best, sinfo<T>(bci, i + 1, bcv)); 
+	}
+	if (best.begin == best.end) {
+		best.begin = std::max_element(A.begin(), A.end()) - A.begin(); 
+		best.end = best.begin + 1; 
+		best.sum = A[best.begin]; 
 	}
 	return best; 
 }

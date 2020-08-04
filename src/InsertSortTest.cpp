@@ -35,6 +35,7 @@ bool is_increasing_order(T p, T r) {
 
 int test_vector(int n) {
 	std::vector<int> a;
+	output_integers(a);
 	random_integers(a, 0, n - 1, n);
 	InsertSort(a);
 	assert(is_increasing_order(a.begin(), a.end()));
@@ -43,6 +44,7 @@ int test_vector(int n) {
 
 int test_iterator(int n) {
 	std::vector<int> a;
+	output_integers(a);
 	random_integers(a, 0, n - 1, n);
 	InsertSort(a.begin(), a.end());
 	assert(is_increasing_order(a.begin(), a.end()));

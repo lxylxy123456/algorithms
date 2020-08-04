@@ -29,7 +29,11 @@ int test_vector(int n) {
 	output_integers(a); 
 	sinfo<int> ans2 = FindMaximumSubarray(a); 
 	sinfo<int> ans1 = FindMaximumSubarray_On<int, 0>(a); 
-	assert(ans2.begin == ans1.begin && ans2.end == ans1.end);
+	int sum2 = std::accumulate(a.begin() + ans2.begin, a.begin() + ans2.end, 0);
+	assert(sum2 == ans2.sum);
+	int sum1 = std::accumulate(a.begin() + ans1.begin, a.begin() + ans1.end, 0);
+	assert(sum1 == ans1.sum);
+	assert(ans2.sum == ans1.sum);
 	return 0; 
 }
 
