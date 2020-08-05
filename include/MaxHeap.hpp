@@ -19,8 +19,8 @@
 #ifndef ALGORITHMS_MAXHEAP
 #define ALGORITHMS_MAXHEAP
 
-#include <exception>
-#include "utils.h"
+#include <vector>
+#include <stdexcept>
 
 namespace algorithms {
 

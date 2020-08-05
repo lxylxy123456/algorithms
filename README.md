@@ -18,14 +18,14 @@
 |  5 | RandomPermute			| Permute By Sorting					|  125 |
 |  5 | RandomPermute			| Randomize In Place					|  126 |
 |  5 | OnLineMaximum.cpp			| On Line Maximum						|  140 |
-|  6 | MaxHeap.cpp					| Max Heapify							|  154 |
-|  6 | MaxHeap.cpp					| Build Max Heap						|  157 |
-|  6 | MaxHeap.cpp					| Heap Sort								|  160 |
-|  6 | MaxHeap.cpp					| Heap Maximum							|  163 |
-|  6 | MaxHeap.cpp					| Heap Extract Max						|  163 |
-|  6 | MaxHeap.cpp					| Heap Increase Key						|  164 |
-|  6 | MaxHeap.cpp					| Max Heap Insert						|  164 |
-|  6 | MaxHeap.cpp					| Build Max Heap prime					|  167 |
+|  6 | MaxHeap					| Max Heapify							|  154 |
+|  6 | MaxHeap					| Build Max Heap						|  157 |
+|  6 | MaxHeap					| Heap Sort								|  160 |
+|  6 | MaxHeap					| Heap Maximum							|  163 |
+|  6 | MaxHeap					| Heap Extract Max						|  163 |
+|  6 | MaxHeap					| Heap Increase Key						|  164 |
+|  6 | MaxHeap					| Max Heap Insert						|  164 |
+|  6 | MaxHeap					| Build Max Heap prime					|  167 |
 |  7 | Quicksort.cpp				| Quicksort								|  171 |
 |  7 | Quicksort.cpp				| Partition								|  171 |
 |  7 | Quicksort.cpp				| Randomized Partition					|  179 |

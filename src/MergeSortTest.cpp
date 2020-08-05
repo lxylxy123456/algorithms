@@ -27,7 +27,7 @@ template <typename T>
 bool is_increasing_order(T p, T r) {
 	if (p == r)
 		return true;
-	for (T i = p, j = p + 1; j < p; j++)
+	for (T i = p, j = p + 1; j < r; j++)
 		if (*i > *j)
 			return false;
 	return true;
