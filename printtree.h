@@ -18,27 +18,27 @@ class String {
 	public:
 		String() {}
 		String(std::string s) {
-			data.reserve(s.length()); 
+			data.reserve(s.length());
 			for (std::string::iterator i = s.begin(); i != s.end(); i++)
-				data.push_back(std::string(1, *i)); 
+				data.push_back(std::string(1, *i));
 		}
 		String(size_t s, char c): data(s, std::string(1, c)) {}
 		friend std::ostream& operator<< (std::ostream& os, String rhs) {
-			for (std::vector<std::string>::iterator i = rhs.data.begin(); 
+			for (std::vector<std::string>::iterator i = rhs.data.begin();
 				i < rhs.data.end(); i++)
-				os << *i; 
-			return os; 
+				os << *i;
+			return os;
 		}
 		String& operator+=(std::string rhs) {
 			for (std::string::iterator i = rhs.begin(); i < rhs.end(); i++)
-				data.push_back(std::string(1, *i)); 
-			return *this; 
+				data.push_back(std::string(1, *i));
+			return *this;
 		}
 		size_t size() { return data.size(); }
 		size_t length() { return data.size(); }
 		std::string& operator[](size_t index) { return data[index]; }
-		std::vector<std::string> data; 
-}; 
+		std::vector<std::string> data;
+};
 
 template <class DerivedDescriptor>
 class GenericNodeDescriptor
@@ -111,15 +111,15 @@ namespace private_print_functions
 	{
 		// Convert data to String
 		String nodeStr = croot.key();
-		
+
 		// Output data
 		int left_start_shift = 1 - (nodeStr.length()-1)/2;
 		for (size_t i = 0; i < nodeStr.length() && left + curr_width/2 + i < output[top].length(); i++)
 			output[top][left + curr_width/2 + left_start_shift + i] = nodeStr[i];
-		
+
 		// Calculate / \ offset = 2 ^ height
 		int branchOffset = (curr_width+3) >> 3; //(1 << (node->printData - 1));
-		
+
 		// Print left child
 		int center = left + curr_width/2;
 		int leftcenter = left + (curr_width/2 - 1)/2;

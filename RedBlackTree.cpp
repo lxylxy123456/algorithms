@@ -1,20 +1,20 @@
-//  
+//
 //  algorithm - some algorithms in "Introduction to Algorithms", third edition
 //  Copyright (C) 2018  lxylxy123456
-//  
+//
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
 //  published by the Free Software Foundation, either version 3 of the
 //  License, or (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Affero General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
-//  
+//
 
 #ifndef MAIN
 #define MAIN
@@ -27,7 +27,7 @@
 #include "utils.h"
 #include "BinarySearchTree.cpp"
 
-enum Color { red, black }; 
+enum Color { red, black };
 
 template <typename T>
 class CData {
@@ -44,13 +44,13 @@ class CData {
 		bool operator!=(const CData<T>& rhs) const { return data != rhs.data; }
 		friend std::ostream& operator<<(std::ostream& os, const CData<T>& rhs) {
 			if (rhs.color == red)
-				return os << "\033[31m" << rhs.data << "\033[0m"; 
+				return os << "\033[31m" << rhs.data << "\033[0m";
 			else
-				return os << rhs.data; 
+				return os << rhs.data;
 		}
-		T data; 
-		enum Color color; 
-}; 
+		T data;
+		enum Color color;
+};
 
 template <typename T>
 class CNodeDescriptor {
@@ -58,239 +58,239 @@ class CNodeDescriptor {
 		CNodeDescriptor(Node<CData<T>>* p, Node<CData<T>>* n): node(p), nil(n){}
 		bool isNull() { return node == nil; }
 		String key() {
-			std::ostringstream os; 
-			os << node->data.data; 
-			std::string ans = os.str(); 
+			std::ostringstream os;
+			os << node->data.data;
+			std::string ans = os.str();
 			if (node->data.color == black)
-				return String(ans); 
+				return String(ans);
 			else {
-				String ret(ans); 
-				ret.data[0] = "\033[31m" + ret.data[0]; 
-				ret.data[ret.size() - 1] += "\033[0m"; 
-				return ret; 
+				String ret(ans);
+				ret.data[0] = "\033[31m" + ret.data[0];
+				ret.data[ret.size() - 1] += "\033[0m";
+				return ret;
 			}
 		}
 		CNodeDescriptor<T> left() {
-			return CNodeDescriptor<T>(node->left, nil); 
+			return CNodeDescriptor<T>(node->left, nil);
 		}
 		CNodeDescriptor<T> right() {
-			return CNodeDescriptor<T>(node->right, nil); 
+			return CNodeDescriptor<T>(node->right, nil);
 		}
-		Node<CData<T>> *node, *nil; 
-}; 
+		Node<CData<T>> *node, *nil;
+};
 
 template <typename T>
 class RedBlackTree: public BinarySearchTree<CData<T>> {
 	public:
 		RedBlackTree(void): BinarySearchTree<CData<T>>(new Node<CData<T>>()) {}
 		virtual void LeftRotate(Node<CData<T>>* x) {
-			Node<CData<T>>* y = x->right; 
-			x->right = y->left; 
+			Node<CData<T>>* y = x->right;
+			x->right = y->left;
 			if (y->left != this->nil)
-				y->left->parent = x; 
-			y->parent = x->parent; 
+				y->left->parent = x;
+			y->parent = x->parent;
 			if (x->parent == this->nil)
-				this->root = y; 
+				this->root = y;
 			else if (x == x->parent->left)
-				x->parent->left = y; 
+				x->parent->left = y;
 			else
-				x->parent->right = y; 
-			y->left = x; 
-			x->parent = y; 
+				x->parent->right = y;
+			y->left = x;
+			x->parent = y;
 		}
 		virtual void RightRotate(Node<CData<T>>* x) {
-			Node<CData<T>>* y = x->left; 
-			x->left = y->right; 
+			Node<CData<T>>* y = x->left;
+			x->left = y->right;
 			if (y->right != this->nil)
-				y->right->parent = x; 
-			y->parent = x->parent; 
+				y->right->parent = x;
+			y->parent = x->parent;
 			if (x->parent == this->nil)
-				this->root = y; 
+				this->root = y;
 			else if (x == x->parent->left)
-				x->parent->left = y; 
+				x->parent->left = y;
 			else
-				x->parent->right = y; 
-			y->right = x; 
-			x->parent = y; 
+				x->parent->right = y;
+			y->right = x;
+			x->parent = y;
 		}
 		void RBInsertFixup(Node<CData<T>>* z) {
 			while (z->parent->data.color == red) {
 				if (z->parent == z->parent->parent->left) {
-					Node<CData<T>>* y = z->parent->parent->right; 
+					Node<CData<T>>* y = z->parent->parent->right;
 					if (y->data.color == red) {
-						z->parent->data.color = black; 
-						y->data.color = black; 
-						z->parent->parent->data.color = red; 
-						z = z->parent->parent; 
+						z->parent->data.color = black;
+						y->data.color = black;
+						z->parent->parent->data.color = red;
+						z = z->parent->parent;
 					} else {
 						if (z == z->parent->right) {
-							z = z->parent; 
-							LeftRotate(z); 
+							z = z->parent;
+							LeftRotate(z);
 						}
-						z->parent->data.color = black; 
-						z->parent->parent->data.color = red; 
-						RightRotate(z->parent->parent); 
+						z->parent->data.color = black;
+						z->parent->parent->data.color = red;
+						RightRotate(z->parent->parent);
 					}
 				} else {
-					Node<CData<T>>* y = z->parent->parent->left; 
+					Node<CData<T>>* y = z->parent->parent->left;
 					if (y->data.color == red) {
-						z->parent->data.color = black; 
-						y->data.color = black; 
-						z->parent->parent->data.color = red; 
-						z = z->parent->parent; 
+						z->parent->data.color = black;
+						y->data.color = black;
+						z->parent->parent->data.color = red;
+						z = z->parent->parent;
 					} else {
 						if (z == z->parent->left) {
-							z = z->parent; 
-							RightRotate(z); 
+							z = z->parent;
+							RightRotate(z);
 						}
-						z->parent->data.color = black; 
-						z->parent->parent->data.color = red; 
-						LeftRotate(z->parent->parent); 
+						z->parent->data.color = black;
+						z->parent->parent->data.color = red;
+						LeftRotate(z->parent->parent);
 					}
 				}
 			}
-			this->root->data.color = black; 
+			this->root->data.color = black;
 		}
 		void RBInsert(T d) {
-			Node<CData<T>>* y = this->nil; 
-			Node<CData<T>>* x = this->root; 
+			Node<CData<T>>* y = this->nil;
+			Node<CData<T>>* x = this->root;
 			while (x != this->nil) {
-				y = x; 
+				y = x;
 				if (d < x->data.data)
-					x = x->left; 
+					x = x->left;
 				else
-					x = x->right; 
+					x = x->right;
 			}
-			Node<CData<T>>* z = new Node<CData<T>>(CData<T>(d, red), y); 
+			Node<CData<T>>* z = new Node<CData<T>>(CData<T>(d, red), y);
 			if (y == this->nil)
-				this->root = z; 
+				this->root = z;
 			else if (d < y->data.data)
-				y->left = z; 
+				y->left = z;
 			else
-				y->right = z; 
-			z->left = this->nil; 
-			z->right = this->nil; 
-			RBInsertFixup(z); 
+				y->right = z;
+			z->left = this->nil;
+			z->right = this->nil;
+			RBInsertFixup(z);
 		}
 		void RBTransplant(Node<CData<T>>* u, Node<CData<T>>* v) {
 			if (u->parent == this->nil)
-				this->root = v; 
+				this->root = v;
 			else if (u == u->parent->left)
-				u->parent->left = v; 
+				u->parent->left = v;
 			else
-				u->parent->right = v; 
-			v->parent = u->parent; 
+				u->parent->right = v;
+			v->parent = u->parent;
 		}
 		void RBDeleteFixup(Node<CData<T>>* x) {
 			while (x != this->root && x->data.color == black) {
 				if (x == x->parent->left) {
-					Node<CData<T>>* w = x->parent->right; 
+					Node<CData<T>>* w = x->parent->right;
 					if (w->data.color == red) {
-						w->data.color = black; 
-						x->parent->data.color = red; 
-						LeftRotate(x->parent); 
-						w = x->parent->right; 
+						w->data.color = black;
+						x->parent->data.color = red;
+						LeftRotate(x->parent);
+						w = x->parent->right;
 					}
-					if (w->left->data.color == black && 
+					if (w->left->data.color == black &&
 						w->right->data.color == black) {
-						w->data.color = red; 
-						x = x->parent; 
+						w->data.color = red;
+						x = x->parent;
 					} else {
 						if (w->right->data.color == black) {
-							w->left->data.color = black; 
-							w->data.color = red; 
-							RightRotate(w); 
-							w = x->parent->right; 
+							w->left->data.color = black;
+							w->data.color = red;
+							RightRotate(w);
+							w = x->parent->right;
 						}
-						w->data.color = x->parent->data.color; 
-						x->parent->data.color = black; 
-						w->right->data.color = black; 
-						LeftRotate(x->parent); 
-						x = this->root; 
+						w->data.color = x->parent->data.color;
+						x->parent->data.color = black;
+						w->right->data.color = black;
+						LeftRotate(x->parent);
+						x = this->root;
 					}
 				} else {
-					Node<CData<T>>* w = x->parent->left; 
+					Node<CData<T>>* w = x->parent->left;
 					if (w->data.color == red) {
-						w->data.color = black; 
-						x->parent->data.color = red; 
-						RightRotate(x->parent); 
-						w = x->parent->left; 
+						w->data.color = black;
+						x->parent->data.color = red;
+						RightRotate(x->parent);
+						w = x->parent->left;
 					}
-					if (w->right->data.color == black && 
+					if (w->right->data.color == black &&
 						w->left->data.color == black) {
-						w->data.color = red; 
-						x = x->parent; 
+						w->data.color = red;
+						x = x->parent;
 					} else {
 						if (w->left->data.color == black) {
-							w->right->data.color = black; 
-							w->data.color = red; 
-							LeftRotate(w); 
-							w = x->parent->left; 
+							w->right->data.color = black;
+							w->data.color = red;
+							LeftRotate(w);
+							w = x->parent->left;
 						}
-						w->data.color = x->parent->data.color; 
-						x->parent->data.color = black; 
-						w->left->data.color = black; 
-						RightRotate(x->parent); 
-						x = this->root; 
+						w->data.color = x->parent->data.color;
+						x->parent->data.color = black;
+						w->left->data.color = black;
+						RightRotate(x->parent);
+						x = this->root;
 					}
 				}
 			}
-			x->data.color = black; 
+			x->data.color = black;
 		}
 		void RBDelete(Node<CData<T>>* z) {
-			Node<CData<T>>* x; 
-			Node<CData<T>>* y = z; 
-			Color y_original_color = y->data.color; 
+			Node<CData<T>>* x;
+			Node<CData<T>>* y = z;
+			Color y_original_color = y->data.color;
 			if (z->left == this->nil) {
-				x = z->right; 
-				RBTransplant(z, z->right); 
+				x = z->right;
+				RBTransplant(z, z->right);
 			} else if (z->right == this->nil) {
-				x = z->left; 
-				RBTransplant(z, z->left); 
+				x = z->left;
+				RBTransplant(z, z->left);
 			} else {
-				y = this->TreeMinimum(z->right); 
-				y_original_color = y->data.color; 
-				x = y->right; 
+				y = this->TreeMinimum(z->right);
+				y_original_color = y->data.color;
+				x = y->right;
 				if (y->parent == z)
-					x->parent = y; 
+					x->parent = y;
 				else {
-					RBTransplant(y, y->right); 
-					y->right = z->right; 
-					y->right->parent = y; 
+					RBTransplant(y, y->right);
+					y->right = z->right;
+					y->right->parent = y;
 				}
-				RBTransplant(z, y); 
-				y->left = z->left; 
-				y->left->parent = y; 
-				y->data.color = z->data.color; 
+				RBTransplant(z, y);
+				y->left = z->left;
+				y->left->parent = y;
+				y->data.color = z->data.color;
 			}
-			delete z; 
+			delete z;
 			if (y_original_color == black)
-				RBDeleteFixup(x); 
+				RBDeleteFixup(x);
 		}
 		void print_tree() {
-			printTree(CNodeDescriptor<T>(this->root, this->nil)); 
+			printTree(CNodeDescriptor<T>(this->root, this->nil));
 		}
 		~RedBlackTree() { delete this->nil; }
 		// TreeInsert = RBInsert, TreeDelete = RBDelete
 		void TreeInsert(T v) { RBInsert(v); }
 		void TreeDelete(Node<CData<T>>* z) { RBDelete(z); }
 	private:
-		void Transplant(Node<T>* u, Node<T>* v); 
-}; 
+		void Transplant(Node<T>* u, Node<T>* v);
+};
 #endif
 
 #ifdef MAIN_RedBlackTree
 int main(int argc, char *argv[]) {
-	size_t n = get_argv(argc, argv, 1, 0); 
-	RedBlackTree<int> RB; 
+	size_t n = get_argv(argc, argv, 1, 0);
+	RedBlackTree<int> RB;
 	if (n) {
-		std::vector<int> a; 
-		random_integers(a, 0, n - 1, n); 
+		std::vector<int> a;
+		random_integers(a, 0, n - 1, n);
 		for (std::vector<int>::iterator i = a.begin(); i != a.end(); i++)
-			RB.RBInsert(*i); 
+			RB.RBInsert(*i);
 	}
-	tree_interact<RedBlackTree<int>, CData<int>, int>(RB, "", tf); 
-	return 0; 
+	tree_interact<RedBlackTree<int>, CData<int>, int>(RB, "", tf);
+	return 0;
 }
 #endif
 

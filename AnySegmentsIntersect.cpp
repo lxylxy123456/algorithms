@@ -1,20 +1,20 @@
-//  
+//
 //  algorithm - some algorithms in "Introduction to Algorithms", third edition
 //  Copyright (C) 2018  lxylxy123456
-//  
+//
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
 //  published by the Free Software Foundation, either version 3 of the
 //  License, or (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Affero General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
-//  
+//
 
 #ifndef MAIN
 #define MAIN
@@ -48,27 +48,27 @@ class Segment {
 	public:
 		Segment() {}
 		Segment(Vector<T> A, Vector<T> B, T& X): a(A), b(B), x(&X) {
-			assert(a.x != b.x); 
+			assert(a.x != b.x);
 			if (a.x > b.x)
-				std::swap(a, b); 
+				std::swap(a, b);
 		}
 		bool operator==(const Segment& r) const {
-			return a == r.a && b == r.b; 
+			return a == r.a && b == r.b;
 		}
 		bool operator<(const Segment& r) const {
-			const Segment& l = *this; 
-			Vector<T> d12 = l.b - l.a, d34 = r.b - r.a; 
-			T y12 = (l.a.y * d12.x + d12.y * (*x - l.a.x)) * d34.x; 
-			T y34 = (r.a.y * d34.x + d34.y * (*x - r.a.x)) * d12.x; 
-			return y12 < y34; 
+			const Segment& l = *this;
+			Vector<T> d12 = l.b - l.a, d34 = r.b - r.a;
+			T y12 = (l.a.y * d12.x + d12.y * (*x - l.a.x)) * d34.x;
+			T y34 = (r.a.y * d34.x + d34.y * (*x - r.a.x)) * d12.x;
+			return y12 < y34;
 		}
-		Vector<T> a, b; 
-		T* x; 
-}; 
+		Vector<T> a, b;
+		T* x;
+};
 
 template <typename T>
 bool SegmentsIntersect(const Segment<T>& a, const Segment<T>& b) {
-	return SegmentsIntersect(a.a, a.b, b.a, b.b); 
+	return SegmentsIntersect(a.a, a.b, b.a, b.b);
 }
 
 template <typename T>
@@ -76,112 +76,112 @@ class EndPoint {
 	public:
 		EndPoint(Segment<T>& S, bool st): s(&S), start(st) {
 			if (st)
-				p = &s->a; 
+				p = &s->a;
 			else
-				p = &s->b; 
+				p = &s->b;
 		}
 		bool operator<(const EndPoint<T>& rhs) const {
 			if (p->x < rhs.p->x)
-				return true; 
+				return true;
 			if (rhs.p->x < p->x)
-				return false; 
+				return false;
 			if (start && !rhs.start)
-				return true; 
+				return true;
 			if (rhs.start && !start)
-				return false; 
-			return p->y < rhs.p->y; 
+				return false;
+			return p->y < rhs.p->y;
 		}
-		Segment<T>* s; 
-		Vector<T>* p; 
-		bool start; 
-}; 
+		Segment<T>* s;
+		Vector<T>* p;
+		bool start;
+};
 
 template <typename T>
 class SweepLineStatus {
 	public:
 		void Insert(const Segment<T>& s) {
-			RB.TreeInsert(s); 
+			RB.TreeInsert(s);
 		}
 		void Delete(const Segment<T>& s) {
-			RB.TreeDelete(RB.TreeSearch(s)); 
+			RB.TreeDelete(RB.TreeSearch(s));
 		}
 		Segment<T>* Above(const Segment<T>& s) {
-			Node<CData<Segment<T>>>* ans = RB.TreeSuccessor(RB.TreeSearch(s)); 
+			Node<CData<Segment<T>>>* ans = RB.TreeSuccessor(RB.TreeSearch(s));
 			if (ans != RB.nil)
-				return &ans->data.data; 
+				return &ans->data.data;
 			else
-				return nullptr; 
+				return nullptr;
 		}
 		Segment<T>* Below(const Segment<T>& s) {
 			Node<CData<Segment<T>>>* ans = RB.TreePredecessor(RB.TreeSearch(s));
 			if (ans != RB.nil)
-				return &ans->data.data; 
+				return &ans->data.data;
 			else
-				return nullptr; 
+				return nullptr;
 		}
-		RedBlackTree<Segment<T>> RB; 
-}; 
+		RedBlackTree<Segment<T>> RB;
+};
 
 template <typename T>
 bool AnySegmentsIntersect(std::vector<Segment<T>>& S) {
-	T& x = *S[0].x; 
-	SweepLineStatus<T> SLS; 
-	std::vector<EndPoint<T>> endpoints; 
-	endpoints.reserve(S.size() * 2); 
+	T& x = *S[0].x;
+	SweepLineStatus<T> SLS;
+	std::vector<EndPoint<T>> endpoints;
+	endpoints.reserve(S.size() * 2);
 	for (auto i = S.begin(); i != S.end(); i++) {
-		endpoints.push_back(EndPoint<T>(*i, false)); 
-		endpoints.push_back(EndPoint<T>(*i, true)); 
+		endpoints.push_back(EndPoint<T>(*i, false));
+		endpoints.push_back(EndPoint<T>(*i, true));
 	}
-	std::sort(endpoints.begin(), endpoints.end()); 
+	std::sort(endpoints.begin(), endpoints.end());
 	for (auto i = endpoints.begin(); i != endpoints.end(); i++) {
-		Segment<T>& s = *i->s; 
-		x = i->p->x; 
+		Segment<T>& s = *i->s;
+		x = i->p->x;
 		if (i->start) {
-			SLS.Insert(s); 
-			Segment<T>* a = SLS.Above(s), *b = SLS.Below(s); 
-			if ((a && SegmentsIntersect(s, *a)) || 
+			SLS.Insert(s);
+			Segment<T>* a = SLS.Above(s), *b = SLS.Below(s);
+			if ((a && SegmentsIntersect(s, *a)) ||
 				(b && SegmentsIntersect(s, *b)))
-				return true; 
+				return true;
 		} else {
-			Segment<T>* a = SLS.Above(s), *b = SLS.Below(s); 
+			Segment<T>* a = SLS.Above(s), *b = SLS.Below(s);
 			if (a && b && SegmentsIntersect(*a, *b))
-				return true; 
-			SLS.Delete(s); 
+				return true;
+			SLS.Delete(s);
 		}
 	}
-	return false; 
+	return false;
 }
 #endif
 
 #ifdef MAIN_AnySegmentsIntersect
 int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 200); 
-	const size_t m = get_argv(argc, argv, 2, 5); 
-	std::vector<int> b; 
-	random_integers(b, -n, n, m * 4); 
-	using T = double; 
-	T x; 
-	std::vector<Segment<T>> S; 
-	S.reserve(m); 
+	const size_t n = get_argv(argc, argv, 1, 200);
+	const size_t m = get_argv(argc, argv, 2, 5);
+	std::vector<int> b;
+	random_integers(b, -n, n, m * 4);
+	using T = double;
+	T x;
+	std::vector<Segment<T>> S;
+	S.reserve(m);
 	for (size_t i = 0; i < m; i++) {
-		Vector<T> s(b[4 * i + 0], b[4 * i + 1]), e(b[4 * i + 2], b[4 * i + 3]); 
+		Vector<T> s(b[4 * i + 0], b[4 * i + 1]), e(b[4 * i + 2], b[4 * i + 3]);
 		if (b[4 * i + 0] == b[4 * i + 2])
-			b[4 * i + 2]++; 
-		S.push_back(Segment<T>(s, e, x)); 
+			b[4 * i + 2]++;
+		S.push_back(Segment<T>(s, e, x));
 	}
 	std::cout << "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>"
-				 << std::endl; 
+				 << std::endl;
 	std::cout << "<svg height=\"" << 2 * n << "\" width=\"" << 2 * n << "\">"
-				 << std::endl; 
+				 << std::endl;
 	std::cout << "\t<rect fill=\"#ffffff\" x=\"0\" y=\"0\" width=\"" << 2 * n
-				 << "\" height=\"" << 2 * n << "\"/>" << std::endl; 
+				 << "\" height=\"" << 2 * n << "\"/>" << std::endl;
 	for (auto i = S.begin(); i != S.end(); i++)
-		print_seg(i->a, i->b, (T) n, "#000000"); 
+		print_seg(i->a, i->b, (T) n, "#000000");
 	std::cout << "\t<text x=\"" << n << "\" y=\"" << n << "\">"
 				 << std::boolalpha << AnySegmentsIntersect(S)
-				 << "</text>" << std::endl; 
-	std::cout << "</svg>" << std::endl; 
-	return 0; 
+				 << "</text>" << std::endl;
+	std::cout << "</svg>" << std::endl;
+	return 0;
 }
 #endif
 
