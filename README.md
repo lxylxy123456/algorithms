@@ -17,7 +17,7 @@
 |  5 | HireAssistant			| Randomized Hire Assistant				|  124 |
 |  5 | RandomPermute			| Permute By Sorting					|  125 |
 |  5 | RandomPermute			| Randomize In Place					|  126 |
-|  5 | OnLineMaximum.cpp			| On Line Maximum						|  140 |
+|  5 | OnLineMaximum			| On Line Maximum						|  140 |
 |  6 | MaxHeap					| Max Heapify							|  154 |
 |  6 | MaxHeap					| Build Max Heap						|  157 |
 |  6 | MaxHeap					| Heap Sort								|  160 |

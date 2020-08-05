@@ -18,7 +18,6 @@
 
 #include "MaxHeap.hpp"
 
-#include <exception>
 #include "utils.h"
 
 using namespace algorithms;

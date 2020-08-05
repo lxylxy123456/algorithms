@@ -20,7 +20,7 @@
 #define ALGORITHMS_ONLINEMAXIMUM
 
 #include <algorithm>
-#include "utils.h"
+#include <vector>
 
 namespace algorithms {
 
