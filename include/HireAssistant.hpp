@@ -20,7 +20,7 @@
 #define ALGORITHMS_HIREASSISTANT
 
 #include <cassert>
-#include "utils.h"
+#include <vector>
 
 namespace algorithms {
 
