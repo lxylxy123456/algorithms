@@ -26,7 +26,6 @@
 
 namespace algorithms {
 
-
 template <typename GT, typename T, typename VT>
 void DFSVisit_TS(GT& G, VT& inf, std::deque<T>& ans, T u, size_t& time) {
 	DFSInfo<T>& info = inf[u];

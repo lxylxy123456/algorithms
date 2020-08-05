@@ -26,7 +26,6 @@
 
 namespace algorithms {
 
-
 #define set_T typename std::set<T>
 
 template <typename T>

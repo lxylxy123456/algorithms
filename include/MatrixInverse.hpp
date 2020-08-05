@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 Matrix<T> MatrixInverse(Matrix<T>& A) {
 	const size_t n = A.rows;

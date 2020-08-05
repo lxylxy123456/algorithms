@@ -26,7 +26,6 @@
 
 namespace algorithms {
 
-
 #define SM SubMatrix<T>
 
 template <typename T>

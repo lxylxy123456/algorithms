@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 void ModularLinearEquationSolver(T a, T b, T n, std::vector<T>& ans) {
 	T x, y;

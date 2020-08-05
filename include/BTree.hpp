@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 size_t debug;
 
 template <typename T>

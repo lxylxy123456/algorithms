@@ -27,7 +27,6 @@
 
 namespace algorithms {
 
-
 template <typename GT, typename T, typename VT>
 void DFSVisit_SCC(GT& G, VT& inf, DisjointSetForest<T>& D, T u, size_t& time) {
 	DFSInfo<T>& info = inf[u];

@@ -24,7 +24,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 size_t OnLineMaximum(std::vector<T> candidates, size_t k) {
 	size_t n = candidates.size();

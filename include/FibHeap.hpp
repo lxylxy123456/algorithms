@@ -26,7 +26,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 class FNode {
 	public:

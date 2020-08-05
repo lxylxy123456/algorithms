@@ -22,7 +22,6 @@
 
 using namespace algorithms;
 
-
 #include "InsertSort.hpp"
 
 int main(int argc, char *argv[]) {

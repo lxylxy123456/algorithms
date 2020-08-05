@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 T abs(T x) {
 	if (x < 0)

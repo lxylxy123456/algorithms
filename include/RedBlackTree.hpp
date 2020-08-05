@@ -24,7 +24,6 @@
 
 namespace algorithms {
 
-
 enum Color { red, black };
 
 template <typename T>

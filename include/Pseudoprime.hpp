@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 bool Pseudoprime(T n) {
 	if (ModularExponentiation((T) 2, n - 1, n) != 1)

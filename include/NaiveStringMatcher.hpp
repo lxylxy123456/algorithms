@@ -23,7 +23,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 bool equal(const std::vector<T>& S, size_t Ss,
 			const std::vector<T>& P, size_t Ps, size_t n) {

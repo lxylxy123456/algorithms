@@ -26,7 +26,6 @@
 
 namespace algorithms {
 
-
 SIZT_2D OptimalBST(SIZT_1D& p, SIZT_1D& q, size_t n) {
 	SIZT_2D e(n + 1, SIZT_1D(n + 1, 0));
 	SIZT_2D w(n + 1, SIZT_1D(n + 1, 0));

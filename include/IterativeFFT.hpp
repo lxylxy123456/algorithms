@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 size_t rev(size_t k, size_t n) {
 	size_t ans = 0;
 	for (size_t i = 1; i != n; i <<= 1) {

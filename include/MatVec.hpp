@@ -26,7 +26,6 @@
 
 namespace algorithms {
 
-
 template <typename T, typename F>
 void parallel_for(T i1, T i2, F func) {
 	if (i1 == i2 - 1)

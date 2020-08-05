@@ -24,7 +24,6 @@
 
 namespace algorithms {
 
-
 const size_t NIL = -1;
 
 class ProtovEB {

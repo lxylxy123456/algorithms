@@ -26,7 +26,6 @@
 
 namespace algorithms {
 
-
 template <typename GT, typename T, typename WT>
 void ApproxMinWeightVC(GT& G, umap<T, WT>& w, uset<T>& C) {
 	umap<size_t, umap<size_t, WT>> A;

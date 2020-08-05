@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 std::vector<size_t> ComputePrefixFunction(const std::vector<T>& P) {
 	size_t m = P.size();

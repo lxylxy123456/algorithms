@@ -24,7 +24,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 T RandomizedSelect(T p, T r, size_t i) {
 	if (p == r - 1)

@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 std::vector<VECT_SIZT> LCSLength(std::vector<T> X, std::vector<T> Y) {
 	size_t m = X.size(), n = Y.size();

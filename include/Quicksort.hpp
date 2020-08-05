@@ -23,7 +23,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 T Partition(T p, T r) {
 	T l = r - 1;

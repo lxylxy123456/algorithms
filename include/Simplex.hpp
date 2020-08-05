@@ -29,7 +29,6 @@
 
 namespace algorithms {
 
-
 #define usetst typename std::unordered_set<size_t>
 #define vectst typename std::unordered_map<size_t, T>
 #define matst typename std::unordered_map<size_t, std::unordered_map<size_t, T>>

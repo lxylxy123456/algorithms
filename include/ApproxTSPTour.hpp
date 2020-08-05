@@ -26,7 +26,6 @@
 
 namespace algorithms {
 
-
 template <typename GT, typename T>
 void TreeWalk(GT& G, T current, T* last, std::vector<T>& H) {
 	H.push_back(current);

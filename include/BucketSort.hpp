@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 void BucketSort(std::vector<T>& A, T a_min, T a_max) {
 	const size_t n = A.size();

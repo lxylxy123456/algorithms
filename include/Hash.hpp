@@ -23,7 +23,6 @@
 
 namespace algorithms {
 
-
 class DivisionHash {
 	public:
 		DivisionHash(size_t mm): m(mm) {}

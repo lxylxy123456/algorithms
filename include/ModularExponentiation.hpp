@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 T ModularExponentiation(T a, T b, T n) {
 	T c = 0;

@@ -23,7 +23,6 @@
 
 using namespace algorithms;
 
-
 #include "RandomizedSelect.hpp"
 
 int main(int argc, char *argv[]) {

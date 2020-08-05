@@ -26,7 +26,6 @@
 
 namespace algorithms {
 
-
 #define list_T typename std::list<T>
 
 template <typename GT, typename T, typename WT>

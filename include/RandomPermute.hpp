@@ -24,7 +24,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 void PermuteBySorting(std::vector<T>& a) {
 	size_t n = a.size();

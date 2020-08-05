@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 template <typename GT>
 Matrix<bool> TransitiveClosure(GT& G) {
 	const size_t n = G.V.size();

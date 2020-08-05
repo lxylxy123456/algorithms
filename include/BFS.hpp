@@ -26,7 +26,6 @@
 
 namespace algorithms {
 
-
 enum BFSColor { white, gray, black };
 
 template <typename T>

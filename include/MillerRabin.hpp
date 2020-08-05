@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 bool Witness(T a, T n) {
 	T t = 0, u = n - 1;

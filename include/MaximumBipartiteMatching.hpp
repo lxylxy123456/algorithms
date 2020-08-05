@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 template <typename GT>
 class Bipartite: public GT {
 	public:
@@ -104,7 +103,6 @@ void random_bipartite(Bipartite<GT>& G, T vl, T vr, size_t e) {
 	for (size_t i = 0; i < e; i++)
 		G.add_edge(dl[i], dr[i]);
 }
-
 
 template <typename GT, typename T>
 void MaximumBipartiteMatching(GT& G, uset<Edge<T>, EdgeHash<T>>& ans) {

@@ -26,7 +26,6 @@
 
 namespace algorithms {
 
-
 const size_t NIL = -1;
 
 template <typename T>

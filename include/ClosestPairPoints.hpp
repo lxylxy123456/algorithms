@@ -28,7 +28,6 @@
 
 namespace algorithms {
 
-
 #define uset_vec typename std::unordered_set<Vector<T>, VectorHash<T>>
 
 template <typename T>

@@ -24,7 +24,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 T Euclid(T a, T b) {
 	if (b == 0)

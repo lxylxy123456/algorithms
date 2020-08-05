@@ -26,7 +26,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 void MergeSort_prime(std::vector<T>* A, size_t p, size_t r) {
 	if (p < r - 1) {

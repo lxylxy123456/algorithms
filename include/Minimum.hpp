@@ -23,7 +23,6 @@
 
 namespace algorithms {
 
-
 class Value {
 	public:
 		Value(void) {}

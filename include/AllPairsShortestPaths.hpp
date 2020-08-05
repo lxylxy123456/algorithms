@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 Matrix<T> ExtendShortestPaths(Matrix<T>& L, Matrix<T>& W) {
 	const size_t n = L.rows;

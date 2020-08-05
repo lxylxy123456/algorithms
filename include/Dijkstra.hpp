@@ -26,7 +26,6 @@
 
 namespace algorithms {
 
-
 template <typename GT, typename T, typename WT>
 void Dijkstra(GT& G, umap_WT& w, T s, umap<T, RelaxInfo<T, WT>>& ans) {
 	using QT = std::pair<RelaxInfo<T, WT>, T>;

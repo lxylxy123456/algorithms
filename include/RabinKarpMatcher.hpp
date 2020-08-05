@@ -26,7 +26,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 void RabinKarpMatcher(const std::vector<T>& S, const std::vector<T>& P,
 						size_t d, size_t q, T o, std::vector<size_t>& ans) {

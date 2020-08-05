@@ -23,7 +23,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 class DynamicTable {
 	public:

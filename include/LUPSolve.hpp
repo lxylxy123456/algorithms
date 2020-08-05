@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 using PT = std::vector<size_t>;
 
 template <typename T>

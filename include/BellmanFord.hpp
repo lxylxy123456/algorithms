@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 template <typename T, typename WT>
 class RelaxInfo {
 	public:

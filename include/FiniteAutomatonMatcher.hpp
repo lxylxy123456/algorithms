@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 void FiniteAutomatonMatcher(const std::vector<T>& S,
 							const std::vector<std::vector<size_t>>& delta,

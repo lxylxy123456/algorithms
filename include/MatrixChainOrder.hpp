@@ -27,7 +27,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 Matrix<T> MatrixMultiply(Matrix<T>&A, Matrix<T>&B) {
 	if (A.cols != B.rows)

@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 Matrix<T> LeastSquareApprox(Matrix<T>& A, Matrix<T>& y) {
 	Matrix<T> AT = A.transpose();

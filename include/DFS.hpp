@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 enum DFSColor { white, gray, black };
 
 enum DFSEdgeType { tree, back, forward, cross };

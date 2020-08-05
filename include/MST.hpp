@@ -28,7 +28,6 @@
 
 namespace algorithms {
 
-
 template <typename T, typename WT>
 class MSTPrimInfo {
 	public:

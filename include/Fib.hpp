@@ -24,7 +24,6 @@
 
 namespace algorithms {
 
-
 size_t Fib(size_t n) {
 	if (n <= 1)
 		return n;

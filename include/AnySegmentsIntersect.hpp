@@ -28,7 +28,6 @@
 
 namespace algorithms {
 
-
 /*
 	Exercise 33.2-2
 		(Not following hints in the book)

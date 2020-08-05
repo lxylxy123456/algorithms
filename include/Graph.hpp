@@ -28,7 +28,6 @@
 
 namespace algorithms {
 
-
 #define uset typename std::unordered_set
 #define umap typename std::unordered_map
 #define umap_WT typename std::unordered_map<Edge<T>, WT, EdgeHash<T>>

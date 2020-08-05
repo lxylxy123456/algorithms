@@ -23,7 +23,6 @@
 
 namespace algorithms {
 
-
 class BinaryCounter {
 	public:
 		BinaryCounter(size_t k): A(k) {}

@@ -24,7 +24,6 @@
 
 namespace algorithms {
 
-
 inline size_t Left(size_t x) { return x * 2 + 1; }
 
 inline size_t Right(size_t x) { return x * 2 + 2; }

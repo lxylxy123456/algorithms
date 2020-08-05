@@ -23,7 +23,6 @@
 
 using namespace algorithms;
 
-
 #include <cmath>
 #include "InsertSort.hpp"
 

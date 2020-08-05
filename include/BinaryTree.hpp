@@ -24,7 +24,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 class Node {
 	public:

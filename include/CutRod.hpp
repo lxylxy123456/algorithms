@@ -27,7 +27,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 T CutRod(const std::vector<T>& p, size_t n) {
 	if (!n)

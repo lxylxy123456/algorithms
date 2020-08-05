@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 void PrintAllPairsShortestPath(Matrix<T_ptr<size_t>>& PI, size_t i, size_t j,
 	std::vector<size_t>& ans) {
 	if (i == j)

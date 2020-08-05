@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 template <typename GT, typename T>
 void ApproxVertexCover(GT& G, uset<T>& C) {
 	uset<Edge<T>, EdgeHash<T>> E;

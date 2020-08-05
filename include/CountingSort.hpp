@@ -23,7 +23,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 inline size_t Self(T x) {
 	return x;

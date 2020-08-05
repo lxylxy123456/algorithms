@@ -24,7 +24,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 T ModifiedPartition(T p, T r, typename T::value_type x) {
 	bool x_found = false;

@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 template <typename GT, typename T, typename WT>
 void FordFulkerson(GT& G, umap_WT& c, T s, T t, umap_WT& f) {
 	for (auto i = G.all_edges(); !i.end(); i++)

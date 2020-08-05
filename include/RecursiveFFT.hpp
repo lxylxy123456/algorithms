@@ -25,7 +25,6 @@
 
 namespace algorithms {
 
-
 template <typename T>
 class Complex {
 	public:

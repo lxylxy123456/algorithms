@@ -27,7 +27,6 @@
 
 namespace algorithms {
 
-
 template <typename GT, typename T, typename WT>
 void DagShortestPaths(GT& G, umap_WT& w, T s, umap<T, RelaxInfo<T, WT>>& ans) {
 	std::deque<T> order;
