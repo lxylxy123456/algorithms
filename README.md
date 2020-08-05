@@ -10,9 +10,9 @@
 |  2 | MergeSort				| Merge Sort							|   34 |
 |  4 | FindMaximumSubarray		| Find Max Crossing Subarray			|   71 |
 |  4 | FindMaximumSubarray		| Find Maximum Subarray					|   72 |
-|  4 | SquareMatrixMultiply.cpp		| Square Matrix Multiply				|   75 |
-|  4 | SquareMatrixMultiply.cpp		| Square Matrix Multiply Recursive		|   77 |
-|  4 | SquareMatrixMultiply.cpp		| Square Matrix Multiply Strassen		|   82 |
+|  4 | SquareMatrixMultiply		| Square Matrix Multiply				|   75 |
+|  4 | SquareMatrixMultiply		| Square Matrix Multiply Recursive		|   77 |
+|  4 | SquareMatrixMultiply		| Square Matrix Multiply Strassen		|   82 |
 |  5 | HireAssistant.cpp			| Hire Assistant						|  115 |
 |  5 | HireAssistant.cpp			| Randomized Hire Assistant				|  124 |
 |  5 | RandomPermute.cpp			| Permute By Sorting					|  125 |

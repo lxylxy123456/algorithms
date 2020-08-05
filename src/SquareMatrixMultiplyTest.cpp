@@ -1,6 +1,6 @@
 //
 //  algorithm - some algorithms in "Introduction to Algorithms", third edition
-//  Copyright (C) 2018  lxylxy123456
+//  Copyright (C) 2020  lxylxy123456
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
@@ -23,9 +23,7 @@
 
 using namespace algorithms;
 
-int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 16);
-	const size_t compute = get_argv(argc, argv, 2, 7);
+int test(int n) {
 	std::vector<int> buf_a, buf_b;
 	random_integers(buf_a, 0, n, n * n);
 	random_integers(buf_b, 0, n, n * n);
@@ -34,24 +32,31 @@ int main(int argc, char *argv[]) {
 	std::cout << A << std::endl;
 	std::cout << B << std::endl;
 	Matrix<int> ans1(A);
-	if (compute >> 0 & 1) {
+	{
 		std::cout << "SquareMatrixMultiply" << std::endl;
 		ans1 = SquareMatrixMultiply(A, B, 0);
 		std::cout << ans1 << std::endl;
 	}
-	if (compute >> 1 & 1) {
+	{
 		std::cout << "SquareMatrixMultiplyRecursive" << std::endl;
 		Matrix<int> ans2 = SquareMatrixMultiplyRecursive(A, B, 0);
 		std::cout << ans2 << std::endl;
-		if (compute >> 0 & 1)
-			std::cout << std::boolalpha << (ans1 == ans2) << std::endl;
+		assert(ans1 == ans2);
 	}
-	if (compute >> 2 & 1) {
+	{
 		std::cout << "SquareMatrixMultiplyStrassen" << std::endl;
 		Matrix<int> ans3 = SquareMatrixMultiplyStrassen<int, 0>(A, B);
 		std::cout << ans3 << std::endl;
-		if (compute >> 0 & 1)
-			std::cout << std::boolalpha << (ans1 == ans3) << std::endl;
+		assert(ans1 == ans3);
 	}
+	return 0;
+}
+
+int main(int argc, char *argv[]) {
+	test(1);
+	test(2);
+	test(10);
+	test(49);
+	test(100);
 	return 0;
 }
