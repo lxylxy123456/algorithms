@@ -1,6 +1,6 @@
 //
 //  algorithm - some algorithms in "Introduction to Algorithms", third edition
-//  Copyright (C) 2018  lxylxy123456
+//  Copyright (C) 2020  lxylxy123456
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
@@ -17,22 +17,45 @@
 //
 
 #include "RandomPermute.hpp"
-
-#include <map>
 #include "utils.h"
+
+#include <cassert>
 
 using namespace algorithms;
 
+int test(size_t n) {
+	while (true) {
+		std::vector<int> o;
+		for (size_t i = 0; i < n; i++)
+			o.push_back(i);
+		std::vector<int> a(o), b(o);
+		PermuteBySorting(a);
+		RandomizeInPlace(b);
+		output_integers(o);
+		output_integers(a);
+		output_integers(b);
+		assert(o.size() == a.size());
+		assert(o.size() == b.size());
+		bool flag_oa = false, flag_ob = false, flag_ab = false;
+		for (size_t i = 0; i < n; i++) {
+			flag_oa = flag_oa || (o[i] != a[i]);
+			flag_ob = flag_ob || (o[i] != b[i]);
+			flag_ab = flag_ab || (a[i] != b[i]);
+		}
+		if (n > 2 && (!flag_oa || !flag_ob || !flag_ab))
+			continue;
+		break;
+	}
+	return 0;
+}
+
 int main(int argc, char *argv[]) {
-	size_t n = get_argv(argc, argv, 1, 10);
-	std::vector<int> o;
-	for (size_t i = 0; i < n; i++)
-		o.push_back(i);
-	std::vector<int> a(o), b(o);
-	PermuteBySorting(a);
-	RandomizeInPlace(b);
-	output_integers(o);
-	output_integers(a);
-	output_integers(b);
+	test(0);
+	test(1);
+	test(2);
+	test(5);
+	test(10);
+	test(49);
+	test(100);
 	return 0;
 }

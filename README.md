@@ -15,8 +15,8 @@
 |  4 | SquareMatrixMultiply		| Square Matrix Multiply Strassen		|   82 |
 |  5 | HireAssistant			| Hire Assistant						|  115 |
 |  5 | HireAssistant			| Randomized Hire Assistant				|  124 |
-|  5 | RandomPermute.cpp			| Permute By Sorting					|  125 |
-|  5 | RandomPermute.cpp			| Randomize In Place					|  126 |
+|  5 | RandomPermute			| Permute By Sorting					|  125 |
+|  5 | RandomPermute			| Randomize In Place					|  126 |
 |  5 | OnLineMaximum.cpp			| On Line Maximum						|  140 |
 |  6 | MaxHeap.cpp					| Max Heapify							|  154 |
 |  6 | MaxHeap.cpp					| Build Max Heap						|  157 |
