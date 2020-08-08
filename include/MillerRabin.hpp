@@ -20,8 +20,8 @@
 #define ALGORITHMS_MILLERRABIN
 
 #include <vector>
-#include "utils.h"
 
+#include "random_integers.hpp"
 #include "ModularExponentiation.hpp"
 
 namespace algorithms {

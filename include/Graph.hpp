@@ -22,7 +22,8 @@
 #include <cassert>
 #include <unordered_set>
 #include <unordered_map>
-#include "utils.h"
+
+#include "random_integers.hpp"
 
 #include "SquareMatrixMultiply.hpp"
 

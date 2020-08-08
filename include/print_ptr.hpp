@@ -1,6 +1,6 @@
 //
 //  algorithm - some algorithms in "Introduction to Algorithms", third edition
-//  Copyright (C) 2018  lxylxy123456
+//  Copyright (C) 2020  lxylxy123456
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
@@ -16,34 +16,33 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#ifndef ALGORITHMS_RANDOMPERMUTE
-#define ALGORITHMS_RANDOMPERMUTE
+#ifndef ALGORITHMS_PRINT_PTR
+#define ALGORITHMS_PRINT_PTR
 
-#include <map>
-#include <vector>
-
-#include "random_integers.hpp"
+#include <iostream>
+#include <sstream>
 
 namespace algorithms {
 
 template <typename T>
-void PermuteBySorting(std::vector<T>& a) {
-	size_t n = a.size();
-	std::vector<int> r;
-	random_integers(r, 1, n*n*n, n);
-	std::map<int, T> b;
-	for (auto i = r.begin(), j = a.begin(); j != a.end(); i++, j++)
-		b[*i] = *j;
-	for (auto i = b.begin(), j = a.begin(); j != a.end(); i++, j++)
-		*j = i->second;
+std::string pptr(T p) {
+	// print a pointer of type T
+	void* vp = static_cast<void*>(p);
+	if (vp) {
+		std::ostringstream os;
+		os << vp;
+		return os.str();
+	} else
+		return "nullptr";
 }
 
 template <typename T>
-void RandomizeInPlace(std::vector<T>& a) {
-	size_t n = a.size();
-	std::random_device rd;
-	for (size_t i = 0; i + 1 < n; i++)
-		std::swap(a[i], a[std::uniform_int_distribution<size_t>(i, n-1)(rd)]);
+void print_ptr(T ptr, T nil) {
+	std::cout << "ptr = " << pptr(ptr) << std::endl;
+	if (ptr == nil)
+		std::cout << "    = nil" << std::endl;
+	else
+		std::cout << "val = " << ptr->data << std::endl;
 }
 
 }

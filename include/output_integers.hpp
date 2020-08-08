@@ -1,6 +1,6 @@
 //
 //  algorithm - some algorithms in "Introduction to Algorithms", third edition
-//  Copyright (C) 2018  lxylxy123456
+//  Copyright (C) 2020  lxylxy123456
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
@@ -16,34 +16,25 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#ifndef ALGORITHMS_RANDOMPERMUTE
-#define ALGORITHMS_RANDOMPERMUTE
+#ifndef ALGORITHMS_OUTPUT_INTEGERS
+#define ALGORITHMS_OUTPUT_INTEGERS
 
-#include <map>
-#include <vector>
-
-#include "random_integers.hpp"
+#include <algorithm>
+#include <iostream>
+#include <iterator>
 
 namespace algorithms {
 
 template <typename T>
-void PermuteBySorting(std::vector<T>& a) {
-	size_t n = a.size();
-	std::vector<int> r;
-	random_integers(r, 1, n*n*n, n);
-	std::map<int, T> b;
-	for (auto i = r.begin(), j = a.begin(); j != a.end(); i++, j++)
-		b[*i] = *j;
-	for (auto i = b.begin(), j = a.begin(); j != a.end(); i++, j++)
-		*j = i->second;
+void output_integers(const T& a, const char* sep) {
+	std::copy(a.begin(), a.end(),
+				std::ostream_iterator<typename T::value_type>(std::cout, sep));
+	std::cout << std::endl;
 }
 
 template <typename T>
-void RandomizeInPlace(std::vector<T>& a) {
-	size_t n = a.size();
-	std::random_device rd;
-	for (size_t i = 0; i + 1 < n; i++)
-		std::swap(a[i], a[std::uniform_int_distribution<size_t>(i, n-1)(rd)]);
+void output_integers(const T& a) {
+	output_integers(a, " ");
 }
 
 }

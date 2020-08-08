@@ -3,13 +3,14 @@
  * download: https://www.ugrad.cs.ubc.ca/~cs221/2017W2/labs/heaps/lab_heaps.zip
  */
 
-#ifndef PRINTTREE_H
-#define PRINTTREE_H
+#ifndef ALGORITHMS_PRINTTREE
+#define ALGORITHMS_PRINTTREE
 
 #include <algorithm>
 #include <iostream>
-#include <sstream>
 #include <string>
+
+namespace algorithms {
 
 // Curiously recurring template pattern
 // You don't actually need to extend this class,
@@ -156,6 +157,8 @@ namespace private_print_functions
 			printSubtree(croot.right(), output, left + curr_width/2 + 2, top+2, curr_width/2 - 1);
 		}
 	}
+}
+
 }
 
 #endif

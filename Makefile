@@ -40,7 +40,7 @@ $(TARGETS_OLD): %: %.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 $(TARGETS): bin/%: src/%.cpp
-	$(CXX) $(CXXFLAGS) -MMD -MF $(patsubst %,%.d,$@) -I include/ -I . -o $@ $<
+	$(CXX) $(CXXFLAGS) -MMD -MF $(patsubst %,%.d,$@) -I include/ -o $@ $<
 
 $(TESTS): test/%: bin/%
 	./$^

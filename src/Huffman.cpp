@@ -19,7 +19,6 @@
 #include "Huffman.hpp"
 
 #include "utils.h"
-#include "printtree.h"
 #include "MaxHeap.hpp"
 
 using namespace algorithms;

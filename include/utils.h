@@ -16,34 +16,36 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#ifndef ALGORITHMS_RANDOMPERMUTE
-#define ALGORITHMS_RANDOMPERMUTE
+#ifndef UTILS_H
+#define UTILS_H
 
-#include <map>
+#include <iostream>
+#include <iterator>
+#include <random>
 #include <vector>
+#include <string>
+#include <sstream>
 
 #include "random_integers.hpp"
+#include "output_integers.hpp"
+#include "print_ptr.hpp"
 
 namespace algorithms {
 
 template <typename T>
-void PermuteBySorting(std::vector<T>& a) {
-	size_t n = a.size();
-	std::vector<int> r;
-	random_integers(r, 1, n*n*n, n);
-	std::map<int, T> b;
-	for (auto i = r.begin(), j = a.begin(); j != a.end(); i++, j++)
-		b[*i] = *j;
-	for (auto i = b.begin(), j = a.begin(); j != a.end(); i++, j++)
-		*j = i->second;
+void input_integers(std::vector<T>& a) {
+	std::copy(	std::istream_iterator<T>(std::cin),
+				std::istream_iterator<T>(),
+				std::insert_iterator<std::vector<T>>(a, a.begin()));
 }
 
 template <typename T>
-void RandomizeInPlace(std::vector<T>& a) {
-	size_t n = a.size();
-	std::random_device rd;
-	for (size_t i = 0; i + 1 < n; i++)
-		std::swap(a[i], a[std::uniform_int_distribution<size_t>(i, n-1)(rd)]);
+T get_argv(int argc, char *argv[], int index, T def) {
+	if (index < 0 || index >= argc)
+		return def;
+	T ans;
+	std::istringstream(argv[index]) >> ans;
+	return ans;
 }
 
 }

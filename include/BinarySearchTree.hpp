@@ -19,7 +19,8 @@
 #ifndef ALGORITHMS_BINARYSEARCHTREE
 #define ALGORITHMS_BINARYSEARCHTREE
 
-#include "utils.h"
+#include "output_integers.hpp"
+#include "print_ptr.hpp"
 #include "BinaryTree.hpp"
 
 namespace algorithms {
@@ -134,15 +135,6 @@ class BinarySearchTree: public BinaryTree<T> {
 			delete z;
 		}
 };
-
-template <typename T>
-void print_ptr(T ptr, T nil) {
-	std::cout << "ptr = " << pptr(ptr) << std::endl;
-	if (ptr == nil)
-		std::cout << "    = nil" << std::endl;
-	else
-		std::cout << "val = " << ptr->data << std::endl;
-}
 
 void tf(char& c, void* T, void* ptr) {
 	return;

@@ -21,7 +21,7 @@
 
 #include <vector>
 #include <sstream>
-#include "printtree.h"
+#include "printtree.hpp"
 
 namespace algorithms {
 

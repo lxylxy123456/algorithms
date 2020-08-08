@@ -19,7 +19,6 @@
 #include "BinaryTree.hpp"
 
 #include "utils.h"
-#include "printtree.h"
 
 using namespace algorithms;
 
