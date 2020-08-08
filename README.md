@@ -33,9 +33,9 @@
 |  8 | CountingSort				| Counting Sort							|  195 |
 |  8 | RadixSort				| Radix Sort							|  198 |
 |  8 | BucketSort				| Bucket Sort							|  201 |
-|  9 | Minimum.cpp					| Minimum								|  214 |
-|  9 | Minimum.cpp					| Maximum								|  214 |
-|  9 | Minimum.cpp					| Min Max								|  214 |
+|  9 | Minimum					| Minimum								|  214 |
+|  9 | Minimum					| Maximum								|  214 |
+|  9 | Minimum					| Min Max								|  214 |
 |  9 | RandomizedSelect.cpp			| Randomized Select						|  216 |
 |  9 | RandomizedSelect.cpp			| Randomized Select Iter				|  219 |
 |  9 | Select.cpp					| Select								|  220 |
