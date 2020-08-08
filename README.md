@@ -36,9 +36,9 @@
 |  9 | Minimum					| Minimum								|  214 |
 |  9 | Minimum					| Maximum								|  214 |
 |  9 | Minimum					| Min Max								|  214 |
-|  9 | RandomizedSelect.cpp			| Randomized Select						|  216 |
-|  9 | RandomizedSelect.cpp			| Randomized Select Iter				|  219 |
-|  9 | Select.cpp					| Select								|  220 |
+|  9 | RandomizedSelect			| Randomized Select						|  216 |
+|  9 | RandomizedSelect			| Randomized Select Iter				|  219 |
+|  9 | Select					| Select								|  220 |
 | 10 | Stack.cpp					| StackEmpty							|  233 |
 | 10 | Stack.cpp					| Push									|  233 |
 | 10 | Stack.cpp					| Pop									|  233 |

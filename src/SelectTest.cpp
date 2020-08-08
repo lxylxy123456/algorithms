@@ -16,9 +16,9 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#include "RandomizedSelect.hpp"
+#include "Select.hpp"
 #include "utils.hpp"
-#include "Quicksort.hpp"
+#include "RandomizedSelect.hpp"
 
 #include <cassert>
 
@@ -28,14 +28,11 @@ int test(size_t n, size_t i) {
 	std::vector<int> a;
 	random_integers(a, 0, n - 1, n);
 	std::vector<int> b(a);
-	int ans1, ans2, ans3;
+	int ans1, ans2;
 	output_integers(a);
-	Quicksort(b.begin(), b.end());
-	ans1 = b[i];
-	ans2 = RandomizedSelect(a, i);
+	ans1 = RandomizedSelect(a, i);
+	ans2 = Select(b, i);
 	assert(ans1 == ans2);
-	ans3 = RandomizedSelectIter(a, i);
-	assert(ans1 == ans3);
 	return 0;
 }
 
