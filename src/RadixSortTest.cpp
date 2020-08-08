@@ -16,7 +16,7 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#include "CountingSort.hpp"
+#include "RadixSort.hpp"
 #include "utils.hpp"
 
 #include <cassert>
@@ -25,21 +25,26 @@ using namespace algorithms;
 
 #include "InsertSort.hpp"
 
+const std::vector<int> ans1 = {16, 14, 10, 8, 7, 9, 3, 2, 4, 1};
+const std::vector<int> ans2 = {14, 8, 10, 4, 7, 9, 3, 2, 1};
+const std::vector<int> ans3 = {19, 14, 10, 8, 7, 9, 3, 2, 4};
+const std::vector<int> ans4 = {19, 14, 10, 11, 7, 9, 3, 2, 8};
+
 int test(int n, int k) {
 	std::vector<int> a;
-	random_integers(a, 0, k - 1, n);
-	std::vector<int> b(a), c(n, 0);
+	random_integers(a, 0, pow(2, k) - 1, n);
+	std::vector<int> b(a);
 	InsertSort(a);
+	RadixSort(b, k);
 	output_integers(a);
-	CountingSort(b, c, k, Self<int>);
-	output_integers(c);
-	assert(a == c);
+	output_integers(b);
+	assert(a == b);
 	return 0;
 }
 
 int main(int argc, char *argv[]) {
 	std::vector<int> ns{0, 1, 2, 5, 8, 19, 52, 100};
-	std::vector<int> ks{1, 2, 5, 8, 19, 52, 100};
+	std::vector<int> ks{0, 1, 2, 5, 8};
 	for (std::vector<int>::iterator n = ns.begin(); n < ns.end(); n++)
 		for (std::vector<int>::iterator k = ks.begin(); k < ks.end(); k++)
 			test(*n, *k);

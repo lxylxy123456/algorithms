@@ -25,16 +25,6 @@ using namespace algorithms;
 
 #include "InsertSort.hpp"
 
-template <typename T>
-bool is_increasing_order(T p, T r) {
-	if (p == r)
-		return true;
-	for (T i = p, j = p + 1; j < r; j++)
-		if (*i > *j)
-			return false;
-	return true;
-}
-
 int test(int n) {
 	std::vector<int> a;
 	random_integers(a, 0, n - 1, n);
