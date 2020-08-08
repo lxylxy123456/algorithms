@@ -19,7 +19,7 @@
 #ifndef ALGORITHMS_DYNAMICTABLE
 #define ALGORITHMS_DYNAMICTABLE
 
-#include "utils.h"
+#include <vector>
 
 namespace algorithms {
 

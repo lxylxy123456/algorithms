@@ -19,6 +19,7 @@
 #ifndef ALGORITHMS_MILLERRABIN
 #define ALGORITHMS_MILLERRABIN
 
+#include <vector>
 #include "utils.h"
 
 #include "ModularExponentiation.hpp"

@@ -19,8 +19,7 @@
 #ifndef ALGORITHMS_QUEUE
 #define ALGORITHMS_QUEUE
 
-#include <exception>
-#include "utils.h"
+#include <stdexcept>
 
 namespace algorithms {
 

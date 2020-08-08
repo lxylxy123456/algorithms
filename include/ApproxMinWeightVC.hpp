@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_APPROXMINWEIGHTVC
 #define ALGORITHMS_APPROXMINWEIGHTVC
 
-#include "utils.h"
-
 #include "Graph.hpp"
 #include "Simplex.hpp"
 

@@ -19,7 +19,7 @@
 #ifndef ALGORITHMS_DIRECTADDRESS
 #define ALGORITHMS_DIRECTADDRESS
 
-#include "utils.h"
+#include <cstddef>
 
 namespace algorithms {
 

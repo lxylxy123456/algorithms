@@ -20,7 +20,6 @@
 #define ALGORITHMS_PSQUAREMATRIXMULTIPLY
 
 #include <thread>
-#include "utils.h"
 
 #include "MatVec.hpp"
 

@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_RABINKARPMATCHER
 #define ALGORITHMS_RABINKARPMATCHER
 
-#include "utils.h"
-
 #include "ModularExponentiation.hpp"
 #include "NaiveStringMatcher.hpp"
 

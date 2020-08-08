@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_APPROXTSPTOUR
 #define ALGORITHMS_APPROXTSPTOUR
 
-#include "utils.h"
-
 #include "MST.hpp"
 #include "SegmentsIntersect.hpp"
 

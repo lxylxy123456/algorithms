@@ -23,7 +23,6 @@
 #include <exception>
 #include <unordered_set>
 #include <unordered_map>
-#include "utils.h"
 
 #include "LUPSolve.hpp"
 

@@ -19,7 +19,7 @@
 #ifndef ALGORITHMS_QUICKSORT
 #define ALGORITHMS_QUICKSORT
 
-#include "utils.h"
+#include <random>
 
 namespace algorithms {
 

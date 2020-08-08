@@ -20,7 +20,6 @@
 #define ALGORITHMS_RACEEXAMPLE
 
 #include <thread>
-#include "utils.h"
 
 namespace algorithms {
 

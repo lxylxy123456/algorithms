@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_DIJKSTRA
 #define ALGORITHMS_DIJKSTRA
 
-#include "utils.h"
-
 #include "FibHeap.hpp"
 #include "BellmanFord.hpp"
 

@@ -19,7 +19,8 @@
 #ifndef ALGORITHMS_HASH
 #define ALGORITHMS_HASH
 
-#include "utils.h"
+#include <cstddef>
+#include <random>
 
 namespace algorithms {
 

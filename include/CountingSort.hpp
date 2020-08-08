@@ -19,7 +19,7 @@
 #ifndef ALGORITHMS_COUNTINGSORT
 #define ALGORITHMS_COUNTINGSORT
 
-#include "utils.h"
+#include <vector>
 
 namespace algorithms {
 

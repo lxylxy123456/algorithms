@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_LINKEDLIST
 #define ALGORITHMS_LINKEDLIST
 
-#include "utils.h"
-
 namespace algorithms {
 
 template <typename T>

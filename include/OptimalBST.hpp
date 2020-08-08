@@ -22,7 +22,7 @@
 #define SIZT_1D std::vector<size_t>
 #define SIZT_2D std::vector<std::vector<size_t>>
 
-#include "utils.h"
+#include <vector>
 
 namespace algorithms {
 

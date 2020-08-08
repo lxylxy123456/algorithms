@@ -20,7 +20,6 @@
 #define ALGORITHMS_EUCLID
 
 #include <cassert>
-#include "utils.h"
 
 namespace algorithms {
 

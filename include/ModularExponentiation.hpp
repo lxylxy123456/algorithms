@@ -19,7 +19,7 @@
 #ifndef ALGORITHMS_MODULAREXPONENTIATION
 #define ALGORITHMS_MODULAREXPONENTIATION
 
-#include "utils.h"
+#include <cmath>
 
 #include "Euclid.hpp"
 

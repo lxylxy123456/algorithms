@@ -20,7 +20,6 @@
 #define ALGORITHMS_RELABELTOFRONT
 
 #include <list>
-#include "utils.h"
 
 #include "Graph.hpp"
 

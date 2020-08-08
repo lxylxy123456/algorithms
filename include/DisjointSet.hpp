@@ -20,7 +20,6 @@
 #define ALGORITHMS_DISJOINTSET
 
 #include <map>
-#include "utils.h"
 
 #include "Graph.hpp"
 

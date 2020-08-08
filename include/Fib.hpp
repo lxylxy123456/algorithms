@@ -20,7 +20,6 @@
 #define ALGORITHMS_FIB
 
 #include <thread>
-#include "utils.h"
 
 namespace algorithms {
 

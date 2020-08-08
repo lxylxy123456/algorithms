@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_JOHNSON
 #define ALGORITHMS_JOHNSON
 
-#include "utils.h"
-
 #include "SquareMatrixMultiply.hpp"
 #include "Dijkstra.hpp"
 

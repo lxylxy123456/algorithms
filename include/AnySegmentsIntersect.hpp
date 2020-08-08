@@ -21,7 +21,6 @@
 
 #include <algorithm>
 #include <cassert>
-#include "utils.h"
 
 #include "RedBlackTree.hpp"
 #include "SegmentsIntersect.hpp"

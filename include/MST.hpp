@@ -20,7 +20,6 @@
 #define ALGORITHMS_MST
 
 #include <map>
-#include "utils.h"
 
 #include "Graph.hpp"
 #include "DisjointSet.hpp"

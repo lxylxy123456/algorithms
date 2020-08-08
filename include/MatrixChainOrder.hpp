@@ -22,7 +22,7 @@
 #define VECT_SIZT std::vector<size_t>
 
 #include <exception>
-#include "utils.h"
+#include <vector>
 #include "SquareMatrixMultiply.hpp"
 
 namespace algorithms {

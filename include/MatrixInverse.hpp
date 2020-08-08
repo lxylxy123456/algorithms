@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_MATRIXINVERSE
 #define ALGORITHMS_MATRIXINVERSE
 
-#include "utils.h"
-
 #include "LUPSolve.hpp"
 
 namespace algorithms {

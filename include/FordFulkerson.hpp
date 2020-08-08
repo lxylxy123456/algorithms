@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_FORDFULKERSON
 #define ALGORITHMS_FORDFULKERSON
 
-#include "utils.h"
-
 #include "BFS.hpp"
 
 namespace algorithms {

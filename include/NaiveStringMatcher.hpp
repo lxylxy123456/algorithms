@@ -19,7 +19,7 @@
 #ifndef ALGORITHMS_NAIVESTRINGMATCHER
 #define ALGORITHMS_NAIVESTRINGMATCHER
 
-#include "utils.h"
+#include <vector>
 
 namespace algorithms {
 

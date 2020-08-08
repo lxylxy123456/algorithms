@@ -19,8 +19,7 @@
 #ifndef ALGORITHMS_STACK
 #define ALGORITHMS_STACK
 
-#include <exception>
-#include "utils.h"
+#include <stdexcept>
 
 namespace algorithms {
 

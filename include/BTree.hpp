@@ -19,9 +19,10 @@
 #ifndef ALGORITHMS_BTREE
 #define ALGORITHMS_BTREE
 
+#include <vector>
 #include <map>
 #include <iomanip>
-#include "utils.h"
+#include <iostream>
 
 namespace algorithms {
 

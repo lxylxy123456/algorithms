@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_LEASTSQUAREAPPROX
 #define ALGORITHMS_LEASTSQUAREAPPROX
 
-#include "utils.h"
-
 #include "LUPSolve.hpp"
 
 namespace algorithms {

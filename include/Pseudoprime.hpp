@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_PSEUDOPRIME
 #define ALGORITHMS_PSEUDOPRIME
 
-#include "utils.h"
-
 #include "ModularExponentiation.hpp"
 
 namespace algorithms {

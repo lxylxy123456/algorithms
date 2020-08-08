@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_BFS
 #define ALGORITHMS_BFS
 
-#include "utils.h"
-
 #include "Queue.hpp"
 #include "Graph.hpp"
 

@@ -19,7 +19,7 @@
 #ifndef ALGORITHMS_BINARYCOUNTER
 #define ALGORITHMS_BINARYCOUNTER
 
-#include "utils.h"
+#include <vector>
 
 namespace algorithms {
 

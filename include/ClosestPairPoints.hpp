@@ -22,7 +22,6 @@
 #include <algorithm>
 #include <cassert>
 #include <unordered_set>
-#include "utils.h"
 
 #include "SegmentsIntersect.hpp"
 

@@ -20,7 +20,6 @@
 #define ALGORITHMS_PMERGESORT
 
 #include <thread>
-#include "utils.h"
 
 #include "MergeSort.hpp"
 

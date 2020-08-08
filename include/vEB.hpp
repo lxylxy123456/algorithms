@@ -19,7 +19,7 @@
 #ifndef ALGORITHMS_VEB
 #define ALGORITHMS_VEB
 
-#include "utils.h"
+#include <algorithm>
 
 namespace algorithms {
 

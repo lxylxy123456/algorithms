@@ -19,7 +19,6 @@
 #ifndef ALGORITHMS_SELECT
 #define ALGORITHMS_SELECT
 
-#include "utils.h"
 #include "InsertSort.hpp"
 
 namespace algorithms {

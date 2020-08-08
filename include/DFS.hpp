@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_DFS
 #define ALGORITHMS_DFS
 
-#include "utils.h"
-
 #include "Graph.hpp"
 
 namespace algorithms {

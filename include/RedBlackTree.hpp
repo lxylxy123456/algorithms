@@ -19,7 +19,6 @@
 #ifndef ALGORITHMS_REDBLACKTREE
 #define ALGORITHMS_REDBLACKTREE
 
-#include "utils.h"
 #include "BinarySearchTree.hpp"
 
 namespace algorithms {

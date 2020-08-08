@@ -19,7 +19,8 @@
 #ifndef ALGORITHMS_BINARYTREE
 #define ALGORITHMS_BINARYTREE
 
-#include "utils.h"
+#include <vector>
+#include <sstream>
 #include "printtree.h"
 
 namespace algorithms {

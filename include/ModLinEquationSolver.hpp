@@ -19,7 +19,7 @@
 #ifndef ALGORITHMS_MODLINEQUATIONSOLVER
 #define ALGORITHMS_MODLINEQUATIONSOLVER
 
-#include "utils.h"
+#include <vector>
 
 #include "Euclid.hpp"
 

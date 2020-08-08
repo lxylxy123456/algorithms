@@ -22,7 +22,7 @@
 #include <cassert>
 #include <iomanip>
 #include <set>
-#include "utils.h"
+#include <vector>
 
 namespace algorithms {
 

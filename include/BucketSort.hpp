@@ -20,7 +20,6 @@
 #define ALGORITHMS_BUCKETSORT
 
 #include <cassert>
-#include "utils.h"
 #include "InsertSort.hpp"
 
 namespace algorithms {

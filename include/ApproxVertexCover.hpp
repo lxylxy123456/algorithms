@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_APPROXVERTEXCOVER
 #define ALGORITHMS_APPROXVERTEXCOVER
 
-#include "utils.h"
-
 #include "Graph.hpp"
 
 namespace algorithms {

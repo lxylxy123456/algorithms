@@ -20,7 +20,6 @@
 #define ALGORITHMS_SCC
 
 #include <map>
-#include "utils.h"
 
 #include "TopologicalSort.hpp"
 #include "DisjointSet.hpp"

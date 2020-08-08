@@ -19,7 +19,8 @@
 #ifndef ALGORITHMS_TASKSCHEDULE
 #define ALGORITHMS_TASKSCHEDULE
 
-#include "utils.h"
+#include <vector>
+#include <iostream>
 
 #include "Greedy.hpp"
 

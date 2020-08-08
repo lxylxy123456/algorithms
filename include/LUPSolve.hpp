@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_LUPSOLVE
 #define ALGORITHMS_LUPSOLVE
 
-#include "utils.h"
-
 #include "SquareMatrixMultiply.hpp"
 
 namespace algorithms {

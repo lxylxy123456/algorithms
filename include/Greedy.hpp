@@ -21,7 +21,6 @@
 
 #include <set>
 #include <map>
-#include "utils.h"
 
 namespace algorithms {
 

@@ -19,7 +19,8 @@
 #ifndef ALGORITHMS_POLLARDRHO
 #define ALGORITHMS_POLLARDRHO
 
-#include "utils.h"
+#include <cstddef>
+#include <random>
 
 #include "Euclid.hpp"
 

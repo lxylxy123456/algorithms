@@ -20,8 +20,7 @@
 #define ALGORITHMS_STORAGEMANAGE
 
 #include <cassert>
-#include <exception>
-#include "utils.h"
+#include <stdexcept>
 
 namespace algorithms {
 

@@ -19,7 +19,8 @@
 #ifndef ALGORITHMS_CHAINEDHASH
 #define ALGORITHMS_CHAINEDHASH
 
-#include "utils.h"
+#include <cstddef>
+
 #include "LinkedList.hpp"
 
 namespace algorithms {

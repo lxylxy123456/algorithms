@@ -20,7 +20,6 @@
 #define ALGORITHMS_DAGSHORTESTPATHS
 
 #include <algorithm>
-#include "utils.h"
 
 #include "TopologicalSort.hpp"
 #include "BellmanFord.hpp"

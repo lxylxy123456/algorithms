@@ -19,8 +19,7 @@
 #ifndef ALGORITHMS_OPENADDRESS
 #define ALGORITHMS_OPENADDRESS
 
-#include <exception>
-#include "utils.h"
+#include <stdexcept>
 
 namespace algorithms {
 

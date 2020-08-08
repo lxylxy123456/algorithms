@@ -20,7 +20,6 @@
 #define ALGORITHMS_MATVEC
 
 #include <thread>
-#include "utils.h"
 
 #include "SquareMatrixMultiply.hpp"
 

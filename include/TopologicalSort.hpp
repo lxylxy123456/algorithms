@@ -20,7 +20,6 @@
 #define ALGORITHMS_TOPOLOGICALSORT
 
 #include <deque>
-#include "utils.h"
 
 #include "DFS.hpp"
 

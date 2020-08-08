@@ -19,8 +19,7 @@
 #ifndef ALGORITHMS_PROTOVEB
 #define ALGORITHMS_PROTOVEB
 
-#include <exception>
-#include "utils.h"
+#include <stdexcept>
 
 namespace algorithms {
 

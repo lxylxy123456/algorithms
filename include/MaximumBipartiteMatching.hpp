@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_MAXIMUMBIPARTITEMATCHING
 #define ALGORITHMS_MAXIMUMBIPARTITEMATCHING
 
-#include "utils.h"
-
 #include "FordFulkerson.hpp"
 
 namespace algorithms {

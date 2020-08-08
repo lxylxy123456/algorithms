@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_FLOYDWARSHALL
 #define ALGORITHMS_FLOYDWARSHALL
 
-#include "utils.h"
-
 #include "Graph.hpp"
 
 namespace algorithms {
