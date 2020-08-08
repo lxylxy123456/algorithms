@@ -19,7 +19,7 @@
 #include "OnLineMaximum.hpp"
 
 #include <algorithm>
-#include "utils.h"
+#include "utils.hpp"
 
 using namespace algorithms;
 

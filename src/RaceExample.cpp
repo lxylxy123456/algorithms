@@ -19,7 +19,7 @@
 #include "RaceExample.hpp"
 
 #include <thread>
-#include "utils.h"
+#include "utils.hpp"
 
 using namespace algorithms;
 

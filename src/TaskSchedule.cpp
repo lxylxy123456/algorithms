@@ -18,7 +18,7 @@
 
 #include "TaskSchedule.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "Greedy.hpp"
 
 using namespace algorithms;

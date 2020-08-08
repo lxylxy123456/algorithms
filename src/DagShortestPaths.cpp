@@ -19,7 +19,7 @@
 #include "DagShortestPaths.hpp"
 
 #include <algorithm>
-#include "utils.h"
+#include "utils.hpp"
 #include "TopologicalSort.hpp"
 #include "BellmanFord.hpp"
 

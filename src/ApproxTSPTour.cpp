@@ -18,7 +18,7 @@
 
 #include "ApproxTSPTour.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "MST.hpp"
 #include "SegmentsIntersect.hpp"
 

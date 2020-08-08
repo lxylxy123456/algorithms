@@ -18,7 +18,7 @@
 
 #include "RadixSort.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "CountingSort.hpp"
 
 using namespace algorithms;

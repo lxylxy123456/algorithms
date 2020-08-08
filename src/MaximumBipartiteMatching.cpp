@@ -18,7 +18,7 @@
 
 #include "MaximumBipartiteMatching.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "FordFulkerson.hpp"
 
 using namespace algorithms;

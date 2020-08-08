@@ -20,7 +20,7 @@
 
 #include <cassert>
 #include <exception>
-#include "utils.h"
+#include "utils.hpp"
 
 using namespace algorithms;
 

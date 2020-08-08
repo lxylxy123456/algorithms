@@ -18,7 +18,7 @@
 
 #include "FordFulkerson.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "BFS.hpp"
 
 using namespace algorithms;

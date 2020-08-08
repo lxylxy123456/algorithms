@@ -18,7 +18,7 @@
 
 #include "RabinKarpMatcher.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "ModularExponentiation.hpp"
 #include "NaiveStringMatcher.hpp"
 

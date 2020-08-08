@@ -19,7 +19,7 @@
 #include "FibHeap.hpp"
 
 #include <exception>
-#include "utils.h"
+#include "utils.hpp"
 #include "RedBlackTree.hpp"
 
 using namespace algorithms;

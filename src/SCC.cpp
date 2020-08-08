@@ -19,7 +19,7 @@
 #include "SCC.hpp"
 
 #include <map>
-#include "utils.h"
+#include "utils.hpp"
 #include "TopologicalSort.hpp"
 #include "DisjointSet.hpp"
 

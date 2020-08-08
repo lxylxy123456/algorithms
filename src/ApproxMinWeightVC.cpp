@@ -18,7 +18,7 @@
 
 #include "ApproxMinWeightVC.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "Graph.hpp"
 #include "Simplex.hpp"
 

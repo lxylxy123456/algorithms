@@ -18,7 +18,7 @@
 
 #include "ChainedHash.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "LinkedList.hpp"
 
 using namespace algorithms;

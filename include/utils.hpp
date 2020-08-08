@@ -16,8 +16,8 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#ifndef UTILS_H
-#define UTILS_H
+#ifndef ALGORITHMS_UTILS
+#define ALGORITHMS_UTILS
 
 #include <iostream>
 #include <iterator>

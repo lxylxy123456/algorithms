@@ -19,7 +19,7 @@
 #include "PSquareMatrixMultiply.hpp"
 
 #include <thread>
-#include "utils.h"
+#include "utils.hpp"
 #include "MatVec.hpp"
 
 using namespace algorithms;

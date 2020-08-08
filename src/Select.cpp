@@ -18,7 +18,7 @@
 
 #include "Select.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "InsertSort.hpp"
 
 using namespace algorithms;

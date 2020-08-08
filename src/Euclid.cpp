@@ -19,7 +19,7 @@
 #include "Euclid.hpp"
 
 #include <cassert>
-#include "utils.h"
+#include "utils.hpp"
 
 using namespace algorithms;
 

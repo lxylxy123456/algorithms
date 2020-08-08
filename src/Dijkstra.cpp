@@ -18,7 +18,7 @@
 
 #include "Dijkstra.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "FibHeap.hpp"
 #include "BellmanFord.hpp"
 

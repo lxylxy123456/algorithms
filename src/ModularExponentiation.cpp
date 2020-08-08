@@ -18,7 +18,7 @@
 
 #include "ModularExponentiation.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "Euclid.hpp"
 
 using namespace algorithms;

@@ -18,7 +18,7 @@
 
 #include "Johnson.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "SquareMatrixMultiply.hpp"
 #include "Dijkstra.hpp"
 

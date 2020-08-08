@@ -19,7 +19,7 @@
 #include "TopologicalSort.hpp"
 
 #include <deque>
-#include "utils.h"
+#include "utils.hpp"
 #include "DFS.hpp"
 
 using namespace algorithms;

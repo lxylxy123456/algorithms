@@ -18,7 +18,7 @@
 
 #include "RandomizedSelect.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "Quicksort.hpp"
 
 using namespace algorithms;

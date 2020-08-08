@@ -17,7 +17,7 @@
 //
 
 #include "MergeSort.hpp"
-#include "utils.h"
+#include "utils.hpp"
 
 #include <cassert>
 

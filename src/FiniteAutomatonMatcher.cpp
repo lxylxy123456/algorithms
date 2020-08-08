@@ -18,7 +18,7 @@
 
 #include "FiniteAutomatonMatcher.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "NaiveStringMatcher.hpp"
 
 using namespace algorithms;

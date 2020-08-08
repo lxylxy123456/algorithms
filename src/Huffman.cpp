@@ -18,7 +18,7 @@
 
 #include "Huffman.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "MaxHeap.hpp"
 
 using namespace algorithms;

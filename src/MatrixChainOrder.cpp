@@ -19,7 +19,7 @@
 #include "MatrixChainOrder.hpp"
 
 #include <exception>
-#include "utils.h"
+#include "utils.hpp"
 #include "SquareMatrixMultiply.hpp"
 
 using namespace algorithms;

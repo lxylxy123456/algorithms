@@ -19,7 +19,7 @@
 #include "PMergeSort.hpp"
 
 #include <thread>
-#include "utils.h"
+#include "utils.hpp"
 #include "MergeSort.hpp"
 
 using namespace algorithms;

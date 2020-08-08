@@ -17,7 +17,7 @@
 //
 
 #include "HireAssistant.hpp"
-#include "utils.h"
+#include "utils.hpp"
 
 #include <cassert>
 

@@ -19,7 +19,7 @@
 #include "RelabelToFront.hpp"
 
 #include <list>
-#include "utils.h"
+#include "utils.hpp"
 #include "Graph.hpp"
 
 using namespace algorithms;

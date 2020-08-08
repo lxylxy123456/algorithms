@@ -19,7 +19,7 @@
 #include "MST.hpp"
 
 #include <map>
-#include "utils.h"
+#include "utils.hpp"
 #include "Graph.hpp"
 #include "DisjointSet.hpp"
 #include "FibHeap.hpp"

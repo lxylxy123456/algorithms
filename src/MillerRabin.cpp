@@ -18,7 +18,7 @@
 
 #include "MillerRabin.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "ModularExponentiation.hpp"
 
 using namespace algorithms;

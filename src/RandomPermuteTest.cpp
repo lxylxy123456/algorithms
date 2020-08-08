@@ -17,7 +17,7 @@
 //
 
 #include "RandomPermute.hpp"
-#include "utils.h"
+#include "utils.hpp"
 
 #include <cassert>
 

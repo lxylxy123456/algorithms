@@ -18,7 +18,7 @@
 
 #include "BFS.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "Queue.hpp"
 #include "Graph.hpp"
 

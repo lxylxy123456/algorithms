@@ -20,7 +20,7 @@
 
 #include <algorithm>
 #include <cassert>
-#include "utils.h"
+#include "utils.hpp"
 #include "RedBlackTree.hpp"
 #include "SegmentsIntersect.hpp"
 

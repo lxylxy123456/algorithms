@@ -19,7 +19,7 @@
 #include "Stack.hpp"
 
 #include <exception>
-#include "utils.h"
+#include "utils.hpp"
 
 using namespace algorithms;
 

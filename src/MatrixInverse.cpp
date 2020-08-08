@@ -18,7 +18,7 @@
 
 #include "MatrixInverse.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "LUPSolve.hpp"
 
 using namespace algorithms;

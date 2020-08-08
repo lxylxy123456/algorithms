@@ -18,7 +18,7 @@
 
 #include "BinarySearchTree.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "BinaryTree.hpp"
 
 using namespace algorithms;

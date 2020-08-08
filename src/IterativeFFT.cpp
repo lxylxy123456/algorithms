@@ -18,7 +18,7 @@
 
 #include "IterativeFFT.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 #include "RecursiveFFT.hpp"
 
 using namespace algorithms;

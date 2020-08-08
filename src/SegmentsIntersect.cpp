@@ -18,7 +18,7 @@
 
 #include "SegmentsIntersect.hpp"
 
-#include "utils.h"
+#include "utils.hpp"
 
 using namespace algorithms;
 

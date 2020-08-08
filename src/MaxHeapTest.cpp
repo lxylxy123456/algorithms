@@ -17,7 +17,7 @@
 //
 
 #include "MaxHeap.hpp"
-#include "utils.h"
+#include "utils.hpp"
 
 #include <cassert>
 

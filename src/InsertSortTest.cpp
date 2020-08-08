@@ -17,7 +17,7 @@
 //
 
 #include "InsertSort.hpp"
-#include "utils.h"
+#include "utils.hpp"
 
 #include <cassert>
 
