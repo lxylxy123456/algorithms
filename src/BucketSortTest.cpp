@@ -16,7 +16,7 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#include "RadixSort.hpp"
+#include "BucketSort.hpp"
 #include "utils.hpp"
 
 #include <cassert>
@@ -25,13 +25,13 @@ using namespace algorithms;
 
 #include "InsertSort.hpp"
 
-int test(int n, int k) {
+int test(int n) {
 	std::vector<int> a;
-	random_integers(a, 0, pow(2, k) - 1, n);
+	random_integers(a, 0, n - 1, n);
 	std::vector<int> b(a);
 	InsertSort(a);
-	RadixSort(b, k);
 	output_integers(a);
+	BucketSort<int>(b, 0, n);
 	output_integers(b);
 	assert(a == b);
 	return 0;
@@ -39,9 +39,7 @@ int test(int n, int k) {
 
 int main(int argc, char *argv[]) {
 	std::vector<int> ns{0, 1, 2, 5, 8, 19, 52, 100};
-	std::vector<int> ks{0, 1, 2, 5, 8, 19, 29};
 	for (std::vector<int>::iterator n = ns.begin(); n < ns.end(); n++)
-		for (std::vector<int>::iterator k = ks.begin(); k < ks.end(); k++)
-			test(*n, *k);
+		test(*n);
 	return 0;
 }

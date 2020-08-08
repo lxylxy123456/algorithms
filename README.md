@@ -31,8 +31,8 @@
 |  7 | Quicksort				| Randomized Partition					|  179 |
 |  7 | Quicksort				| Randomized Quicksort					|  179 |
 |  8 | CountingSort				| Counting Sort							|  195 |
-|  8 | RadixSort.cpp				| Radix Sort							|  198 |
-|  8 | BucketSort.cpp				| Bucket Sort							|  201 |
+|  8 | RadixSort				| Radix Sort							|  198 |
+|  8 | BucketSort				| Bucket Sort							|  201 |
 |  9 | Minimum.cpp					| Minimum								|  214 |
 |  9 | Minimum.cpp					| Maximum								|  214 |
 |  9 | Minimum.cpp					| Min Max								|  214 |
