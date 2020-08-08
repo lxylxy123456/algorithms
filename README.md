@@ -237,8 +237,12 @@
 (TODO; see `.github/workflows/build.yml`)
 
 # Supplementary Files
-* `utils.h`: Utils
-* `Graph.cpp`: Graph classes
+* `Graph.hpp`, `GraphMain.cpp`, `GraphTest.cpp`: `Graph`-related classes
+* `output_integers.hpp`: print a vector
+* `print_ptr.hpp`: print a pointer
+* `printtree.hpp`: print a tree using ASCII art (adapted from UBC CS221)
+* `random_integers.hpp`: generate a random vector
+* `utils.hpp`: utility functions for cpp files
 
 # Supplementary Programs
 * `include_check.py`: identifies unnecessary includes
