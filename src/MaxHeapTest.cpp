@@ -38,16 +38,6 @@ bool is_increasing_order(T p, T r) {
 	return true;
 }
 
-template <typename T>
-bool vector_equal(const std::vector<T>& a, const std::vector<T>& b) {
-	if (a.size() != b.size())
-		return false;
-	for (size_t i = 0; i < a.size(); i++)
-		if (a[i] != b[i])
-			return false;
-	return true;
-}
-
 int test(int test_number, int n) {
 	std::vector<int> data = {4, 16, 10, 14, 7, 9, 3, 2, 8, 1};
 	Heap<int> a(data, data.size()), b;
@@ -57,7 +47,7 @@ int test(int test_number, int n) {
 			output_integers(a);
 			a.MaxHeapify(0);
 			output_integers(a);
-			assert(vector_equal(a, ans1));
+			assert(a == ans1);
 			break;
 		case 2: // test BuildMaxHeap and HeapSort
 			random_integers(b, 0, n - 1, n);
@@ -74,18 +64,18 @@ int test(int test_number, int n) {
 				c.MaxHeapInsert(i);
 			}
 			output_integers(c);
-			assert(vector_equal(c, ans1));
+			assert(c == ans1);
 			assert(c.HeapMaximum() == 16);
 			assert(c.HeapExtractMax() == 16);
 			c.pop_back();
 			output_integers(c);
-			assert(vector_equal(c, ans2));
+			assert(c == ans2);
 			c.HeapIncreaseKey(c.heap_size - 1, 19);
 			output_integers(c);
-			assert(vector_equal(c, ans3));
+			assert(c == ans3);
 			c.HeapIncreaseKey(c.heap_size - 1, 11);
 			output_integers(c);
-			assert(vector_equal(c, ans4));
+			assert(c == ans4);
 			break;
 		case 4: // test BuildMaxHeap_prime
 			random_integers(b, 0, n - 1, n);
