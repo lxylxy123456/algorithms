@@ -18,7 +18,6 @@
 
 #include "FibHeap.hpp"
 
-#include <exception>
 #include "utils.hpp"
 #include "RedBlackTree.hpp"
 

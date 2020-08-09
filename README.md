@@ -42,8 +42,8 @@
 | 10 | Stack					| StackEmpty							|  233 |
 | 10 | Stack					| Push									|  233 |
 | 10 | Stack					| Pop									|  233 |
-| 10 | Queue.cpp					| Enqueue								|  235 |
-| 10 | Queue.cpp					| Dequeue								|  235 |
+| 10 | Queue					| Enqueue								|  235 |
+| 10 | Queue					| Dequeue								|  235 |
 | 10 | LinkedList.cpp				| List Search							|  237 |
 | 10 | LinkedList.cpp				| List Insert							|  238 |
 | 10 | LinkedList.cpp				| List Delete							|  238 |

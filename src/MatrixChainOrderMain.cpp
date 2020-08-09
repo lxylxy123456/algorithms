@@ -18,7 +18,6 @@
 
 #include "MatrixChainOrder.hpp"
 
-#include <exception>
 #include "utils.hpp"
 #include "SquareMatrixMultiply.hpp"
 

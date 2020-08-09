@@ -18,7 +18,6 @@
 
 #include "OpenAddress.hpp"
 
-#include <exception>
 #include "utils.hpp"
 
 using namespace algorithms;

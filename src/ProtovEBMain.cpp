@@ -18,7 +18,6 @@
 
 #include "ProtovEB.hpp"
 
-#include <exception>
 #include "utils.hpp"
 
 using namespace algorithms;
