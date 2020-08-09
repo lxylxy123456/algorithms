@@ -44,14 +44,14 @@
 | 10 | Stack					| Pop									|  233 |
 | 10 | Queue					| Enqueue								|  235 |
 | 10 | Queue					| Dequeue								|  235 |
-| 10 | LinkedList.cpp				| List Search							|  237 |
-| 10 | LinkedList.cpp				| List Insert							|  238 |
-| 10 | LinkedList.cpp				| List Delete							|  238 |
-| 10 | LinkedList.cpp				| List Delete prime						|  238 |
-| 10 | LinkedList.cpp				| List Search prime						|  239 |
-| 10 | LinkedList.cpp				| List Insert prime						|  239 |
-| 10 | StorageManage.cpp			| Allocate Object						|  244 |
-| 10 | StorageManage.cpp			| Free Object							|  244 |
+| 10 | LinkedList				| List Search							|  237 |
+| 10 | LinkedList				| List Insert							|  238 |
+| 10 | LinkedList				| List Delete							|  238 |
+| 10 | LinkedList				| List Delete prime						|  238 |
+| 10 | LinkedList				| List Search prime						|  239 |
+| 10 | LinkedList				| List Insert prime						|  239 |
+| 10 | StorageManage			| Allocate Object						|  244 |
+| 10 | StorageManage			| Free Object							|  244 |
 | 11 | DirectAddress.cpp			| Direct Address Search					|  254 |
 | 11 | DirectAddress.cpp			| Direct Address Insert					|  254 |
 | 11 | DirectAddress.cpp			| Direct Address Delete					|  254 |
