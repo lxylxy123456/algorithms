@@ -26,7 +26,10 @@ namespace algorithms {
 template <typename T>
 class DirectAddress {
 	public:
-		DirectAddress(size_t s): size(s), data(new T*[size]) {}
+		DirectAddress(size_t s): size(s), data(new T*[size]) {
+			for (size_t i = 0; i < size; i++)
+				data[i] = nullptr;
+		}
 		T* DirectAddressSearch(size_t k) {
 			return data[k];
 		}
