@@ -20,6 +20,8 @@ CXXFLAGS=-Wall -g -std=c++11 -pthread
 
 SOURCES_OLD = $(wildcard *.cpp)
 TARGETS_OLD = $(SOURCES_OLD:.cpp=)
+DEPENDS_OLD := $(patsubst %,%.d,$(TARGETS_OLD))
+-include $(DEPENDS_OLD)
 
 SOURCES := $(wildcard src/*.cpp)
 TARGETS := $(patsubst src/%.cpp,bin/%,$(SOURCES))
@@ -37,7 +39,7 @@ ALL_NEW: $(TARGETS)
 test: $(TESTS)
 
 $(TARGETS_OLD): %: %.cpp
-	$(CXX) $(CXXFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) -MMD -MF $(patsubst %,%.d,$@) -I include/ -o $@ $<
 
 $(TARGETS): bin/%: src/%.cpp
 	$(CXX) $(CXXFLAGS) -MMD -MF $(patsubst %,%.d,$@) -I include/ -o $@ $<

@@ -56,5 +56,6 @@ int main(int argc, char *argv[]) {
 				break;
 		}
 	}
+	delete S;
 	return 0;
 }

@@ -42,6 +42,7 @@ int test(std::string t) {
 		Data<int>* ptr = S->ListSearch(i);
 		assert((ptr == nil) == (i % 2 == 0 || i >= 100));
 	}
+	delete S;
 	return 0;
 }
 
