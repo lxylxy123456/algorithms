@@ -58,9 +58,9 @@
 | 11 | ChainedHash				| Chained Hash Insert					|  258 |
 | 11 | ChainedHash				| Chained Hash Search					|  258 |
 | 11 | ChainedHash				| Chained Hash Delete					|  258 |
-| 11 | Hash.cpp						| Division Hash							|  263 |
-| 11 | Hash.cpp						| Multiplication Hash					|  263 |
-| 11 | Hash.cpp						| Universal Hash						|  263 |
+| 11 | Hash						| Division Hash							|  263 |
+| 11 | Hash						| Multiplication Hash					|  263 |
+| 11 | Hash						| Universal Hash						|  263 |
 | 11 | OpenAddress.cpp				| Hash Insert							|  270 |
 | 11 | OpenAddress.cpp				| Hash Search							|  271 |
 | 12 | BinaryTree.cpp				| Inorder Tree Walk						|  288 |
