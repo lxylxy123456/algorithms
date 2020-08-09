@@ -37,7 +37,10 @@ class Pair {
 template <typename T>
 class OpenAddress {
 	public:
-		OpenAddress(size_t s): size(s), data(new Pair<T>*[size]) {}
+		OpenAddress(size_t s): size(s), data(new Pair<T>*[size]) {
+			for (size_t i = 0; i < s; i++)
+				data[i] = nullptr;
+		}
 		size_t HashInsert(size_t k, T v) {
 			for (size_t i = 0; i < size; i++) {
 				size_t j = h(k, i);

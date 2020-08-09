@@ -61,8 +61,8 @@
 | 11 | Hash						| Division Hash							|  263 |
 | 11 | Hash						| Multiplication Hash					|  263 |
 | 11 | Hash						| Universal Hash						|  263 |
-| 11 | OpenAddress.cpp				| Hash Insert							|  270 |
-| 11 | OpenAddress.cpp				| Hash Search							|  271 |
+| 11 | OpenAddress				| Hash Insert							|  270 |
+| 11 | OpenAddress				| Hash Search							|  271 |
 | 12 | BinaryTree.cpp				| Inorder Tree Walk						|  288 |
 | 12 | BinaryTree.cpp				| Preorder Tree Walk					|  289 |
 | 12 | BinaryTree.cpp				| Postorder Tree Walk					|  289 |
