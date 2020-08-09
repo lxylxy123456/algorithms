@@ -16,9 +16,9 @@ jobs:
     - name: mkdir
       run: mkdir -p bin/ d/
     - name: make
-      run: make ALL_NEW
+      run: make ALL_NEW -j
     - name: test
-      run: make test
+      run: make test -j
     - name: mv
       run: mv bin/*.d d/
     - name: upload bin
