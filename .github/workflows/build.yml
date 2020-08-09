@@ -14,14 +14,21 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: mkdir
-      run: mkdir -p bin/
+      run: mkdir -p bin/ d/
     - name: make
       run: make ALL_NEW
     - name: test
       run: make test
-    - name: upload results
+    - name: mv
+      run: mv bin/*.d d/
+    - name: upload bin
       uses: actions/upload-artifact@v2
       with:
         name: bin
         path: bin/*
+    - name: upload dependencies
+      uses: actions/upload-artifact@v2
+      with:
+        name: dependencies
+        path: d/*
 
