@@ -16,7 +16,7 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#include "Stack.hpp"
+#include "Queue.hpp"
 #include "utils.hpp"
 
 #include <cassert>
@@ -25,46 +25,45 @@ using namespace algorithms;
 
 int test(int n) {
 	std::cout << n << std::endl;
-	Stack<int> S(n);
-	for (int i = 0; i < n; i++) {
-		assert(S.StackEmpty() == (i == 0));
-		S.Push(i);
+	Queue<int> S(n);
+	for (int i = 1; i < n; i++) {
+		assert(S.Empty() == (i == 1));
+		S.Enqueue(i);
 	}
-	for (int i = n - 1; i >= 0; i--) {
-		assert(!S.StackEmpty());
-		assert(S.Pop() == i);
+	for (int i = 1; i < n; i++) {
+		assert(!S.Empty());
+		assert(S.Dequeue() == i);
 	}
-	assert(S.StackEmpty());
+	assert(S.Empty());
 	return 0;
 }
 
 int test2() {
 	std::cout << "test2" << std::endl;
-	Stack<int> S(5);
-	S.Push(1);
-	S.Push(2);
-	S.Push(3);
-	assert(S.Pop() == 3);
-	S.Push(4);
-	S.Push(5);
-	assert(S.Pop() == 5);
-	S.MultiPop(2);
-	assert(S.Pop() == 1);
-	assert(S.StackEmpty());
-	S.Push(6);
-	S.Push(7);
-	S.Push(8);
-	assert(S.Pop() == 8);
-	S.Push(9);
-	S.Push(10);
-	assert(S.Pop() == 10);
-	S.MultiPop(4);
-	assert(S.StackEmpty());
+	Queue<int> S(5);
+	S.Enqueue(1);
+	S.Enqueue(2);
+	S.Enqueue(3);
+	assert(S.Dequeue() == 1);
+	S.Enqueue(4);
+	S.Enqueue(5);
+	assert(S.Dequeue() == 2);
+	assert(S.Dequeue() == 3);
+	assert(S.Dequeue() == 4);
+	assert(S.Dequeue() == 5);
 	try {
-		S.Pop();
+		S.Dequeue();
 		assert(false);
 	} catch (std::invalid_argument& e) {
 		assert(std::string(e.what()) == "underflow");
+	}
+	for (int i = 0; i < 4; i++)
+		S.Enqueue(i);
+	try {
+		S.Enqueue(4);
+		assert(false);
+	} catch (std::invalid_argument& e) {
+		assert(std::string(e.what()) == "overflow");
 	}
 	return 0;
 }
