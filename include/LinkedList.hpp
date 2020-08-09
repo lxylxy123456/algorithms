@@ -103,7 +103,7 @@ class LinkedList_prime: public LinkedListBase<T> {
 		}
 		virtual void ListInsert_prime(T x) {
 			nil->next = new Data<T>(x, nil, nil->next);
-			nil->next->prev = nil->next;
+			nil->next->next->prev = nil->next;
 		}
 		virtual ~LinkedList_prime() {
 			for (Data<T>* i = nil; i != nil; ) {
