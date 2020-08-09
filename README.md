@@ -52,12 +52,12 @@
 | 10 | LinkedList				| List Insert prime						|  239 |
 | 10 | StorageManage			| Allocate Object						|  244 |
 | 10 | StorageManage			| Free Object							|  244 |
-| 11 | DirectAddress.cpp			| Direct Address Search					|  254 |
-| 11 | DirectAddress.cpp			| Direct Address Insert					|  254 |
-| 11 | DirectAddress.cpp			| Direct Address Delete					|  254 |
-| 11 | ChainedHash.cpp				| Chained Hash Insert					|  258 |
-| 11 | ChainedHash.cpp				| Chained Hash Search					|  258 |
-| 11 | ChainedHash.cpp				| Chained Hash Delete					|  258 |
+| 11 | DirectAddress			| Direct Address Search					|  254 |
+| 11 | DirectAddress			| Direct Address Insert					|  254 |
+| 11 | DirectAddress			| Direct Address Delete					|  254 |
+| 11 | ChainedHash				| Chained Hash Insert					|  258 |
+| 11 | ChainedHash				| Chained Hash Search					|  258 |
+| 11 | ChainedHash				| Chained Hash Delete					|  258 |
 | 11 | Hash.cpp						| Division Hash							|  263 |
 | 11 | Hash.cpp						| Multiplication Hash					|  263 |
 | 11 | Hash.cpp						| Universal Hash						|  263 |
