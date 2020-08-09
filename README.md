@@ -39,9 +39,9 @@
 |  9 | RandomizedSelect			| Randomized Select						|  216 |
 |  9 | RandomizedSelect			| Randomized Select Iter				|  219 |
 |  9 | Select					| Select								|  220 |
-| 10 | Stack.cpp					| StackEmpty							|  233 |
-| 10 | Stack.cpp					| Push									|  233 |
-| 10 | Stack.cpp					| Pop									|  233 |
+| 10 | Stack					| StackEmpty							|  233 |
+| 10 | Stack					| Push									|  233 |
+| 10 | Stack					| Pop									|  233 |
 | 10 | Queue.cpp					| Enqueue								|  235 |
 | 10 | Queue.cpp					| Dequeue								|  235 |
 | 10 | LinkedList.cpp				| List Search							|  237 |
@@ -105,7 +105,7 @@
 | 16 | Huffman.cpp					| Huffman								|  431 |
 | 16 | Greedy.cpp					| Greedy								|  440 |
 | 16 | TaskSchedule.cpp				| Task Schedule							|  446 |
-| 17 | Stack.cpp					| Multi Pop								|  453 |
+| 17 | Stack					| Multi Pop								|  453 |
 | 17 | BinaryCounter.cpp			| Increment								|  454 |
 | 17 | DynamicTable.cpp				| Table Insert							|  464 |
 | 18 | BTree.cpp					| B Tree Search							|  491 |

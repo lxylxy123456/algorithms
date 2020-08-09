@@ -73,6 +73,6 @@ int main(int argc, char *argv[]) {
 	std::vector<int> ns{0, 1, 2, 5, 8, 19, 52, 100};
 	for (std::vector<int>::iterator n = ns.begin(); n < ns.end(); n++)
 		test(*n);
-	test_predef();
+	test2();
 	return 0;
 }
