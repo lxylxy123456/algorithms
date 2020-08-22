@@ -25,59 +25,109 @@ Contents
 |    |                          +---------------------------------------+------+
 |    |                          | Square Matrix Multiply Strassen       |   82 |
 +----+--------------------------+---------------------------------------+------+
+|  5 | HireAssistant            | Hire Assistant                        |  115 |
+|    |                          +---------------------------------------+------+
+|    |                          | Randomized Hire Assistant             |  124 |
+|    +--------------------------+---------------------------------------+------+
+|    | RandomPermute            | Permute By Sorting                    |  125 |
+|    |                          +---------------------------------------+------+
+|    |                          | Randomize In Place                    |  126 |
+|    +--------------------------+---------------------------------------+------+
+|    | OnLineMaximum            | On Line Maximum                       |  140 |
++----+--------------------------+---------------------------------------+------+
+|  6 | MaxHeap                  | Max Heapify                           |  154 |
+|    |                          +---------------------------------------+------+
+|    |                          | Build Max Heap                        |  157 |
+|    |                          +---------------------------------------+------+
+|    |                          | Heap Sort                             |  160 |
+|    |                          +---------------------------------------+------+
+|    |                          | Heap Maximum                          |  163 |
+|    |                          +---------------------------------------+------+
+|    |                          | Heap Extract Max                      |  163 |
+|    |                          +---------------------------------------+------+
+|    |                          | Heap Increase Key                     |  164 |
+|    |                          +---------------------------------------+------+
+|    |                          | Max Heap Insert                       |  164 |
+|    |                          +---------------------------------------+------+
+|    |                          | Build Max Heap prime                  |  167 |
++----+--------------------------+---------------------------------------+------+
+|  7 | Quicksort                | Quicksort                             |  171 |
+|    |                          +---------------------------------------+------+
+|    |                          | Partition                             |  171 |
+|    |                          +---------------------------------------+------+
+|    |                          | Randomized Partition                  |  179 |
+|    |                          +---------------------------------------+------+
+|    |                          | Randomized Quicksort                  |  179 |
++----+--------------------------+---------------------------------------+------+
+|  8 | CountingSort             | Counting Sort                         |  195 |
+|    +--------------------------+---------------------------------------+------+
+|    | RadixSort                | Radix Sort                            |  198 |
+|    +--------------------------+---------------------------------------+------+
+|    | BucketSort               | Bucket Sort                           |  201 |
++----+--------------------------+---------------------------------------+------+
+|  9 | Minimum                  | Minimum                               |  214 |
+|    |                          +---------------------------------------+------+
+|    |                          | Maximum                               |  214 |
+|    |                          +---------------------------------------+------+
+|    |                          | Min Max                               |  214 |
+|    +--------------------------+---------------------------------------+------+
+|    | RandomizedSelect         | Randomized Select                     |  216 |
+|    |                          +---------------------------------------+------+
+|    |                          | Randomized Select Iter                |  219 |
+|    +--------------------------+---------------------------------------+------+
+|    | Select                   | Select                                |  220 |
++----+--------------------------+---------------------------------------+------+
+| 10 | Stack                    | StackEmpty                            |  233 |
+|    |                          +---------------------------------------+------+
+|    |                          | Push                                  |  233 |
+|    |                          +---------------------------------------+------+
+|    |                          | Pop                                   |  233 |
+|    +--------------------------+---------------------------------------+------+
+|    | Queue                    | Enqueue                               |  235 |
+|    |                          +---------------------------------------+------+
+|    |                          | Dequeue                               |  235 |
+|    +--------------------------+---------------------------------------+------+
+|    | LinkedList               | List Search                           |  237 |
+|    |                          +---------------------------------------+------+
+|    |                          | List Insert                           |  238 |
+|    |                          +---------------------------------------+------+
+|    |                          | List Delete                           |  238 |
+|    |                          +---------------------------------------+------+
+|    |                          | List Delete prime                     |  238 |
+|    |                          +---------------------------------------+------+
+|    |                          | List Search prime                     |  239 |
+|    |                          +---------------------------------------+------+
+|    |                          | List Insert prime                     |  239 |
+|    +--------------------------+---------------------------------------+------+
+|    | StorageManage            | Allocate Object                       |  244 |
+|    |                          +---------------------------------------+------+
+|    |                          | Free Object                           |  244 |
++----+--------------------------+---------------------------------------+------+
+| 11 | DirectAddress            | Direct Address Search                 |  254 |
+|    |                          +---------------------------------------+------+
+|    |                          | Direct Address Insert                 |  254 |
+|    |                          +---------------------------------------+------+
+|    |                          | Direct Address Delete                 |  254 |
+|    +--------------------------+---------------------------------------+------+
+|    | ChainedHash              | Chained Hash Insert                   |  258 |
+|    |                          +---------------------------------------+------+
+|    |                          | Chained Hash Search                   |  258 |
+|    |                          +---------------------------------------+------+
+|    |                          | Chained Hash Delete                   |  258 |
+|    +--------------------------+---------------------------------------+------+
+|    | Hash                     | Division Hash                         |  263 |
+|    |                          +---------------------------------------+------+
+|    |                          | Multiplication Hash                   |  263 |
+|    |                          +---------------------------------------+------+
+|    |                          | Universal Hash                        |  263 |
+|    +--------------------------+---------------------------------------+------+
+|    | OpenAddress              | Hash Insert                           |  270 |
+|    |                          +---------------------------------------+------+
+|    |                          | Hash Search                           |  271 |
++----+--------------------------+---------------------------------------+------+
 
 .. code:: md
 
-    |  5 | HireAssistant            | Hire Assistant                        |  115 |
-    |  5 | HireAssistant            | Randomized Hire Assistant             |  124 |
-    |  5 | RandomPermute            | Permute By Sorting                    |  125 |
-    |  5 | RandomPermute            | Randomize In Place                    |  126 |
-    |  5 | OnLineMaximum            | On Line Maximum                       |  140 |
-    |  6 | MaxHeap                  | Max Heapify                           |  154 |
-    |  6 | MaxHeap                  | Build Max Heap                        |  157 |
-    |  6 | MaxHeap                  | Heap Sort                             |  160 |
-    |  6 | MaxHeap                  | Heap Maximum                          |  163 |
-    |  6 | MaxHeap                  | Heap Extract Max                      |  163 |
-    |  6 | MaxHeap                  | Heap Increase Key                     |  164 |
-    |  6 | MaxHeap                  | Max Heap Insert                       |  164 |
-    |  6 | MaxHeap                  | Build Max Heap prime                  |  167 |
-    |  7 | Quicksort                | Quicksort                             |  171 |
-    |  7 | Quicksort                | Partition                             |  171 |
-    |  7 | Quicksort                | Randomized Partition                  |  179 |
-    |  7 | Quicksort                | Randomized Quicksort                  |  179 |
-    |  8 | CountingSort             | Counting Sort                         |  195 |
-    |  8 | RadixSort                | Radix Sort                            |  198 |
-    |  8 | BucketSort               | Bucket Sort                           |  201 |
-    |  9 | Minimum                  | Minimum                               |  214 |
-    |  9 | Minimum                  | Maximum                               |  214 |
-    |  9 | Minimum                  | Min Max                               |  214 |
-    |  9 | RandomizedSelect         | Randomized Select                     |  216 |
-    |  9 | RandomizedSelect         | Randomized Select Iter                |  219 |
-    |  9 | Select                   | Select                                |  220 |
-    | 10 | Stack                    | StackEmpty                            |  233 |
-    | 10 | Stack                    | Push                                  |  233 |
-    | 10 | Stack                    | Pop                                   |  233 |
-    | 10 | Queue                    | Enqueue                               |  235 |
-    | 10 | Queue                    | Dequeue                               |  235 |
-    | 10 | LinkedList               | List Search                           |  237 |
-    | 10 | LinkedList               | List Insert                           |  238 |
-    | 10 | LinkedList               | List Delete                           |  238 |
-    | 10 | LinkedList               | List Delete prime                     |  238 |
-    | 10 | LinkedList               | List Search prime                     |  239 |
-    | 10 | LinkedList               | List Insert prime                     |  239 |
-    | 10 | StorageManage            | Allocate Object                       |  244 |
-    | 10 | StorageManage            | Free Object                           |  244 |
-    | 11 | DirectAddress            | Direct Address Search                 |  254 |
-    | 11 | DirectAddress            | Direct Address Insert                 |  254 |
-    | 11 | DirectAddress            | Direct Address Delete                 |  254 |
-    | 11 | ChainedHash              | Chained Hash Insert                   |  258 |
-    | 11 | ChainedHash              | Chained Hash Search                   |  258 |
-    | 11 | ChainedHash              | Chained Hash Delete                   |  258 |
-    | 11 | Hash                     | Division Hash                         |  263 |
-    | 11 | Hash                     | Multiplication Hash                   |  263 |
-    | 11 | Hash                     | Universal Hash                        |  263 |
-    | 11 | OpenAddress              | Hash Insert                           |  270 |
-    | 11 | OpenAddress              | Hash Search                           |  271 |
     | 12 | BinaryTree.cpp               | Inorder Tree Walk                     |  288 |
     | 12 | BinaryTree.cpp               | Preorder Tree Walk                    |  289 |
     | 12 | BinaryTree.cpp               | Postorder Tree Walk                   |  289 |
