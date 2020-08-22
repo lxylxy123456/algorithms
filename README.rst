@@ -1,6 +1,6 @@
 algorithms
 ==========
-Personal implementation of some algorithms in ``Introduction to Algorithms'',
+Personal implementation of some algorithms in "Introduction to Algorithms",
 third edition
 
 Contents
