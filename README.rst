@@ -317,3 +317,11 @@ Supplementary Programs
 * ``include_check.py``: identifies unnecessary includes
 * ``vEB_check.py``: compare results of ``ProtovEB.cpp`` and ``vEB.cpp``
 * ``dot.sh``: generate a graphviz graph from stdin
+
+Difference from the "algorithm" project
+---------------------------------------
+* Separated header files from main functions.
+* Added tests to all algorithms.
+* Fixed some bugs in algorithms.
+* Added continuous integration (CI) using Github Actions.
+* (TODO) Resolved memory leaks.
