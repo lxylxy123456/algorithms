@@ -23,24 +23,28 @@
 
 using namespace algorithms;
 
+void test_walk(BinaryTree<int>& BT, std::vector<std::vector<int>> expected) {
+	{
+		std::vector<int> ans;
+		BT.InorderTreeWalk(ans);
+		assert(ans == expected[0]);
+	}
+	{
+		std::vector<int> ans;
+		BT.PreorderTreeWalk(ans);
+		assert(ans == expected[1]);
+	}
+	{
+		std::vector<int> ans;
+		BT.PostorderTreeWalk(ans);
+		assert(ans == expected[2]);
+	}
+}
+
 int test0() {
 	BinaryTree<int> BT;
 	BT.print_tree();
-	{
-		std::vector<int> ans, expected = {};
-		BT.InorderTreeWalk(ans);
-		assert(ans == expected);
-	}
-	{
-		std::vector<int> ans, expected = {};
-		BT.PreorderTreeWalk(ans);
-		assert(ans == expected);
-	}
-	{
-		std::vector<int> ans, expected = {};
-		BT.PostorderTreeWalk(ans);
-		assert(ans == expected);
-	}
+	test_walk(BT, {{}, {}, {}});
 	return 0;
 }
 
@@ -48,21 +52,7 @@ int test1() {
 	BinaryTree<int> BT;
 	BT.root = new Node<int>(9, BT.root); 	/* 9 */
 	BT.print_tree();
-	{
-		std::vector<int> ans, expected = {9};
-		BT.InorderTreeWalk(ans);
-		assert(ans == expected);
-	}
-	{
-		std::vector<int> ans, expected = {9};
-		BT.PreorderTreeWalk(ans);
-		assert(ans == expected);
-	}
-	{
-		std::vector<int> ans, expected = {9};
-		BT.PostorderTreeWalk(ans);
-		assert(ans == expected);
-	}
+	test_walk(BT, {{9}, {9}, {9}});
 	return 0;
 }
 
@@ -72,21 +62,7 @@ int test2() {
 	BT.root->left = new Node<int>(1, BT.root->left); 	/*  / \  */
 	BT.root->right = new Node<int>(3, BT.root->left); 	/* 1   3 */
 	BT.print_tree();
-	{
-		std::vector<int> ans, expected = {1, 2, 3};
-		BT.InorderTreeWalk(ans);
-		assert(ans == expected);
-	}
-	{
-		std::vector<int> ans, expected = {2, 1, 3};
-		BT.PreorderTreeWalk(ans);
-		assert(ans == expected);
-	}
-	{
-		std::vector<int> ans, expected = {1, 3, 2};
-		BT.PostorderTreeWalk(ans);
-		assert(ans == expected);
-	}
+	test_walk(BT, {{1, 2, 3}, {2, 1, 3}, {1, 3, 2}});
 	return 0;
 }
 
@@ -100,21 +76,17 @@ int test3() {
 	BT.root->right->left = new Node<int>(5, BT.root->right);
 	BT.root->right->right = new Node<int>(7, BT.root->right);
 	BT.print_tree();
-	{
-		std::vector<int> ans, expected = {1, 2, 3, 4, 5, 6, 7};
-		BT.InorderTreeWalk(ans);
-		assert(ans == expected);
-	}
-	{
-		std::vector<int> ans, expected = {4, 2, 1, 3, 6, 5, 7};
-		BT.PreorderTreeWalk(ans);
-		assert(ans == expected);
-	}
-	{
-		std::vector<int> ans, expected = {1, 3, 2, 5, 7, 6, 4};
-		BT.PostorderTreeWalk(ans);
-		assert(ans == expected);
-	}
+	test_walk(BT, {
+		{1, 2, 3, 4, 5, 6, 7},
+		{4, 2, 1, 3, 6, 5, 7},
+		{1, 3, 2, 5, 7, 6, 4}});
+	delete BT.root->right->right;
+	BT.root->right->right = nullptr;
+	BT.print_tree();
+	test_walk(BT, {
+		{1, 2, 3, 4, 5, 6},
+		{4, 2, 1, 3, 6, 5},
+		{1, 3, 2, 5, 6, 4}});
 	return 0;
 }
 
