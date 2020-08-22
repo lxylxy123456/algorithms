@@ -1,6 +1,6 @@
 algorithms
 ==========
-Personal implementation of some algorithms in "Introduction to Algorithms",
+Personal implementation of some algorithms in ``Introduction to Algorithms'',
 third edition
 
 Contents
@@ -125,188 +125,195 @@ Contents
 |    |                          +---------------------------------------+------+
 |    |                          | Hash Search                           |  271 |
 +----+--------------------------+---------------------------------------+------+
-
-.. code:: md
-
-    | 12 | BinaryTree.cpp               | Inorder Tree Walk                     |  288 |
-    |    |                              | Preorder Tree Walk                    |  289 |
-    |    |                              | Postorder Tree Walk                   |  289 |
-    |    | BinarySearchTree.cpp         | Tree Search                           |  290 |
-    |    |                              | Iterative Tree Search                 |  291 |
-    |    |                              | Tree Minimum                          |  291 |
-    |    |                              | Tree Maximum                          |  291 |
-    |    |                              | Tree Successor                        |  292 |
-    |    |                              | Tree Predecessor                      |  293 |
-    |    |                              | Tree Insert                           |  294 |
-    |    |                              | Transplant                            |  296 |
-    |    |                              | Tree Delete                           |  298 |
-    | 13 | RedBlackTree.cpp             | Left Rotate                           |  313 |
-    |    |                              | Right Rotate                          |  313 |
-    |    |                              | RB Insert                             |  315 |
-    |    |                              | RB Insert Fixup                       |  316 |
-    |    |                              | RB Transplant                         |  323 |
-    |    |                              | RB Delete                             |  324 |
-    |    |                              | RB Delete Fixup                       |  326 |
-    | 14 | OrderStatisticTree.cpp       | OS Select                             |  341 |
-    |    |                              | OS Rank                               |  342 |
-    |    | IntervalTree.cpp             | Interval Search                       |  351 |
-    | 15 | CutRod.cpp                   | Cut Rod                               |  363 |
-    |    |                              | Momorized Cut Rod                     |  365 |
-    |    |                              | Momorized Cut Rod Aux                 |  366 |
-    |    |                              | Bottom Up Cut Rod                     |  366 |
-    |    |                              | Extended Bottom Up Cut Rod            |  369 |
-    |    |                              | Print Cut Rod Solution                |  369 |
-    |    | MatrixChainOrder.cpp         | Matrix Multiply                       |  371 |
-    |    |                              | Matrix Chain Order                    |  375 |
-    |    |                              | Print Optimal Parens                  |  377 |
-    |    |                              | Recursive Matrix Chain                |  385 |
-    |    |                              | Memorized Matrix Chain                |  388 |
-    |    |                              | Lookup Chain                          |  388 |
-    |    | LCSLength.cpp                | LCS Length                            |  394 |
-    |    |                              | Print LCS                             |  395 |
-    |    | OptimalBST.cpp               | Optimal BST                           |  402 |
-    | 16 | ActivitySelector.cpp         | Recursive Activity Selector           |  419 |
-    |    |                              | Greedy Activity Selector              |  421 |
-    |    | Huffman.cpp                  | Huffman                               |  431 |
-    |    | Greedy.cpp                   | Greedy                                |  440 |
-    |    | TaskSchedule.cpp             | Task Schedule                         |  446 |
-    | 17 | Stack                    | Multi Pop                             |  453 |
-    |    | BinaryCounter.cpp            | Increment                             |  454 |
-    |    | DynamicTable.cpp             | Table Insert                          |  464 |
-    | 18 | BTree.cpp                    | B Tree Search                         |  491 |
-    |    |                              | B Tree Create                         |  492 |
-    |    |                              | B Tree Split Child                    |  494 |
-    |    |                              | B Tree Insert                         |  495 |
-    |    |                              | B Tree Insert Nonfull                 |  495 |
-    |    |                              | B Tree Insert Delete                  |  502 |
-    | 19 | FibHeap.cpp                  | Make Fib Heap                         |  510 |
-    |    |                              | Fib Heap Insert                       |  510 |
-    |    |                              | Fib Heap Minimum                      |  511 |
-    |    |                              | Fib Heap Union                        |  512 |
-    |    |                              | Fib Heap Extract Min                  |  513 |
-    |    |                              | Consolidate                           |  516 |
-    |    |                              | Fib Heap Link                         |  516 |
-    |    |                              | Fib Heap Decrease Key                 |  519 |
-    |    |                              | Cut                                   |  519 |
-    |    |                              | Cascading Cut                         |  519 |
-    |    |                              | Fib Heap Delete                       |  522 |
-    | 20 | ProtovEB.cpp                 | Proto vEB Member                      |  541 |
-    |    |                              | Proto vEB Minimum                     |  542 |
-    |    |                              | Proto vEB Successor                   |  543 |
-    |    |                              | Proto vEB Insert                      |  544 |
-    |    |                              | Proto vEB Delete                      |  544 |
-    |    | vEB.cpp                      | vEB Tree Minimum                      |  550 |
-    |    |                              | vEB Tree Maximum                      |  550 |
-    |    |                              | vEB Tree Member                       |  550 |
-    |    |                              | vEB Tree Successor                    |  551 |
-    |    |                              | vEB Tree Predecessor                  |  552 |
-    |    |                              | vEB Empty Tree Insert                 |  553 |
-    |    |                              | vEB Tree Insert                       |  553 |
-    |    |                              | vEB Tree Delete                       |  554 |
-    | 21 | DisjointSet.cpp              | Connected Components                  |  563 |
-    |    |                              | Same Component                        |  563 |
-    |    |                              | Make Set                              |  571 |
-    |    |                              | Union                                 |  571 |
-    |    |                              | Link                                  |  571 |
-    |    |                              | Find Set                              |  571 |
-    | 22 | BFS.cpp                      | BFS                                   |  595 |
-    |    |                              | Print Path                            |  601 |
-    |    | DFS.cpp                      | DFS                                   |  604 |
-    |    |                              | DFS Visit                             |  604 |
-    |    | TopologicalSort.cpp          | Topological Sort                      |  613 |
-    |    | SCC.cpp                      | Strongly Connected Components         |  617 |
-    | 23 | MST.cpp                      | MST Kruskal                           |  631 |
-    |    |                              | MST Prim                              |  634 |
-    | 24 | BellmanFord.cpp              | Initialize Single Source              |  648 |
-    |    |                              | Relax                                 |  649 |
-    |    |                              | Bellman Ford                          |  651 |
-    |    | DagShortestPaths.cpp         | Dag Shortest Paths                    |  655 |
-    |    | Dijkstra.cpp                 | Dijkstra                              |  658 |
-    | 25 | FloydWarshall.cpp            | Print All Pairs Shortest Path         |  685 |
-    |    | AllPairsShortestPaths.cpp    | Extend Shortest Paths                 |  688 |
-    |    |                              | Slow All Pairs Shortest Paths         |  689 |
-    |    |                              | Faster All Pairs Shortest Paths       |  691 |
-    |    | FloydWarshall.cpp            | Floyd Warshall                        |  695 |
-    |    | TransitiveClosure.cpp        | Transitive Closure                    |  698 |
-    |    | Johnson.cpp                  | Johnson                               |  704 |
-    | 26 | FordFulkerson.cpp            | Ford Fulkerson                        |  724 |
-    |    | MaximumBipartiteMatching.cpp | Maximum Bipartite Matching            |  733 |
-    |    | RelabelToFront.cpp           | Push                                  |  739 |
-    |    |                              | Relabel                               |  740 |
-    |    |                              | Initialize Preflow                    |  740 |
-    |    |                              | Discharge                             |  751 |
-    |    |                              | Relabel To Front                      |  755 |
-    | 27 | Fib.cpp                      | Fib                                   |  775 |
-    |    |                              | P Fib                                 |  776 |
-    |    | MatVec.cpp                   | Mat Vec                               |  785 |
-    |    |                              | Mat Vec Main Loop                     |  785 |
-    |    | RaceExample.cpp              | Race Example                          |  788 |
-    |    | MatVec.cpp                   | Mat Vec Wrong                         |  790 |
-    |    | PSquareMatrixMultiply.cpp    | P Square Matrix Multiply              |  793 |
-    |    |                              | P Matrix Multiply Recursive           |  794 |
-    |    |                              | P Matrix Multiply Strassen            |  794 |
-    |    | PMergeSort.cpp               | Merge Sort prime                      |  797 |
-    |    |                              | Binary Search                         |  799 |
-    |    |                              | P Merge                               |  800 |
-    |    |                              | P Merge Sort                          |  803 |
-    | 28 | LUPSolve.cpp                 | LUP Solve                             |  817 |
-    |    |                              | LU Decomposition                      |  821 |
-    |    |                              | LUP Decomposition                     |  824 |
-    |    | MatrixInverse.cpp            | Matrix Inverse                        |  828 |
-    |    | LeastSquareApprox.cpp        | Least Square Approx                   |  837 |
-    | 29 | Simplex.cpp                  | Pivot                                 |  869 |
-    |    |                              | Simplex                               |  871 |
-    |    |                              | Initialize Simplex                    |  887 |
-    | 30 | RecursiveFFT.cpp             | Recursive FFT                         |  911 |
-    |    |                              | Inverse FFT                           |  913 |
-    |    |                              | Polynomial Multiply                   |  914 |
-    |    | IterativeFFT.cpp             | Iterative FFT                         |  917 |
-    |    |                              | Bit Reversal Copy                     |  918 |
-    | 31 | Euclid.cpp                   | Euclid                                |  935 |
-    |    |                              | Extended Euclid                       |  937 |
-    |    | ModLinEquationSolver.cpp     | Modular Linear Equation Solver        |  949 |
-    |    | ModularExponentiation.cpp    | Modular Exponentiation                |  957 |
-    |    | Pseudoprime.cpp              | Pseudoprime                           |  967 |
-    |    | MillerRabin.cpp              | Witness                               |  969 |
-    |    |                              | Miller Rabin                          |  970 |
-    |    | PollardRho.cpp               | Pollard Rho                           |  977 |
-    | 32 | NaiveStringMatcher.cpp       | Naive String Matcher                  |  988 |
-    |    | RabinKarpMatcher.cpp         | Rabin Karp Matcher                    |  993 |
-    |    | FiniteAutomatonMatcher.cpp   | Finite Automaton Matcher              |  999 |
-    |    |                              | Compute Transition Function           | 1001 |
-    |    | KMPMatcher.cpp               | KMP Matcher                           | 1005 |
-    |    |                              | Compute Prefix Function               | 1006 |
-    | 33 | SegmentsIntersect.cpp        | Segments Intersect                    | 1018 |
-    |    |                              | Direction                             | 1018 |
-    |    |                              | On Segment                            | 1018 |
-    |    | AnySegmentsIntersect.cpp     | Insert                                | 1024 |
-    |    |                              | Delete                                | 1024 |
-    |    |                              | Above                                 | 1024 |
-    |    |                              | Below                                 | 1024 |
-    |    |                              | Any Segments Intersect                | 1025 |
-    |    | GrahamScan.cpp               | Graham Scan                           | 1031 |
-    |    | JarvisMarch.cpp              | Jarvis March                          | 1038 |
-    |    | ClosestPairPoints.cpp        | Closest Pair Points                   | 1043 |
-    | 35 | ApproxVertexCover.cpp        | Approx Vertex Cover                   | 1109 |
-    |    | ApproxTSPTour.cpp            | Approx TSP Tour                       | 1112 |
-    |    | GreedySetCover.cpp           | Greedy Set Cover                      | 1119 |
-    |    | ApproxMinWeightVC.cpp        | Approx Min Weight VC                  | 1126 |
-    |    | SubsetSum.cpp                | Exact Subset Sum                      | 1129 |
-    |    |                              | Trim                                  | 1130 |
-    |    |                              | Approx Subset Sum                     | 1131 |
+| Current Progress                                                             |
++----+--------------------------+---------------------------------------+------+
+| 12 | BinaryTree               | Inorder Tree Walk                     |  288 |
+|    |                          | Preorder Tree Walk                    |  289 |
+|    |                          | Postorder Tree Walk                   |  289 |
+|    | BinarySearchTree         | Tree Search                           |  290 |
+|    |                          | Iterative Tree Search                 |  291 |
+|    |                          | Tree Minimum                          |  291 |
+|    |                          | Tree Maximum                          |  291 |
+|    |                          | Tree Successor                        |  292 |
+|    |                          | Tree Predecessor                      |  293 |
+|    |                          | Tree Insert                           |  294 |
+|    |                          | Transplant                            |  296 |
+|    |                          | Tree Delete                           |  298 |
+| 13 | RedBlackTree             | Left Rotate                           |  313 |
+|    |                          | Right Rotate                          |  313 |
+|    |                          | RB Insert                             |  315 |
+|    |                          | RB Insert Fixup                       |  316 |
+|    |                          | RB Transplant                         |  323 |
+|    |                          | RB Delete                             |  324 |
+|    |                          | RB Delete Fixup                       |  326 |
+| 14 | OrderStatisticTree       | OS Select                             |  341 |
+|    |                          | OS Rank                               |  342 |
+|    | IntervalTree             | Interval Search                       |  351 |
+| 15 | CutRod                   | Cut Rod                               |  363 |
+|    |                          | Momorized Cut Rod                     |  365 |
+|    |                          | Momorized Cut Rod Aux                 |  366 |
+|    |                          | Bottom Up Cut Rod                     |  366 |
+|    |                          | Extended Bottom Up Cut Rod            |  369 |
+|    |                          | Print Cut Rod Solution                |  369 |
+|    | MatrixChainOrder         | Matrix Multiply                       |  371 |
+|    |                          | Matrix Chain Order                    |  375 |
+|    |                          | Print Optimal Parens                  |  377 |
+|    |                          | Recursive Matrix Chain                |  385 |
+|    |                          | Memorized Matrix Chain                |  388 |
+|    |                          | Lookup Chain                          |  388 |
+|    | LCSLength                | LCS Length                            |  394 |
+|    |                          | Print LCS                             |  395 |
+|    | OptimalBST               | Optimal BST                           |  402 |
+| 16 | ActivitySelector         | Recursive Activity Selector           |  419 |
+|    |                          | Greedy Activity Selector              |  421 |
+|    | Huffman                  | Huffman                               |  431 |
+|    | Greedy                   | Greedy                                |  440 |
+|    | TaskSchedule             | Task Schedule                         |  446 |
+| 17 | Stack                    | Multi Pop                             |  453 |
+|    | BinaryCounter            | Increment                             |  454 |
+|    | DynamicTable             | Table Insert                          |  464 |
+| 18 | BTree                    | B Tree Search                         |  491 |
+|    |                          | B Tree Create                         |  492 |
+|    |                          | B Tree Split Child                    |  494 |
+|    |                          | B Tree Insert                         |  495 |
+|    |                          | B Tree Insert Nonfull                 |  495 |
+|    |                          | B Tree Insert Delete                  |  502 |
+| 19 | FibHeap                  | Make Fib Heap                         |  510 |
+|    |                          | Fib Heap Insert                       |  510 |
+|    |                          | Fib Heap Minimum                      |  511 |
+|    |                          | Fib Heap Union                        |  512 |
+|    |                          | Fib Heap Extract Min                  |  513 |
+|    |                          | Consolidate                           |  516 |
+|    |                          | Fib Heap Link                         |  516 |
+|    |                          | Fib Heap Decrease Key                 |  519 |
+|    |                          | Cut                                   |  519 |
+|    |                          | Cascading Cut                         |  519 |
+|    |                          | Fib Heap Delete                       |  522 |
+| 20 | ProtovEB                 | Proto vEB Member                      |  541 |
+|    |                          | Proto vEB Minimum                     |  542 |
+|    |                          | Proto vEB Successor                   |  543 |
+|    |                          | Proto vEB Insert                      |  544 |
+|    |                          | Proto vEB Delete                      |  544 |
+|    | vEB                      | vEB Tree Minimum                      |  550 |
+|    |                          | vEB Tree Maximum                      |  550 |
+|    |                          | vEB Tree Member                       |  550 |
+|    |                          | vEB Tree Successor                    |  551 |
+|    |                          | vEB Tree Predecessor                  |  552 |
+|    |                          | vEB Empty Tree Insert                 |  553 |
+|    |                          | vEB Tree Insert                       |  553 |
+|    |                          | vEB Tree Delete                       |  554 |
+| 21 | DisjointSet              | Connected Components                  |  563 |
+|    |                          | Same Component                        |  563 |
+|    |                          | Make Set                              |  571 |
+|    |                          | Union                                 |  571 |
+|    |                          | Link                                  |  571 |
+|    |                          | Find Set                              |  571 |
+| 22 | BFS                      | BFS                                   |  595 |
+|    |                          | Print Path                            |  601 |
+|    | DFS                      | DFS                                   |  604 |
+|    |                          | DFS Visit                             |  604 |
+|    | TopologicalSort          | Topological Sort                      |  613 |
+|    | SCC                      | Strongly Connected Components         |  617 |
+| 23 | MST                      | MST Kruskal                           |  631 |
+|    |                          | MST Prim                              |  634 |
+| 24 | BellmanFord              | Initialize Single Source              |  648 |
+|    |                          | Relax                                 |  649 |
+|    |                          | Bellman Ford                          |  651 |
+|    | DagShortestPaths         | Dag Shortest Paths                    |  655 |
+|    | Dijkstra                 | Dijkstra                              |  658 |
+| 25 | FloydWarshall            | Print All Pairs Shortest Path         |  685 |
+|    | AllPairsShortestPaths    | Extend Shortest Paths                 |  688 |
+|    |                          | Slow All Pairs Shortest Paths         |  689 |
+|    |                          | Faster All Pairs Shortest Paths       |  691 |
+|    | FloydWarshall            | Floyd Warshall                        |  695 |
+|    | TransitiveClosure        | Transitive Closure                    |  698 |
+|    | Johnson                  | Johnson                               |  704 |
+| 26 | FordFulkerson            | Ford Fulkerson                        |  724 |
+|    | MaximumBipartiteMatching | Maximum Bipartite Matching            |  733 |
+|    | RelabelToFront           | Push                                  |  739 |
+|    |                          | Relabel                               |  740 |
+|    |                          | Initialize Preflow                    |  740 |
+|    |                          | Discharge                             |  751 |
+|    |                          | Relabel To Front                      |  755 |
+| 27 | Fib                      | Fib                                   |  775 |
+|    |                          | P Fib                                 |  776 |
+|    | MatVec                   | Mat Vec                               |  785 |
+|    |                          | Mat Vec Main Loop                     |  785 |
+|    | RaceExample              | Race Example                          |  788 |
+|    | MatVec                   | Mat Vec Wrong                         |  790 |
+|    | PSquareMatrixMultiply    | P Square Matrix Multiply              |  793 |
+|    |                          | P Matrix Multiply Recursive           |  794 |
+|    |                          | P Matrix Multiply Strassen            |  794 |
+|    | PMergeSort               | Merge Sort prime                      |  797 |
+|    |                          | Binary Search                         |  799 |
+|    |                          | P Merge                               |  800 |
+|    |                          | P Merge Sort                          |  803 |
+| 28 | LUPSolve                 | LUP Solve                             |  817 |
+|    |                          | LU Decomposition                      |  821 |
+|    |                          | LUP Decomposition                     |  824 |
+|    | MatrixInverse            | Matrix Inverse                        |  828 |
+|    | LeastSquareApprox        | Least Square Approx                   |  837 |
+| 29 | Simplex                  | Pivot                                 |  869 |
+|    |                          | Simplex                               |  871 |
+|    |                          | Initialize Simplex                    |  887 |
+| 30 | RecursiveFFT             | Recursive FFT                         |  911 |
+|    |                          | Inverse FFT                           |  913 |
+|    |                          | Polynomial Multiply                   |  914 |
+|    | IterativeFFT             | Iterative FFT                         |  917 |
+|    |                          | Bit Reversal Copy                     |  918 |
+| 31 | Euclid                   | Euclid                                |  935 |
+|    |                          | Extended Euclid                       |  937 |
+|    | ModLinEquationSolver     | Modular Linear Equation Solver        |  949 |
+|    | ModularExponentiation    | Modular Exponentiation                |  957 |
+|    | Pseudoprime              | Pseudoprime                           |  967 |
+|    | MillerRabin              | Witness                               |  969 |
+|    |                          | Miller Rabin                          |  970 |
+|    | PollardRho               | Pollard Rho                           |  977 |
+| 32 | NaiveStringMatcher       | Naive String Matcher                  |  988 |
+|    | RabinKarpMatcher         | Rabin Karp Matcher                    |  993 |
+|    | FiniteAutomatonMatcher   | Finite Automaton Matcher              |  999 |
+|    |                          | Compute Transition Function           | 1001 |
+|    | KMPMatcher               | KMP Matcher                           | 1005 |
+|    |                          | Compute Prefix Function               | 1006 |
+| 33 | SegmentsIntersect        | Segments Intersect                    | 1018 |
+|    |                          | Direction                             | 1018 |
+|    |                          | On Segment                            | 1018 |
+|    | AnySegmentsIntersect     | Insert                                | 1024 |
+|    |                          | Delete                                | 1024 |
+|    |                          | Above                                 | 1024 |
+|    |                          | Below                                 | 1024 |
+|    |                          | Any Segments Intersect                | 1025 |
+|    | GrahamScan               | Graham Scan                           | 1031 |
+|    | JarvisMarch              | Jarvis March                          | 1038 |
+|    | ClosestPairPoints        | Closest Pair Points                   | 1043 |
+| 35 | ApproxVertexCover        | Approx Vertex Cover                   | 1109 |
+|    | ApproxTSPTour            | Approx TSP Tour                       | 1112 |
+|    | GreedySetCover           | Greedy Set Cover                      | 1119 |
+|    | ApproxMinWeightVC        | Approx Min Weight VC                  | 1126 |
+|    | SubsetSum                | Exact Subset Sum                      | 1129 |
+|    |                          | Trim                                  | 1130 |
+|    |                          | Approx Subset Sum                     | 1131 |
++----+--------------------------+---------------------------------------+------+
 
 Directory Structure
 -------------------
-(TODO)
+(TODO; see ``Makefile``)
 
 Continuous Integration
 ----------------------
-(TODO)
+(TODO; see ``.github/workflows/build.yml``)
 
 Supplementary Files
 -------------------
-(TODO)
+* ``Graph.hpp``, ``GraphMain.cpp``, ``GraphTest.cpp``: ``Graph``-related classes
+* ``output_integers.hpp``: print a vector
+* ``print_ptr.hpp``: print a pointer
+* ``printtree.hpp``: print a tree using ASCII art (adapted from UBC CS221)
+* ``random_integers.hpp``: generate a random vector
+* ``utils.hpp``: utility functions for cpp files
 
 Supplementary Programs
 ----------------------
-(TODO)
+* ``include_check.py``: identifies unnecessary includes
+* ``vEB_check.py``: compare results of ``ProtovEB.cpp`` and ``vEB.cpp``
+* ``dot.sh``: generate a graphviz graph from stdin
