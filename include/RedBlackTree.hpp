@@ -266,7 +266,7 @@ class RedBlackTree: public BinarySearchTree<CData<T>> {
 		void print_tree() {
 			printTree(CNodeDescriptor<T>(this->root, this->nil));
 		}
-		~RedBlackTree() { delete this->nil; }
+		~RedBlackTree() { if (this->root != this->nil) delete this->nil; }
 		// TreeInsert = RBInsert, TreeDelete = RBDelete
 		void TreeInsert(T v) { RBInsert(v); }
 		void TreeDelete(Node<CData<T>>* z) { RBDelete(z); }
