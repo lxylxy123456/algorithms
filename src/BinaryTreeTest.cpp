@@ -50,7 +50,7 @@ int test0() {
 
 int test1() {
 	BinaryTree<int> BT;
-	BT.root = new Node<int>(9, BT.root);	/* 9 */
+	BT.root = new Node<int>(9);	/* 9 */
 	BT.print_tree();
 	test_walk(BT, {{9}, {9}, {9}});
 	return 0;
@@ -58,9 +58,9 @@ int test1() {
 
 int test2() {
 	BinaryTree<int> BT;
-	BT.root = new Node<int>(2, BT.root);				/*   2   */
-	BT.root->left = new Node<int>(1, BT.root->left);	/*  / \  */
-	BT.root->right = new Node<int>(3, BT.root->left);	/* 1   3 */
+	BT.root = new Node<int>(2);					/*   2   */
+	BT.root->left = new Node<int>(1, BT.root);	/*  / \  */
+	BT.root->right = new Node<int>(3, BT.root);	/* 1   3 */
 	BT.print_tree();
 	test_walk(BT, {{1, 2, 3}, {2, 1, 3}, {1, 3, 2}});
 	return 0;
