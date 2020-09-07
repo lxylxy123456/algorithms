@@ -93,6 +93,7 @@ int test(int n) {
 }
 
 int main(int argc, char *argv[]) {
+	std::cout << "seed = " << random_seed_get() << std::endl;
 	test(0);
 	test(1);
 	test(4);
