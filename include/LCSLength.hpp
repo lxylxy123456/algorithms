@@ -44,13 +44,29 @@ template <typename T>
 void PrintLCS(std::vector<VECT_SIZT>& c, std::vector<T> X, size_t i, size_t j) {
 	if (!i || !j)
 		return;
-	if (c[i][j] == c[i-1][j-1] + 1) {
+	if (c[i][j] == c[i-1][j])
+		PrintLCS(c, X, i - 1, j);
+	else if (c[i][j] == c[i][j-1])
+		PrintLCS(c, X, i, j - 1);
+	else {
 		PrintLCS(c, X, i - 1, j - 1);
 		std::cout << X[i - 1];
-	} else if (c[i][j] == c[i-1][j])
-		PrintLCS(c, X, i - 1, j);
-	else
-		PrintLCS(c, X, i, j - 1);
+	}
+}
+
+template <typename T>
+void PrintLCS(std::vector<VECT_SIZT>& c, std::vector<T> X, size_t i, size_t j,
+				std::ostream& os) {
+	if (!i || !j)
+		return;
+	if (c[i][j] == c[i-1][j])
+		PrintLCS(c, X, i - 1, j, os);
+	else if (c[i][j] == c[i][j-1])
+		PrintLCS(c, X, i, j - 1, os);
+	else {
+		PrintLCS(c, X, i - 1, j - 1, os);
+		os << X[i - 1];
+	}
 }
 
 }
