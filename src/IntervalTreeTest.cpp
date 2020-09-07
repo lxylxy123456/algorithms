@@ -25,9 +25,12 @@ using namespace algorithms;
 
 void sanity_check(IntervalTree<int>& BT, std::vector<Interval<int>>& its) {
 	int n = its.size(), l = 0, u = n;
+	std::sort(its.begin(), its.end());
 	if (n) {
 		l = its[0].low - 2;
 		u = its[n - 1].high + 2;
+		if (l > u)
+			l = u + 1;
 	}
 	for (int i = l; i < u; i++) {
 		bool expected = false;
@@ -90,8 +93,6 @@ int test(int n) {
 }
 
 int main(int argc, char *argv[]) {
-	std::cout << "TODO: IntervalTreeTest skipped due to instability" << std::endl;
-	return 0;	// TODO
 	test(0);
 	test(1);
 	test(4);
