@@ -116,7 +116,12 @@ namespace private_print_functions
 		// Output data
 		int left_start_shift = 1 - (nodeStr.length()-1)/2;
 		for (size_t i = 0; i < nodeStr.length() && left + curr_width/2 + i < output[top].length(); i++)
-			output[top][left + curr_width/2 + left_start_shift + i] = nodeStr[i];
+			// 20200907: there is a length limit on the keys. If exceeded a
+			// segmentation faults will happen. This check is a temporary
+			// workaround that prevents the segfault, but some data will be
+			// lost.
+			if (left + curr_width/2 + left_start_shift + i < output[top].size())
+				output[top][left + curr_width/2 + left_start_shift + i] = nodeStr[i];
 
 		// Calculate / \ offset = 2 ^ height
 		int branchOffset = (curr_width+3) >> 3; //(1 << (node->printData - 1));
