@@ -20,7 +20,8 @@
 #define ALGORITHMS_HASH
 
 #include <cstddef>
-#include <random>
+
+#include "random_integers.hpp"
 
 namespace algorithms {
 
@@ -44,9 +45,8 @@ class MultiplicationHash {
 class UniversalHash {
 	public:
 		UniversalHash(size_t pp, size_t mm): p(pp), m(mm) {
-			std::random_device rd;
-			a = std::uniform_int_distribution<int>(1, p - 1)(rd);
-			b = std::uniform_int_distribution<int>(0, p - 1)(rd);
+			a = random_integer<size_t>(1, p - 1);
+			b = random_integer<size_t>(0, p - 1);
 		}
 		size_t operator()(size_t k) {
 			return ((a * k + b) % p) % m;

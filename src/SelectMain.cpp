@@ -31,9 +31,7 @@ int main(int argc, char *argv[]) {
 	const size_t compute = get_argv(argc, argv, 2, 7);
 	random_integers(a, 0, n - 1, n);
 
-	std::random_device rd;
-    std::uniform_int_distribution<int> d(0, n - 1);
-	size_t i = d(rd);
+	size_t i = random_integer<int>(0, n - 1);
 	std::vector<int> b(a);
 
 	int ans1, ans2;

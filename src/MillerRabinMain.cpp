@@ -28,10 +28,9 @@ int main(int argc, char *argv[]) {
 	const size_t s = get_argv(argc, argv, 2, 5);
 	const size_t tries = get_argv(argc, argv, 3, 1);
 	using T = long long int;
-    std::random_device rd;
     std::uniform_int_distribution<T> dis(1 << (nn - 1), 1 << nn);
     for (size_t i = 0; i < tries; i++) {
-		T n = get_argv(argc, argv, 4 + i, dis(rd) << 1 | 1);
+		T n = get_argv(argc, argv, 4 + i, random_integer(dis) << 1 | 1);
 		bool ans = MillerRabin(n, s);
 		std::cout << n << "\t" << std::boolalpha << ans << std::endl;
 	}

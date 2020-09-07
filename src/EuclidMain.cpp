@@ -26,10 +26,8 @@ using namespace algorithms;
 int main(int argc, char *argv[]) {
 	const size_t n = get_argv(argc, argv, 1, 16);
 	using T = long long int;
-    std::random_device rd;
-    std::uniform_int_distribution<T> dis(0, 1 << n);
-	T a = get_argv(argc, argv, 2, dis(rd));
-	T b = get_argv(argc, argv, 3, dis(rd));
+	T a = get_argv(argc, argv, 2, random_integer<T>(0, 1 << n));
+	T b = get_argv(argc, argv, 3, random_integer<T>(0, 1 << n));
 	T x, y;
 	T d = ExtendedEuclid(a, b, x, y);
 	assert(d == Euclid(a, b));

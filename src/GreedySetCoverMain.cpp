@@ -34,21 +34,20 @@ int main(int argc, char *argv[]) {
 	std::vector<set_T> F;
 	for (size_t i = 0; i < n; i++)
 		X.insert(i);
-    std::random_device rd;
     std::uniform_int_distribution<T> d1(0, n * m);
 	for (size_t i = 0; i < m; i++) {
 		set_T s;
 		for (size_t j = 0; j < n; j++)
-			if (d1(rd) < l)
+			if (random_integer(d1) < l)
 				s.insert(j);
 		F.push_back(s);
 	}
     std::uniform_int_distribution<T> d2(0, m - 1);
     for (size_t i = 0; i < n; i++)
-    	F[d2(rd)].insert(i);
+    	F[random_integer(d2)].insert(i);
     std::uniform_int_distribution<T> d3(0, n - 1);
     for (size_t i = 0; i < m; i++)
-    	F[i].insert(d3(rd));
+    	F[i].insert(random_integer(d3));
     std::set<size_t> ans = GreedySetCover(X, F);
     for (size_t i = 0; i < m; i++) {
     	if (ans.find(i) != ans.end())

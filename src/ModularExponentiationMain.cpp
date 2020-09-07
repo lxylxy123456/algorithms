@@ -26,12 +26,9 @@ using namespace algorithms;
 int main(int argc, char *argv[]) {
 	const size_t nn = get_argv(argc, argv, 1, 4);
 	using T = long long int;
-    std::random_device rd;
-    std::uniform_int_distribution<T> dis(0, 1 << nn);
-    std::uniform_int_distribution<T> disn(1, 1 << nn);
-	T a = get_argv(argc, argv, 2, dis(rd));
-	T b = get_argv(argc, argv, 3, dis(rd));
-	T n = get_argv(argc, argv, 4, disn(rd));
+	T a = get_argv(argc, argv, 2, random_integer<T>(0, 1 << n));
+	T b = get_argv(argc, argv, 3, random_integer<T>(0, 1 << n));
+	T n = get_argv(argc, argv, 4, random_integer<T>(1, 1 << n));
 	T ans = ModularExponentiation(a, b, n);
 	std::cout << a << " ** " << b << " % " << n << " = " << ans << std::endl;
 	return 0;

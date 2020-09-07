@@ -24,21 +24,42 @@
 
 namespace algorithms {
 
+static std::random_device random_dev;
+static std::random_device::result_type random_seed(random_dev());
+static std::mt19937 random_gen(random_seed);
+
+void random_seed_reset(std::random_device::result_type seed) {
+	random_seed = seed;
+	random_gen.seed(seed);
+}
+
+std::random_device::result_type random_seed_get() {
+	return random_seed;
+}
+
+template <typename T>
+T random_integer(T l, T u) {
+	return std::uniform_int_distribution<T>(l, u)(random_gen);
+}
+
+template <typename T>
+T random_integer(std::uniform_int_distribution<T> dis) {
+	return dis(random_gen);
+}
+
 void random_integers(std::vector<int>& a, int l, int u, size_t size) {
 	a.reserve(size);
-    std::random_device rd;
     std::uniform_int_distribution<int> d(l, u);
 	for (size_t i = 0; i < size; i++)
-		a.push_back(d(rd));
+		a.push_back(d(random_gen));
 }
 
 template <typename T>
 void random_integers(std::vector<T>& a, T l, T u, size_t size) {
 	a.reserve(size);
-    std::random_device rd;
     std::uniform_int_distribution<T> d(l, u);
 	for (size_t i = 0; i < size; i++)
-		a.push_back(d(rd));
+		a.push_back(d(random_gen));
 }
 
 }

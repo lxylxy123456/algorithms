@@ -41,9 +41,8 @@ void PermuteBySorting(std::vector<T>& a) {
 template <typename T>
 void RandomizeInPlace(std::vector<T>& a) {
 	size_t n = a.size();
-	std::random_device rd;
 	for (size_t i = 0; i + 1 < n; i++)
-		std::swap(a[i], a[std::uniform_int_distribution<size_t>(i, n-1)(rd)]);
+		std::swap(a[i], a[random_integer<size_t>(i, n - 1)]);
 }
 
 }

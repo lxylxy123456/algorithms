@@ -38,7 +38,6 @@ int main(int argc, char *argv[]) {
 	for (auto i = S_int.begin(); i != S_int.end(); i++)
 		S.insert(*i);
 	output_integers(S);
-    std::random_device rd;
 	std::cout << "t = " << t << std::endl;
 	std::cout << "exact  = " << ExactSubsetSum(S, t) << std::endl;
 	std::cout << "approx = " << ApproxSubsetSum(S, t, e) << std::endl;

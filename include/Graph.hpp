@@ -510,10 +510,9 @@ void random_flow(Graph<T>& G, T v, size_t e) {
 
 template <typename WT, typename T, typename GT>
 void random_weight(GT& G, umap_WT& w, WT l, WT u) {
-    std::random_device rd;
     std::uniform_int_distribution<T> d(l, u);
 	for (auto i = G.all_edges(); !i.end(); i++)
-		w[*i] = d(rd);
+		w[*i] = random_integer(d);
 }
 
 template <typename T, typename F1, typename F2>
