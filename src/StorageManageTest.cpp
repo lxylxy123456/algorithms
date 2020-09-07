@@ -23,14 +23,14 @@
 
 using namespace algorithms;
 
-int test(int n) {
+int test(size_t n) {
 	std::cout << n << std::endl;
 	StorageManage<long int> S(n);
 	std::vector<Data<long int>*> allocated;
     std::random_device rd;
     std::uniform_int_distribution<size_t> d1(0, 5);
     std::uniform_int_distribution<size_t> d2(0, n * 5);
-    for (int i = 0; i < (n + 5) * 5; i++) {
+    for (size_t i = 0; i < (n + 5) * 5; i++) {
     	if (d1(rd) < 3) {
     		if (allocated.size() < n) {
 				Data<long int>* ans = S.AllocateObject();
@@ -40,7 +40,7 @@ int test(int n) {
 				std::cout << "a" << std::endl;
 				try {
 					S.AllocateObject();
-				} catch (std::invalid_argument e) {
+				} catch (std::invalid_argument& e) {
 					assert(std::string(e.what()) == "out of space");
 				}
 			}
@@ -57,8 +57,8 @@ int test(int n) {
 }
 
 int main(int argc, char *argv[]) {
-	std::vector<int> ns{1, 2, 5, 8, 19, 52, 100};
-	for (std::vector<int>::iterator n = ns.begin(); n < ns.end(); n++)
+	std::vector<size_t> ns{1, 2, 5, 8, 19, 52, 100};
+	for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
 		test(*n);
 	return 0;
 }
