@@ -474,7 +474,7 @@ Supplementary Files
 * ``output_integers.hpp``: print a vector
 * ``print_ptr.hpp``: print a pointer
 * ``print_tree.hpp``: print a tree using ASCII art (inspired by UBC CS221)
-* ``random_integers.hpp``: generate a random vector
+* ``random_integers.hpp``: generate a random integer or vector of integers
 * ``utils.hpp``: utility functions for cpp files
 
 Supplementary Programs
