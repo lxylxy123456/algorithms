@@ -21,7 +21,30 @@
 #include "utils.hpp"
 #include "MaxHeap.hpp"
 
+#include "print_tree.hpp"
+
 using namespace algorithms;
+
+template <typename NodeType>
+class HuffmanNavigator {
+	public:
+		HuffmanNavigator() {}
+		NodeType left(NodeType node) { return node->left; }
+		NodeType right(NodeType node) { return node->right; }
+		StringLen key(NodeType node) {
+			std::ostringstream os;
+			if (node->disp)
+				os << *node;
+			else
+				os << node->freq;
+			std::string ans = os.str();
+			if (node->left)
+				return StringLen(ans);
+			else
+				return StringLen("\033[31m" + ans + "\033[0m", ans.length());
+		}
+		bool is_nil(NodeType node) { return !node; }
+};
 
 int main(int argc, char *argv[]) {
 	const size_t n = get_argv(argc, argv, 1, 6);
@@ -36,6 +59,6 @@ int main(int argc, char *argv[]) {
 	std::cout << std::endl;
 	// call function
 	CNode<char>* B = Huffman(C);
-	printTree(CNodeDesc<char>(B));
+	TreePrint(B, HuffmanNavigator<CNode<char>*>());
 	return 0;
 }

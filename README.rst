@@ -473,7 +473,7 @@ Supplementary Files
 * ``Graph.hpp``, ``GraphMain.cpp``, ``GraphTest.cpp``: ``Graph``-related classes
 * ``output_integers.hpp``: print a vector
 * ``print_ptr.hpp``: print a pointer
-* ``printtree.hpp``: print a tree using ASCII art (adapted from UBC CS221)
+* ``print_tree.hpp``: print a tree using ASCII art (inspired by UBC CS221)
 * ``random_integers.hpp``: generate a random vector
 * ``utils.hpp``: utility functions for cpp files
 

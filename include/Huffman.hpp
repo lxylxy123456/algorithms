@@ -23,7 +23,6 @@
 
 #include <vector>
 #include <sstream>
-#include "printtree.hpp"
 
 #include "MaxHeap.hpp"
 
@@ -43,32 +42,6 @@ class CNode {
 		T disp;
 		size_t freq;
 		CNode<T> *left, *right;
-};
-
-template <typename T>
-class CNodeDesc {
-	public:
-		CNodeDesc(CNode<T>* p): node(p) {}
-		bool isNull() { return !node; }
-		String key() {
-			std::ostringstream os;
-			if (node->disp)
-				os << *node;
-			else
-				os << node->freq;
-			std::string ans = os.str();
-			if (node->left)
-				return String(ans);
-			else {
-				String ret(ans);
-				ret.data[0] = "\033[31m" + ret.data[0];
-				ret.data[ret.size() - 1] += "\033[0m";
-				return ret;
-			}
-		}
-		CNodeDesc<T> left() { return CNodeDesc<T>(node->left); }
-		CNodeDesc<T> right() { return CNodeDesc<T>(node->right); }
-		CNode<T> *node;
 };
 
 template <typename T>
