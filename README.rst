@@ -486,7 +486,9 @@ Supplementary Programs
 Difference from the "algorithm" project
 ---------------------------------------
 * Separated header files from main functions.
-* Added tests to all algorithms.
+* Added tests to all algorithms (TODO: in progress).
 * Fixed some bugs in algorithms.
 * Added continuous integration (CI) using Github Actions.
+* Switched to using ``std::mt19937`` to generate random numbers.
+* Removed dependencies on non-original work (``printtree.hpp``).
 * (TODO) Resolved memory leaks.
