@@ -224,7 +224,6 @@ class TreePrinter {
 						);
 					}
 					return ans;
-					// TODO
 				}
 			}
 		}
