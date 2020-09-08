@@ -45,26 +45,23 @@ class PQData {
 		enum PQ color;
 };
 
-class PQNodeDesc {
+template <typename NodeType>
+class OBSTNavigator {
 	public:
-		PQNodeDesc(Node<PQData>* p, Node<PQData>* n): node(p), nil(n){}
-		bool isNull() { return node == nil; }
-		String key() {
+		OBSTNavigator(NodeType nil): nil(nil) {}
+		NodeType left(NodeType node) { return node->left; }
+		NodeType right(NodeType node) { return node->right; }
+		StringLen key(NodeType node) {
 			std::ostringstream os;
 			os << node->data.data;
 			std::string ans = os.str();
 			if (node->data.color == black)
-				return String(ans);
-			else {
-				String ret(ans);
-				ret.data[0] = "\033[31m" + ret.data[0];
-				ret.data[ret.size() - 1] += "\033[0m";
-				return ret;
-			}
+				return StringLen(ans);
+			else
+				return StringLen("\033[31m" + ans + "\033[0m", ans.length());
 		}
-		PQNodeDesc left() { return PQNodeDesc(node->left, nil); }
-		PQNodeDesc right() { return PQNodeDesc(node->right, nil); }
-		Node<PQData> *node, *nil;
+		bool is_nil(NodeType node) { return node == nil; }
+		NodeType nil;
 };
 
 void insert_OBST(SIZT_1D& p, SIZT_1D& q, SIZT_2D& root, size_t i, size_t j,
@@ -82,7 +79,7 @@ void insert_OBST(SIZT_1D& p, SIZT_1D& q, SIZT_2D& root, size_t i, size_t j,
 void print_OBST(SIZT_1D& p, SIZT_1D& q, size_t n, SIZT_2D& root) {
 	BinarySearchTree<PQData> T;
 	insert_OBST(p, q, root, 0, n, T);
-	printTree(PQNodeDesc(T.root, T.nil));
+	TreePrint(T.root, OBSTNavigator<Node<PQData>*>(T.nil));
 }
 
 int main(int argc, char *argv[]) {
