@@ -48,31 +48,23 @@ class CData {
 		enum Color color;
 };
 
-template <typename T>
-class CNodeDescriptor {
+template <typename NodeType>
+class RBTreeNavigator {
 	public:
-		CNodeDescriptor(Node<CData<T>>* p, Node<CData<T>>* n): node(p), nil(n){}
-		bool isNull() { return node == nil; }
-		String key() {
+		RBTreeNavigator(NodeType nil): nil(nil) {}
+		NodeType left(NodeType node) { return node->left; }
+		NodeType right(NodeType node) { return node->right; }
+		StringLen key(NodeType node) {
 			std::ostringstream os;
 			os << node->data.data;
 			std::string ans = os.str();
 			if (node->data.color == black)
-				return String(ans);
-			else {
-				String ret(ans);
-				ret.data[0] = "\033[31m" + ret.data[0];
-				ret.data[ret.size() - 1] += "\033[0m";
-				return ret;
-			}
+				return StringLen(ans);
+			else
+				return StringLen("\033[31m" + ans + "\033[0m", ans.length());
 		}
-		CNodeDescriptor<T> left() {
-			return CNodeDescriptor<T>(node->left, nil);
-		}
-		CNodeDescriptor<T> right() {
-			return CNodeDescriptor<T>(node->right, nil);
-		}
-		Node<CData<T>> *node, *nil;
+		bool is_nil(NodeType node) { return node == nil; }
+		NodeType nil;
 };
 
 template <typename T>
@@ -264,7 +256,7 @@ class RedBlackTree: public BinarySearchTree<CData<T>> {
 				RBDeleteFixup(x);
 		}
 		void print_tree() {
-			printTree(CNodeDescriptor<T>(this->root, this->nil));
+			TreePrint(this->root, RBTreeNavigator<Node<CData<T>>*>(this->nil));
 		}
 		~RedBlackTree() { if (this->root != this->nil) delete this->nil; }
 		// TreeInsert = RBInsert, TreeDelete = RBDelete

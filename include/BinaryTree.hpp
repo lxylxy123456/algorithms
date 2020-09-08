@@ -21,7 +21,7 @@
 
 #include <vector>
 #include <sstream>
-#include "printtree.hpp"
+#include "print_tree.hpp"
 
 namespace algorithms {
 
@@ -43,19 +43,19 @@ class Node {
 		Node<T> *left, *right, *parent;
 };
 
-template <typename T>
-class NodeDescriptor {
+template <typename NodeType>
+class BinaryTreeNavigator {
 	public:
-		NodeDescriptor(Node<T>* p, Node<T>* n): node(p), nil(n) {}
-		bool isNull() { return node == nil; }
-		String key() {
+		BinaryTreeNavigator(NodeType nil): nil(nil) {}
+		NodeType left(NodeType node) { return node->left; }
+		NodeType right(NodeType node) { return node->right; }
+		StringLen key(NodeType node) {
 			std::ostringstream os;
 			os << node->data;
-			return String(os.str());
+			return StringLen(os.str());
 		}
-		NodeDescriptor<T> left() { return NodeDescriptor<T>(node->left, nil);}
-		NodeDescriptor<T> right() { return NodeDescriptor<T>(node->right, nil);}
-		Node<T> *node, *nil;
+		bool is_nil(NodeType node) { return node == nil; }
+		NodeType nil;
 };
 
 template <typename T>
@@ -87,7 +87,7 @@ class BinaryTree {
 			}
 		}
 		void print_tree() {
-			printTree(NodeDescriptor<T>(root, nil));
+			TreePrint(root, BinaryTreeNavigator<Node<T>*>(nil));
 		}
 		void PostorderTreeWalk(std::vector<T>& v) { PostorderTreeWalk(v, root); }
 		~BinaryTree() { if(root) delete root->recursive_destruct(nil); }
