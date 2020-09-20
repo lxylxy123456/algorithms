@@ -23,47 +23,40 @@
 
 using namespace algorithms;
 
+template <typename T>
+void btree_walk(BNode<T>* x, std::vector<int>& ans) {
+	for (size_t i = 0; i <= x->n; i++) {
+		if (!x->leaf)
+			btree_walk(x->c[i], ans);
+		if (i == x->n)
+			break;
+		ans.push_back(x->key[i]);
+	}
+}
+
+void btree_walk(BTree<int>& BT, std::vector<int>& ans) {
+	if (!BT.size)
+		return;
+	btree_walk(BT.root, ans);
+}
+
 void sanity_check(BTree<int>& BT, std::vector<int>& data) {
 	int n = data.size(), l = 0, u = n;
 	if (n) {
 		l = data[0] - 2;
 		u = data[n - 1] + 2;
 	}
+	assert(BT.size == data.size());
+	std::vector<int> in_order;
+	btree_walk(BT, in_order);
+	std::sort(data.begin(), data.end());
+	assert(data == in_order);
 	for (int i = l; i < u; i++) {
 		bool expected = false;
 		for (std::vector<int>::iterator j = data.begin(); j != data.end(); j++)
 			expected = expected || *j == i;
-		if ((BT.BTreeSearch(i).first == nullptr) != !expected) {
-			int i;
-			i++;
-			i++;
-		}
 		assert((BT.BTreeSearch(i).first == nullptr) == !expected);
 	}
-	/*
-	std::sort(data.begin(), data.end());
-	std::vector<CData<int>> in_order_cdata;
-	BT.InorderTreeWalk(in_order_cdata);
-	std::vector<int> in_order;
-	for (std::vector<CData<int>>::iterator i = in_order_cdata.begin();
-		i < in_order_cdata.end(); i++)
-		in_order.push_back(i->data);
-	assert(data == in_order);
-	if (n) {
-		assert(BT.TreeMinimum()->data == data[0]);
-		assert(BT.TreeMaximum()->data == data[data.size() - 1]);
-		std::vector<int> successors, predecessors;
-		for (Node<CData<int>>* i = BT.TreeMinimum(); i != BT.nil;
-			i = BT.TreeSuccessor(i))
-			successors.push_back(i->data.data);
-		assert(successors == data);
-		for (Node<CData<int>>* i = BT.TreeMaximum(); i != BT.nil;
-			i = BT.TreePredecessor(i))
-			predecessors.push_back(i->data.data);
-		std::vector<int> rev_pred(predecessors.rbegin(), predecessors.rend());
-		assert(rev_pred == data);
-	}
-	*/
 }
 
 int test(size_t n, size_t k) {
@@ -96,8 +89,7 @@ int test(size_t n, size_t k) {
 
 int main(int argc, char *argv[]) {
 	std::cout << random_seed_get() << std::endl;
-	// TODO: std::vector<int> ns = {1, 4, 16, 19, 20, 25, 100};
-	std::vector<int> ns = {1, 4, 16, 19, 20, 25};
+	std::vector<int> ns = {1, 4, 16, 19, 20, 25, 100};
 	std::vector<int> ks = {3, 4, 5, 6, 7, 8};
 	for (std::vector<int>::iterator n = ns.begin(); n < ns.end(); n++)
 		for (std::vector<int>::iterator k = ks.begin(); k < ks.end(); k++)

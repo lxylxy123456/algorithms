@@ -227,13 +227,13 @@ class BTree {
 				x->n--;
 				return ans;
 			} else {		// case 3
-				size_t i = x->n;
+				size_t i = 0;
 				BNode<T>* c = DiskRead(x->c[i]);
 				if (c->n == t - 1) {
-					if (DiskRead(x->c[i - 1])->n >= t)
-						BTreeRotateRight(x, i - 1);
+					if (DiskRead(x->c[i + 1])->n >= t)
+						BTreeRotateLeft(x, i);
 					else			// case 3.b
-						BTreeMergeChild(x, --i);
+						BTreeMergeChild(x, i);
 				}
 				return BTreeDeleteMin(x->c[i]);
 			}
@@ -245,13 +245,13 @@ class BTree {
 				x->n--;
 				return ans;
 			} else {		// case 3
-				size_t i = 0;
+				size_t i = x->n;
 				BNode<T>* c = DiskRead(x->c[i]);
 				if (c->n == t - 1) {
-					if (DiskRead(x->c[i + 1])->n >= t)
-						BTreeRotateLeft(x, i);
+					if (DiskRead(x->c[i - 1])->n >= t)
+						BTreeRotateRight(x, i - 1);
 					else			// case 3.b
-						BTreeMergeChild(x, i);
+						BTreeMergeChild(x, --i);
 				}
 				return BTreeDeleteMax(x->c[i]);
 			}
