@@ -34,6 +34,7 @@ class Event {
 				std::swap(s, f);
 		}
 		bool operator<=(const Event<T>& rhs) const { return f <= rhs.f; }
+		bool operator==(const Event<T>& rhs) const { return f == rhs.f; }
 		friend std::ostream& operator<<(std::ostream& os, const Event<T>& rhs) {
 			return os << rhs.s << '~' << rhs.f;
 		}
