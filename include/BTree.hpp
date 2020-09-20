@@ -87,11 +87,11 @@ void push_front(std::vector<T>& x, const T& k) {
 template <typename T>
 class BTree {
 	public:
-		BTree(size_t tt): root(BTreeCreate()), t(tt) {}
+		BTree(size_t tt): root(BTreeCreate()), t(tt), size(0) {}
 		std::pair<BNode<T>*, size_t> BTreeSearch(BNode<T>* x, const T& k) {
 			size_t i;
 			for (i = 0; i < x->n && x->key[i] < k; i++);
-			if (i <= x->n && k == x->key[i])
+			if (i < x->n && k == x->key[i])
 				return std::pair<BNode<T>*, size_t>(x, i);
 			else if (x->leaf)
 				return std::pair<BNode<T>*, size_t>(nullptr, 0);
@@ -163,6 +163,7 @@ class BTree {
 				BTreeInsertNonfull(s, k);
 			} else
 				BTreeInsertNonfull(r, k);
+			size++;
 		}
 		void BTreeMergeChild(BNode<T>* x, size_t i) {
 			// merge x->key[i] and z = x->c[i + 1] to y = x->c[i]
@@ -315,8 +316,12 @@ class BTree {
 			}
 		}
 		bool BTreeDelete(const T& k) {
+			if (!size)
+				return false;
 			bool ans = BTreeDelete(root, k);
-			while (!root->n) {
+			if (ans)
+				size--;
+			while (!root->n && size) {
 				BNode<T>* ori = root;
 				root = DiskRead(root->c[0]);
 				FreeNode(ori);
@@ -355,7 +360,7 @@ class BTree {
 		}
 		~BTree() { delete root->recursive_destruct(); }
 		BNode<T> *root;
-		size_t t;
+		size_t t, size;
 };
 
 }
