@@ -101,25 +101,21 @@ class FibHeap {
 		FNode<T>* FibHeapMinimum() {
 			return min;
 		}
-		FibHeap<T> FibHeapUnion(FibHeap<T>& rhs) {
-			FibHeap<T> H;
+		void FibHeapUnion(FibHeap<T>& rhs) {
 			if (min) {
-				H.min = min;
 				if (rhs.min) {
 					FNode<T> *ll = min->left, *rl = rhs.min->left;
 					min->left = rl;
 					rhs.min->left = ll;
 					ll->right = rhs.min;
 					rl->right = min;
-					if (rhs.min < min)
-						H.min = rhs.min;
+					if (rhs.min->key < min->key)
+						min = rhs.min;
 				}
 			} else
-				H.min = rhs.min;
-			H.n = n + rhs.n;
-			MakeFibHeap();
+				min = rhs.min;
+			n += rhs.n;
 			rhs.MakeFibHeap();
-			return H;
 		}
 		FNode<T>* FibHeapLink(FNode<T>* x, FNode<T>* y) {
 			if (x->key > y->key)

@@ -20,11 +20,12 @@
 
 #include "utils.hpp"
 #include "RedBlackTree.hpp"
+#include <cassert>
 
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	std::vector<FibHeap<int>> FH_list(1);
+	std::vector<FibHeap<int>> FH_list(get_argv<size_t>(argc, argv, 1, 10));
 	FibHeap<int>* FH = &(FH_list[0]);
 	std::cout << "s: select" << std::endl;
 	std::cout << "i: insert" << std::endl;
@@ -56,8 +57,7 @@ int main(int argc, char *argv[]) {
 			case 's':
 				std::cout << "n = ";
 				std::cin >> n;
-				if (FH_list.size() <= n)
-					FH_list.resize(n + 1);
+				assert(n < FH_list.size());
 				FH = &(FH_list[n]);
 				ptr = FH->min;
 				break;
@@ -72,7 +72,7 @@ int main(int argc, char *argv[]) {
 			case 'u':
 				std::cout << "n = ";
 				std::cin >> n2;
-				*FH = FH->FibHeapUnion(FH_list[n2]);
+				FH->FibHeapUnion(FH_list[n2]);
 				break;
 			case 'e':
 				ptr = FH->FibHeapExtractMin();
