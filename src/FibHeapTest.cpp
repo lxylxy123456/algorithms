@@ -19,7 +19,6 @@
 #include "FibHeap.hpp"
 #include "utils.hpp"
 
-#include "MaxHeap.hpp"
 #include <cassert>
 
 using namespace algorithms;
@@ -46,6 +45,8 @@ int test(int n, int m) {
 	std::vector<int> indices;
 	random_integers(actions, 0, 5, n);
 	random_integers(indices, 0, m - 1, n);
+	output_integers(actions);
+	output_integers(indices);
 	for (int i = 0; i < n; i++) {
 		FibHeap<int>& FH = FH_list[indices[i]];
 		std::vector<int>& V = V_list[indices[i]];
