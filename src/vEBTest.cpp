@@ -16,7 +16,7 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#include "ProtovEB.hpp"
+#include "vEB.hpp"
 #include "utils.hpp"
 
 #include "RedBlackTree.hpp"
@@ -25,7 +25,7 @@
 using namespace algorithms;
 
 int test(int k, int n) {
-	ProtovEB v(k);
+	vEB v(k);
 	RedBlackTree<size_t> t;
 	std::vector<int> actions;
 	std::vector<size_t> values;
@@ -37,27 +37,27 @@ int test(int k, int n) {
 		size_t x = values[i], y;
 		Node<CData<size_t>>* n;
 		switch(actions[i]) {
-		case 0:	// ProtovEBMember
-			assert(v.ProtovEBMember(x) == (t.TreeSearch(x) != t.nil));
+		case 0:	// vEBTreeMember
+			assert(v.vEBTreeMember(x) == (t.TreeSearch(x) != t.nil));
 			break;
-		case 1:	// ProtovEBMinimum
-			y = v.ProtovEBMinimum();
+		case 1:	// vEBTreeMinimum
+			y = v.vEBTreeMinimum();
 			n = t.TreeMinimum();
 			if (y == NIL)
 				assert(n == t.nil);
 			else
 				assert(n != t.nil && y == n->data.data);
 			break;
-		case 2:	// ProtovEBMaximum
-			y = v.ProtovEBMaximum();
+		case 2:	// vEBTreeMaximum
+			y = v.vEBTreeMaximum();
 			n = t.TreeMaximum();
 			if (y == NIL)
 				assert(n == t.nil);
 			else
 				assert(n != t.nil && y == n->data.data);
 			break;
-		case 3:	// ProtovEBPredecessor
-			y = v.ProtovEBPredecessor(x);
+		case 3:	// vEBTreePredecessor
+			y = v.vEBTreePredecessor(x);
 			if (y == NIL) {
 				n = t.TreeMinimum();
 				assert(n == t.nil || n->data.data >= x);
@@ -68,8 +68,8 @@ int test(int k, int n) {
 				assert(n == t.nil || n->data.data >= x);
 			}
 			break;
-		case 4:	// ProtovEBSuccessor
-			y = v.ProtovEBSuccessor(x);
+		case 4:	// vEBTreeSuccessor
+			y = v.vEBTreeSuccessor(x);
 			if (y == NIL) {
 				n = t.TreeMaximum();
 				assert(n == t.nil || n->data.data <= x);
@@ -80,16 +80,20 @@ int test(int k, int n) {
 				assert(n == t.nil || n->data.data <= x);
 			}
 			break;
-		case 5:	// ProtovEBInsert
-			v.ProtovEBInsert(x);
-			if (t.TreeSearch(x) == t.nil)
-				t.RBInsert(x);
+		case 5:	// vEBTreeInsert
+			if (!v.vEBTreeMember(x)) {
+				v.vEBTreeInsert(x);
+				if (t.TreeSearch(x) == t.nil)
+					t.RBInsert(x);
+			}
 			break;
-		case 6:	// ProtovEBDelete
-			v.ProtovEBDelete(x);
-			n = t.TreeSearch(x);
-			if (n != t.nil)
-				t.TreeDelete(n);
+		case 6:	// vEBTreeDelete
+			if (v.vEBTreeMember(x)) {
+				v.vEBTreeDelete(x);
+				n = t.TreeSearch(x);
+				if (n != t.nil)
+					t.TreeDelete(n);
+			}
 			break;
 		default:
 			assert(0);
@@ -100,7 +104,7 @@ int test(int k, int n) {
 
 int main(int argc, char *argv[]) {
     std::vector<int> ns = {20000, 25000, 100000};
-    for (int k = 0; k <= 4; k++)
+    for (int k = 1; k <= 16; k++)
 	    for (std::vector<int>::iterator n = ns.begin(); n < ns.end(); n++)
 			test(k, *n);
 	return 0;
