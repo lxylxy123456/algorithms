@@ -61,7 +61,7 @@ class DisjointSetForest {
 template <typename T>
 class ConnectedComponents {
 	public:
-		ConnectedComponents(T n, GraphAdjList<T>& G) {
+		ConnectedComponents(GraphAdjList<T>& G) {
 			for (auto i = G.V.begin(); i != G.V.end(); i++)
 				F.MakeSet(*i);
 			for (auto i = G.all_edges(); !i.end(); i++)
