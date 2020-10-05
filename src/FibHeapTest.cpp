@@ -123,9 +123,9 @@ int test(int n, int m) {
 }
 
 int main(int argc, char *argv[]) {
-    std::vector<int> ns = {20000, 25000, 100000};
-    std::vector<int> ms = {2, 4, 5, 10};
-    for (std::vector<int>::iterator n = ns.begin(); n < ns.end(); n++)
+	std::vector<int> ns = {20000, 25000, 100000};
+	std::vector<int> ms = {2, 4, 5, 10};
+	for (std::vector<int>::iterator n = ns.begin(); n < ns.end(); n++)
 		for (std::vector<int>::iterator m = ms.begin(); m < ms.end(); m++)
 			test(*n, *m);
 	return 0;

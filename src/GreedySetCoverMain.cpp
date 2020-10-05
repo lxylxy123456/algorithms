@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
 	std::vector<set_T> F;
 	for (size_t i = 0; i < n; i++)
 		X.insert(i);
-    std::uniform_int_distribution<T> d1(0, n * m);
+	std::uniform_int_distribution<T> d1(0, n * m);
 	for (size_t i = 0; i < m; i++) {
 		set_T s;
 		for (size_t j = 0; j < n; j++)
@@ -42,25 +42,25 @@ int main(int argc, char *argv[]) {
 				s.insert(j);
 		F.push_back(s);
 	}
-    std::uniform_int_distribution<T> d2(0, m - 1);
-    for (size_t i = 0; i < n; i++)
-    	F[random_integer(d2)].insert(i);
-    std::uniform_int_distribution<T> d3(0, n - 1);
-    for (size_t i = 0; i < m; i++)
-    	F[i].insert(random_integer(d3));
-    std::set<size_t> ans = GreedySetCover(X, F);
-    for (size_t i = 0; i < m; i++) {
-    	if (ans.find(i) != ans.end())
-	    	std::cout << "+ ";
-	    else
-	    	std::cout << "  ";
-	    for (size_t j = 0; j < n; j++) {
-	    	if (F[i].find(j) != F[i].end())
-	    		std::cout << std::setw(4) << j;
-	    	else
-	    		std::cout << std::string(4, ' ');
-	    }
-	    std::cout << std::endl;
-    }
+	std::uniform_int_distribution<T> d2(0, m - 1);
+	for (size_t i = 0; i < n; i++)
+		F[random_integer(d2)].insert(i);
+	std::uniform_int_distribution<T> d3(0, n - 1);
+	for (size_t i = 0; i < m; i++)
+		F[i].insert(random_integer(d3));
+	std::set<size_t> ans = GreedySetCover(X, F);
+	for (size_t i = 0; i < m; i++) {
+		if (ans.find(i) != ans.end())
+			std::cout << "+ ";
+		else
+			std::cout << "  ";
+		for (size_t j = 0; j < n; j++) {
+			if (F[i].find(j) != F[i].end())
+				std::cout << std::setw(4) << j;
+			else
+				std::cout << std::string(4, ' ');
+		}
+		std::cout << std::endl;
+	}
 	return 0;
 }

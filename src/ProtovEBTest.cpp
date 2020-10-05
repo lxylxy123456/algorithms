@@ -99,9 +99,9 @@ int test(int k, int n) {
 }
 
 int main(int argc, char *argv[]) {
-    std::vector<int> ns = {20000, 25000, 100000};
-    for (int k = 0; k <= 4; k++)
-	    for (std::vector<int>::iterator n = ns.begin(); n < ns.end(); n++)
+	std::vector<int> ns = {20000, 25000, 100000};
+	for (int k = 0; k <= 4; k++)
+		for (std::vector<int>::iterator n = ns.begin(); n < ns.end(); n++)
 			test(k, *n);
 	return 0;
 }

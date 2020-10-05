@@ -27,11 +27,11 @@ int test(size_t n) {
 	std::cout << n << std::endl;
 	StorageManage<long int> S(n);
 	std::vector<Data<long int>*> allocated;
-    std::uniform_int_distribution<size_t> d1(0, 5);
-    std::uniform_int_distribution<size_t> d2(0, n * 5);
-    for (size_t i = 0; i < (n + 5) * 5; i++) {
-    	if (random_integer(d1) < 3) {
-    		if (allocated.size() < n) {
+	std::uniform_int_distribution<size_t> d1(0, 5);
+	std::uniform_int_distribution<size_t> d2(0, n * 5);
+	for (size_t i = 0; i < (n + 5) * 5; i++) {
+		if (random_integer(d1) < 3) {
+			if (allocated.size() < n) {
 				Data<long int>* ans = S.AllocateObject();
 				allocated.push_back(ans);
 				std::cout << "a, " << static_cast<void*>(ans) << std::endl;
@@ -43,15 +43,15 @@ int test(size_t n) {
 					assert(std::string(e.what()) == "out of space");
 				}
 			}
-    	} else {
-    		if (!allocated.size())
-    			continue;
-    		size_t x = random_integer(d2) % allocated.size();
+		} else {
+			if (!allocated.size())
+				continue;
+			size_t x = random_integer(d2) % allocated.size();
 			std::cout << "f, " << static_cast<void*>(allocated[x]) << std::endl;
 			S.FreeObject(allocated[x]);
 			allocated.erase(allocated.begin() + x, allocated.begin() + x + 1);
-    	}
-    }
+		}
+	}
 	return 0;
 }
 
