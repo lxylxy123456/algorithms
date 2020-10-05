@@ -38,7 +38,6 @@ int test(size_t v, size_t e, bool dir) {
 			assert(inf[i].f < inf[p].f);
 		}
 	}
-	if (dir)
 	for (auto i = G.all_edges(); !i.end(); i++) {
 		switch (edge_inf[*i]) {
 			case tree:
