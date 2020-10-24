@@ -37,7 +37,8 @@ Matrix<Weight<WT>> Johnson(GT& G, umap_WT& w) {
 		w_prime[Edge<T>(s, *i, G.dir)] = 0;
 	}
 	umap<T, RelaxInfo<T, WT>> BF_ans;
-	assert(BellmanFord(G_prime, w_prime, s, BF_ans));
+	if (!BellmanFord(G_prime, w_prime, s, BF_ans))
+		throw std::invalid_argument("negative-weight cycle");
 	umap<T, WT> h;
 	for (auto i = G.V.begin(); i != G.V.end(); i++) {
 		const T& v = *i;
