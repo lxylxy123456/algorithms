@@ -23,9 +23,8 @@
 
 using namespace algorithms;
 
-int test(size_t v, size_t e) {
+int test(size_t v, size_t e, int weight_lower) {
 	const bool dir = 1;
-	const int weight_lower = 0;
 	const int weight_upper = e;
 	GraphAdjList<size_t> G(dir);
 	random_graph(G, v, e);
@@ -45,20 +44,24 @@ int test(size_t v, size_t e) {
 		std::cout << "]";
 	};
 	graphviz(G, f1, f2);
-	for (auto i = G.V.begin(); i != G.V.end(); i++) {
-		if (i == G.V.begin()) {
-			assert(ans[*i].d == 0);
-			assert(ans[*i].pi.nil);
-		} else if (!ans[*i].pi.nil) {
-			size_t j = ans[*i].pi.val;
-			assert(ans[*i].d - ans[j].d == w[Edge<size_t>(j, *i, dir)]);
+	if (valid) {
+		for (auto i = G.V.begin(); i != G.V.end(); i++) {
+			if (i == G.V.begin()) {
+				assert(ans[*i].d == 0);
+				assert(ans[*i].pi.nil);
+			} else if (!ans[*i].pi.nil) {
+				size_t j = ans[*i].pi.val;
+				assert(ans[*i].d - ans[j].d == w[Edge<size_t>(j, *i, dir)]);
+			}
 		}
-	}
-	for (auto i = G.all_edges(); !i.end(); i++) {
-		if (!ans[i.s()].d.inf) {
-			assert(!ans[i.d()].d.inf);
-			assert(ans[i.d()].d.val - ans[i.s()].d.val <= w[*i]);
+		for (auto i = G.all_edges(); !i.end(); i++) {
+			if (!ans[i.s()].d.inf) {
+				assert(!ans[i.d()].d.inf);
+				assert(ans[i.d()].d.val - ans[i.s()].d.val <= w[*i]);
+			}
 		}
+	} else {
+		assert(weight_lower < 0);
 	}
 	return 0;
 }
@@ -67,7 +70,9 @@ int main(int argc, char *argv[]) {
 	std::vector<size_t> m = {5, 10, 23, 49, 100};
 	for (std::vector<size_t>::iterator v = m.begin(); v < m.end(); v++)
 		for (std::vector<size_t>::iterator e = m.begin(); e < m.end(); e++)
-			for (int n = 0; n < 5; n++)
-				test(*v, *e);
+			for (int n = 0; n < 5; n++) {
+				test(*v, *e, (0 - *e) / 4);
+				test(*v, *e, 0);
+			}
 	return 0;
 }
