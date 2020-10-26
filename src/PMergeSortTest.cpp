@@ -16,29 +16,34 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#include "Fib.hpp"
+#include "PMergeSort.hpp"
 #include "utils.hpp"
 
+#include "InsertSort.hpp"
 #include <cassert>
 
 using namespace algorithms;
 
-int test(size_t n, size_t expected) {
-	size_t a = Fib(n);
-	std::cout << n << '\t' << expected << '\t' << a << '\t' << std::flush;
-	size_t b = PFib(n);
-	assert(a == expected);
-	std::cout << b << std::endl;
-	assert(a == b);
+
+int test(int n) {
+	std::vector<int> a;
+	random_integers(a, 0, n - 1, n);
+	std::vector<int> b(a), c(n);
+	output_integers(a);
+	MergeSort_prime(b);
+	PMergeSort(a, c);
+	InsertSort(a);
+	assert (a == b && a == c);
 	return 0;
 }
 
 int main(int argc, char *argv[]) {
-	size_t prev = 0, cur = 1;
-	for (int n = 0; n < 21; n++) {
-		test(n, prev);
-		prev += cur;
-		cur ^= prev ^= cur ^= prev;
-	}
+	test(1);
+	test(2);
+	test(5);
+	test(8);
+	test(19);
+	test(52);
+	test(100);
 	return 0;
 }
