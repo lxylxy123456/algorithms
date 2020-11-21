@@ -26,7 +26,7 @@ namespace algorithms {
 template <typename T>
 Matrix<T> MatrixInverse(Matrix<T>& A) {
 	const size_t n = A.rows;
-	Matrix<T> LU(A), ans(n, 0), b(n, 1, 0);
+	Matrix<T> LU(A), ans(n, 0, 0), b(n, 1, 0);
 	PT pi = LUPDecomposition(LU);
 	for (size_t i = 0; i < n; i++) {
 		b[i][0] = 1;
