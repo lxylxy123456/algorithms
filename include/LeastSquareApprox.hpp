@@ -26,8 +26,8 @@ namespace algorithms {
 template <typename T>
 Matrix<T> LeastSquareApprox(Matrix<T>& A, Matrix<T>& y) {
 	Matrix<T> AT = A.transpose();
-	Matrix<T> b = SquareMatrixMultiply(AT, y, (T) 0);
-	Matrix<T> ATA = SquareMatrixMultiply(AT, A, (T) 0);
+	Matrix<T> b = SquareMatrixMultiply(AT, y, T(0));
+	Matrix<T> ATA = SquareMatrixMultiply(AT, A, T(0));
 	PT pi = LUPDecomposition(ATA);
 	Matrix<T> c = LUPSolve(ATA, ATA, pi, b);
 	return c;
