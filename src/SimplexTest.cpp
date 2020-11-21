@@ -82,7 +82,7 @@ int test(size_t m, size_t n) {
 
 int main(int argc, char *argv[]) {
 	std::cout << random_seed_get() << std::endl;
-	std::vector<size_t> ns = {2, 5, 8, 19, 39, /*52, 73, 100*/};
+	std::vector<size_t> ns = {2, 5, 8, 19, 39, 52, 73};
 	for (std::vector<size_t>::iterator m = ns.begin(); m < ns.end(); m++)
 		for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
 			if (*m > *n)
@@ -92,18 +92,14 @@ int main(int argc, char *argv[]) {
 	test<Fraction<long long int>>(4, 3);
 	/*
 	TODO: sometimes Assertion `l != NIL' fails
-	e.g. 
-		4 -7 7 -5 -8 
-		-6 -8 -7 2 0 
-		-8 4 4 -6 8 
-		-4 -5 -7 7 8 
-		4 -5 7 -3 -7 
-		-6 -7 7 -1 -8 
-		7 2 1 -3 6 
-		-5 3 4 -6 4 
+	// std::vector<size_t> ns = {2, 3};
+	e.g. 812690490
+		-3 3 
+		-2 1 
+		2 -3 
 
-		-4 1 1 -8 1 0 3 4 
-		1 6 -3 4 5 
+		-3 2 -3 
+		-1 1 
 	*/
 	return 0;
 }
