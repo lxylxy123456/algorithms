@@ -34,7 +34,7 @@ void main_T(const size_t n) {
 	std::cout << A << std::endl;
 	Matrix<T> B = MatrixInverse(A);
 	std::cout << B << std::endl;
-	Matrix<T> C = SquareMatrixMultiply(A, B, T(0));
+	Matrix<T> C = SquareMatrixMultiply(A, B, (T) 0);
 	std::cout << C << std::endl;
 }
 

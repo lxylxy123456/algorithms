@@ -69,7 +69,7 @@ int test(size_t m, size_t n) {
 			T s(0);
 			for (size_t j = 1; j <= n; j++)
 				s += A[n + i][j] * x[j];
-			assert(s - b[n + i] < T(1) / T(100000));
+			assert(s - b[n + i] < (T) 1 / (T) 100000);
 		}
 	} catch (std::invalid_argument& e) {
 		std::cout << e.what() << std::endl;

@@ -39,7 +39,7 @@ void main_T(const size_t n, const size_t m) {
 	Matrix<T> ans1(b), ans2(n, 0);
 	Matrix<T> x = LeastSquareApprox(A, b);
 	ans2 = ans2.concat_h(x);
-	Matrix<T> bb = SquareMatrixMultiply(A, x, T(0));
+	Matrix<T> bb = SquareMatrixMultiply(A, x, (T) 0);
 	ans1 = ans1.concat_h(bb);
 	for (size_t i = 0; i < m; i++) {
 		output_integers(ans1[i], "\t");

@@ -52,15 +52,15 @@ int test(size_t m, size_t n, size_t tries) {
 			std::cout << A << std::endl;
 			std::cout << b << std::endl;
 			Matrix<T> x = LeastSquareApprox(A, b);
-			Matrix<T> bb = SquareMatrixMultiply(A, x, T(0));
+			Matrix<T> bb = SquareMatrixMultiply(A, x, (T) 0);
 			bool test_flag = true;
 			for (size_t i = 0; i < n; i++)
-				for (T j = -1; j < T(11) / T(10); j += T(1) / T(10)) {
+				for (T j = -1; j < (T) 11 / (T) 10; j += (T) 1 / (T) 10) {
 					Matrix<T> y(x);
 					y[i][0] += j;
-					Matrix<T> by = SquareMatrixMultiply(A, y, T(0));
+					Matrix<T> by = SquareMatrixMultiply(A, y, (T) 0));
 					T nx = norm(b, bb), ny = norm(b, by);
-					test_flag = test_flag && !(ny - nx < T(-1) / T(100000));
+					test_flag = test_flag && !(ny - nx < (T) -1 / (T) 100000);
 				}
 			if (!test_flag)
 				continue;

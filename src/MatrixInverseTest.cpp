@@ -45,14 +45,14 @@ int test(size_t n, size_t tries) {
 			Matrix<T> A(n, n, buf_a);
 			std::cout << A << std::endl;
 			Matrix<T> B = MatrixInverse(A);
-			Matrix<T> C = SquareMatrixMultiply(A, B, T(0));
+			Matrix<T> C = SquareMatrixMultiply(A, B, (T) 0);
 			bool test_flag = true;
 			for (size_t i = 0; i < n; i++)
 				for (size_t j = 0; j < n; j++) {
 					if (i == j)
-						test_flag = test_flag && almost_equal(C[i][j], T(1));
+						test_flag = test_flag && almost_equal(C[i][j], (T) 1);
 					else
-						test_flag = test_flag && almost_equal(C[i][j], T(0));
+						test_flag = test_flag && almost_equal(C[i][j], (T) 0);
 				}
 			if (!test_flag)
 				continue;
