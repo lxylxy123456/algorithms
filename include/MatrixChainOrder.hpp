@@ -34,7 +34,7 @@ Matrix<T> MatrixMultiply(Matrix<T>&A, Matrix<T>&B) {
 	Matrix<T> C(A.rows, B.cols, A[0][0]);
 	for (size_t i = 0; i < C.rows; i++) {
 		for(size_t j = 0; j < C.cols; j++) {
-			int& loc = C.data[i][j];
+			T& loc = C.data[i][j];
 			loc = A[i][0] * B[0][j];
 			for(size_t k = 1; k < A.cols; k++)
 				loc += A[i][k] * B[k][j];

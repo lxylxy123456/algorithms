@@ -72,7 +72,7 @@ class Fraction
 			return Fraction(num, den);
 		}
 		const Fraction operator/ (const Fraction& a) const {
-			if (!denominator || !a.denominator)
+			if (!denominator || !a.denominator || !a.numerator)
 				throw std::invalid_argument("zero denominator");
 			int num = numerator * a.denominator;
 			int den = denominator * a.numerator;
@@ -107,7 +107,7 @@ class Fraction
 			return *this;
 		}
 		Fraction& operator/= (const Fraction& a) {
-			if (!denominator || !a.denominator)
+			if (!denominator || !a.denominator || !a.numerator)
 				throw std::invalid_argument("zero denominator");
 			numerator *= a.denominator;
 			denominator *= a.numerator;

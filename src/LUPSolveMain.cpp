@@ -36,7 +36,7 @@ void main_T(const size_t n, const size_t compute) {
 	Matrix<T> A(n, n, buf_a);
 	Matrix<T> b(n, 1, buf_b);
 	std::cout << A << std::endl;
-	Matrix<T> ans1(b), ans2(n, 0);
+	Matrix<T> ans1(b), ans2(n, 0, 0);
 	if (compute >> 0 & 1) {
 		Matrix<T> A1(A), L(0, 0), U(0, 0);
 		PT pi(n);
