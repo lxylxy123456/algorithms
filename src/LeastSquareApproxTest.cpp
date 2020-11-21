@@ -58,7 +58,7 @@ int test(size_t m, size_t n, size_t tries) {
 				for (T j = -1; j < (T) 11 / (T) 10; j += (T) 1 / (T) 10) {
 					Matrix<T> y(x);
 					y[i][0] += j;
-					Matrix<T> by = SquareMatrixMultiply(A, y, (T) 0));
+					Matrix<T> by = SquareMatrixMultiply(A, y, (T) 0);
 					T nx = norm(b, bb), ny = norm(b, by);
 					test_flag = test_flag && !(ny - nx < (T) -1 / (T) 100000);
 				}
