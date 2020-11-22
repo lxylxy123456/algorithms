@@ -1,6 +1,6 @@
 //
 //  algorithm - some algorithms in "Introduction to Algorithms", third edition
-//  Copyright (C) 2018  lxylxy123456
+//  Copyright (C) 2020  lxylxy123456
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
@@ -17,20 +17,17 @@
 //
 
 #include "AnySegmentsIntersect.hpp"
-
-#include <algorithm>
-#include <cassert>
 #include "utils.hpp"
-#include "RedBlackTree.hpp"
+
 #include "SegmentsIntersect.hpp"
+#include <cassert>
 
 using namespace algorithms;
 
-int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 200);
-	const size_t m = get_argv(argc, argv, 2, 5);
+int test(size_t n, size_t m) {
 	std::vector<int> b;
 	random_integers(b, -n, n, m * 4);
+	output_integers(b);
 	using T = double;
 	T x;
 	std::vector<Segment<T>> S;
@@ -41,17 +38,22 @@ int main(int argc, char *argv[]) {
 		Vector<T> s(b[4 * i + 0], b[4 * i + 1]), e(b[4 * i + 2], b[4 * i + 3]);
 		S.push_back(Segment<T>(s, e, x));
 	}
-	std::cout << "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>"
-				 << std::endl;
-	std::cout << "<svg height=\"" << 2 * n << "\" width=\"" << 2 * n << "\">"
-				 << std::endl;
-	std::cout << "\t<rect fill=\"#ffffff\" x=\"0\" y=\"0\" width=\"" << 2 * n
-				 << "\" height=\"" << 2 * n << "\"/>" << std::endl;
-	for (auto i = S.begin(); i != S.end(); i++)
-		print_seg(i->a, i->b, (T) n, "#000000");
-	std::cout << "\t<text x=\"" << n << "\" y=\"" << n << "\">"
-				 << std::boolalpha << AnySegmentsIntersect(S)
-				 << "</text>" << std::endl;
-	std::cout << "</svg>" << std::endl;
+	bool actual, expected = AnySegmentsIntersect(S);
+	for (size_t i = 0; i < m; i++)
+		for (size_t j = i + 1; j < m; j++)
+			if (SegmentsIntersect(S[i].a, S[i].b, S[j].a, S[j].b)) {
+				actual = true;
+				break;
+			}
+	assert(actual == expected);
+	return 0;
+}
+
+int main(int argc, char *argv[]) {
+	std::vector<size_t> ns = {100, 1024, 10000};
+	std::vector<size_t> ms = {2, 5, 10, 23, 49, 100};
+	for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
+		for (std::vector<size_t>::iterator m = ms.begin(); m < ms.end(); m++)
+			test(*n, *m);
 	return 0;
 }
