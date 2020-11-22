@@ -34,7 +34,7 @@ void RabinKarpMatcher(const std::vector<T>& S, const std::vector<T>& P,
 		p = (d * p + P[i] - o) % q;
 		t = (d * t + S[i] - o) % q;
 	}
-	for (size_t s = 0; s <= n - m; s++) {
+	for (size_t s = 0; s + m <= n; s++) {
 		if (p == t && equal(P, 0, S, s, m))
 			ans.push_back(s);
 		if (s < n - m)

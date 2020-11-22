@@ -1,6 +1,6 @@
 //
 //  algorithm - some algorithms in "Introduction to Algorithms", third edition
-//  Copyright (C) 2018  lxylxy123456
+//  Copyright (C) 2020  lxylxy123456
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
@@ -17,30 +17,38 @@
 //
 
 #include "RabinKarpMatcher.hpp"
-
 #include "utils.hpp"
+
 #include "NaiveStringMatcher.hpp"
+#include <cassert>
 
 using namespace algorithms;
 
-int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 40);
-	const size_t m = get_argv(argc, argv, 2, 3);
-	const size_t d = get_argv(argc, argv, 3, 2);
-	const size_t compute = get_argv(argc, argv, 4, 1);
-	std::vector<char> S, P;
-	random_integers<char>(S, 'a', 'a' + d, n);
-	random_integers<char>(P, 'a', 'a' + d, m);
-	output_integers(S, "");
-	output_integers(P, "");
+template <typename T>
+int test(size_t n, size_t m, size_t d) {
+	std::vector<T> S, P;
+	random_integers<T>(S, 'a', 'a' + d, n);
+	random_integers<T>(P, 'a', 'a' + d, m);
+	output_integers(S);
+	output_integers(P);
 	std::vector<size_t> ans;
-	RabinKarpMatcher(S, P, d, 1000000007, 'a', ans);
+	RabinKarpMatcher(S, P, d, 1000000007, (T) 'a', ans);
 	output_integers(ans);
-	if (compute) {
-		std::vector<size_t> ans1;
-		NaiveStringMatcher(S, P, ans1);
-		output_integers(ans1);
-		std::cout << std::boolalpha << (ans == ans1) << std::endl;
-	}
+	std::vector<size_t> ans1;
+	NaiveStringMatcher(S, P, ans1);
+	output_integers(ans1);
+	assert(ans == ans1);
+	return 0;
+}
+
+int main(int argc, char *argv[]) {
+	std::vector<size_t> ns = {2, 5, 10, 23, 49, 100};
+	for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
+		for (std::vector<size_t>::iterator m = ns.begin(); m < ns.end(); m++) {
+			for (int d = 1; d < 20; d += 2)
+				test<char>(*m, *n, d);
+			for (int d = 2; d < 1000; d += 10)
+				test<int>(*m, *n, d);
+		}
 	return 0;
 }
