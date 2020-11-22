@@ -16,7 +16,7 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#include "FiniteAutomatonMatcher.hpp"
+#include "KMPMatcher.hpp"
 #include "utils.hpp"
 
 #include "NaiveStringMatcher.hpp"
@@ -31,10 +31,8 @@ int test(size_t n, size_t m, size_t d) {
 	random_integers<T>(P, 'a', 'a' + d, m);
 	output_integers(S);
 	output_integers(P);
-	std::vector<std::vector<size_t>> delta;
-	ComputeTransitionFunction(P, d, (T) 'a', delta);
 	std::vector<size_t> ans;
-	FiniteAutomatonMatcher(S, delta, (T) 'a', ans);
+	KMPMatcher(S, P, ans);
 	std::vector<size_t> ans1;
 	NaiveStringMatcher(S, P, ans1);
 	assert(ans == ans1);

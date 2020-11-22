@@ -34,7 +34,6 @@ int test(size_t n, size_t m, size_t d) {
 	NaiveStringMatcher(S, P, ans);
 	for (std::vector<size_t>::iterator i = ans.begin(); i < ans.end(); i++)
 		assert(std::vector<T>(S.begin() + *i, S.begin() + *i + m) == P);
-	output_integers(ans);
 	return 0;
 }
 

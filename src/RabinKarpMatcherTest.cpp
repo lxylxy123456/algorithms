@@ -33,10 +33,8 @@ int test(size_t n, size_t m, size_t d) {
 	output_integers(P);
 	std::vector<size_t> ans;
 	RabinKarpMatcher(S, P, d, 1000000007, (T) 'a', ans);
-	output_integers(ans);
 	std::vector<size_t> ans1;
 	NaiveStringMatcher(S, P, ans1);
-	output_integers(ans1);
 	assert(ans == ans1);
 	return 0;
 }
