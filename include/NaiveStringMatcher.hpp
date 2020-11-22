@@ -45,7 +45,7 @@ template <typename T>
 void NaiveStringMatcher(const std::vector<T>& S, const std::vector<T>& P,
 						std::vector<size_t>& ans) {
 	size_t n = S.size(), m = P.size();
-	for (size_t s = 0; s <= n - m; s++)
+	for (size_t s = 0; s + m <= n; s++)
 		if (equal(P, 0, S, s, m))
 			ans.push_back(s);
 }
