@@ -34,7 +34,6 @@ int test(T a, T b, T n) {
 	return 0;
 }
 
-#include <climits>
 int main(int argc, char *argv[]) {
 	for (int n = 2; n <= 46340; n += 10)
 		test(random_integer<int>(1, n),

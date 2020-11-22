@@ -37,7 +37,6 @@ int test(T a, T b) {
 	return 0;
 }
 
-#include <climits>
 int main(int argc, char *argv[]) {
 	for (int n = 2; n > 0; n += 1000000)
 		test(random_integer<int>(1, n), random_integer<int>(1, n));

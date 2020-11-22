@@ -46,21 +46,12 @@ int test(T n) {
 	return 0;
 }
 
-#include <climits>
 int main(int argc, char *argv[]) {
-	int total = 0, count = 0;
-	for (int n = 2; n <= 23170; n += 10) {
-		count += test(random_integer<int>(1, n) * 2 + 1);
-		total++;
-	}
-	for (long int n = 2; n <= 303700049; n += 300000) {
-		count += test(random_integer<long int>(1, n) * 2 + 1);
-		total++;
-	}
-	for (long int n = 2; n <= 303700049; n += 300000) {
-		count += test(random_integer<long long int>(1, n) * 2 + 1);
-		total++;
-	}
-	assert((double) count / total < 0.0055);
+	for (int n = 2; n <= 23170; n += 10)
+		test(random_integer<int>(1, n) * 2 + 1);
+	for (long int n = 2; n <= 303700049; n += 300000)
+		test(random_integer<long int>(1, n) * 2 + 1);
+	for (long int n = 2; n <= 303700049; n += 300000)
+		test(random_integer<long long int>(1, n) * 2 + 1);
 	return 0;
 }

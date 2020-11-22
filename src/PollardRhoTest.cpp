@@ -16,7 +16,7 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#include "Pseudoprime.hpp"
+#include "PollardRho.hpp"
 #include "utils.hpp"
 
 #include <cassert>
@@ -26,32 +26,35 @@ using namespace algorithms;
 template <typename T>
 int test(T n) {
 	std::cout << n << std::endl;
-	bool ans = Pseudoprime(n);
-	bool ans2 = (n % 2 != 0);
+	T ans = PollardRho(n);
+	bool is_prime = (n % 2 != 0);
 	for (T i = 3; i * i <= n; i += 2)
 		if (n % i == 0) {
-			ans2 = false;
+			is_prime = false;
 			break;
 		}
-	if (ans != ans2)
-		assert(ans && !ans2);
-	return ans != ans2;
+	if (ans)
+		assert(n % ans == 0);
+	else if (!is_prime)
+		return 1;
+	return 0;
 }
 
 int main(int argc, char *argv[]) {
 	int total = 0, count = 0;
-	for (int n = 2; n <= 46340; n += 10) {
-		count += test(random_integer<int>(1, n));
+	for (int n = 2; n <= 23170; n += 1000) {
+		count += test(random_integer<int>(1, n) * 2 + 1);
 		total++;
 	}
-	for (long int n = 2; n <= 3037000499; n += 300000) {
-		count += test(random_integer<long int>(1, n));
+	for (long int n = 2; n <= 303700049; n += 3000000) {
+		count += test(random_integer<long int>(1, n) * 2 + 1);
 		total++;
 	}
-	for (long int n = 2; n <= 3037000499; n += 300000) {
-		count += test(random_integer<long long int>(1, n));
+	for (long int n = 2; n <= 303700049; n += 3000000) {
+		count += test(random_integer<long long int>(1, n) * 2 + 1);
 		total++;
 	}
-	assert((double) count / total < 0.0055);
+	std::cout << count << '/' << total << std::endl;
+	assert((double) count / total < 0.5);
 	return 0;
 }
