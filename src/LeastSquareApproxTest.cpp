@@ -68,7 +68,6 @@ int test(size_t m, size_t n, size_t tries) {
 		} catch (std::invalid_argument& e) {
 			assert(std::string(e.what()) == "singular matrix" ||
 					std::string(e.what()) == "zero denominator");
-			assert(0);
 			continue;
 		}
 	}
