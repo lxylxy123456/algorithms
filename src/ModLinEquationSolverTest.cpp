@@ -39,7 +39,6 @@ int test(T a, T b, T n) {
 		assert(b % Euclid(a, n) != 0);
 	}
 	return 0;
-	return 0;
 }
 
 #include <climits>

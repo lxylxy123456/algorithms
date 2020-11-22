@@ -1,6 +1,6 @@
 //
 //  algorithm - some algorithms in "Introduction to Algorithms", third edition
-//  Copyright (C) 2018  lxylxy123456
+//  Copyright (C) 2020  lxylxy123456
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
@@ -17,18 +17,37 @@
 //
 
 #include "ModularExponentiation.hpp"
-
 #include "utils.hpp"
+
+#include "Euclid.hpp"
+#include <cassert>
 
 using namespace algorithms;
 
-int main(int argc, char *argv[]) {
-	const size_t nn = get_argv(argc, argv, 1, 4);
-	using T = long long int;
-	T a = get_argv(argc, argv, 2, random_integer<T>(0, 1 << nn));
-	T b = get_argv(argc, argv, 3, random_integer<T>(0, 1 << nn));
-	T n = get_argv(argc, argv, 4, random_integer<T>(1, 1 << nn));
+template <typename T>
+int test(T a, T b, T n) {
 	T ans = ModularExponentiation(a, b, n);
 	std::cout << a << " ** " << b << " % " << n << " = " << ans << std::endl;
+	T ans2 = 1;
+	for (int i = 0; i < b; i++)
+		ans2 = (ans2 * a) % n;
+	assert(ans == ans2);
+	return 0;
+}
+
+#include <climits>
+int main(int argc, char *argv[]) {
+	for (int n = 2; n <= 46340; n += 10)
+		test(random_integer<int>(1, n),
+			random_integer<int>(1, n),
+			random_integer<int>(1, n));
+	for (long int n = 2; n <= 30370004; n += 300000)
+		test(random_integer<long int>(1, n),
+			random_integer<long int>(1, n),
+			random_integer<long int>(1, n));
+	for (long int n = 2; n <= 30370004; n += 300000)
+		test(random_integer<long long int>(1, n),
+			random_integer<long long int>(1, n),
+			random_integer<long long int>(1, n));
 	return 0;
 }
