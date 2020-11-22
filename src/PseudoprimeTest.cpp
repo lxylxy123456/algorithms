@@ -16,37 +16,44 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#include "ModularExponentiation.hpp"
+#include "Pseudoprime.hpp"
 #include "utils.hpp"
 
+#include "Euclid.hpp"
 #include <cassert>
 
 using namespace algorithms;
 
 template <typename T>
-int test(T a, T b, T n) {
-	T ans = ModularExponentiation(a, b, n);
-	std::cout << a << " ** " << b << " % " << n << " = " << ans << std::endl;
-	T ans2 = 1;
-	for (T i = 0; i < b; i++)
-		ans2 = (ans2 * a) % n;
-	assert(ans == ans2);
-	return 0;
+int test(T n) {
+	std::cout << n << std::endl;	
+	bool ans = Pseudoprime(n);
+	bool ans2 = (n % 2 != 0);
+	for (T i = 3; i * i <= n; i += 2)
+		if (n % i == 0) {
+			ans2 = false;
+			break;
+		}
+	if (ans != ans2)
+		assert(ans && !ans2);
+	return ans != ans2;
 }
 
 #include <climits>
 int main(int argc, char *argv[]) {
-	for (int n = 2; n <= 46340; n += 10)
-		test(random_integer<int>(1, n),
-			random_integer<int>(1, n),
-			random_integer<int>(1, n));
-	for (long int n = 2; n <= 30370004; n += 300000)
-		test(random_integer<long int>(1, n),
-			random_integer<long int>(1, n),
-			random_integer<long int>(1, n));
-	for (long int n = 2; n <= 30370004; n += 300000)
-		test(random_integer<long long int>(1, n),
-			random_integer<long long int>(1, n),
-			random_integer<long long int>(1, n));
+	int total = 0, count = 0;
+	for (int n = 2; n <= 46340; n += 10) {
+		count += test(random_integer<int>(1, n));
+		total++;
+	}
+	for (long int n = 2; n <= 3037000499; n += 300000) {
+		count += test(random_integer<long int>(1, n));
+		total++;
+	}
+	for (long int n = 2; n <= 3037000499; n += 300000) {
+		count += test(random_integer<long long int>(1, n));
+		total++;
+	}
+	assert((double) count / total < 0.0055);
 	return 0;
 }
