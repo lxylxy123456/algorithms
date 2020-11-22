@@ -29,7 +29,7 @@ int test(size_t v, size_t e) {
 	{
 		umap<size_t, DFSInfo<size_t>> inf;
 		umap<Edge<size_t>, DFSEdgeType, EdgeHash<size_t>> edge_inf;
-		DFS(G, inf, &edge_inf);	
+		DFS(G, inf, &edge_inf);
 		graphviz(G);
 		for (auto i = G.all_edges(); !i.end(); i++)
 			if (edge_inf[*i] == back)

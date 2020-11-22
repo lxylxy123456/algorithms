@@ -16,7 +16,7 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#include "Pseudoprime.hpp"
+#include "MillerRabin.hpp"
 #include "utils.hpp"
 
 #include <cassert>
@@ -26,31 +26,39 @@ using namespace algorithms;
 template <typename T>
 int test(T n) {
 	std::cout << n << std::endl;
-	bool ans = Pseudoprime(n);
+	int tries = 10;
+	bool ans = MillerRabin(n, tries);
 	bool ans2 = (n % 2 != 0);
 	for (T i = 3; i * i <= n; i += 2)
 		if (n % i == 0) {
 			ans2 = false;
 			break;
 		}
-	if (ans != ans2)
-		assert(ans && !ans2);
-	return ans != ans2;
+	if (ans != ans2) {
+		do {
+			assert(ans && !ans2);
+			tries *= 10;
+			if (tries <= 0)
+				tries = tries % 10 + 1;
+			ans = MillerRabin(n, tries);
+		} while(ans != ans2);
+	}
+	return 0;
 }
 
 #include <climits>
 int main(int argc, char *argv[]) {
 	int total = 0, count = 0;
-	for (int n = 2; n <= 46340; n += 10) {
-		count += test(random_integer<int>(1, n));
+	for (int n = 2; n <= 23170; n += 10) {
+		count += test(random_integer<int>(1, n) * 2 + 1);
 		total++;
 	}
-	for (long int n = 2; n <= 3037000499; n += 300000) {
-		count += test(random_integer<long int>(1, n));
+	for (long int n = 2; n <= 303700049; n += 300000) {
+		count += test(random_integer<long int>(1, n) * 2 + 1);
 		total++;
 	}
-	for (long int n = 2; n <= 3037000499; n += 300000) {
-		count += test(random_integer<long long int>(1, n));
+	for (long int n = 2; n <= 303700049; n += 300000) {
+		count += test(random_integer<long long int>(1, n) * 2 + 1);
 		total++;
 	}
 	assert((double) count / total < 0.0055);
