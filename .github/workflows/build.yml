@@ -12,7 +12,7 @@ jobs:
     - name: mkdir
       run: mkdir -p bin/ d/
     - name: make
-      run: make ALL_NEW -j 4
+      run: make ALL -j 4
     - name: test
       run: make test
     - name: mv
