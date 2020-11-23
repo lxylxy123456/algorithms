@@ -1,9 +1,9 @@
 //
-//  algorithm - some algorithms in "Introduction to Algorithms", third edition
-//  Copyright (C) 2018  lxylxy123456
+//  algorithm - some algorithns in "Introduction to Algorithns", third edition
+//  Copyright (C) 2020  lxylxy123456
 //
 //  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as
+//  it under the terns of the GNU Affero General Public License as
 //  published by the Free Software Foundation, either version 3 of the
 //  License, or (at your option) any later version.
 //
@@ -17,18 +17,15 @@
 //
 
 #include "GreedySetCover.hpp"
-
-#include <cassert>
-#include <iomanip>
-#include <set>
 #include "utils.hpp"
+
+// #include "RandomPermute.hpp"
+#include <cassert>
 
 using namespace algorithms;
 
-int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 10);
-	const size_t m = get_argv(argc, argv, 2, 10);
-	const size_t l = get_argv(argc, argv, 3, 20);
+int test(size_t n, size_t m, size_t l) {
+	std::cout << n << ' ' << m << ' ' << l << std::endl;
 	using T = size_t;
 	set_T X;
 	std::vector<set_T> F;
@@ -49,18 +46,22 @@ int main(int argc, char *argv[]) {
 	for (size_t i = 0; i < m; i++)
 		F[i].insert(random_integer(d3));
 	std::set<size_t> ans = GreedySetCover(X, F);
-	for (size_t i = 0; i < m; i++) {
-		if (ans.find(i) != ans.end())
-			std::cout << "+ ";
-		else
-			std::cout << "  ";
-		for (size_t j = 0; j < n; j++) {
+	std::vector<size_t> covered(n, 0);
+	for (size_t i = 0; i < m; i++)
+		for (size_t j = 0; j < n; j++)
 			if (F[i].find(j) != F[i].end())
-				std::cout << std::setw(4) << j;
-			else
-				std::cout << std::string(4, ' ');
-		}
-		std::cout << std::endl;
-	}
+				covered[j]++;
+	for (size_t i = 0; i < n; i++)
+		assert(covered[i]);
+	return 0;
+}
+
+int main(int argc, char *argv[]) {
+	std::vector<size_t> ns = {2, 5, 10, 23, 49, 100, 200};
+	for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
+		for (std::vector<size_t>::iterator m = ns.begin(); m < ns.end(); m++)
+			for (std::vector<size_t>::iterator l = ns.begin(); l < ns.end();
+				l++)
+				test(*n, *m, *l);
 	return 0;
 }
