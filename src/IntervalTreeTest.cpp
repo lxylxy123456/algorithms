@@ -93,7 +93,6 @@ int test(int n) {
 }
 
 int main(int argc, char *argv[]) {
-	std::cout << "TODO: temporarily disabled" << std::endl; return 0; // TODO
 	std::cout << "seed = " << random_seed_get() << std::endl;
 	test(0);
 	test(1);
