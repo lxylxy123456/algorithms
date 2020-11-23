@@ -45,14 +45,15 @@ int test(size_t n, size_t m) {
 				actual = true;
 				break;
 			}
+	std::cout << "a = " << actual << "; e = " << expected << std::endl;
 	assert(actual == expected);
 	return 0;
 }
 
 int main(int argc, char *argv[]) {
 	std::cout << random_seed_get() << std::endl;
-	std::vector<size_t> ns = {100, 101, 102};
-	std::vector<size_t> ms = {2, 5, 10, 23, 49};
+	std::vector<size_t> ns = {100, 101, 102, 103, 104, 105, 106, 107, 108, 100, 101, 102, 103, 104, 105, 106, 107, 108, 100, 101, 102, 103, 104, 105, 106, 107, 108, 100, 101, 102, 103, 104, 105, 106, 107, 108, 100, 101, 102, 103, 104, 105, 106, 107, 108};
+	std::vector<size_t> ms = {2, 5, 10};
 	for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
 		for (std::vector<size_t>::iterator m = ms.begin(); m < ms.end(); m++)
 			test(*n, *m);
