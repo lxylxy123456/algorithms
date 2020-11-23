@@ -111,7 +111,7 @@ void InitializeSimplex(usetst& N, usetst& B, matst& A, vectst& b, vectst& c,
 		if (B.find(0) != B.end()) {
 			size_t e = NIL;
 			for (auto i = N.begin(); i != N.end(); i++)
-				if (!(A[0][*i] < epsilon)) {
+				if (!(-epsilon < A[0][*i] && A[0][*i] < epsilon)) {
 					e = *i;
 					break;
 				}
