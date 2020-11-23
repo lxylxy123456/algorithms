@@ -64,7 +64,7 @@ void Pivot(usetst& N, usetst& B, matst& A, vectst& b, vectst& c, T& v,
 
 template <typename T>
 void InitializeSimplex(usetst& N, usetst& B, matst& A, vectst& b, vectst& c,
-						T& v) {
+						T& v, const T epsilon) {
 	const size_t n = c.size(), m = b.size();
 	for (size_t i = 1; i <= n; i++)
 		N.insert(i);
@@ -75,7 +75,7 @@ void InitializeSimplex(usetst& N, usetst& B, matst& A, vectst& b, vectst& c,
 	for (auto i = B.begin(); i != B.end(); i++)
 		if (b[*i] < b[k])
 			k = *i;
-	if (!(b[k] < (T) 0))
+	if (!(b[k] < epsilon))
 		return;
 	vectst Lc;
 	T Lv = 0;
@@ -89,7 +89,7 @@ void InitializeSimplex(usetst& N, usetst& B, matst& A, vectst& b, vectst& c,
 	while (true) {
 		size_t e = NIL, l = NIL;
 		for (auto i = N.begin(); i != N.end(); i++)
-			if ((T) 0 < Lc[*i]) {
+			if (epsilon < Lc[*i]) {
 				e = *i;
 				break;
 			}
@@ -97,7 +97,7 @@ void InitializeSimplex(usetst& N, usetst& B, matst& A, vectst& b, vectst& c,
 			break;
 		T delta;
 		for (auto i = B.begin(); i != B.end(); i++)
-			if ((T) 0 < A[*i][e]) {
+			if (epsilon < A[*i][e]) {
 				T cur = b[*i] / A[*i][e];
 				if (l == NIL || cur < delta) {
 					l = *i;
@@ -111,7 +111,7 @@ void InitializeSimplex(usetst& N, usetst& B, matst& A, vectst& b, vectst& c,
 		if (B.find(0) != B.end()) {
 			size_t e = NIL;
 			for (auto i = N.begin(); i != N.end(); i++)
-				if (!(A[0][*i] == 0)) {
+				if (!(A[0][*i] < epsilon)) {
 					e = *i;
 					break;
 				}
@@ -137,14 +137,14 @@ void InitializeSimplex(usetst& N, usetst& B, matst& A, vectst& b, vectst& c,
 }
 
 template <typename T>
-vectst Simplex(matst A, vectst b, vectst c) {
+vectst Simplex(matst A, vectst b, vectst c, const T epsilon) {
 	usetst N, B;
 	T v;
-	InitializeSimplex(N, B, A, b, c, v);
+	InitializeSimplex(N, B, A, b, c, v, epsilon);
 	while (true) {
 		size_t e = NIL, l = NIL;
 		for (auto i = N.begin(); i != N.end(); i++)
-			if ((T) 0 < c[*i]) {
+			if (epsilon < c[*i]) {
 				e = *i;
 				break;
 			}
@@ -152,7 +152,7 @@ vectst Simplex(matst A, vectst b, vectst c) {
 			break;
 		T delta;
 		for (auto i = B.begin(); i != B.end(); i++)
-			if ((T) 0 < A[*i][e]) {
+			if (epsilon < A[*i][e]) {
 				T cur = b[*i] / A[*i][e];
 				if (l == NIL || cur < delta) {
 					l = *i;

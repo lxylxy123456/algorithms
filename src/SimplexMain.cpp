@@ -51,7 +51,7 @@ void main_T(const size_t n, const size_t m) {
 	for (size_t i = 1; i <= n; i++)
 		std::cout << c[i] << " ";
 	std::cout << std::endl;
-	vectst x = Simplex(A, b, c);
+	vectst x = Simplex(A, b, c, (T) 0);
 	for (size_t i = 1; i <= n; i++)
 		std::cout << x[i] << " ";
 	std::cout << std::endl;
