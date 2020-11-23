@@ -34,6 +34,9 @@ int test(size_t v, size_t e) {
 	random_weight(G, c, weight_lower, weight_upper);
 	umap<Edge<size_t>, int, EdgeHash<size_t>> f, f_ff;
 	size_t s = 0, t = v - 1;
+	for (auto i = G.all_edges(); !i.end(); i++)
+		if (i.s() == i.d())
+			c[*i] = 0;
 	RelabelToFront(G, c, s, t, f);
 	FordFulkerson(G, c, s, t, f_ff);
 	auto f1 = [v](size_t vv) {
@@ -51,11 +54,6 @@ int test(size_t v, size_t e) {
 	umap<size_t, int> flow_map, flow_map_ff;
 	for (auto i = G.all_edges(); !i.end(); i++) {
 		assert(0 <= f[*i] && f[*i] <= c[*i]);
-		// TODO: RelabelToFront may give solution with cycle flow
-		// if (i.d() == s)
-		// 	assert(f[*i] == 0);
-		// if (i.s() == t)
-		// 	assert(f[*i] == 0);
 		flow_map[i.d()] += f[*i];
 		flow_map[i.s()] -= f[*i];
 		flow_map_ff[i.d()] += f[*i];
