@@ -18,7 +18,6 @@
 
 #include "GrahamScan.hpp"
 
-#include <algorithm>
 #include "utils.hpp"
 #include "SegmentsIntersect.hpp"
 

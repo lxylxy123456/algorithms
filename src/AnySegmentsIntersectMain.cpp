@@ -18,7 +18,6 @@
 
 #include "AnySegmentsIntersect.hpp"
 
-#include <algorithm>
 #include <cassert>
 #include "utils.hpp"
 #include "RedBlackTree.hpp"

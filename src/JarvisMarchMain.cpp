@@ -18,7 +18,6 @@
 
 #include "JarvisMarch.hpp"
 
-#include <algorithm>
 #include "utils.hpp"
 #include "SegmentsIntersect.hpp"
 

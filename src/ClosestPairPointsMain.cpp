@@ -18,9 +18,6 @@
 
 #include "ClosestPairPoints.hpp"
 
-#include <algorithm>
-#include <cassert>
-#include <unordered_set>
 #include "utils.hpp"
 #include "SegmentsIntersect.hpp"
 
@@ -32,7 +29,7 @@ int main(int argc, char *argv[]) {
 	std::vector<int> b;
 	random_integers(b, -n, n, m * 2);
 	using T = double;
-	std::vector<Vector<T>> Q, S;
+	std::vector<Vector<T>> Q;
 	Q.reserve(m);
 	for (size_t i = 0; i < m; i++)
 		Q.push_back(Vector<T>(b[2 * i + 0], b[2 * i + 1]));
