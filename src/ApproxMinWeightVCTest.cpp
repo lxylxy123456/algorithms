@@ -1,6 +1,6 @@
 //
 //  algorithm - some algorithms in "Introduction to Algorithms", third edition
-//  Copyright (C) 2018  lxylxy123456
+//  Copyright (C) 2020  lxylxy123456
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
@@ -17,15 +17,14 @@
 //
 
 #include "ApproxMinWeightVC.hpp"
-
 #include "utils.hpp"
+
 #include "Graph.hpp"
+#include <cassert>
 
 using namespace algorithms;
 
-int main(int argc, char *argv[]) {
-	const size_t v = get_argv(argc, argv, 1, 10);
-	const size_t e = get_argv(argc, argv, 2, 20);
+int test(size_t v, size_t e) {
 	const bool dir = 0;
 	GraphAdjList<size_t> G(dir);
 	random_graph(G, v, e);
@@ -46,5 +45,16 @@ int main(int argc, char *argv[]) {
 	};
 	auto f2 = [](Edge<size_t>) mutable {};
 	graphviz(G, f1, f2);
+	for (auto i = G.all_edges(); !i.end(); i++)
+		assert(ans.find(i.s()) != ans.end() || ans.find(i.d()) != ans.end());
+	return 0;
+}
+
+int main(int argc, char *argv[]) {
+	std::vector<size_t> m = {5, 10, 23, 49};
+	for (std::vector<size_t>::iterator v = m.begin(); v < m.end(); v++)
+		for (std::vector<size_t>::iterator e = m.begin(); e < m.end(); e++)
+			for (int n = 0; n < 5; n++)
+				test(*v, *e);
 	return 0;
 }
