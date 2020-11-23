@@ -90,16 +90,5 @@ int main(int argc, char *argv[]) {
 	test<Fraction<long long int>>(3, 2, (Fraction<long long int>) 0);
 	test<Fraction<long long int>>(4, 2, (Fraction<long long int>) 0);
 	test<Fraction<long long int>>(4, 3, (Fraction<long long int>) 0);
-	/*
-	TODO: sometimes Assertion `l != NIL' fails
-	// std::vector<size_t> ns = {2, 3};
-	e.g. 812690490
-		-3 3 
-		-2 1 
-		2 -3 
-
-		-3 2 -3 
-		-1 1 
-	*/
 	return 0;
 }
