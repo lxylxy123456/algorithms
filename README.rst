@@ -464,20 +464,14 @@ Contents
 
 Directory Structure
 -------------------
-* `include/<Name>.hpp`: header file that contains the actual algorithm
-* `src/<Name>Main.hpp`: C++ program that runs the algorithm on some data
-* `src/<Name>Test.hpp`: C++ program that runs test on the algorithm
-
-Example
-=======
-(TODO; see ``Makefile``)
-
-Continuous Integration
-----------------------
-(TODO; see ``.github/workflows/build.yml``)
+* ``include/<Name>.hpp``: header file that contains the actual algorithm
+* ``src/<Name>Main.hpp``: C++ program that runs the algorithm on some data
+* ``src/<Name>Test.hpp``: C++ program that runs test on the algorithm
+* ``bin/<Name>(Main|Test)``: Executable of ``src/<Name>(Main|Test).hpp``
+* ``bin/<Name>(Main|Test).d``: Dependencies of ``src/<Name>(Main|Test).hpp``
 
 Supplementary Files
--------------------
+===================
 * ``Graph.hpp``, ``GraphMain.cpp``, ``GraphTest.cpp``: ``Graph``-related classes
 * ``output_integers.hpp``: print a vector
 * ``print_ptr.hpp``: print a pointer
@@ -486,9 +480,56 @@ Supplementary Files
 * ``utils.hpp``: utility functions for cpp files
 
 Supplementary Programs
-----------------------
+======================
 * ``include_check.py``: identifies unnecessary includes
 * ``dot.sh``: generate a graphviz graph from stdin
+
+Example
+=======
+
+.. code:: bash
+
+	$ ls include/Fib.hpp src/FibMain.cpp src/FibTest.cpp 
+	include/Fib.hpp  src/FibMain.cpp  src/FibTest.cpp
+	$ make bin/FibMain > /dev/null
+	$ bin/FibMain
+	n	a	b	a == b
+	10	55	55	true
+	$ bin/FibMain 19
+	n	a	b	a == b
+	19	4181	4181	true
+	$ make bin/FibTest > /dev/null
+	$ bin/FibTest
+	0	0	0	0
+	1	1	1	1
+	2	1	1	1
+	3	2	2	2
+	4	3	3	3
+	5	5	5	5
+	6	8	8	8
+	7	13	13	13
+	8	21	21	21
+	9	34	34	34
+	10	55	55	55
+	11	89	89	89
+	12	144	144	144
+	13	233	233	233
+	14	377	377	377
+	15	610	610	610
+	16	987	987	987
+	17	1597	1597	1597
+	18	2584	2584	2584
+	19	4181	4181	4181
+	20	6765	6765	6765
+	$ echo $?
+	0
+	$ 
+
+Continuous Integration
+----------------------
+``.github/workflows/build.yml`` defines the continuous integration workflow of
+ this project. All the targets are built and tested. The CI succeeds if all
+ tests pass.
 
 Difference from the "algorithm" project
 ---------------------------------------
