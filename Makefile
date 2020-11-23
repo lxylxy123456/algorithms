@@ -16,7 +16,7 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-CXXFLAGS=-Wall -g -std=c++11 -pthread
+CXXFLAGS=-Wall -Werror -g -std=c++11 -pthread
 
 SOURCES_OLD = $(wildcard *.cpp)
 TARGETS_OLD = $(SOURCES_OLD:.cpp=)
