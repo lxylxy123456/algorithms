@@ -38,11 +38,12 @@ int test(size_t n, size_t m) {
 		Vector<T> s(b[4 * i + 0], b[4 * i + 1]), e(b[4 * i + 2], b[4 * i + 3]);
 		S.push_back(Segment<T>(s, e, x));
 	}
-	bool actual, expected = AnySegmentsIntersect(S);
+	bool actual = false, expected = AnySegmentsIntersect(S);
 	for (size_t i = 0; i < m; i++)
 		for (size_t j = i + 1; j < m; j++)
 			if (SegmentsIntersect(S[i].a, S[i].b, S[j].a, S[j].b)) {
 				actual = true;
+				std::cout << "i = " << i << ", j = " << j << std::endl;
 				break;
 			}
 	std::cout << "a = " << actual << "; e = " << expected << std::endl;

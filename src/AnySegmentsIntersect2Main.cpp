@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
 //	const size_t m = get_argv(argc, argv, 2, 5);
 //	std::vector<int> b;
 //	random_integers(b, -n, n, m * 4);
-	std::vector<int> b = {80, 57, -18, -28, 32, -97, -39, -33}; size_t m = 2;
+	std::vector<int> b = {97, 6, 26, -71, -70, -56, 76, 26}; size_t m = 2;
 	using T = double;
 	T x;
 	std::vector<Segment<T>> S;
