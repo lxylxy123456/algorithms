@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_SUBSETSUM
 #define ALGORITHMS_SUBSETSUM
 
-#include <cassert>
-#include <iomanip>
 #include <set>
 
 namespace algorithms {
