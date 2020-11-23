@@ -13,6 +13,8 @@ jobs:
       run: mkdir -p bin/ d/
     - name: make
       run: make ALL_NEW -j 4
+    - name: test_asit
+      run: make test/AnySegmentsIntersectTest
     - name: test
       run: make test
     - name: mv
