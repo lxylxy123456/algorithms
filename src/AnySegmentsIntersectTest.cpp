@@ -50,6 +50,7 @@ int test(size_t n, size_t m) {
 }
 
 int main(int argc, char *argv[]) {
+	std::cout << random_seed_get() << std::endl;
 	std::vector<size_t> ns = {100, 1024, 10000};
 	std::vector<size_t> ms = {2, 5, 10, 23, 49, 100};
 	for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
