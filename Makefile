@@ -25,13 +25,14 @@ DEPENDS := $(patsubst %,%.d,$(TARGETS))
 
 TESTS := $(patsubst bin/%,test/%,$(filter %Test,$(TARGETS)))
 
-all:
-
-ALL: $(TARGETS)
+all: $(TARGETS)
 
 test: $(TESTS)
 
-$(TARGETS): bin/%: src/%.cpp
+bin:
+	mkdir bin
+
+$(TARGETS): bin/%: src/%.cpp bin
 	$(CXX) $(CXXFLAGS) -MMD -MF $(patsubst %,%.d,$@) -I include/ -o $@ $<
 
 $(TESTS): test/%: bin/%
