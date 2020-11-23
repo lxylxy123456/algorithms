@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
 	umap<size_t, WT> w;
 	for (size_t i = 0; i < v; i++)
 		w[i] = weight[i];
-	ApproxMinWeightVC(G, w, ans);
+	ApproxMinWeightVC(G, w, ans, 1e-7);
 	auto f1 = [w, ans](size_t v) mutable {
 		std::cout << " [label=" << w[v];
 		if (ans.find(v) != ans.end())

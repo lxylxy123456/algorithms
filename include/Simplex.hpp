@@ -138,6 +138,7 @@ void InitializeSimplex(usetst& N, usetst& B, matst& A, vectst& b, vectst& c,
 
 template <typename T>
 vectst Simplex(matst A, vectst b, vectst c, const T epsilon) {
+	// Numbers in [-epsilon, epsilon] are treated as 0
 	usetst N, B;
 	T v;
 	InitializeSimplex(N, B, A, b, c, v, epsilon);
