@@ -12,7 +12,7 @@ jobs:
     - name: mkdir
       run: mkdir -p bin/ d/
     - name: main_asit2
-      run: make test/AnySegmentsIntersect2Main; test/AnySegmentsIntersect2Main
+      run: make bin/AnySegmentsIntersect2Main; bin/AnySegmentsIntersect2Main
     - name: test_asit2
       run: make test/AnySegmentsIntersect2Test
     - name: test_asit
