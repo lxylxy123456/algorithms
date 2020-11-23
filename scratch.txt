@@ -1,0 +1,115 @@
+Original
+	Given
+		A = -3 3
+			-2 1
+			2 -3
+		b = -3 2 -3
+		c = -1 1
+		Maximize -1 * x1 +  1 * x2
+		Subject to
+			-3 * x1 +  3 * x2 <= -3
+			-2 * x1 +  1 * x2 <=  2
+			 2 * x1 + -3 * x2 <= -3
+			x1 >= 0
+			x2 >= 0
+
+	Lemma 29.11
+		Maximize -x0
+		Subject to
+			-3 * x1 +  3 * x2 - x0 <= -3
+			-2 * x1 +  1 * x2 - x0 <=  2
+			 2 * x1 + -3 * x2 - x0 <= -3
+			x0 >= 0
+			x1 >= 0
+			x2 >= 0
+
+(gdb) p A
+$1 = std::unordered_map with 2 elements = {
+  [4] = std::unordered_map with 3 elements = {[3] = -1, [1] = 3, [2] = -3}, 
+  [0] = std::unordered_map with 3 elements = {[3] = -1, [1] = 2, [2] = -1}}
+(gdb) p b
+$2 = std::unordered_map with 2 elements = {[4] = 0, [0] = 1}
+(gdb) p c
+$3 = std::unordered_map with 2 elements = {[2] = 1, [1] = 1}
+(gdb) p Lc
+$4 = std::unordered_map with 3 elements = {[3] = -1, [1] = 2, [2] = -1}
+(gdb) p Lv
+$5 = -1
+(gdb) -
+(gdb) p N
+$11 = std::unordered_set with 3 elements = {[0] = 4, [1] = 3, [2] = 2}
+(gdb) p B
+$12 = std::unordered_set with 2 elements = {[0] = 1, [1] = 0}
+(gdb) p A
+$13 = std::unordered_map with 2 elements = {
+  [0] = std::unordered_map with 3 elements = {[4] = -0.66666666666666663, 
+    [2] = 1, [3] = -0.33333333333333337}, 
+  [1] = std::unordered_map with 3 elements = {[4] = 0.33333333333333331, 
+    [2] = -1, [3] = -0.33333333333333331}}
+(gdb) p b
+$14 = std::unordered_map with 2 elements = {[0] = 1, [1] = 0}
+(gdb) p Lc
+$15 = std::unordered_map with 3 elements = {[4] = -0.66666666666666663, 
+  [2] = 1, [3] = -0.33333333333333337}
+(gdb) p Lv
+$16 = -1
+(gdb) -
+(gdb) p N
+$22 = std::unordered_set with 3 elements = {[0] = 0, [1] = 4, [2] = 3}
+(gdb) p B
+$23 = std::unordered_set with 2 elements = {[0] = 2, [1] = 1}
+(gdb) p A
+$24 = std::unordered_map with 2 elements = {
+  [1] = std::unordered_map with 3 elements = {[0] = 1, 
+    [3] = -0.66666666666666674, [4] = -0.33333333333333331}, 
+  [2] = std::unordered_map with 3 elements = {[0] = 1, 
+    [3] = -0.33333333333333337, [4] = -0.66666666666666663}}
+(gdb) p b
+$25 = std::unordered_map with 2 elements = {[1] = 1, [2] = 1}
+(gdb) p Lc
+$26 = std::unordered_map with 3 elements = {[0] = -1, [3] = 0, [4] = 0}
+(gdb) p Lv
+$27 = 0
+(gdb) -
+
+Simplify
+	Given
+		A = -2 1 
+			1 -2 
+		b = -1 -1 
+		c = 1 1 
+		Subject to
+			-2 * x1 +  1 * x2 <= -1
+			 1 * x1 + -2 * x2 <= -1
+			x1 >= 0
+			x2 >= 0
+	Lemma 29.11
+		Maximize -x0
+		Subject to
+			-1 * x0 + -2 * x1 +  1 * x2 <= -1
+			-1 * x0 +  1 * x1 + -2 * x2 <= -1
+			x0 >= 0
+			x1 >= 0
+			x2 >= 0
+	_0
+		z = -x0
+		x3 = -1 +  1 * x0 +  2 * x1 + -1 * x2
+		x4 = -1 +  1 * x0 + -1 * x1 +  2 * x2
+	t
+		x0 = 1 - 2 * x1 + x2 + x3
+	_1
+		z = -1 + 2 * x1 - 1 * x2 - 1 * x3
+		x0 = 1 - 2 * x1 + 1 * x2 + 1 * x3
+		x4 = 0 - 3 * x1 + 3 * x2 + 1 * x3
+	e = 1; l = 4
+		x1 = x2 + 1/3 * x3 - 1/3 * x4
+	_2
+		z = -1 + x2 - 1/3 * x3 - 2/3 * x4
+		x0 = 1 - x2 + 1/3 * x3 + 2/3 * x4
+		x1 = 0 + x2 + 1/3 * x3 - 1/3 * x4
+	e = 2; l = 0
+		x2 = 1 - x0 + 1/3 * x3 + 2/3 * x4
+	_3
+		z = -x0
+		x1 = 1 - x0 + 2/3 * x3 + 1/3 * x4
+		x2 = 1 - x0 + 1/3 * x3 + 2/3 * x4

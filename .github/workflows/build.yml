@@ -11,10 +11,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: mkdir
       run: mkdir -p bin/ d/
-    - name: tmp_sst
-      run: make test/SubsetSumTest
-    - name: tmp_sst
-      run: make test/ApproxTSPTourTest
     - name: make
       run: make ALL_NEW -j 4
     - name: test
