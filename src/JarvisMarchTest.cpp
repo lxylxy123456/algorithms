@@ -16,7 +16,7 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#include "GrahamScan.hpp"
+#include "JarvisMarch.hpp"
 #include "utils.hpp"
 
 #include "SegmentsIntersect.hpp"
@@ -33,7 +33,7 @@ int test(size_t n, size_t m) {
 	Q.reserve(m);
 	for (size_t i = 0; i < m; i++)
 		Q.push_back(Vector<T>(b[2 * i + 0], b[2 * i + 1]));
-	GrahamScan(Q, S);
+	JarvisMarch(Q, S);
 	assert(S.size() >= 3);
 	T cross1 = (S[0] - S[1]).Cross(S[2] - S[1]);
 	for (size_t i = 0; i < S.size(); i++) {
