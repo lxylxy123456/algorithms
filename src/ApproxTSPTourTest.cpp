@@ -1,6 +1,6 @@
 //
 //  algorithm - some algorithms in "Introduction to Algorithms", third edition
-//  Copyright (C) 2018  lxylxy123456
+//  Copyright (C) 2020  lxylxy123456
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
@@ -17,17 +17,18 @@
 //
 
 #include "ApproxTSPTour.hpp"
-
 #include "utils.hpp"
+
+#include "RandomPermute.hpp"
+#include <cassert>
 
 using namespace algorithms;
 
-int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 200);
-	const size_t m = get_argv(argc, argv, 2, 10);
+int test(size_t n, size_t m) {
 	const bool dir = 0;
 	std::vector<int> b;
 	random_integers(b, -n, n, m * 2);
+	output_integers(b);
 	using T = size_t;
 	using WT = double;
 	GraphAdjList<size_t> G(dir);
@@ -43,19 +44,26 @@ int main(int argc, char *argv[]) {
 	}
 	std::vector<size_t> H;
 	ApproxTSPTour(G, c, H);
-	std::cout << "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>"
-				 << std::endl;
-	std::cout << "<svg height=\"" << 2 * n << "\" width=\"" << 2 * n << "\">"
-				 << std::endl;
-	std::cout << "\t<rect fill=\"#ffffff\" x=\"0\" y=\"0\" width=\"" << 2 * n
-				 << "\" height=\"" << 2 * n << "\"/>" << std::endl;
-	std::cout << "\t<polygon stroke=\"#000000\" fill=\"#cccccc\" points=\"";
-	for (auto i = H.begin(); i != H.end(); i++)
-		std::cout << n + S[*i].x + 1 << "," << n + S[*i].y + 1 << " ";
-	std::cout << "\"/>" << std::endl;
+	assert(H.size() == m + 1 && H[m] == H[0]);
+	WT approx_dist = 0.0, random_dist = 0.0;
+	std::vector<size_t> visited(m, 0), R(H);
+	RandomizeInPlace(R);
+	for (size_t i = 0; i < m; i++) {
+		approx_dist += sqrt((S[H[i]] - S[H[i + 1]]).Length());
+		random_dist += sqrt((S[R[i]] - S[R[i + 1]]).Length());
+		visited[H[i]]++;
+	}
 	for (size_t i = 0; i < m; i++)
-		std::cout << "\t<circle cx=\"" << n + S[i].x + 1 << "\" cy=\""
-				 << n + S[i].y + 1 << "\" r=\"2\"/>" << std::endl;
-	std::cout << "</svg>" << std::endl;
+		assert(visited[i] == 1);
+	assert(random_dist * 2 >= approx_dist);
+	return 0;
+}
+
+int main(int argc, char *argv[]) {
+	std::vector<size_t> ns = {100, 1024, 10000};
+	std::vector<size_t> ms = {2, 5, 10, 23, 49, 100};
+	for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
+		for (std::vector<size_t>::iterator m = ms.begin(); m < ms.end(); m++)
+			test(*n, *m);
 	return 0;
 }
