@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: make
-      run: make ALL -j 4
+      run: make all -j 4
     - name: test
       run: make test
     - name: mv
