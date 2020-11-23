@@ -527,9 +527,7 @@ Example
 
 Continuous Integration
 ----------------------
-``.github/workflows/build.yml`` defines the continuous integration workflow of
- this project. All the targets are built and tested. The CI succeeds if all
- tests pass.
+``.github/workflows/build.yml`` defines the continuous integration workflow of this project. All the targets are built and tested. The CI succeeds if all tests pass.
 
 Difference from the "algorithm" project
 ---------------------------------------
