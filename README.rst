@@ -464,6 +464,12 @@ Contents
 
 Directory Structure
 -------------------
+* `include/<Name>.hpp`: header file that contains the actual algorithm
+* `src/<Name>Main.hpp`: C++ program that runs the algorithm on some data
+* `src/<Name>Test.hpp`: C++ program that runs test on the algorithm
+
+Example
+=======
 (TODO; see ``Makefile``)
 
 Continuous Integration
@@ -482,7 +488,6 @@ Supplementary Files
 Supplementary Programs
 ----------------------
 * ``include_check.py``: identifies unnecessary includes
-* ``vEB_check.py``: compare results of ``ProtovEB.cpp`` and ``vEB.cpp``
 * ``dot.sh``: generate a graphviz graph from stdin
 
 Difference from the "algorithm" project
