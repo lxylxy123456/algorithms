@@ -26,7 +26,7 @@ using namespace algorithms;
 
 template <typename T>
 void main_T(const size_t n, const size_t m) {
-	std::vector<int> int_a = {-2, 1, 1, -2}, int_b = {-1, -1}, int_c = {1, 1};
+	std::vector<int> int_a = {-3, 3, 2, -3}, int_b = {-3, -3}, int_c = {-1, 1};
 	matst A;
 	vectst b, c;
 	for (size_t i = 1; i <= n; i++)
