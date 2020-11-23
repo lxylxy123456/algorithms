@@ -34,7 +34,7 @@ bool almost_equal(Fraction<T> lhs, Fraction<T> rhs) {
 }
 
 template <typename T>
-int test(size_t m, size_t n) {
+int test(size_t m, size_t n, T epsilon) {
 	std::vector<int> int_a, int_b, int_c;
 	random_integers(int_a, -m, m, m * n);
 	random_integers(int_b, -m, m, m);
@@ -61,7 +61,7 @@ int test(size_t m, size_t n) {
 		std::cout << c[i] << " ";
 	std::cout << std::endl;
 	try {
-		vectst x = Simplex(A, b, c);
+		vectst x = Simplex(A, b, c, epsilon);
 		for (size_t i = 1; i <= n; i++)
 			std::cout << x[i] << " ";
 		std::cout << std::endl;
@@ -86,20 +86,9 @@ int main(int argc, char *argv[]) {
 	for (std::vector<size_t>::iterator m = ns.begin(); m < ns.end(); m++)
 		for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
 			if (*m > *n)
-				test<double>(*m, *n);
-	test<Fraction<long long int>>(3, 2);
-	test<Fraction<long long int>>(4, 2);
-	test<Fraction<long long int>>(4, 3);
-	/*
-	TODO: sometimes Assertion `l != NIL' fails
-	// std::vector<size_t> ns = {2, 3};
-	e.g. 812690490
-		-3 3 
-		-2 1 
-		2 -3 
-
-		-3 2 -3 
-		-1 1 
-	*/
+				test<double>(*m, *n, 1e-5);
+	test<Fraction<long long int>>(3, 2, (Fraction<long long int>) 0);
+	test<Fraction<long long int>>(4, 2, (Fraction<long long int>) 0);
+	test<Fraction<long long int>>(4, 3, (Fraction<long long int>) 0);
 	return 0;
 }
