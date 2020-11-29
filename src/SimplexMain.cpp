@@ -20,6 +20,8 @@
 
 #include "utils.hpp"
 #include "LUPSolve.hpp"
+#include <iostream>
+#include <vector>
 
 using namespace algorithms;
 

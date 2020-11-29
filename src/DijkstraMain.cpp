@@ -21,6 +21,7 @@
 #include "utils.hpp"
 #include "FibHeap.hpp"
 #include "BellmanFord.hpp"
+#include <iostream>
 
 using namespace algorithms;
 

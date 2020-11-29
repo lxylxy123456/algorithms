@@ -19,6 +19,9 @@
 #include "vEB.hpp"
 
 #include "utils.hpp"
+#include <iostream>
+#include <stdexcept>
+#include <vector>
 
 using namespace algorithms;
 

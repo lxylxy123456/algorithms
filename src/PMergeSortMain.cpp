@@ -20,6 +20,8 @@
 
 #include "utils.hpp"
 #include "MergeSort.hpp"
+#include <iostream>
+#include <vector>
 
 using namespace algorithms;
 

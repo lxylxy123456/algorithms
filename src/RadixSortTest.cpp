@@ -22,6 +22,8 @@
 #include <cassert>
 
 #include "InsertSort.hpp"
+#include <cmath>
+#include <vector>
 
 using namespace algorithms;
 

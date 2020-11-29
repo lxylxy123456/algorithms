@@ -20,6 +20,7 @@
 
 #include "utils.hpp"
 #include "SquareMatrixMultiply.hpp"
+#include <iostream>
 
 using namespace algorithms;
 

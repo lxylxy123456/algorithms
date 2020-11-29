@@ -21,6 +21,7 @@
 
 #include "BellmanFord.hpp"
 #include <cassert>
+#include <vector>
 
 using namespace algorithms;
 

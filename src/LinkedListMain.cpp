@@ -19,6 +19,7 @@
 #include "LinkedList.hpp"
 
 #include "utils.hpp"
+#include <iostream>
 
 using namespace algorithms;
 

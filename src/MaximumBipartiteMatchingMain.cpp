@@ -20,6 +20,7 @@
 
 #include "utils.hpp"
 #include "FordFulkerson.hpp"
+#include <iostream>
 
 using namespace algorithms;
 

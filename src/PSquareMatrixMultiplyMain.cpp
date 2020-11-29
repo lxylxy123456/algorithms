@@ -20,6 +20,8 @@
 
 #include "utils.hpp"
 #include "MatVec.hpp"
+#include <iostream>
+#include <vector>
 
 using namespace algorithms;
 

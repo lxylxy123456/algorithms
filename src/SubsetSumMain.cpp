@@ -20,6 +20,8 @@
 
 #include <set>
 #include "utils.hpp"
+#include <iostream>
+#include <vector>
 
 using namespace algorithms;
 

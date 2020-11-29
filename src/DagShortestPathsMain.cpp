@@ -22,6 +22,7 @@
 #include "utils.hpp"
 #include "TopologicalSort.hpp"
 #include "BellmanFord.hpp"
+#include <iostream>
 
 using namespace algorithms;
 

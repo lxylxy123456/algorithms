@@ -20,6 +20,8 @@
 
 #include "utils.hpp"
 #include "ModularExponentiation.hpp"
+#include <iostream>
+#include <random>
 
 using namespace algorithms;
 

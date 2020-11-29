@@ -19,6 +19,8 @@
 #include "Fib.hpp"
 
 #include "utils.hpp"
+#include <algorithm>
+#include <iostream>
 
 using namespace algorithms;
 

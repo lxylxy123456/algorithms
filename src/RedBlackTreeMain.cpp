@@ -20,6 +20,7 @@
 
 #include "utils.hpp"
 #include "BinarySearchTree.hpp"
+#include <vector>
 
 using namespace algorithms;
 

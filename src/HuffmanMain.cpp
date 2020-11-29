@@ -23,6 +23,9 @@
 
 #include "print_tree.hpp"
 #include <sstream>
+#include <iostream>
+#include <string>
+#include <vector>
 
 using namespace algorithms;
 

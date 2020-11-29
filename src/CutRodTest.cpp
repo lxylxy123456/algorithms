@@ -21,6 +21,7 @@
 
 #include <cassert>
 #include <numeric>
+#include <vector>
 
 using namespace algorithms;
 

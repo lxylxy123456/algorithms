@@ -21,6 +21,7 @@
 
 #include "FloydWarshall.hpp"
 #include <cassert>
+#include <vector>
 
 using namespace algorithms;
 

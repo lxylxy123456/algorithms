@@ -19,6 +19,8 @@
 #include "MillerRabin.hpp"
 
 #include "utils.hpp"
+#include <iostream>
+#include <random>
 
 using namespace algorithms;
 

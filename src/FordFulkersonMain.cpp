@@ -20,6 +20,7 @@
 
 #include "utils.hpp"
 #include "BFS.hpp"
+#include <iostream>
 
 using namespace algorithms;
 

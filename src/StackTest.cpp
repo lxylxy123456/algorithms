@@ -20,6 +20,10 @@
 #include "utils.hpp"
 
 #include <cassert>
+#include <iostream>
+#include <stdexcept>
+#include <string>
+#include <vector>
 
 using namespace algorithms;
 

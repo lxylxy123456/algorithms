@@ -106,8 +106,11 @@ def parse_file(pathname):
 		splitted_lines[state].append(line)
 	pre, include, post = splitted_lines
 	assert '\n'.join(pre + include + post) == content
-	include_set = set(include).difference({''})
-	return pre, include_set, post
+	return pre, include, post
+
+def refresh_file(pathname, parsed):
+	pre, include, post = parsed
+	open(pathname, 'w').write('\n'.join(pre + include + post))
 
 if __name__ == '__main__':
 	for pathname in all_files():
@@ -127,6 +130,9 @@ if __name__ == '__main__':
 				print('  -', '#include <%s>' % i)
 			for i in sorted(n):
 				print('  +', '#include <%s>' % i)
+				assert parsed[1][-1] == ''
+				parsed[1].insert(-1, '#include <%s>' % i)
+			refresh_file(pathname, parsed)
 		for k in all_symbols:
 			if 'std::' in k and k not in SYMBOL_TO_HEADER:
 				print('  ?', k)

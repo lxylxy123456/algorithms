@@ -21,6 +21,7 @@
 #include "utils.hpp"
 #include "SquareMatrixMultiply.hpp"
 #include "Dijkstra.hpp"
+#include <iostream>
 
 using namespace algorithms;
 

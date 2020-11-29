@@ -20,6 +20,8 @@
 
 #include "utils.hpp"
 #include "Greedy.hpp"
+#include <set>
+#include <vector>
 
 using namespace algorithms;
 

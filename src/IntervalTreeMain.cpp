@@ -20,6 +20,8 @@
 
 #include "utils.hpp"
 #include "RedBlackTree.hpp"
+#include <algorithm>
+#include <vector>
 
 using namespace algorithms;
 

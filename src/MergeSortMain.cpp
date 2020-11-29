@@ -18,6 +18,7 @@
 
 #include "MergeSort.hpp"
 #include "utils.hpp"
+#include <vector>
 
 using namespace algorithms;
 

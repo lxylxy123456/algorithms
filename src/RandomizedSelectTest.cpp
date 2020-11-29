@@ -21,6 +21,7 @@
 #include "Quicksort.hpp"
 
 #include <cassert>
+#include <vector>
 
 using namespace algorithms;
 

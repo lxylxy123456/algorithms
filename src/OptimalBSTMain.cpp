@@ -21,6 +21,9 @@
 #include "utils.hpp"
 
 #include "BinarySearchTree.hpp"
+#include <iostream>
+#include <sstream>
+#include <string>
 
 using namespace algorithms;
 

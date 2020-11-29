@@ -22,6 +22,8 @@
 #include "InsertSort.hpp"
 
 #include "RandomizedSelect.hpp"
+#include <iostream>
+#include <vector>
 
 using namespace algorithms;
 

@@ -22,6 +22,7 @@
 #include "Graph.hpp"
 #include "DisjointSet.hpp"
 #include "FibHeap.hpp"
+#include <iostream>
 
 using namespace algorithms;
 

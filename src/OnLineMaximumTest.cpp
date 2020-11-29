@@ -18,6 +18,9 @@
 
 #include "OnLineMaximum.hpp"
 #include "utils.hpp"
+#include <algorithm>
+#include <iostream>
+#include <vector>
 
 using namespace algorithms;
 

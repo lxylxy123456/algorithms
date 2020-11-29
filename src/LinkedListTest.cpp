@@ -20,6 +20,8 @@
 #include "utils.hpp"
 
 #include <cassert>
+#include <iostream>
+#include <string>
 
 using namespace algorithms;
 

@@ -20,6 +20,8 @@
 
 #include "utils.hpp"
 #include "RecursiveFFT.hpp"
+#include <iostream>
+#include <vector>
 
 using namespace algorithms;
 

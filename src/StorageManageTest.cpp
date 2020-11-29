@@ -20,6 +20,11 @@
 #include "utils.hpp"
 
 #include <cassert>
+#include <iostream>
+#include <random>
+#include <stdexcept>
+#include <string>
+#include <vector>
 
 using namespace algorithms;
 

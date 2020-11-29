@@ -21,6 +21,7 @@
 
 #include "RedBlackTree.hpp"
 #include <cassert>
+#include <vector>
 
 using namespace algorithms;
 
