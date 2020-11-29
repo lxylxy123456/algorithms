@@ -18,8 +18,6 @@
 
 #include "SubsetSum.hpp"
 
-#include <cassert>
-#include <iomanip>
 #include <set>
 #include "utils.hpp"
 

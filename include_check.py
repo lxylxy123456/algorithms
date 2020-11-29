@@ -1,6 +1,6 @@
 #
 #  algorithm - some algorithms in "Introduction to Algorithms", third edition
-#  Copyright (C) 2018  lxylxy123456
+#  Copyright (C) 2020  lxylxy123456
 #
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU Affero General Public License as
@@ -18,30 +18,68 @@
 
 import os, re
 
-for i in os.listdir() :
-	if not i.endswith('.cpp') :
-		continue
-	a = open(i).read()
-	try :
-		for j in re.findall('#include <(\w+)>', a) :
-			if j == 'cassert' :
-				assert 'assert(' in a
-			elif j == 'algorithm' :
-				assert 'std::max_element' in a or 'std::min_element' in a
-			elif j == 'cmath' :
-				assert 'pow' in a
-			elif j == 'iomanip' :
-				assert 'std::left' in a
-			elif j == 'exception' :
-				assert 'std::invalid_argument' in a
-			elif j == 'map' :
-				assert 'std::map' in a or 'std::pair' in a
-			elif j in ['list', 'set', 'unordered_set', 'unordered_map',
-						'deque', 'thread'] :
-				assert 'std::' + j in a
-			else :
-				assert(False)
-	except AssertionError :
-		print('in:', i)
-		print('include:', j)
+HEADER_TO_SYMBOL = {
+	'algorithm': [
+		'std::max', 'std::min', 'std::max_element', 'std::min_element',
+		'std::find', 'std::find_if', 'std::find_if_not', 'std::copy',
+		'std::sort', 'std::swap',
+	],
+	'iostream': [
+		'std::ostream', 'std::cout', 'std::cin',
+	],
+	'string': [
+		'std::string',
+	],
+	'stdexcept': [
+		'std::invalid_argument',
+	],
+	'iterator': [
+		'std::istream_iterator', 'std::ostream_iterator',
+	],
+	'deque': [
+		'std::deque',
+	],
+	'cmath': [
+		'abs', 'pow', 'log2',
+	],
+	'sstream': [
+		'std::istringstream', 'std::ostringstream',
+	],
+	'random': [
+		'std::random_device', 'std::mt19937', 'std::uniform_int_distribution',
+	],
+	'cstddef': [
+		'size_t'
+	],
+}
+
+for f in ('include', 'src'):
+	for i in os.listdir(f) :
+		a = open(os.path.join(f, i)).read()
+		try :
+			for j in re.findall('#include <(\w+)>', a) :
+				if j == 'cassert' :
+					assert 'assert(' in a
+				elif j in HEADER_TO_SYMBOL :
+					flag = False
+					for k in HEADER_TO_SYMBOL[j]:
+						if k in a:
+							flag = True
+					assert flag
+				elif j == 'cmath' :
+					assert 'pow' in a
+				elif j == 'iomanip' :
+					assert 'std::left' in a
+				elif j == 'exception' :
+					assert 'std::invalid_argument' in a
+				elif j == 'map' :
+					assert 'std::map' in a or 'std::pair' in a
+				elif j in ['list', 'set', 'unordered_set', 'unordered_map',
+							'deque', 'thread', 'vector'] :
+					assert 'std::' + j in a
+				else :
+					assert(False)
+		except AssertionError :
+			print('in:', os.path.join(f, i))
+			print('include:', j)
 

@@ -20,7 +20,6 @@
 #define ALGORITHMS_POLLARDRHO
 
 #include <cstddef>
-#include <random>
 
 #include "random_integers.hpp"
 

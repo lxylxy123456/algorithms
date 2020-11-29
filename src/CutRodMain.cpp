@@ -19,7 +19,6 @@
 #include "CutRod.hpp"
 
 #include <iomanip>
-#include <map>
 #include "utils.hpp"
 
 using namespace algorithms;

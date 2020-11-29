@@ -19,7 +19,6 @@
 #ifndef ALGORITHMS_SEGMENTSINTERSECT
 #define ALGORITHMS_SEGMENTSINTERSECT
 
-#include <vector>
 #include <iostream>
 
 namespace algorithms {

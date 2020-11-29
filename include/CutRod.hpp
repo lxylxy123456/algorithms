@@ -21,7 +21,6 @@
 
 #define CUT_ROD_INFO std::pair<T, std::vector<size_t>>
 
-#include <iomanip>
 #include <vector>
 #include <map>
 

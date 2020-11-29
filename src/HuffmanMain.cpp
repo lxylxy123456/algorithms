@@ -22,6 +22,7 @@
 #include "MaxHeap.hpp"
 
 #include "print_tree.hpp"
+#include <sstream>
 
 using namespace algorithms;
 

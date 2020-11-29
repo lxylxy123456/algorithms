@@ -20,7 +20,6 @@
 #define ALGORITHMS_GREEDYSETCOVER
 
 #include <cassert>
-#include <iomanip>
 #include <set>
 #include <vector>
 

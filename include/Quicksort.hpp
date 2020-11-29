@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_QUICKSORT
 #define ALGORITHMS_QUICKSORT
 
-#include <random>
-
 #include "random_integers.hpp"
 
 namespace algorithms {

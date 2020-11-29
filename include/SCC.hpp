@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_SCC
 #define ALGORITHMS_SCC
 
-#include <map>
-
 #include "TopologicalSort.hpp"
 #include "DisjointSet.hpp"
 

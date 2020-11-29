@@ -18,7 +18,6 @@
 
 #include "RaceExample.hpp"
 
-#include <thread>
 #include "utils.hpp"
 
 using namespace algorithms;

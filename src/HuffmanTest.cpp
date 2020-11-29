@@ -21,7 +21,7 @@
 
 #include "MaxHeap.hpp"
 #include "print_tree.hpp"
-#include <cassert>
+#include <sstream>
 
 using namespace algorithms;
 
