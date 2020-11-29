@@ -106,11 +106,12 @@ class LinkedList_prime: public LinkedListBase<T> {
 			nil->next->next->prev = nil->next;
 		}
 		virtual ~LinkedList_prime() {
-			for (Element<T>* i = nil; i != nil; ) {
+			for (Element<T>* i = nil->next; i != nil; ) {
 				Element<T>* tmp = i;
 				i = i->next;
 				delete tmp;
 			}
+			delete nil;
 		}
 	private:
 		Element<T>* nil;
