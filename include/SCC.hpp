@@ -39,7 +39,7 @@ void DFSVisit_SCC(GT& G, VT& inf, DisjointSetForest<T>& D, T u, size_t& time) {
 			DFSVisit_SCC(G, inf, D, v, time);
 		}
 	}
-	info.set_color(black, time);
+	info.set_color(dfs_black, time);
 }
 
 template <typename GT, typename T>
