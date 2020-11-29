@@ -23,6 +23,10 @@
 #include "print_ptr.hpp"
 #include "BinaryTree.hpp"
 
+#include <iostream>
+#include <vector>
+#include <string>
+
 namespace algorithms {
 
 template <typename T>

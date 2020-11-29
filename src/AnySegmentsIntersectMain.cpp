@@ -21,6 +21,8 @@
 #include "utils.hpp"
 #include "RedBlackTree.hpp"
 #include "SegmentsIntersect.hpp"
+#include <iostream>
+#include <vector>
 
 using namespace algorithms;
 

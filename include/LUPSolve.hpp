@@ -21,6 +21,12 @@
 
 #include "SquareMatrixMultiply.hpp"
 
+#include <cmath>
+#include <vector>
+#include <stdexcept>
+#include <algorithm>
+#include <iostream>
+
 namespace algorithms {
 
 using PT = std::vector<size_t>;

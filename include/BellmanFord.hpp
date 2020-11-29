@@ -21,6 +21,8 @@
 
 #include "Graph.hpp"
 
+#include <iostream>
+
 namespace algorithms {
 
 template <typename T, typename WT>

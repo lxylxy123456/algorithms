@@ -21,6 +21,7 @@
 
 #include <vector>
 #include <stdexcept>
+#include <algorithm>
 
 namespace algorithms {
 

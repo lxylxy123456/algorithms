@@ -19,6 +19,7 @@
 #ifndef ALGORITHMS_POLLARDRHO
 #define ALGORITHMS_POLLARDRHO
 
+#include <cmath>
 #include <cstddef>
 
 #include "random_integers.hpp"

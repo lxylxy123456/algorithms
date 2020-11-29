@@ -19,9 +19,14 @@
 #ifndef ALGORITHMS_GRAPH
 #define ALGORITHMS_GRAPH
 
+#include <algorithm>
+#include <iostream>
+#include <random>
+#include <vector>
 #include <cassert>
 #include <unordered_set>
 #include <unordered_map>
+#include <functional>
 
 #include "random_integers.hpp"
 

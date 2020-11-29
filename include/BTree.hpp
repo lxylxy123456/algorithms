@@ -23,6 +23,7 @@
 #include <map>
 #include <iomanip>
 #include <iostream>
+#include <string>
 
 namespace algorithms {
 

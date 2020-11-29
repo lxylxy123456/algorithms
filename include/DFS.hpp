@@ -21,6 +21,8 @@
 
 #include "Graph.hpp"
 
+#include <iostream>
+
 namespace algorithms {
 
 enum DFSColor { white, gray, black };

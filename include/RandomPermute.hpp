@@ -19,6 +19,7 @@
 #ifndef ALGORITHMS_RANDOMPERMUTE
 #define ALGORITHMS_RANDOMPERMUTE
 
+#include <algorithm>
 #include <map>
 #include <vector>
 

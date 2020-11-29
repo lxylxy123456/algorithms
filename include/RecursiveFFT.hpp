@@ -19,7 +19,9 @@
 #ifndef ALGORITHMS_RECURSIVEFFT
 #define ALGORITHMS_RECURSIVEFFT
 
+#include <cassert>
 #include <cmath>
+#include <iostream>
 
 #include "SquareMatrixMultiply.hpp"
 

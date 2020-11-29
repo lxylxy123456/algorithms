@@ -21,6 +21,8 @@
 
 #include "RedBlackTree.hpp"
 
+#include <iostream>
+
 namespace algorithms {
 
 template <typename T>

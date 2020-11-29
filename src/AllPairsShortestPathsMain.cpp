@@ -20,6 +20,7 @@
 
 #include "utils.hpp"
 #include "Graph.hpp"
+#include <iostream>
 
 using namespace algorithms;
 

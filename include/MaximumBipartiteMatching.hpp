@@ -21,6 +21,10 @@
 
 #include "FordFulkerson.hpp"
 
+#include <cassert>
+#include <iostream>
+#include <vector>
+
 namespace algorithms {
 
 template <typename GT>

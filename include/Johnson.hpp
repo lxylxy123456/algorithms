@@ -22,6 +22,10 @@
 #include "SquareMatrixMultiply.hpp"
 #include "Dijkstra.hpp"
 
+#include <cassert>
+#include <stdexcept>
+#include <type_traits>
+
 namespace algorithms {
 
 template <typename GT, typename T, typename WT>

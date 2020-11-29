@@ -22,6 +22,8 @@
 #include "MST.hpp"
 #include "SegmentsIntersect.hpp"
 
+#include <vector>
+
 namespace algorithms {
 
 template <typename GT, typename T>

@@ -19,6 +19,7 @@
 #ifndef ALGORITHMS_UTILS
 #define ALGORITHMS_UTILS
 
+#include <algorithm>
 #include <iostream>
 #include <iterator>
 #include <vector>

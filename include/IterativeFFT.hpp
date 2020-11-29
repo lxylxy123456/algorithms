@@ -21,6 +21,8 @@
 
 #include "RecursiveFFT.hpp"
 
+#include <cassert>
+
 namespace algorithms {
 
 size_t rev(size_t k, size_t n) {

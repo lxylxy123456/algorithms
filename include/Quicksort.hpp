@@ -21,6 +21,8 @@
 
 #include "random_integers.hpp"
 
+#include <algorithm>
+
 namespace algorithms {
 
 template <typename T>

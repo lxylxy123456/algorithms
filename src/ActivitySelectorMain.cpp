@@ -19,6 +19,7 @@
 #include "ActivitySelector.hpp"
 
 #include "utils.hpp"
+#include <vector>
 
 using namespace algorithms;
 

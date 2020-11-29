@@ -22,6 +22,8 @@
 #include "TopologicalSort.hpp"
 #include "DisjointSet.hpp"
 
+#include <deque>
+
 namespace algorithms {
 
 template <typename GT, typename T, typename VT>

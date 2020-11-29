@@ -21,6 +21,8 @@
 
 #include "NaiveStringMatcher.hpp"
 
+#include <vector>
+
 namespace algorithms {
 
 template <typename T>

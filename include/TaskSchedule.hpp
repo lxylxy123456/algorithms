@@ -21,6 +21,7 @@
 
 #include <vector>
 #include <iostream>
+#include <set>
 
 #include "Greedy.hpp"
 

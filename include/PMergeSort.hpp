@@ -19,7 +19,9 @@
 #ifndef ALGORITHMS_PMERGESORT
 #define ALGORITHMS_PMERGESORT
 
+#include <algorithm>
 #include <thread>
+#include <vector>
 
 #include "MergeSort.hpp"
 

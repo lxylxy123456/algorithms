@@ -21,6 +21,9 @@
 
 #include "BFS.hpp"
 
+#include <algorithm>
+#include <vector>
+
 namespace algorithms {
 
 template <typename GT, typename T, typename WT>

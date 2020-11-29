@@ -22,6 +22,8 @@
 #include "FibHeap.hpp"
 #include "BellmanFord.hpp"
 
+#include <map>
+
 namespace algorithms {
 
 template <typename GT, typename T, typename WT>

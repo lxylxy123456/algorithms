@@ -21,6 +21,7 @@
 
 #define VECT_SIZT std::vector<size_t>
 
+#include <algorithm>
 #include <vector>
 #include <iostream>
 

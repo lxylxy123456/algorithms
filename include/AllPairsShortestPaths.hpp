@@ -21,6 +21,8 @@
 
 #include "Graph.hpp"
 
+#include <algorithm>
+
 namespace algorithms {
 
 template <typename T>

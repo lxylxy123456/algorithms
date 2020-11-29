@@ -22,6 +22,8 @@
 #include "Queue.hpp"
 #include "Graph.hpp"
 
+#include <vector>
+
 namespace algorithms {
 
 enum BFSColor { white, gray, black };

@@ -25,7 +25,8 @@ HEADER_TO_SYMBOL = {
 		'std::sort', 'std::swap',
 	],
 	'iostream': [
-		'std::ostream', 'std::cout', 'std::cin', 'std::boolalpha',
+		'std::istream', 'std::ostream', 'std::cout', 'std::cin',
+		'std::boolalpha', 'std::endl', 'std::flush',
 	],
 	'string': [
 		'std::string',
@@ -35,35 +36,47 @@ HEADER_TO_SYMBOL = {
 	],
 	'iterator': [
 		'std::istream_iterator', 'std::ostream_iterator',
+		'std::insert_iterator',
 	],
 	'deque': [
 		'std::deque',
 	],
 	'cmath': [
-		'abs(', 'pow(', 'log2(',
+		'abs', 'pow', 'log2',
 	],
 	'cassert': [
-		'assert(',
+		'assert',
 	],
 	'sstream': [
 		'std::istringstream', 'std::ostringstream',
 	],
 	'random': [
 		'std::random_device', 'std::mt19937', 'std::uniform_int_distribution',
+		'std::random_device::result_type',
 	],
 	'cstddef': [
-		'size_t'
+		'size_t', 'std::size_t',
 	],
 	'iomanip': [
 		'std::left', 'std::setw',
 	],
+	'numeric': [
+		'std::accumulate',
+	],
+	'type_traits': [
+		'std::is_same',
+	],
+	'map': [
+		'std::pair', 'std::map', 'std::multimap',
+	],
+	'functional': [
+		'std::hash',
+	],
 }
 
-for i in ['map', 'list', 'set', 'unordered_set', 'unordered_map', 'deque',
-			'thread', 'vector']:
+for i in ['list', 'set', 'unordered_set', 'unordered_map', 'deque', 'thread',
+			'vector']:
 	HEADER_TO_SYMBOL[i] = ['std::' + i]
-
-HEADER_TO_SYMBOL['map'].append('std::pair')
 
 SYMBOL_TO_HEADER = {}
 for k, v in HEADER_TO_SYMBOL.items():
@@ -71,20 +84,25 @@ for k, v in HEADER_TO_SYMBOL.items():
 		assert i not in SYMBOL_TO_HEADER
 		SYMBOL_TO_HEADER[i] = k
 
-for f in ('include', 'src'):
-	for i in os.listdir(f) :
-		a = open(os.path.join(f, i)).read()
+for path in ('include', 'src'):
+	for name in sorted(os.listdir(path)):
+		pathname = os.path.join(path, name)
+		a = open(pathname).read()
 		actual = set(re.findall('#include <(\w+)>', a))
 		expected = set()
+		all_symbols = re.findall('[a-zA-Z0-9_:]+', a)
 		for k, v in SYMBOL_TO_HEADER.items():
-			if k in a:
+			if k in all_symbols:
 				expected.add(v)
 		p = actual.difference(expected)
 		n = expected.difference(actual).difference({'cstddef'})
 		if p or n:
-			print('in:', os.path.join(f, i))
-			for i in p:
-				print('  -', i)
-			for i in n:
-				print('  +', i)
+			print('in', pathname)
+			for i in sorted(p):
+				print('  -', '#include <%s>' % i)
+			for i in sorted(n):
+				print('  +', '#include <%s>' % i)
+		for k in all_symbols:
+			if 'std::' in k and k not in SYMBOL_TO_HEADER:
+				print('  ?', k)
 

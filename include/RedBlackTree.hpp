@@ -21,6 +21,10 @@
 
 #include "BinarySearchTree.hpp"
 
+#include <iostream>
+#include <sstream>
+#include <string>
+
 namespace algorithms {
 
 enum Color { red, black };

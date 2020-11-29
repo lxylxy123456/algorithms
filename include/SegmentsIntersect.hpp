@@ -19,7 +19,10 @@
 #ifndef ALGORITHMS_SEGMENTSINTERSECT
 #define ALGORITHMS_SEGMENTSINTERSECT
 
+#include <algorithm>
+#include <functional>
 #include <iostream>
+#include <string>
 
 namespace algorithms {
 
