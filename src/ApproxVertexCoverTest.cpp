@@ -17,10 +17,13 @@
 //
 
 #include "ApproxVertexCover.hpp"
-#include "utils.hpp"
+
+#include <cassert>
+#include <iostream>
+#include <vector>
 
 #include "Graph.hpp"
-#include <cassert>
+#include "utils.hpp"
 
 using namespace algorithms;
 

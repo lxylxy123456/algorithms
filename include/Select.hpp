@@ -19,6 +19,9 @@
 #ifndef ALGORITHMS_SELECT
 #define ALGORITHMS_SELECT
 
+#include <algorithm>
+#include <vector>
+
 #include "InsertSort.hpp"
 
 namespace algorithms {

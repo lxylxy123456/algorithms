@@ -17,13 +17,14 @@
 //
 
 #include "Quicksort.hpp"
-#include "utils.hpp"
 
 #include <cassert>
-
-using namespace algorithms;
+#include <vector>
 
 #include "InsertSort.hpp"
+#include "utils.hpp"
+
+using namespace algorithms;
 
 int test(int n) {
 	std::vector<int> a;
@@ -36,7 +37,7 @@ int test(int n) {
 	output_integers(a);
 	output_integers(b);
 	output_integers(c);
-	assert (a == b && a == c);
+	assert(a == b && a == c);
 	return 0;
 }
 

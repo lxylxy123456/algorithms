@@ -19,8 +19,9 @@
 #ifndef ALGORITHMS_BINARYTREE
 #define ALGORITHMS_BINARYTREE
 
-#include <vector>
 #include <sstream>
+#include <vector>
+
 #include "print_tree.hpp"
 
 namespace algorithms {

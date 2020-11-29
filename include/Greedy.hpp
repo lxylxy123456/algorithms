@@ -19,8 +19,8 @@
 #ifndef ALGORITHMS_GREEDY
 #define ALGORITHMS_GREEDY
 
-#include <set>
 #include <map>
+#include <set>
 
 namespace algorithms {
 

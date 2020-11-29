@@ -17,10 +17,12 @@
 //
 
 #include "FloydWarshall.hpp"
-#include "utils.hpp"
+
+#include <cassert>
+#include <vector>
 
 #include "BellmanFord.hpp"
-#include <cassert>
+#include "utils.hpp"
 
 using namespace algorithms;
 

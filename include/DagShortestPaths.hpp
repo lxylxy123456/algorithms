@@ -19,10 +19,10 @@
 #ifndef ALGORITHMS_DAGSHORTESTPATHS
 #define ALGORITHMS_DAGSHORTESTPATHS
 
-#include <algorithm>
+#include <deque>
 
-#include "TopologicalSort.hpp"
 #include "BellmanFord.hpp"
+#include "TopologicalSort.hpp"
 
 namespace algorithms {
 

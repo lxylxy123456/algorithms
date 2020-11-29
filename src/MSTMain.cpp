@@ -18,11 +18,12 @@
 
 #include "MST.hpp"
 
-#include <map>
-#include "utils.hpp"
-#include "Graph.hpp"
+#include <iostream>
+
 #include "DisjointSet.hpp"
 #include "FibHeap.hpp"
+#include "Graph.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

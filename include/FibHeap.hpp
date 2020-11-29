@@ -19,7 +19,10 @@
 #ifndef ALGORITHMS_FIBHEAP
 #define ALGORITHMS_FIBHEAP
 
-#include <exception>
+#include <algorithm>
+#include <iostream>
+#include <stdexcept>
+#include <string>
 
 #include "RedBlackTree.hpp"
 

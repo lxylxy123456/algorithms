@@ -19,9 +19,11 @@
 #include "DagShortestPaths.hpp"
 
 #include <algorithm>
-#include "utils.hpp"
-#include "TopologicalSort.hpp"
+#include <iostream>
+
 #include "BellmanFord.hpp"
+#include "TopologicalSort.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

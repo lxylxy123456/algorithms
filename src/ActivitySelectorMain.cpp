@@ -18,11 +18,12 @@
 
 #include "ActivitySelector.hpp"
 
+#include <vector>
+
+#include "Quicksort.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
-
-#include "Quicksort.hpp"
 
 int main(int argc, char *argv[]) {
 	const size_t n = get_argv(argc, argv, 1, 10);

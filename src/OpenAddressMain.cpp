@@ -18,6 +18,8 @@
 
 #include "OpenAddress.hpp"
 
+#include <iostream>
+
 #include "utils.hpp"
 
 using namespace algorithms;

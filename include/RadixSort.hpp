@@ -19,6 +19,9 @@
 #ifndef ALGORITHMS_RADIXSORT
 #define ALGORITHMS_RADIXSORT
 
+#include <algorithm>
+#include <vector>
+
 #include "CountingSort.hpp"
 
 namespace algorithms {

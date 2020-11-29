@@ -19,6 +19,8 @@
 #ifndef ALGORITHMS_ITERATIVEFFT
 #define ALGORITHMS_ITERATIVEFFT
 
+#include <cassert>
+
 #include "RecursiveFFT.hpp"
 
 namespace algorithms {

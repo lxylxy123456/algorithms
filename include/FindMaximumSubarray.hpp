@@ -19,8 +19,8 @@
 #ifndef ALGORITHMS_FINDMAXIMUMSUBARRAY
 #define ALGORITHMS_FINDMAXIMUMSUBARRAY
 
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 namespace algorithms {
 

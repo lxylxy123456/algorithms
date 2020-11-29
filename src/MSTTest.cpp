@@ -17,10 +17,13 @@
 //
 
 #include "MST.hpp"
-#include "utils.hpp"
+
+#include <cassert>
+#include <iostream>
+#include <vector>
 
 #include "DisjointSet.hpp"
-#include <cassert>
+#include "utils.hpp"
 
 using namespace algorithms;
 

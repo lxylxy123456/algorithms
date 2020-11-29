@@ -18,13 +18,15 @@
 
 #include "RadixSort.hpp"
 
-#include "utils.hpp"
+#include <cmath>
+#include <iostream>
+#include <vector>
+
 #include "CountingSort.hpp"
+#include "InsertSort.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
-
-#include <cmath>
-#include "InsertSort.hpp"
 
 int main(int argc, char *argv[]) {
 	std::vector<int> a;

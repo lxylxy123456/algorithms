@@ -18,8 +18,10 @@
 
 #include "FordFulkerson.hpp"
 
-#include "utils.hpp"
+#include <iostream>
+
 #include "BFS.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

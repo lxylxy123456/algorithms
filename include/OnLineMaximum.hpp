@@ -19,7 +19,6 @@
 #ifndef ALGORITHMS_ONLINEMAXIMUM
 #define ALGORITHMS_ONLINEMAXIMUM
 
-#include <algorithm>
 #include <vector>
 
 namespace algorithms {

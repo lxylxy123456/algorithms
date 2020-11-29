@@ -19,6 +19,8 @@
 #ifndef ALGORITHMS_RANDOMIZEDSELECT
 #define ALGORITHMS_RANDOMIZEDSELECT
 
+#include <vector>
+
 #include "Quicksort.hpp"
 
 namespace algorithms {

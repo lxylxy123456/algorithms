@@ -18,8 +18,11 @@
 
 #include "GrahamScan.hpp"
 
-#include "utils.hpp"
+#include <iostream>
+#include <vector>
+
 #include "SegmentsIntersect.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

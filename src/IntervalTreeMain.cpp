@@ -18,9 +18,11 @@
 
 #include "IntervalTree.hpp"
 
-#include <cassert>
-#include "utils.hpp"
+#include <algorithm>
+#include <vector>
+
 #include "RedBlackTree.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

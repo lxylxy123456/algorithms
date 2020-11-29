@@ -17,10 +17,12 @@
 //
 
 #include "PMergeSort.hpp"
-#include "utils.hpp"
+
+#include <cassert>
+#include <vector>
 
 #include "InsertSort.hpp"
-#include <cassert>
+#include "utils.hpp"
 
 using namespace algorithms;
 
@@ -33,7 +35,7 @@ int test(int n) {
 	MergeSort_prime(b);
 	PMergeSort(a, c);
 	InsertSort(a);
-	assert (a == b && a == c);
+	assert(a == b && a == c);
 	return 0;
 }
 

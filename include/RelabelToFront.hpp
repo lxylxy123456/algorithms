@@ -19,6 +19,8 @@
 #ifndef ALGORITHMS_RELABELTOFRONT
 #define ALGORITHMS_RELABELTOFRONT
 
+#include <algorithm>
+#include <cassert>
 #include <list>
 
 #include "Graph.hpp"

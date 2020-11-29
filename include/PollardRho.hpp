@@ -19,12 +19,11 @@
 #ifndef ALGORITHMS_POLLARDRHO
 #define ALGORITHMS_POLLARDRHO
 
+#include <cmath>
 #include <cstddef>
-#include <random>
-
-#include "random_integers.hpp"
 
 #include "Euclid.hpp"
+#include "random_integers.hpp"
 
 namespace algorithms {
 

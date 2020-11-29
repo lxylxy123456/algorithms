@@ -17,13 +17,14 @@
 //
 
 #include "CountingSort.hpp"
-#include "utils.hpp"
 
 #include <cassert>
-
-using namespace algorithms;
+#include <vector>
 
 #include "InsertSort.hpp"
+#include "utils.hpp"
+
+using namespace algorithms;
 
 int test(int n, int k) {
 	std::vector<int> a;

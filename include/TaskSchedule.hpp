@@ -19,8 +19,9 @@
 #ifndef ALGORITHMS_TASKSCHEDULE
 #define ALGORITHMS_TASKSCHEDULE
 
-#include <vector>
 #include <iostream>
+#include <set>
+#include <vector>
 
 #include "Greedy.hpp"
 

@@ -17,10 +17,12 @@
 //
 
 #include "KMPMatcher.hpp"
-#include "utils.hpp"
+
+#include <cassert>
+#include <vector>
 
 #include "NaiveStringMatcher.hpp"
-#include <cassert>
+#include "utils.hpp"
 
 using namespace algorithms;
 

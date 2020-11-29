@@ -19,8 +19,8 @@
 #ifndef ALGORITHMS_MINIMUM
 #define ALGORITHMS_MINIMUM
 
-#include <vector>
 #include <iostream>
+#include <vector>
 
 namespace algorithms {
 

@@ -17,10 +17,15 @@
 //
 
 #include "Simplex.hpp"
-#include "utils.hpp"
+
+#include <cassert>
+#include <iostream>
+#include <stdexcept>
+#include <string>
+#include <vector>
 
 #include "LUPSolve.hpp"
-#include <cassert>
+#include "utils.hpp"
 
 using namespace algorithms;
 

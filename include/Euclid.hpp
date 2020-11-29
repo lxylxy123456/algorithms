@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_EUCLID
 #define ALGORITHMS_EUCLID
 
-#include <cassert>
-
 namespace algorithms {
 
 template <typename T>

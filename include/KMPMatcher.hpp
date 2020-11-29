@@ -19,6 +19,8 @@
 #ifndef ALGORITHMS_KMPMATCHER
 #define ALGORITHMS_KMPMATCHER
 
+#include <vector>
+
 #include "NaiveStringMatcher.hpp"
 
 namespace algorithms {

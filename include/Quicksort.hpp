@@ -19,7 +19,7 @@
 #ifndef ALGORITHMS_QUICKSORT
 #define ALGORITHMS_QUICKSORT
 
-#include <random>
+#include <algorithm>
 
 #include "random_integers.hpp"
 

@@ -17,9 +17,13 @@
 //
 
 #include "BinarySearchTree.hpp"
-#include "utils.hpp"
 
+#include <algorithm>
 #include <cassert>
+#include <iostream>
+#include <vector>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

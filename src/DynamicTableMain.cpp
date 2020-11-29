@@ -18,6 +18,8 @@
 
 #include "DynamicTable.hpp"
 
+#include <iostream>
+
 #include "utils.hpp"
 
 using namespace algorithms;

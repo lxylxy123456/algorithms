@@ -21,8 +21,8 @@
 
 #include <vector>
 
-#include "random_integers.hpp"
 #include "ModularExponentiation.hpp"
+#include "random_integers.hpp"
 
 namespace algorithms {
 

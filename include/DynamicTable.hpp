@@ -19,6 +19,7 @@
 #ifndef ALGORITHMS_DYNAMICTABLE
 #define ALGORITHMS_DYNAMICTABLE
 
+#include <algorithm>
 #include <vector>
 
 namespace algorithms {

@@ -18,6 +18,9 @@
 
 #include "SegmentsIntersect.hpp"
 
+#include <iostream>
+#include <vector>
+
 #include "utils.hpp"
 
 using namespace algorithms;

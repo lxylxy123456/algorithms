@@ -17,9 +17,12 @@
 //
 
 #include "FibHeap.hpp"
-#include "utils.hpp"
 
+#include <algorithm>
 #include <cassert>
+#include <vector>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

@@ -18,10 +18,12 @@
 
 #include "AnySegmentsIntersect.hpp"
 
-#include <cassert>
-#include "utils.hpp"
+#include <iostream>
+#include <vector>
+
 #include "RedBlackTree.hpp"
 #include "SegmentsIntersect.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

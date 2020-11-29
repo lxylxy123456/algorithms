@@ -18,12 +18,14 @@
 
 #include "Select.hpp"
 
-#include "utils.hpp"
+#include <iostream>
+#include <vector>
+
 #include "InsertSort.hpp"
+#include "RandomizedSelect.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
-
-#include "RandomizedSelect.hpp"
 
 int main(int argc, char *argv[]) {
 	std::vector<int> a;

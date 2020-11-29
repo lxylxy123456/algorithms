@@ -18,11 +18,14 @@
 
 #include "OptimalBST.hpp"
 
+#include <iostream>
+#include <sstream>
+#include <string>
+
+#include "BinarySearchTree.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
-
-#include "BinarySearchTree.hpp"
 
 enum PQ { red, black };
 

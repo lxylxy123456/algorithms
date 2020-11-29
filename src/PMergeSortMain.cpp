@@ -18,9 +18,11 @@
 
 #include "PMergeSort.hpp"
 
-#include <thread>
-#include "utils.hpp"
+#include <iostream>
+#include <vector>
+
 #include "MergeSort.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

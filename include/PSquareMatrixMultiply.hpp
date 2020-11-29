@@ -19,6 +19,7 @@
 #ifndef ALGORITHMS_PSQUAREMATRIXMULTIPLY
 #define ALGORITHMS_PSQUAREMATRIXMULTIPLY
 
+#include <cassert>
 #include <thread>
 
 #include "MatVec.hpp"

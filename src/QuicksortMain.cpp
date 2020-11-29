@@ -18,11 +18,13 @@
 
 #include "Quicksort.hpp"
 
+#include <iostream>
+#include <vector>
+
+#include "InsertSort.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
-
-#include "InsertSort.hpp"
 
 int main(int argc, char *argv[]) {
 	std::vector<int> a;

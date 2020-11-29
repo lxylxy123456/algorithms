@@ -19,8 +19,10 @@
 #ifndef ALGORITHMS_BFS
 #define ALGORITHMS_BFS
 
-#include "Queue.hpp"
+#include <vector>
+
 #include "Graph.hpp"
+#include "Queue.hpp"
 
 namespace algorithms {
 

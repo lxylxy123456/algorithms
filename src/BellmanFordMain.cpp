@@ -18,8 +18,10 @@
 
 #include "BellmanFord.hpp"
 
-#include "utils.hpp"
+#include <iostream>
+
 #include "Graph.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

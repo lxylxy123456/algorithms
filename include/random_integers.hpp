@@ -19,8 +19,8 @@
 #ifndef ALGORITHMS_RANDOM_INTEGERS
 #define ALGORITHMS_RANDOM_INTEGERS
 
-#include <vector>
 #include <random>
+#include <vector>
 
 namespace algorithms {
 

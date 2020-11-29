@@ -17,9 +17,11 @@
 //
 
 #include "Pseudoprime.hpp"
-#include "utils.hpp"
 
 #include <cassert>
+#include <iostream>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

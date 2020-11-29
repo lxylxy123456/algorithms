@@ -18,6 +18,9 @@
 
 #include "PollardRho.hpp"
 
+#include <iostream>
+#include <random>
+
 #include "utils.hpp"
 
 using namespace algorithms;

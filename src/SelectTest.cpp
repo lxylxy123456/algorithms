@@ -17,10 +17,12 @@
 //
 
 #include "Select.hpp"
-#include "utils.hpp"
-#include "RandomizedSelect.hpp"
 
 #include <cassert>
+#include <vector>
+
+#include "RandomizedSelect.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

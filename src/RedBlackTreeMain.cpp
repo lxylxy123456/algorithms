@@ -18,8 +18,10 @@
 
 #include "RedBlackTree.hpp"
 
-#include "utils.hpp"
+#include <vector>
+
 #include "BinarySearchTree.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

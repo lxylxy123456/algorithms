@@ -19,6 +19,8 @@
 #ifndef ALGORITHMS_BELLMANFORD
 #define ALGORITHMS_BELLMANFORD
 
+#include <iostream>
+
 #include "Graph.hpp"
 
 namespace algorithms {

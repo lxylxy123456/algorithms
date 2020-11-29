@@ -18,8 +18,11 @@
 
 #include "LUPSolve.hpp"
 
-#include "utils.hpp"
+#include <iostream>
+#include <vector>
+
 #include "SquareMatrixMultiply.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

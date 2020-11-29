@@ -21,8 +21,8 @@
 
 #define EVENTS std::vector<Event<T>>
 
+#include <iostream>
 #include <vector>
-#include <sstream>
 
 #include "MaxHeap.hpp"
 

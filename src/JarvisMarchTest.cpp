@@ -17,10 +17,12 @@
 //
 
 #include "JarvisMarch.hpp"
-#include "utils.hpp"
+
+#include <cassert>
+#include <vector>
 
 #include "SegmentsIntersect.hpp"
-#include <cassert>
+#include "utils.hpp"
 
 using namespace algorithms;
 

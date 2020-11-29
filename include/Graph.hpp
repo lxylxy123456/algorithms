@@ -19,13 +19,17 @@
 #ifndef ALGORITHMS_GRAPH
 #define ALGORITHMS_GRAPH
 
+#include <algorithm>
 #include <cassert>
-#include <unordered_set>
+#include <functional>
+#include <iostream>
+#include <random>
 #include <unordered_map>
-
-#include "random_integers.hpp"
+#include <unordered_set>
+#include <vector>
 
 #include "SquareMatrixMultiply.hpp"
+#include "random_integers.hpp"
 
 namespace algorithms {
 

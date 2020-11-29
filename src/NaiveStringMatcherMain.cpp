@@ -18,6 +18,8 @@
 
 #include "NaiveStringMatcher.hpp"
 
+#include <vector>
+
 #include "utils.hpp"
 
 using namespace algorithms;

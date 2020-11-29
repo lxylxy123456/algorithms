@@ -20,6 +20,7 @@
 #define ALGORITHMS_GRAHAMSCAN
 
 #include <algorithm>
+#include <vector>
 
 #include "SegmentsIntersect.hpp"
 

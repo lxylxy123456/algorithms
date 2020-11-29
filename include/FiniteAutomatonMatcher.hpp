@@ -19,6 +19,9 @@
 #ifndef ALGORITHMS_FINITEAUTOMATONMATCHER
 #define ALGORITHMS_FINITEAUTOMATONMATCHER
 
+#include <algorithm>
+#include <vector>
+
 #include "NaiveStringMatcher.hpp"
 
 namespace algorithms {

@@ -19,14 +19,15 @@
 #ifndef ALGORITHMS_UTILS
 #define ALGORITHMS_UTILS
 
+#include <algorithm>
 #include <iostream>
 #include <iterator>
-#include <vector>
 #include <sstream>
+#include <vector>
 
-#include "random_integers.hpp"
 #include "output_integers.hpp"
 #include "print_ptr.hpp"
+#include "random_integers.hpp"
 
 namespace algorithms {
 

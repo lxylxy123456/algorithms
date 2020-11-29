@@ -19,9 +19,13 @@
 #ifndef ALGORITHMS_BINARYSEARCHTREE
 #define ALGORITHMS_BINARYSEARCHTREE
 
+#include <iostream>
+#include <string>
+#include <vector>
+
+#include "BinaryTree.hpp"
 #include "output_integers.hpp"
 #include "print_ptr.hpp"
-#include "BinaryTree.hpp"
 
 namespace algorithms {
 

@@ -18,6 +18,10 @@
 
 #include "ProtovEB.hpp"
 
+#include <iostream>
+#include <stdexcept>
+#include <vector>
+
 #include "utils.hpp"
 
 using namespace algorithms;
