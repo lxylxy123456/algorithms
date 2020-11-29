@@ -17,11 +17,12 @@
 //
 
 #include "CutRod.hpp"
-#include "utils.hpp"
 
 #include <cassert>
 #include <numeric>
 #include <vector>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

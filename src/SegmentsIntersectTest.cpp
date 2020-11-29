@@ -17,9 +17,10 @@
 //
 
 #include "SegmentsIntersect.hpp"
-#include "utils.hpp"
 
 #include <cassert>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

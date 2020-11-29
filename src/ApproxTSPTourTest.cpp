@@ -17,11 +17,12 @@
 //
 
 #include "ApproxTSPTour.hpp"
-#include "utils.hpp"
 
-#include "RandomPermute.hpp"
 #include <cassert>
 #include <vector>
+
+#include "RandomPermute.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

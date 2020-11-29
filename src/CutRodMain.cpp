@@ -19,9 +19,10 @@
 #include "CutRod.hpp"
 
 #include <iomanip>
-#include "utils.hpp"
 #include <iostream>
 #include <vector>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

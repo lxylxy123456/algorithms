@@ -17,12 +17,12 @@
 //
 
 #include "BucketSort.hpp"
-#include "utils.hpp"
 
 #include <cassert>
+#include <vector>
 
 #include "InsertSort.hpp"
-#include <vector>
+#include "utils.hpp"
 
 using namespace algorithms;
 

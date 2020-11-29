@@ -18,8 +18,9 @@
 
 #include "BinaryTree.hpp"
 
-#include "utils.hpp"
 #include <vector>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

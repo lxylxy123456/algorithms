@@ -18,10 +18,11 @@
 
 #include "BucketSort.hpp"
 
-#include "utils.hpp"
-#include "InsertSort.hpp"
 #include <iostream>
 #include <vector>
+
+#include "InsertSort.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

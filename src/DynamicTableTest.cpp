@@ -17,10 +17,11 @@
 //
 
 #include "DynamicTable.hpp"
-#include "utils.hpp"
 
 #include <cassert>
 #include <vector>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

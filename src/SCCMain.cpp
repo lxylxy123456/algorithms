@@ -19,9 +19,10 @@
 #include "SCC.hpp"
 
 #include <map>
-#include "utils.hpp"
-#include "TopologicalSort.hpp"
+
 #include "DisjointSet.hpp"
+#include "TopologicalSort.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

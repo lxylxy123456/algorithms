@@ -17,11 +17,12 @@
 //
 
 #include "SCC.hpp"
-#include "utils.hpp"
 
-#include "FloydWarshall.hpp"
 #include <cassert>
 #include <vector>
+
+#include "FloydWarshall.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

@@ -17,12 +17,13 @@
 //
 
 #include "ApproxMinWeightVC.hpp"
-#include "utils.hpp"
 
-#include "Graph.hpp"
 #include <cassert>
 #include <iostream>
 #include <vector>
+
+#include "Graph.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

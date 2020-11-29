@@ -87,7 +87,8 @@ for k, v in HEADER_TO_SYMBOL.items():
 def all_files():
 	for path in ('include', 'src'):
 		for name in sorted(os.listdir(path)):
-			yield os.path.join(path, name)
+			if not name.startswith('tmp'):
+				yield os.path.join(path, name)
 
 def parse_file(pathname):
 	content = open(pathname).read()
@@ -105,12 +106,44 @@ def parse_file(pathname):
 				state = 2
 		splitted_lines[state].append(line)
 	pre, include, post = splitted_lines
+	if include:
+		assert include[-1] == ''
+		post.insert(0, include.pop(-1))
 	assert '\n'.join(pre + include + post) == content
 	return pre, include, post
 
 def refresh_file(pathname, parsed):
 	pre, include, post = parsed
 	open(pathname, 'w').write('\n'.join(pre + include + post))
+
+def reorder_includes(pathname, includes):
+	if not includes:
+		return []
+	anss = []
+	includes = set(includes)
+	'' in includes and includes.remove('')
+	if pathname.endswith('.cpp'):
+		assert pathname.startswith('src/')
+		name = pathname[4:-8]
+		include_name = '#include "%s.hpp"' % name
+		includes.remove(include_name)
+		anss.append([include_name])
+	i1 = []
+	i2 = []
+	for i in includes:
+		if i.endswith('>'):
+			i1.append(i)
+		else:
+			i2.append(i)
+	i1 and anss.append(sorted(i1))
+	i2 and anss.append(sorted(i2))
+	ans = []
+	for i in anss:
+		for j in i:
+			ans.append(j)
+		ans.append('')
+	assert ans.pop(-1) == ''
+	return ans
 
 if __name__ == '__main__':
 	for pathname in all_files():
@@ -130,10 +163,9 @@ if __name__ == '__main__':
 				print('  -', '#include <%s>' % i)
 			for i in sorted(n):
 				print('  +', '#include <%s>' % i)
-				assert parsed[1][-1] == ''
-				parsed[1].insert(-1, '#include <%s>' % i)
-			refresh_file(pathname, parsed)
 		for k in all_symbols:
 			if 'std::' in k and k not in SYMBOL_TO_HEADER:
 				print('  ?', k)
+		parsed = (parsed[0], reorder_includes(pathname, parsed[1]), parsed[2])
+		refresh_file(pathname, parsed)
 

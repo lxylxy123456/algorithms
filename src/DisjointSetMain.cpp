@@ -18,10 +18,11 @@
 
 #include "DisjointSet.hpp"
 
-#include <vector>
-#include "utils.hpp"
-#include "Graph.hpp"
 #include <iostream>
+#include <vector>
+
+#include "Graph.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

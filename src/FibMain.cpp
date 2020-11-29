@@ -18,9 +18,10 @@
 
 #include "Fib.hpp"
 
-#include "utils.hpp"
 #include <algorithm>
 #include <iostream>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

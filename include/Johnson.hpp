@@ -19,12 +19,12 @@
 #ifndef ALGORITHMS_JOHNSON
 #define ALGORITHMS_JOHNSON
 
-#include "SquareMatrixMultiply.hpp"
-#include "Dijkstra.hpp"
-
 #include <cassert>
 #include <stdexcept>
 #include <type_traits>
+
+#include "Dijkstra.hpp"
+#include "SquareMatrixMultiply.hpp"
 
 namespace algorithms {
 

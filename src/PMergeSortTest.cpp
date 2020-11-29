@@ -17,11 +17,12 @@
 //
 
 #include "PMergeSort.hpp"
-#include "utils.hpp"
 
-#include "InsertSort.hpp"
 #include <cassert>
 #include <vector>
+
+#include "InsertSort.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

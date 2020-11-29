@@ -18,10 +18,11 @@
 
 #include "LeastSquareApprox.hpp"
 
-#include "utils.hpp"
-#include "LUPSolve.hpp"
 #include <iostream>
 #include <vector>
+
+#include "LUPSolve.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

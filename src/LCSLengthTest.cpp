@@ -17,12 +17,13 @@
 //
 
 #include "LCSLength.hpp"
-#include "utils.hpp"
 
 #include <cassert>
 #include <sstream>
 #include <string>
 #include <vector>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

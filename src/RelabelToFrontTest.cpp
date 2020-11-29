@@ -17,12 +17,13 @@
 //
 
 #include "RelabelToFront.hpp"
-#include "utils.hpp"
 
-#include "FordFulkerson.hpp"
 #include <cassert>
 #include <iostream>
 #include <vector>
+
+#include "FordFulkerson.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

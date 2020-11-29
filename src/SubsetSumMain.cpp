@@ -18,10 +18,11 @@
 
 #include "SubsetSum.hpp"
 
-#include <set>
-#include "utils.hpp"
 #include <iostream>
+#include <set>
 #include <vector>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

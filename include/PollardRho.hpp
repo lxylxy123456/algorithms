@@ -22,9 +22,8 @@
 #include <cmath>
 #include <cstddef>
 
-#include "random_integers.hpp"
-
 #include "Euclid.hpp"
+#include "random_integers.hpp"
 
 namespace algorithms {
 

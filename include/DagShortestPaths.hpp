@@ -21,8 +21,8 @@
 
 #include <deque>
 
-#include "TopologicalSort.hpp"
 #include "BellmanFord.hpp"
+#include "TopologicalSort.hpp"
 
 namespace algorithms {
 

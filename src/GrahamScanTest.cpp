@@ -17,11 +17,12 @@
 //
 
 #include "GrahamScan.hpp"
-#include "utils.hpp"
 
-#include "SegmentsIntersect.hpp"
 #include <cassert>
 #include <vector>
+
+#include "SegmentsIntersect.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

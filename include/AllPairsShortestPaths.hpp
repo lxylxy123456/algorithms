@@ -19,9 +19,9 @@
 #ifndef ALGORITHMS_ALLPAIRSSHORTESTPATHS
 #define ALGORITHMS_ALLPAIRSSHORTESTPATHS
 
-#include "Graph.hpp"
-
 #include <algorithm>
+
+#include "Graph.hpp"
 
 namespace algorithms {
 

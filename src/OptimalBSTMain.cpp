@@ -18,12 +18,12 @@
 
 #include "OptimalBST.hpp"
 
-#include "utils.hpp"
-
-#include "BinarySearchTree.hpp"
 #include <iostream>
 #include <sstream>
 #include <string>
+
+#include "BinarySearchTree.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

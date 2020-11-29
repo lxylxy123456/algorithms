@@ -17,15 +17,16 @@
 //
 
 #include "LUPSolve.hpp"
-#include "utils.hpp"
 
-#include "SquareMatrixMultiply.hpp"
-#include "MatrixChainOrder.hpp"
 #include <cassert>
 #include <iostream>
 #include <stdexcept>
 #include <string>
 #include <vector>
+
+#include "MatrixChainOrder.hpp"
+#include "SquareMatrixMultiply.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

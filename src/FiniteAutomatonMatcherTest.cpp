@@ -17,11 +17,12 @@
 //
 
 #include "FiniteAutomatonMatcher.hpp"
-#include "utils.hpp"
 
-#include "NaiveStringMatcher.hpp"
 #include <cassert>
 #include <vector>
+
+#include "NaiveStringMatcher.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

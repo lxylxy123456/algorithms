@@ -18,11 +18,12 @@
 
 #include "OrderStatisticTree.hpp"
 
-#include "utils.hpp"
-#include "RedBlackTree.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
+
+#include "RedBlackTree.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

@@ -19,12 +19,13 @@
 #include "GreedySetCover.hpp"
 
 #include <iomanip>
-#include <set>
-#include "utils.hpp"
 #include <iostream>
 #include <random>
+#include <set>
 #include <string>
 #include <vector>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

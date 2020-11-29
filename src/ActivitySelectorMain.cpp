@@ -18,10 +18,10 @@
 
 #include "ActivitySelector.hpp"
 
-#include "utils.hpp"
 #include <vector>
 
 #include "Quicksort.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

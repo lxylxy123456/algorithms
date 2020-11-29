@@ -21,9 +21,9 @@
 
 #include <map>
 
-#include "Graph.hpp"
 #include "DisjointSet.hpp"
 #include "FibHeap.hpp"
+#include "Graph.hpp"
 
 namespace algorithms {
 

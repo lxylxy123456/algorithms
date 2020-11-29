@@ -19,9 +19,9 @@
 #ifndef ALGORITHMS_ORDERSTATISTICTREE
 #define ALGORITHMS_ORDERSTATISTICTREE
 
-#include "RedBlackTree.hpp"
-
 #include <iostream>
+
+#include "RedBlackTree.hpp"
 
 namespace algorithms {
 

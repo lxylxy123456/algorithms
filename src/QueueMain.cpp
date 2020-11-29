@@ -18,8 +18,9 @@
 
 #include "Queue.hpp"
 
-#include "utils.hpp"
 #include <iostream>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

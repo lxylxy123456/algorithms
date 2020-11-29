@@ -19,10 +19,10 @@
 #ifndef ALGORITHMS_SCC
 #define ALGORITHMS_SCC
 
-#include "TopologicalSort.hpp"
-#include "DisjointSet.hpp"
-
 #include <deque>
+
+#include "DisjointSet.hpp"
+#include "TopologicalSort.hpp"
 
 namespace algorithms {
 

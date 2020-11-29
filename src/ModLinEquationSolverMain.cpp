@@ -18,9 +18,10 @@
 
 #include "ModLinEquationSolver.hpp"
 
-#include "utils.hpp"
 #include <iostream>
 #include <vector>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

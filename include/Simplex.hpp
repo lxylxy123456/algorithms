@@ -21,8 +21,8 @@
 
 #include <cassert>
 #include <stdexcept>
-#include <unordered_set>
 #include <unordered_map>
+#include <unordered_set>
 
 #include "LUPSolve.hpp"
 

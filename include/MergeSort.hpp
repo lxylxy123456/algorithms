@@ -19,8 +19,8 @@
 #ifndef ALGORITHMS_MERGESORT
 #define ALGORITHMS_MERGESORT
 
-#include <list>
 #include <cassert>
+#include <list>
 #include <vector>
 
 namespace algorithms {

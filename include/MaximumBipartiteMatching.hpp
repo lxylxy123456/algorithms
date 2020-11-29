@@ -19,11 +19,11 @@
 #ifndef ALGORITHMS_MAXIMUMBIPARTITEMATCHING
 #define ALGORITHMS_MAXIMUMBIPARTITEMATCHING
 
-#include "FordFulkerson.hpp"
-
 #include <cassert>
 #include <iostream>
 #include <vector>
+
+#include "FordFulkerson.hpp"
 
 namespace algorithms {
 

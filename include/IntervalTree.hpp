@@ -19,11 +19,11 @@
 #ifndef ALGORITHMS_INTERVALTREE
 #define ALGORITHMS_INTERVALTREE
 
-#include "RedBlackTree.hpp"
-
-#include <cassert>
 #include <algorithm>
+#include <cassert>
 #include <iostream>
+
+#include "RedBlackTree.hpp"
 
 namespace algorithms {
 

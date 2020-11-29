@@ -19,10 +19,10 @@
 #ifndef ALGORITHMS_RABINKARPMATCHER
 #define ALGORITHMS_RABINKARPMATCHER
 
+#include <vector>
+
 #include "ModularExponentiation.hpp"
 #include "NaiveStringMatcher.hpp"
-
-#include <vector>
 
 namespace algorithms {
 

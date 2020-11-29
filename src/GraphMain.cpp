@@ -18,9 +18,10 @@
 
 #include "Graph.hpp"
 
-#include "utils.hpp"
-#include "SquareMatrixMultiply.hpp"
 #include <iostream>
+
+#include "SquareMatrixMultiply.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

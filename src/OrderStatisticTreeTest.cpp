@@ -17,12 +17,13 @@
 //
 
 #include "OrderStatisticTree.hpp"
-#include "utils.hpp"
 
-#include <cassert>
 #include <algorithm>
+#include <cassert>
 #include <iostream>
 #include <vector>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

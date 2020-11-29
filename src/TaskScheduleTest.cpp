@@ -17,10 +17,11 @@
 //
 
 #include "TaskSchedule.hpp"
-#include "utils.hpp"
 
 #include <set>
 #include <vector>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

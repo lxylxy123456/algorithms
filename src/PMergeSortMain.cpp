@@ -18,10 +18,11 @@
 
 #include "PMergeSort.hpp"
 
-#include "utils.hpp"
-#include "MergeSort.hpp"
 #include <iostream>
 #include <vector>
+
+#include "MergeSort.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

@@ -17,13 +17,13 @@
 //
 
 #include "Hash.hpp"
-#include "utils.hpp"
-
-#include <map>
 
 #include <cassert>
 #include <iostream>
+#include <map>
 #include <vector>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

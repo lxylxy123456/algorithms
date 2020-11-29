@@ -17,10 +17,12 @@
 //
 
 #include "OnLineMaximum.hpp"
-#include "utils.hpp"
+
 #include <algorithm>
 #include <iostream>
 #include <vector>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

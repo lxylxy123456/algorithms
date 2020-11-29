@@ -21,9 +21,9 @@
 
 #define EVENTS std::vector<Event<T>>
 
-#include <vector>
-#include <iostream>
 #include <algorithm>
+#include <iostream>
+#include <vector>
 
 namespace algorithms {
 

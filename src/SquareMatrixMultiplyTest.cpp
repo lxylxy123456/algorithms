@@ -19,9 +19,10 @@
 #include "SquareMatrixMultiply.hpp"
 
 #include <cassert>
-#include "utils.hpp"
 #include <iostream>
 #include <vector>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

@@ -17,12 +17,13 @@
 //
 
 #include "MatVec.hpp"
-#include "utils.hpp"
 
-#include "MatrixChainOrder.hpp"
 #include <cassert>
 #include <iostream>
 #include <vector>
+
+#include "MatrixChainOrder.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

@@ -17,11 +17,12 @@
 //
 
 #include "ProtovEB.hpp"
-#include "utils.hpp"
 
-#include "RedBlackTree.hpp"
 #include <cassert>
 #include <vector>
+
+#include "RedBlackTree.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

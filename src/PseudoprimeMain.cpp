@@ -18,10 +18,11 @@
 
 #include "Pseudoprime.hpp"
 
-#include "utils.hpp"
-#include "ModularExponentiation.hpp"
 #include <iostream>
 #include <random>
+
+#include "ModularExponentiation.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

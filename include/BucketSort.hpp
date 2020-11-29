@@ -19,11 +19,11 @@
 #ifndef ALGORITHMS_BUCKETSORT
 #define ALGORITHMS_BUCKETSORT
 
-#include "InsertSort.hpp"
-
+#include <algorithm>
 #include <cassert>
 #include <vector>
-#include <algorithm>
+
+#include "InsertSort.hpp"
 
 namespace algorithms {
 

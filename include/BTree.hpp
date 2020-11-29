@@ -19,11 +19,11 @@
 #ifndef ALGORITHMS_BTREE
 #define ALGORITHMS_BTREE
 
-#include <vector>
-#include <map>
 #include <iomanip>
 #include <iostream>
+#include <map>
 #include <string>
+#include <vector>
 
 namespace algorithms {
 

@@ -17,12 +17,13 @@
 //
 
 #include "Dijkstra.hpp"
-#include "utils.hpp"
 
-#include "BellmanFord.hpp"
 #include <cassert>
 #include <iostream>
 #include <vector>
+
+#include "BellmanFord.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

@@ -17,14 +17,15 @@
 //
 
 #include "Huffman.hpp"
-#include "utils.hpp"
+
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 
 #include "MaxHeap.hpp"
 #include "print_tree.hpp"
-#include <sstream>
-#include <iostream>
-#include <string>
-#include <vector>
+#include "utils.hpp"
 
 using namespace algorithms;
 

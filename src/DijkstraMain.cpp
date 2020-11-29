@@ -18,10 +18,11 @@
 
 #include "Dijkstra.hpp"
 
-#include "utils.hpp"
-#include "FibHeap.hpp"
-#include "BellmanFord.hpp"
 #include <iostream>
+
+#include "BellmanFord.hpp"
+#include "FibHeap.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

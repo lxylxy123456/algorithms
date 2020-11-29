@@ -24,6 +24,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <vector>
+
 #include "SquareMatrixMultiply.hpp"
 
 namespace algorithms {

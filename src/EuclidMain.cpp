@@ -19,8 +19,9 @@
 #include "Euclid.hpp"
 
 #include <cassert>
-#include "utils.hpp"
 #include <iostream>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

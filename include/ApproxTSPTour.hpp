@@ -19,10 +19,10 @@
 #ifndef ALGORITHMS_APPROXTSPTOUR
 #define ALGORITHMS_APPROXTSPTOUR
 
+#include <vector>
+
 #include "MST.hpp"
 #include "SegmentsIntersect.hpp"
-
-#include <vector>
 
 namespace algorithms {
 

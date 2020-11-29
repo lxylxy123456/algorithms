@@ -22,8 +22,8 @@
 #define CUT_ROD_INFO std::pair<T, std::vector<size_t>>
 
 #include <algorithm>
-#include <vector>
 #include <map>
+#include <vector>
 
 namespace algorithms {
 

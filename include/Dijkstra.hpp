@@ -19,10 +19,10 @@
 #ifndef ALGORITHMS_DIJKSTRA
 #define ALGORITHMS_DIJKSTRA
 
-#include "FibHeap.hpp"
-#include "BellmanFord.hpp"
-
 #include <map>
+
+#include "BellmanFord.hpp"
+#include "FibHeap.hpp"
 
 namespace algorithms {
 

@@ -18,10 +18,11 @@
 
 #include "KMPMatcher.hpp"
 
-#include "utils.hpp"
-#include "NaiveStringMatcher.hpp"
 #include <iostream>
 #include <vector>
+
+#include "NaiveStringMatcher.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

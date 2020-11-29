@@ -20,8 +20,8 @@
 #define ALGORITHMS_SQUAREMATRIXMULTIPLY
 
 #include <cassert>
-#include <vector>
 #include <iostream>
+#include <vector>
 
 namespace algorithms {
 

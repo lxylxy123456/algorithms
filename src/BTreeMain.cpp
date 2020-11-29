@@ -18,9 +18,10 @@
 
 #include "BTree.hpp"
 
-#include <map>
-#include "utils.hpp"
 #include <iostream>
+#include <map>
+
+#include "utils.hpp"
 
 using namespace algorithms;
 

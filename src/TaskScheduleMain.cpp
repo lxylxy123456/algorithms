@@ -18,10 +18,11 @@
 
 #include "TaskSchedule.hpp"
 
-#include "utils.hpp"
-#include "Greedy.hpp"
 #include <set>
 #include <vector>
+
+#include "Greedy.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 

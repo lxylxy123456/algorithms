@@ -18,9 +18,10 @@
 
 #include "ApproxVertexCover.hpp"
 
-#include "utils.hpp"
-#include "Graph.hpp"
 #include <iostream>
+
+#include "Graph.hpp"
+#include "utils.hpp"
 
 using namespace algorithms;
 
