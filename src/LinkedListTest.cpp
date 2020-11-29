@@ -27,19 +27,19 @@ template <typename T>
 int test(std::string t) {
 	std::cout << t << std::endl;
 	LinkedListBase<int>* S = new T;
-	Data<int>* nil = nullptr;
+	Element<int>* nil = nullptr;
 	if (t == "LinkedList_prime")
 		nil = S->ListSearch(0);
 	for (int i = 0; i < 100; i++)
 		S->ListInsert(i);
 	for (int i = 0; i < 102; i++) {
-		Data<int>* ptr = S->ListSearch(i);
+		Element<int>* ptr = S->ListSearch(i);
 		assert((ptr == nil) == (i >= 100));
 		if (i % 2 == 0 && i < 100)
 			S->ListDelete(ptr);
 	}
 	for (int i = 0; i < 102; i++) {
-		Data<int>* ptr = S->ListSearch(i);
+		Element<int>* ptr = S->ListSearch(i);
 		assert((ptr == nil) == (i % 2 == 0 || i >= 100));
 	}
 	delete S;

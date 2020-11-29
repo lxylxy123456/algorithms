@@ -43,10 +43,10 @@ class ChainedHash {
 		void ChainedHashInsert(size_t k, T x) {
 			data[h(k)].ListInsert(Pair<T>(k, x));
 		}
-		Data<Pair<T>>* ChainedHashSearch(size_t k) {
+		Element<Pair<T>>* ChainedHashSearch(size_t k) {
 			return data[h(k)].ListSearch(k);
 		}
-		void ChainedHashDelete(Data<Pair<T>>* p) {
+		void ChainedHashDelete(Element<Pair<T>>* p) {
 			data[h(p->key.key)].ListDelete(p);
 		}
 		size_t h(size_t k) {

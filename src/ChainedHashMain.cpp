@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
 				D.ChainedHashDelete(D.ChainedHashSearch(k));
 				break;
 			case 's':
-				Data<Pair<int>>* ans = D.ChainedHashSearch(k);
+				Element<Pair<int>>* ans = D.ChainedHashSearch(k);
 				if (ans)
 					std::cout << ans->key.key << ": "
 							 << ans->key.value << std::endl;

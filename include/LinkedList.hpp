@@ -22,26 +22,26 @@
 namespace algorithms {
 
 template <typename T>
-class Data {
+class Element {
 	public:
-		Data(void) {}
-		Data(T k): key(k) {}
-		Data(T k, Data<T>* p, Data<T>* n): key(k), prev(p), next(n) {}
-		bool operator==(const Data<T>& rhs) const { return key == rhs.key; }
-		bool operator!=(const Data<T>& rhs) const { return key != rhs.key; }
+		Element(void) {}
+		Element(T k): key(k) {}
+		Element(T k, Element<T>* p, Element<T>* n): key(k), prev(p), next(n) {}
+		bool operator==(const Element<T>& rhs) const { return key == rhs.key; }
+		bool operator!=(const Element<T>& rhs) const { return key != rhs.key; }
 		bool operator==(const T& rhs) const { return key == rhs; }
 		bool operator!=(const T& rhs) const { return key != rhs; }
 		T key;
-		Data<T> *prev, *next;
+		Element<T> *prev, *next;
 };
 
 template <typename T>
 class LinkedListBase {
 	public:
 		LinkedListBase(void) {}
-		virtual Data<T>* ListSearch(T x) = 0;
+		virtual Element<T>* ListSearch(T x) = 0;
 		virtual void ListInsert(T x) = 0;
-		virtual void ListDelete(Data<T>* x) = 0;
+		virtual void ListDelete(Element<T>* x) = 0;
 		virtual ~LinkedListBase() {}
 };
 
@@ -49,18 +49,18 @@ template <typename T>
 class LinkedList: public LinkedListBase<T> {
 	public:
 		LinkedList(void): head(nullptr) {}
-		virtual Data<T>* ListSearch(T x) {
-			Data<T>* i = head;
+		virtual Element<T>* ListSearch(T x) {
+			Element<T>* i = head;
 			while (i != nullptr && *i != x)
 				i = i->next;
 			return i;
 		}
 		virtual void ListInsert(T x) {
-			head = new Data<T>(x, nullptr, head);
+			head = new Element<T>(x, nullptr, head);
 			if (head->next)
 				head->next->prev = head;
 		}
-		virtual void ListDelete(Data<T>* x) {
+		virtual void ListDelete(Element<T>* x) {
 			if (x->next)
 				x->next->prev = x->prev;
 			if (x->prev)
@@ -70,50 +70,50 @@ class LinkedList: public LinkedListBase<T> {
 			delete x;
 		}
 		virtual ~LinkedList() {
-			for (Data<T>* i = head; i != nullptr; ) {
-				Data<T>* tmp = i;
+			for (Element<T>* i = head; i != nullptr; ) {
+				Element<T>* tmp = i;
 				i = i->next;
 				delete tmp;
 			}
 		}
 	private:
-		Data<T>* head;
+		Element<T>* head;
 };
 
 template <typename T>
 class LinkedList_prime: public LinkedListBase<T> {
 	public:
-		LinkedList_prime(void): nil(new Data<T>()) {
+		LinkedList_prime(void): nil(new Element<T>()) {
 			nil->next=nil;
 			nil->prev=nil;
 		}
-		virtual void ListDelete(Data<T>* x) { ListDelete_prime(x); }
-		virtual Data<T>* ListSearch(T x) { return ListSearch_prime(x); }
+		virtual void ListDelete(Element<T>* x) { ListDelete_prime(x); }
+		virtual Element<T>* ListSearch(T x) { return ListSearch_prime(x); }
 		virtual void ListInsert(T x) { ListInsert_prime(x); }
-		virtual void ListDelete_prime(Data<T>* x) {
+		virtual void ListDelete_prime(Element<T>* x) {
 			x->next->prev = x->prev;
 			x->prev->next = x->next;
 			delete x;
 		}
-		virtual Data<T>* ListSearch_prime(T x) {
-			Data<T>* i = nil->next;
+		virtual Element<T>* ListSearch_prime(T x) {
+			Element<T>* i = nil->next;
 			while (i != nil && *i != x)
 				i = i->next;
 			return i;
 		}
 		virtual void ListInsert_prime(T x) {
-			nil->next = new Data<T>(x, nil, nil->next);
+			nil->next = new Element<T>(x, nil, nil->next);
 			nil->next->next->prev = nil->next;
 		}
 		virtual ~LinkedList_prime() {
-			for (Data<T>* i = nil; i != nil; ) {
-				Data<T>* tmp = i;
+			for (Element<T>* i = nil; i != nil; ) {
+				Element<T>* tmp = i;
 				i = i->next;
 				delete tmp;
 			}
 		}
 	private:
-		Data<T>* nil;
+		Element<T>* nil;
 };
 
 }
