@@ -18,7 +18,6 @@
 
 #include "BucketSort.hpp"
 
-#include <cassert>
 #include "utils.hpp"
 #include "InsertSort.hpp"
 

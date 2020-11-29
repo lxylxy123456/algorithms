@@ -40,7 +40,10 @@ HEADER_TO_SYMBOL = {
 		'std::deque',
 	],
 	'cmath': [
-		'abs', 'pow', 'log2',
+		'abs(', 'pow(', 'log2(',
+	],
+	'cassert': [
+		'assert(',
 	],
 	'sstream': [
 		'std::istringstream', 'std::ostringstream',
@@ -67,20 +70,11 @@ for f in ('include', 'src'):
 		a = open(os.path.join(f, i)).read()
 		try :
 			for j in re.findall('#include <(\w+)>', a) :
-				if j == 'cassert' :
-					assert 'assert(' in a
-				elif j in HEADER_TO_SYMBOL :
-					flag = False
-					for k in HEADER_TO_SYMBOL[j]:
-						if k in a:
-							flag = True
-					assert flag
-				elif j == 'cmath' :
-					assert 'pow' in a
-				elif j == 'iomanip' :
-					assert 'std::left' in a
-				else :
-					assert(False)
+				flag = False
+				for k in HEADER_TO_SYMBOL[j]:
+					if k in a:
+						flag = True
+				assert flag
 		except AssertionError :
 			print('in:', os.path.join(f, i))
 			print('include:', j)

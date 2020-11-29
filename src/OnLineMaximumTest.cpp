@@ -19,8 +19,6 @@
 #include "OnLineMaximum.hpp"
 #include "utils.hpp"
 
-#include <cassert>
-
 using namespace algorithms;
 
 bool test_once(size_t n, size_t k) {

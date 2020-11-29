@@ -18,7 +18,6 @@
 
 #include "Fib.hpp"
 
-#include <thread>
 #include "utils.hpp"
 
 using namespace algorithms;
