@@ -21,9 +21,9 @@
 #include "utils.hpp"
 #include "InsertSort.hpp"
 
-using namespace algorithms;
-
 #include "RandomizedSelect.hpp"
+
+using namespace algorithms;
 
 int main(int argc, char *argv[]) {
 	std::vector<int> a;

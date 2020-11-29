@@ -20,9 +20,9 @@
 
 #include "utils.hpp"
 
-using namespace algorithms;
-
 #include "InsertSort.hpp"
+
+using namespace algorithms;
 
 int main(int argc, char *argv[]) {
 	std::vector<int> a;

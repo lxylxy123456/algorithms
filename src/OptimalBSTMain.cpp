@@ -20,9 +20,9 @@
 
 #include "utils.hpp"
 
-using namespace algorithms;
-
 #include "BinarySearchTree.hpp"
+
+using namespace algorithms;
 
 enum PQ { red, black };
 

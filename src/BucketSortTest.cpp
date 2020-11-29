@@ -21,9 +21,9 @@
 
 #include <cassert>
 
-using namespace algorithms;
-
 #include "InsertSort.hpp"
+
+using namespace algorithms;
 
 int test(int n) {
 	std::vector<int> a;

@@ -21,10 +21,10 @@
 #include "utils.hpp"
 #include "CountingSort.hpp"
 
-using namespace algorithms;
-
 #include <cmath>
 #include "InsertSort.hpp"
+
+using namespace algorithms;
 
 int main(int argc, char *argv[]) {
 	std::vector<int> a;

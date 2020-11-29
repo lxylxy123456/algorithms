@@ -84,9 +84,34 @@ for k, v in HEADER_TO_SYMBOL.items():
 		assert i not in SYMBOL_TO_HEADER
 		SYMBOL_TO_HEADER[i] = k
 
-for path in ('include', 'src'):
-	for name in sorted(os.listdir(path)):
-		pathname = os.path.join(path, name)
+def all_files():
+	for path in ('include', 'src'):
+		for name in sorted(os.listdir(path)):
+			yield os.path.join(path, name)
+
+def parse_file(pathname):
+	content = open(pathname).read()
+	lines = content.split('\n')
+	state = 0
+	splitted_lines = [[], [], []]
+	for line in lines:
+		if not line:
+			pass
+		elif line.startswith('#include'):
+			assert state in (0, 1)
+			state = 1
+		else:
+			if state == 1:
+				state = 2
+		splitted_lines[state].append(line)
+	pre, include, post = splitted_lines
+	assert '\n'.join(pre + include + post) == content
+	include_set = set(include).difference({''})
+	return pre, include_set, post
+
+if __name__ == '__main__':
+	for pathname in all_files():
+		parsed = parse_file(pathname)
 		a = open(pathname).read()
 		actual = set(re.findall('#include <(\w+)>', a))
 		expected = set()

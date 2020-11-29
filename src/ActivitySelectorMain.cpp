@@ -21,9 +21,9 @@
 #include "utils.hpp"
 #include <vector>
 
-using namespace algorithms;
-
 #include "Quicksort.hpp"
+
+using namespace algorithms;
 
 int main(int argc, char *argv[]) {
 	const size_t n = get_argv(argc, argv, 1, 10);
