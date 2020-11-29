@@ -19,7 +19,8 @@
 #include "TaskSchedule.hpp"
 #include "utils.hpp"
 
-#include <cassert>
+#include <set>
+#include <vector>
 
 using namespace algorithms;
 

@@ -19,7 +19,6 @@
 #include "Greedy.hpp"
 
 #include <set>
-#include <map>
 #include "utils.hpp"
 
 using namespace algorithms;

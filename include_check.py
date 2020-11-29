@@ -55,7 +55,7 @@ HEADER_TO_SYMBOL = {
 		'size_t'
 	],
 	'iomanip': [
-		'std::left',
+		'std::left', 'std::setw',
 	],
 }
 

@@ -19,6 +19,8 @@
 #ifndef ALGORITHMS_JARVISMARCH
 #define ALGORITHMS_JARVISMARCH
 
+#include <vector>
+
 #include "SegmentsIntersect.hpp"
 
 namespace algorithms {

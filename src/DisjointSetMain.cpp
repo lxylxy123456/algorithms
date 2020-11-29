@@ -18,7 +18,7 @@
 
 #include "DisjointSet.hpp"
 
-#include <map>
+#include <vector>
 #include "utils.hpp"
 #include "Graph.hpp"
 

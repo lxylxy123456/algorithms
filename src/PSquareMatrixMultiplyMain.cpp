@@ -18,7 +18,6 @@
 
 #include "PSquareMatrixMultiply.hpp"
 
-#include <thread>
 #include "utils.hpp"
 #include "MatVec.hpp"
 

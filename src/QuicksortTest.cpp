@@ -36,7 +36,7 @@ int test(int n) {
 	output_integers(a);
 	output_integers(b);
 	output_integers(c);
-	assert (a == b && a == c);
+	assert(a == b && a == c);
 	return 0;
 }
 

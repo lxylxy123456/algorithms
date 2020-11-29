@@ -18,7 +18,6 @@
 
 #include "IntervalTree.hpp"
 
-#include <cassert>
 #include "utils.hpp"
 #include "RedBlackTree.hpp"
 
