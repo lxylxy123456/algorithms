@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
 	const FT e = get_argv(argc, argv, 4, 0.9);
 	std::vector<T> S_int;
 	random_integers(S_int, 1, m, n);
-	set_T S;
+	std::set<T> S;
 	for (auto i = S_int.begin(); i != S_int.end(); i++)
 		S.insert(*i);
 	output_integers(S);
