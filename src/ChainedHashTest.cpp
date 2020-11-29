@@ -32,7 +32,7 @@ int test(int n, int m) {
 	for (int i = 0; i < m; i++)
 		D.ChainedHashInsert(i, i ^ 0xaa);
 	for (int i = 0; i < m; i++) {
-		Data<Pair<int>>* searched = D.ChainedHashSearch(i);
+		Element<Pair<int>>* searched = D.ChainedHashSearch(i);
 		assert(searched->key.key == (size_t) i);
 		assert(searched->key.value == (i ^ 0xaa));
 		if (i % 2 == 0)
@@ -41,7 +41,7 @@ int test(int n, int m) {
 			D.ChainedHashInsert(i, i ^ 0x55);
 	}
 	for (int i = 0; i < m; i++) {
-		Data<Pair<int>>* searched = D.ChainedHashSearch(i);
+		Element<Pair<int>>* searched = D.ChainedHashSearch(i);
 		if (i % 2 == 0)
 			assert(!searched);
 		else if (i % 4 == 3)
