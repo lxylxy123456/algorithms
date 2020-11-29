@@ -20,7 +20,7 @@
 #define ALGORITHMS_SIMPLEX
 
 #include <cassert>
-#include <exception>
+#include <stdexcept>
 #include <unordered_set>
 #include <unordered_map>
 

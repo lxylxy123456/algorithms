@@ -51,7 +51,16 @@ HEADER_TO_SYMBOL = {
 	'cstddef': [
 		'size_t'
 	],
+	'iomanip': [
+		'std::left',
+	],
 }
+
+for i in ['map', 'list', 'set', 'unordered_set', 'unordered_map', 'deque',
+			'thread', 'vector']:
+	HEADER_TO_SYMBOL[i] = ['std::' + i]
+
+HEADER_TO_SYMBOL['map'].append('std::pair')
 
 for f in ('include', 'src'):
 	for i in os.listdir(f) :
@@ -70,13 +79,6 @@ for f in ('include', 'src'):
 					assert 'pow' in a
 				elif j == 'iomanip' :
 					assert 'std::left' in a
-				elif j == 'exception' :
-					assert 'std::invalid_argument' in a
-				elif j == 'map' :
-					assert 'std::map' in a or 'std::pair' in a
-				elif j in ['list', 'set', 'unordered_set', 'unordered_map',
-							'deque', 'thread', 'vector'] :
-					assert 'std::' + j in a
 				else :
 					assert(False)
 		except AssertionError :
