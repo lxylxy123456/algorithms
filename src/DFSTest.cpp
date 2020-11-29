@@ -33,7 +33,7 @@ int test(size_t v, size_t e, bool dir) {
 	umap<Edge<size_t>, DFSEdgeType, EdgeHash<size_t>> edge_inf;
 	DFS(G, inf, &edge_inf);
 	for (size_t i = 0; i < v; i++) {
-		assert(inf[i].color == black);
+		assert(inf[i].color == dfs_black);
 		if (!inf[i].pi.nil) {
 			size_t p = inf[i].pi.val;
 			assert(inf[i].d > inf[p].d);

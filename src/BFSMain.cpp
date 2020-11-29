@@ -40,12 +40,12 @@ int main(int argc, char *argv[]) {
 		BFSInfo<size_t>& i = inf[v];
 		std::cout << " [";
 		switch (i.color) {
-			case white:
+			case bfs_white:
 				break;
-			case black:
+			case bfs_black:
 				std::cout << "color=black style=filled fontcolor=white ";
 				break;
-			case gray:
+			case bfs_gray:
 				std::cout << "color=gray style=filled ";
 				break;
 		}

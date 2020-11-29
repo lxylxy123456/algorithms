@@ -28,16 +28,16 @@ namespace algorithms {
 template <typename GT, typename T, typename VT>
 void DFSVisit_TS(GT& G, VT& inf, std::deque<T>& ans, T u, size_t& time) {
 	DFSInfo<T>& info = inf[u];
-	info.set_color(gray, time);
+	info.set_color(dfs_gray, time);
 	for (auto i = G.edges_from(u); !i.end(); i++) {
 		T v = i.d();
 		DFSInfo<T>& vinfo = inf[v];
-		if (vinfo.color == white) {
+		if (vinfo.color == dfs_white) {
 			vinfo.set_pi(u);
 			DFSVisit_TS(G, inf, ans, v, time);
 		}
 	}
-	info.set_color(black, time);
+	info.set_color(dfs_black, time);
 	ans.push_front(u);
 }
 
@@ -47,7 +47,7 @@ void DFS_TS(GT& G, VT& inf, std::deque<T>& ans) {
 		inf[*i] = DFSInfo<T>();
 	size_t time = 0;
 	for (auto i = G.V.begin(); i != G.V.end(); i++)
-		if (inf[*i].color == white)
+		if (inf[*i].color == dfs_white)
 			DFSVisit_TS(G, inf, ans, *i, time);
 }
 

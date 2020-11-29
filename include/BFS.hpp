@@ -26,12 +26,12 @@
 
 namespace algorithms {
 
-enum BFSColor { white, gray, black };
+enum BFSColor { bfs_white, bfs_gray, bfs_black };
 
 template <typename T>
 class BFSInfo {
 	public:
-		BFSInfo(): color(white) {}
+		BFSInfo(): color(bfs_white) {}
 		BFSInfo(enum BFSColor c, size_t dist): color(c), d(dist) {}
 		BFSInfo(enum BFSColor c, size_t dist, T p): color(c), d(dist), pi(p) {}
 		enum BFSColor color;
@@ -43,7 +43,7 @@ template <typename GT, typename T>
 void BFS(GT& G, T s, umap<T, BFSInfo<T>>& ans) {
 	for (auto i = G.V.begin(); i != G.V.end(); i++) {
 		if (*i == s)
-			ans[*i] = BFSInfo<T>(gray, 0);
+			ans[*i] = BFSInfo<T>(bfs_gray, 0);
 		else
 			ans[*i] = BFSInfo<T>();
 	}
@@ -52,13 +52,13 @@ void BFS(GT& G, T s, umap<T, BFSInfo<T>>& ans) {
 	while (!Q.Empty()) {
 		T u = Q.Dequeue();
 		for (auto i = G.edges_from(u); !i.end(); i++)
-			if (ans[i.d()].color == white) {
-				ans[i.d()].color = gray;
+			if (ans[i.d()].color == bfs_white) {
+				ans[i.d()].color = bfs_gray;
 				ans[i.d()].d = ans[u].d + 1;
 				ans[i.d()].pi = u;
 				Q.Enqueue(i.d());
 			}
-		ans[u].color = black;
+		ans[u].color = bfs_black;
 	}
 }
 

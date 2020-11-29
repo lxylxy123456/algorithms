@@ -21,9 +21,9 @@
 
 #include <algorithm>
 
-namespace algorithms {
+#include "ProtovEB.hpp"
 
-const size_t NIL = -1;
+namespace algorithms {
 
 class vEB {
 	public:

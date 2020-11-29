@@ -25,23 +25,23 @@
 
 namespace algorithms {
 
-enum DFSColor { white, gray, black };
+enum DFSColor { dfs_white, dfs_gray, dfs_black };
 
 enum DFSEdgeType { tree, back, forward, cross };
 
 template <typename T>
 class DFSInfo {
 	public:
-		DFSInfo(): color(white), d(-1), f(-1) {}
+		DFSInfo(): color(dfs_white), d(-1), f(-1) {}
 		void set_color(DFSColor c, size_t& time) {
 			color = c;
 			switch (color) {
-				case white:
+				case dfs_white:
 					break;
-				case gray:
+				case dfs_gray:
 					d = time++;
 					break;
-				case black:
+				case dfs_black:
 					f = time++;
 					break;
 			}
@@ -83,22 +83,22 @@ bool is_ancestor(VT& ans, T u, T v) {
 template <typename GT, typename T, typename VT, typename ET>
 void DFSVisit(GT& G, VT& ans, ET edge_ans, T u, size_t& time) {
 	DFSInfo<T>& info = ans[u];
-	info.set_color(gray, time);
+	info.set_color(dfs_gray, time);
 	for (auto i = G.edges_from(u); !i.end(); i++) {
 		T v = i.d();
 		DFSInfo<T>& vinfo = ans[v];
 		switch (vinfo.color) {
-			case white:
+			case dfs_white:
 				if (edge_ans && edge_ans->find(*i) == edge_ans->end())
 					(*edge_ans)[*i] = tree;
 				vinfo.set_pi(u);
 				DFSVisit(G, ans, edge_ans, v, time);
 				break;
-			case gray:
+			case dfs_gray:
 				if (edge_ans && edge_ans->find(*i) == edge_ans->end())
 					(*edge_ans)[*i] = back;
 				break;
-			case black:
+			case dfs_black:
 				if (edge_ans && edge_ans->find(*i) == edge_ans->end()) {
 					if (is_ancestor(ans, u, v))
 						(*edge_ans)[*i] = forward;
@@ -108,7 +108,7 @@ void DFSVisit(GT& G, VT& ans, ET edge_ans, T u, size_t& time) {
 				break;
 		}
 	}
-	info.set_color(black, time);
+	info.set_color(dfs_black, time);
 }
 
 template <typename T, typename GT, typename VT>
@@ -117,7 +117,7 @@ void DFS(GT& G, VT& ans, umap<Edge<T>, DFSEdgeType, EdgeHash<T>>* edge_ans) {
 		ans[*i] = DFSInfo<T>();
 	size_t time = 0;
 	for (auto i = G.V.begin(); i != G.V.end(); i++)
-		if (ans[*i].color == white)
+		if (ans[*i].color == dfs_white)
 			DFSVisit(G, ans, edge_ans, *i, time);
 }
 

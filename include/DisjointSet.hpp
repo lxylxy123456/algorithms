@@ -22,10 +22,9 @@
 #include <map>
 
 #include "Graph.hpp"
+#include "ProtovEB.hpp"
 
 namespace algorithms {
-
-const size_t NIL = -1;
 
 template <typename T>
 class DisjointSetForest {

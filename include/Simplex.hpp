@@ -25,14 +25,13 @@
 #include <unordered_set>
 
 #include "LUPSolve.hpp"
+#include "ProtovEB.hpp"
 
 namespace algorithms {
 
 #define usetst typename std::unordered_set<size_t>
 #define vectst typename std::unordered_map<size_t, T>
 #define matst typename std::unordered_map<size_t, std::unordered_map<size_t, T>>
-
-const size_t NIL = -1;
 
 template <typename T>
 void Pivot(usetst& N, usetst& B, matst& A, vectst& b, vectst& c, T& v,

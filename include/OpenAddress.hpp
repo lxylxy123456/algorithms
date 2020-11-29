@@ -21,18 +21,9 @@
 
 #include <stdexcept>
 
-namespace algorithms {
+#include "ChainedHash.hpp"
 
-template <typename T>
-class Pair {
-	public:
-		Pair(size_t k): key(k) {}
-		Pair(size_t k, T v): key(k), value(v) {}
-		bool operator==(const Pair& rhs) const { return key == rhs.key; }
-		bool operator!=(const Pair& rhs) const { return key != rhs.key; }
-		size_t key;
-		T value;
-};
+namespace algorithms {
 
 template <typename T>
 class OpenAddress {

@@ -38,12 +38,12 @@ int main(int argc, char *argv[]) {
 		DFSInfo<size_t>& i = inf[v];
 		std::cout << " [";
 		switch (i.color) {
-			case white:
+			case dfs_white:
 				break;
-			case black:
+			case dfs_black:
 				std::cout << "color=black style=filled fontcolor=white ";
 				break;
-			case gray:
+			case dfs_gray:
 				std::cout << "color=gray style=filled ";
 				break;
 		}
