@@ -65,17 +65,26 @@ for i in ['map', 'list', 'set', 'unordered_set', 'unordered_map', 'deque',
 
 HEADER_TO_SYMBOL['map'].append('std::pair')
 
+SYMBOL_TO_HEADER = {}
+for k, v in HEADER_TO_SYMBOL.items():
+	for i in v:
+		assert i not in SYMBOL_TO_HEADER
+		SYMBOL_TO_HEADER[i] = k
+
 for f in ('include', 'src'):
 	for i in os.listdir(f) :
 		a = open(os.path.join(f, i)).read()
-		try :
-			for j in re.findall('#include <(\w+)>', a) :
-				flag = False
-				for k in HEADER_TO_SYMBOL[j]:
-					if k in a:
-						flag = True
-				assert flag
-		except AssertionError :
+		actual = set(re.findall('#include <(\w+)>', a))
+		expected = set()
+		for k, v in SYMBOL_TO_HEADER.items():
+			if k in a:
+				expected.add(v)
+		p = actual.difference(expected)
+		n = expected.difference(actual).difference({'cstddef'})
+		if p or n:
 			print('in:', os.path.join(f, i))
-			print('include:', j)
+			for i in p:
+				print('  -', i)
+			for i in n:
+				print('  +', i)
 
