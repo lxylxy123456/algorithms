@@ -18,7 +18,6 @@
 
 #include "StorageManage.hpp"
 
-#include <cassert>
 #include "utils.hpp"
 
 using namespace algorithms;

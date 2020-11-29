@@ -18,7 +18,6 @@
 
 #include "PMergeSort.hpp"
 
-#include <thread>
 #include "utils.hpp"
 #include "MergeSort.hpp"
 

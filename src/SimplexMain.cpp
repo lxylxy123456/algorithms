@@ -18,7 +18,6 @@
 
 #include "Simplex.hpp"
 
-#include <cassert>
 #include "utils.hpp"
 #include "LUPSolve.hpp"
 

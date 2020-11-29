@@ -19,7 +19,6 @@
 #include "BTree.hpp"
 
 #include <map>
-#include <iomanip>
 #include "utils.hpp"
 
 using namespace algorithms;

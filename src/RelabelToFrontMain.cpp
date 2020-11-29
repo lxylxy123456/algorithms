@@ -18,7 +18,6 @@
 
 #include "RelabelToFront.hpp"
 
-#include <list>
 #include "utils.hpp"
 #include "Graph.hpp"
 
