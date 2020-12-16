@@ -35,6 +35,7 @@ VALGRIND := $(filter-out valgrind/RabinKarpMatcherTest,$(VALGRIND))
 all: $(TARGETS)
 
 test: $(TESTS)
+
 valgrind: $(VALGRIND)
 
 bin:
@@ -48,7 +49,7 @@ $(TESTS): test/%: bin/%
 
 $(VALGRIND): valgrind/%: bin/%
 	# https://stackoverflow.com/a/55130152
-	valgrind $(VALGRINDFLAGS) ./$^
+	valgrind $(VALGRINDFLAGS) ./$^ > /dev/null
 	echo 'Completing' ./$^
 
 clean:
