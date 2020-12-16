@@ -31,6 +31,7 @@ VALGRIND := $(patsubst bin/%,valgrind/%,$(filter %Test,$(TARGETS)))
 all: $(TARGETS)
 
 test: $(TESTS)
+valgrind: $(VALGRIND)
 
 bin:
 	mkdir bin
