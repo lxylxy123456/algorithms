@@ -28,6 +28,9 @@ DEPENDS := $(patsubst %,%.d,$(TARGETS))
 TESTS := $(patsubst bin/%,test/%,$(filter %Test,$(TARGETS)))
 VALGRIND := $(patsubst bin/%,valgrind/%,$(filter %Test,$(TARGETS)))
 
+# Race condition cannot exist when executed with valgrind
+VALGRIND := $(filter-out valgrind/RaceExampleTest,$(VALGRIND))
+
 VALGRIND_ALL := $(VALGRIND)
 
 # Memory leak
@@ -35,15 +38,20 @@ VALGRIND_ALL := $(filter-out valgrind/FibHeapTest,$(VALGRIND_ALL))
 
 # Invalid read of size 4
 
+# Fixed
+# VALGRIND_ALL := $(filter-out valgrind/FibHeapTest,$(VALGRIND_ALL))
+# VALGRIND_ALL := $(filter-out valgrind/InsertSortTest,$(VALGRIND_ALL))
+
 # ???
-VALGRIND_ALL := $(filter-out valgrind/RabinKarpMatcherTest,$(VALGRIND_ALL))
-VALGRIND_ALL := $(filter-out valgrind/FibTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/BTreeTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/DynamicTableTest,$(VALGRIND_ALL))
-VALGRIND_ALL := $(filter-out valgrind/PSquareMatrixMultiplyTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/FibTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/HireAssistantTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/HuffmanTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/IntervalTreeTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/MatVecTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/PSquareMatrixMultiplyTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/RabinKarpMatcherTest,$(VALGRIND_ALL))
 
 all: $(TARGETS)
 
