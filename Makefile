@@ -28,26 +28,28 @@ DEPENDS := $(patsubst %,%.d,$(TARGETS))
 TESTS := $(patsubst bin/%,test/%,$(filter %Test,$(TARGETS)))
 VALGRIND := $(patsubst bin/%,valgrind/%,$(filter %Test,$(TARGETS)))
 
+VALGRIND_ALL := $(VALGRIND)
+
 # Memory leak
-VALGRIND := $(filter-out valgrind/FibHeapTest,$(VALGRIND))
+VALGRIND_ALL := $(filter-out valgrind/FibHeapTest,$(VALGRIND_ALL))
 
 # Invalid read of size 4
 
 # ???
-VALGRIND := $(filter-out valgrind/RabinKarpMatcherTest,$(VALGRIND))
-VALGRIND := $(filter-out valgrind/FibTest,$(VALGRIND))
-VALGRIND := $(filter-out valgrind/BTreeTest,$(VALGRIND))
-VALGRIND := $(filter-out valgrind/DynamicTableTest,$(VALGRIND))
-VALGRIND := $(filter-out valgrind/PSquareMatrixMultiplyTest,$(VALGRIND))
-VALGRIND := $(filter-out valgrind/HireAssistantTest,$(VALGRIND))
-VALGRIND := $(filter-out valgrind/HuffmanTest,$(VALGRIND))
-VALGRIND := $(filter-out valgrind/IntervalTreeTest,$(VALGRIND))
+VALGRIND_ALL := $(filter-out valgrind/RabinKarpMatcherTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/FibTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/BTreeTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/DynamicTableTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/PSquareMatrixMultiplyTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/HireAssistantTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/HuffmanTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/IntervalTreeTest,$(VALGRIND_ALL))
 
 all: $(TARGETS)
 
 test: $(TESTS)
 
-valgrind: $(VALGRIND)
+valgrind: $(VALGRIND_ALL)
 
 bin:
 	mkdir bin
