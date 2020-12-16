@@ -33,18 +33,6 @@ VALGRIND := $(filter-out valgrind/RaceExampleTest,$(VALGRIND))
 
 # VALGRIND_ALL has currently unavailable tests filtered out
 VALGRIND_ALL := $(VALGRIND)
-
-# Memory leak
-VALGRIND_ALL := $(filter-out valgrind/FibHeapTest,$(VALGRIND_ALL))
-
-# Invalid read of size 4
-
-# Fixed
-# VALGRIND_ALL := $(filter-out valgrind/FibHeapTest,$(VALGRIND_ALL))
-# VALGRIND_ALL := $(filter-out valgrind/InsertSortTest,$(VALGRIND_ALL))
-# VALGRIND_ALL := $(filter-out valgrind/BTreeTest,$(VALGRIND_ALL))
-
-# ???
 VALGRIND_ALL := $(filter-out valgrind/DynamicTableTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/FibTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/HireAssistantTest,$(VALGRIND_ALL))
