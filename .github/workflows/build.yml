@@ -14,7 +14,7 @@ jobs:
 
     - name: tmp
       run: |
-        
+        ./tmp.sh
     - name: upload tmp
       uses: actions/upload-artifact@v2
       with:

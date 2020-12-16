@@ -36,6 +36,7 @@ VALGRIND := $(filter-out valgrind/InsertSortTest,$(VALGRIND))
 
 # ???
 VALGRIND := $(filter-out valgrind/RabinKarpMatcherTest,$(VALGRIND))
+VALGRIND := $(filter-out valgrind/FibTest,$(VALGRIND))
 
 all: $(TARGETS)
 
