@@ -39,7 +39,7 @@ void InsertSort(T p, T r) {
 	for (T i = p + 1; i < r; i++) {
 		typename T::value_type tmp = *i;
 		T j;
-		for (j = i - 1; j != r && tmp < *j; j--)
+		for (j = i - 1; j >= p && tmp < *j; j--)
 			*(j + 1) = *j;
 		*(j + 1) = tmp;
 	}
