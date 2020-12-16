@@ -32,7 +32,6 @@ VALGRIND := $(patsubst bin/%,valgrind/%,$(filter %Test,$(TARGETS)))
 VALGRIND := $(filter-out valgrind/FibHeapTest,$(VALGRIND))
 
 # Invalid read of size 4
-VALGRIND := $(filter-out valgrind/InsertSortTest,$(VALGRIND))
 
 # ???
 VALGRIND := $(filter-out valgrind/RabinKarpMatcherTest,$(VALGRIND))
