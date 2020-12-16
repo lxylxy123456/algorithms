@@ -17,7 +17,7 @@
 #
 
 CXXFLAGS=-Wall -Werror -g -std=c++11 -pthread
-VALGRINDFLAGS=--error-exitcode=1 --tool=memcheck \
+VALGRINDFLAGS=--error-exitcode=1 --tool=memcheck --leak-check=full \
 				--errors-for-leak-kinds=definite
 
 SOURCES := $(wildcard src/*.cpp)
@@ -27,6 +27,10 @@ DEPENDS := $(patsubst %,%.d,$(TARGETS))
 
 TESTS := $(patsubst bin/%,test/%,$(filter %Test,$(TARGETS)))
 VALGRIND := $(patsubst bin/%,valgrind/%,$(filter %Test,$(TARGETS)))
+
+VALGRIND := $(filter-out valgrind/FibHeapTest,$(VALGRIND))
+VALGRIND := $(filter-out valgrind/InsertSortTest,$(VALGRIND))
+VALGRIND := $(filter-out valgrind/RabinKarpMatcherTest,$(VALGRIND))
 
 all: $(TARGETS)
 
@@ -45,6 +49,7 @@ $(TESTS): test/%: bin/%
 $(VALGRIND): valgrind/%: bin/%
 	# https://stackoverflow.com/a/55130152
 	valgrind $(VALGRINDFLAGS) ./$^
+	echo 'Completing' ./$^
 
 clean:
 	rm -f $(TARGETS) $(DEPENDS) a.out
