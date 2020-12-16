@@ -17,6 +17,8 @@
 #
 
 CXXFLAGS=-Wall -Werror -g -std=c++11 -pthread
+VALGRINDFLAGS=--error-exitcode=1 --tool=memcheck \
+				--errors-for-leak-kinds=definite
 
 SOURCES := $(wildcard src/*.cpp)
 TARGETS := $(patsubst src/%.cpp,bin/%,$(SOURCES))
@@ -24,6 +26,7 @@ DEPENDS := $(patsubst %,%.d,$(TARGETS))
 -include $(DEPENDS)
 
 TESTS := $(patsubst bin/%,test/%,$(filter %Test,$(TARGETS)))
+VALGRIND := $(patsubst bin/%,valgrind/%,$(filter %Test,$(TARGETS)))
 
 all: $(TARGETS)
 
@@ -37,6 +40,10 @@ $(TARGETS): bin/%: src/%.cpp bin
 
 $(TESTS): test/%: bin/%
 	./$^
+
+$(VALGRIND): valgrind/%: bin/%
+	# https://stackoverflow.com/a/55130152
+	valgrind $(VALGRINDFLAGS) ./$^
 
 clean:
 	rm -f $(TARGETS) $(DEPENDS) a.out

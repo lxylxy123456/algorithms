@@ -13,6 +13,8 @@ jobs:
       run: make all -j 4
     - name: test
       run: make test
+    - name: valgrind test
+      run: 
     - name: mv
       run: |
         mkdir -p d/
