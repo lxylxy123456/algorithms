@@ -80,7 +80,7 @@ void pop_front(std::vector<T>& x) {
 template <typename T>
 void push_front(std::vector<T>& x, const T& k) {
 	x.push_back(k);
-	for (size_t i = x.size(); i > 0; i--)
+	for (size_t i = x.size() - 1; i > 0; i--)
 		x[i] = x[i - 1];
 	x[0] = k;
 }
@@ -276,7 +276,7 @@ class BTree {
 				DiskWrite(x);
 				return deleting;
 			}
-			bool k_in_x;
+			bool k_in_x = false;
 			size_t i;
 			for (i = 0; i < x->n; i++) {
 				if (x->key[i] == k) {

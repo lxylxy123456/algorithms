@@ -11,17 +11,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: make
       run: make all -j 4
-
-    - name: tmp
-      run: |
-        sudo apt-get install -y valgrind
-        ./tmp.sh
-    - name: upload tmp
-      uses: actions/upload-artifact@v2
-      with:
-        name: valgrind_tmp
-        path: valgrind/*
-
     - name: test
       run: make test
     - name: install valgrind
