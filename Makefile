@@ -40,6 +40,9 @@ VALGRIND := $(filter-out valgrind/FibTest,$(VALGRIND))
 VALGRIND := $(filter-out valgrind/BTreeTest,$(VALGRIND))
 VALGRIND := $(filter-out valgrind/DynamicTableTest,$(VALGRIND))
 VALGRIND := $(filter-out valgrind/PSquareMatrixMultiplyTest,$(VALGRIND))
+VALGRIND := $(filter-out valgrind/HireAssistantTest,$(VALGRIND))
+VALGRIND := $(filter-out valgrind/HuffmanTest,$(VALGRIND))
+VALGRIND := $(filter-out valgrind/IntervalTreeTest,$(VALGRIND))
 
 all: $(TARGETS)
 
