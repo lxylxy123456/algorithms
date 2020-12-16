@@ -42,9 +42,9 @@ VALGRIND_ALL := $(filter-out valgrind/FibHeapTest,$(VALGRIND_ALL))
 # Fixed
 # VALGRIND_ALL := $(filter-out valgrind/FibHeapTest,$(VALGRIND_ALL))
 # VALGRIND_ALL := $(filter-out valgrind/InsertSortTest,$(VALGRIND_ALL))
+# VALGRIND_ALL := $(filter-out valgrind/BTreeTest,$(VALGRIND_ALL))
 
 # ???
-VALGRIND_ALL := $(filter-out valgrind/BTreeTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/DynamicTableTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/FibTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/HireAssistantTest,$(VALGRIND_ALL))
