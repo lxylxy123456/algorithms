@@ -199,7 +199,7 @@ class FibHeap {
 			if (minf >= min->key)
 				throw std::invalid_argument("cannot create minf");
 			FibHeapDecreaseKey(x, minf);
-			FibHeapExtractMin();
+			delete FibHeapExtractMin();
 		}
 		void print_tree(FNode<T>* x, size_t indent) {
 			if (!x) {
