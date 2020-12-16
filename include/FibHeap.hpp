@@ -158,7 +158,7 @@ class FibHeap {
 					DLLInsert(min, c);
 					c->p = nullptr;
 				}
-				delete DLLRemove(min, z);
+				DLLRemove(min, z);
 				if (min)
 					Consolidate();
 				n--;
