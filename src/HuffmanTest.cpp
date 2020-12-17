@@ -63,6 +63,7 @@ int test(size_t n) {
 	// call function
 	CNode<char>* B = Huffman(C);
 	TreePrint(B, HuffmanNavigator<CNode<char>*>());
+	delete B->recursive_destruct();
 	return 0;
 }
 
