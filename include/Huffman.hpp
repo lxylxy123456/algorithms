@@ -36,9 +36,9 @@ class CNode {
 														left(l), right(r) {}
 		CNode<T>* recursive_destruct() {
 			if (left)
-				delete left;
+				delete left->recursive_destruct();
 			if (right)
-				delete right;
+				delete right->recursive_destruct();
 			return this;
 		}
 		friend std::ostream& operator<<(std::ostream& o, const CNode<T>& r) {
