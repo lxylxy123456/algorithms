@@ -34,7 +34,6 @@ VALGRIND := $(filter-out valgrind/RaceExampleTest,$(VALGRIND))
 # VALGRIND_ALL has currently unavailable tests filtered out
 VALGRIND_ALL := $(VALGRIND)
 VALGRIND_ALL := $(filter-out valgrind/FibTest,$(VALGRIND_ALL))
-VALGRIND_ALL := $(filter-out valgrind/HireAssistantTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/HuffmanTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/IntervalTreeTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/MatVecTest,$(VALGRIND_ALL))
