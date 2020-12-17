@@ -33,13 +33,13 @@ VALGRIND := $(filter-out valgrind/RaceExampleTest,$(VALGRIND))
 
 # Valgrind fails because of threading
 VALGRIND := $(filter-out valgrind/MatVecTest,$(VALGRIND))
+VALGRIND := $(filter-out valgrind/PSquareMatrixMultiplyTest,$(VALGRIND))
 
 # VALGRIND_ALL has currently unavailable tests filtered out
 VALGRIND_ALL := $(VALGRIND)
 VALGRIND_ALL := $(filter-out valgrind/FibTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/HuffmanTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/IntervalTreeTest,$(VALGRIND_ALL))
-VALGRIND_ALL := $(filter-out valgrind/PSquareMatrixMultiplyTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/RabinKarpMatcherTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/RelabelToFrontTest,$(VALGRIND_ALL))
 
