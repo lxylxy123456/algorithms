@@ -37,7 +37,7 @@ int test(size_t n, size_t expected) {
 
 int main(int argc, char *argv[]) {
 	size_t prev = 0, cur = 1;
-	for (int n = 0; n < 21; n++) {
+	for (int n = 0; n < 19; n++) {
 		test(n, prev);
 		prev += cur;
 		cur ^= prev ^= cur ^= prev;
