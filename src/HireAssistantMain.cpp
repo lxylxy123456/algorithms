@@ -38,5 +38,8 @@ int main(int argc, char *argv[]) {
 		candidates.push_back(new Candidate<int>(*i, ci, ch, false));
 	output_integers(abilities);
 	std::cout << HireAssistant(candidates) << std::endl;
+	for (std::vector<Candidate<int>*>::iterator i = candidates.begin();
+		i < candidates.end(); i++)
+		delete *i;
 	return 0;
 }
