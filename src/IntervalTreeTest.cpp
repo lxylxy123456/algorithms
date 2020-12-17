@@ -60,12 +60,12 @@ void sanity_check(IntervalTree<int>& BT, std::vector<Interval<int>>& its) {
 	}
 }
 
-int test(int n) {
-	IntervalTree<int> BT;
+int test(int n, int m) {
+	IntervalTree<int> BT(MData<int>{m});
 	std::vector<int> data;
 	std::vector<Interval<int>> its;
 	if (n) {
-		random_integers(data, 0, 3 * n / 2, 2 * n);
+		random_integers(data, m, 3 * n / 2, 2 * n);
 		for (std::vector<int>::iterator i = data.begin(); i != data.end();
 			i+=2) {
 			Interval<int> it(std::min(*i, *(i + 1)), std::max(*i, *(i + 1)));
@@ -76,7 +76,7 @@ int test(int n) {
 	BT.print_tree();
 	sanity_check(BT, its);
 	std::vector<int> rm;
-	random_integers(rm, 0, 3 * n / 2, n * 4 + 4);
+	random_integers(rm, m, 3 * n / 2, n * 4 + 4);
 	for (std::vector<int>::iterator i = rm.begin(); i != rm.end(); i+=2) {
 		Interval<int> it(std::min(*i, *(i + 1)), std::max(*i, *(i + 1)));
 		std::cout << "rm " << it << std::endl;
@@ -98,12 +98,14 @@ int test(int n) {
 
 int main(int argc, char *argv[]) {
 	std::cout << "seed = " << random_seed_get() << std::endl;
-	test(0);
-	test(1);
-	test(4);
-	test(16);
-	test(47);
-	test(100);
+	for (int m = 0; m > -1000; m -= 400) {
+		test(0, m);
+		test(1, m);
+		test(4, m);
+		test(16, m);
+		test(47, m);
+		test(100, m);
+	}
 	std::cout << "\033[0m" << std::endl;
 	return 0;
 }

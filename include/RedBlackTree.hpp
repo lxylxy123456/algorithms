@@ -75,6 +75,8 @@ template <typename T>
 class RedBlackTree: public BinarySearchTree<CData<T>> {
 	public:
 		RedBlackTree(void): BinarySearchTree<CData<T>>(new Node<CData<T>>()) {}
+		RedBlackTree(Node<CData<T>> n):
+			BinarySearchTree<CData<T>>(new Node<CData<T>>(n)) {}
 		virtual void LeftRotate(Node<CData<T>>* x) {
 			Node<CData<T>>* y = x->right;
 			x->right = y->left;
