@@ -34,6 +34,13 @@ class CNode {
 		CNode(T d, size_t f): disp(d), freq(f), left(nullptr), right(nullptr) {}
 		CNode(T d, size_t f, CNode<T>* l, CNode<T>* r): disp(d), freq(f),
 														left(l), right(r) {}
+		CNode<T>* recursive_destruct() {
+			if (left)
+				delete left;
+			if (right)
+				delete right;
+			return this;
+		}
 		friend std::ostream& operator<<(std::ostream& o, const CNode<T>& r) {
 			return o << r.disp;
 		}
