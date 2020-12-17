@@ -17,6 +17,8 @@
 #
 
 CXXFLAGS=-Wall -Werror -g -std=c++11 -pthread
+VALGRINDFLAGS=--error-exitcode=1 --tool=memcheck --leak-check=full \
+				--errors-for-leak-kinds=definite
 
 SOURCES := $(wildcard src/*.cpp)
 TARGETS := $(patsubst src/%.cpp,bin/%,$(SOURCES))
@@ -24,10 +26,28 @@ DEPENDS := $(patsubst %,%.d,$(TARGETS))
 -include $(DEPENDS)
 
 TESTS := $(patsubst bin/%,test/%,$(filter %Test,$(TARGETS)))
+VALGRIND := $(patsubst bin/%,valgrind/%,$(filter %Test,$(TARGETS)))
+
+# Race condition cannot exist when executed with valgrind
+VALGRIND := $(filter-out valgrind/RaceExampleTest,$(VALGRIND))
+
+# VALGRIND_ALL has currently unavailable tests filtered out
+VALGRIND_ALL := $(VALGRIND)
+VALGRIND_ALL := $(filter-out valgrind/DynamicTableTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/FibTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/HireAssistantTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/HuffmanTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/IntervalTreeTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/MatVecTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/PSquareMatrixMultiplyTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/RabinKarpMatcherTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/RelabelToFrontTest,$(VALGRIND_ALL))
 
 all: $(TARGETS)
 
 test: $(TESTS)
+
+valgrind: $(VALGRIND_ALL)
 
 bin:
 	mkdir bin
@@ -37,6 +57,11 @@ $(TARGETS): bin/%: src/%.cpp bin
 
 $(TESTS): test/%: bin/%
 	./$^
+
+$(VALGRIND): valgrind/%: bin/%
+	# https://stackoverflow.com/a/55130152
+	valgrind $(VALGRINDFLAGS) ./$^ > /dev/null
+	echo valgrind ./$^ Completed
 
 clean:
 	rm -f $(TARGETS) $(DEPENDS) a.out
