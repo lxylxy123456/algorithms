@@ -16,7 +16,8 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-CXXFLAGS=-Wall -Werror -g -std=c++11 -pthread
+CPPSTD ?= c++11
+CXXFLAGS=-Wall -Werror -g -std=$(CPPSTD) -pthread
 VALGRINDFLAGS=--error-exitcode=1 --tool=memcheck --leak-check=full \
 				--errors-for-leak-kinds=definite
 

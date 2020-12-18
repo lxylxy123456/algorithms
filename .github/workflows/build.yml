@@ -7,10 +7,14 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        cppstd: ['c++11', 'gnu++14', 'gnu++17']
+
     steps:
     - uses: actions/checkout@v2
     - name: make
-      run: make all -j 4
+      run: make all CPPSTD=${{ matrix.cppstd }} -j 4
     - name: mv
       run: |
         mkdir -p d/
