@@ -28,19 +28,11 @@ DEPENDS := $(patsubst %,%.d,$(TARGETS))
 TESTS := $(patsubst bin/%,test/%,$(filter %Test,$(TARGETS)))
 VALGRIND := $(patsubst bin/%,valgrind/%,$(filter %Test,$(TARGETS)))
 
-# Race condition cannot exist when executed with valgrind
-VALGRIND := $(filter-out valgrind/RaceExampleTest,$(VALGRIND))
-
-# VALGRIND_ALL has currently unavailable tests filtered out
-VALGRIND_ALL := $(VALGRIND)
-VALGRIND_ALL := $(filter-out valgrind/IntervalTreeTest,$(VALGRIND_ALL))
-VALGRIND_ALL := $(filter-out valgrind/RabinKarpMatcherTest,$(VALGRIND_ALL))
-
 all: $(TARGETS)
 
 test: $(TESTS)
 
-valgrind: $(VALGRIND_ALL)
+valgrind: $(VALGRIND)
 
 bin:
 	mkdir bin
