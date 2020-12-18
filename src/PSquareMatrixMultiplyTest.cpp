@@ -46,7 +46,10 @@ int test(size_t n) {
 }
 
 int main(int argc, char *argv[]) {
-	for (int n = 1; n < 15; n++)
+	int N = 15;
+	if (argc >= 2)
+		N = 7;
+	for (int n = 1; n < N; n++)
 		test(n);
 	return 0;
 }
