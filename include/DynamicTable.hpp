@@ -59,6 +59,7 @@ class DynamicTable {
 			}
 			return ans;
 		}
+		~DynamicTable() { delete table; }
 		size_t size, num;
 		std::vector<T>* table;
 };

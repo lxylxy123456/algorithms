@@ -41,6 +41,9 @@ int test(int n, int ci, int ch) {
 		assert(ans > 0);
 	else
 		assert(ans == 0);
+	for (std::vector<Candidate<int>*>::iterator i = candidates.begin();
+		i < candidates.end(); i++)
+		delete *i;
 	return 0;
 }
 

@@ -56,7 +56,7 @@ template <typename T>
 class MData {
 	// Size Data
 	public:
-		MData() {}
+		MData(T m): max(m) {}
 		MData(Interval<T> d): data(d), max(d.high) {}
 		bool operator<(const MData<T>& rhs) const { return data < rhs.data; }
 		bool operator>(const MData<T>& rhs) const { return data > rhs.data; }
@@ -76,6 +76,7 @@ template <typename T>
 class AugmentRedBlackTree: public RedBlackTree<T> {
 	public:
 		AugmentRedBlackTree(void) {}
+		AugmentRedBlackTree(Node<CData<T>> n): RedBlackTree<T>(n) {}
 		virtual void UpdateAttribute(Node<CData<T>>* x) = 0;
 		virtual void LeftRotate(Node<CData<T>>* x) {
 			Node<CData<T>>* y = x->right;
@@ -183,6 +184,8 @@ class AugmentRedBlackTree: public RedBlackTree<T> {
 template<typename T>
 class IntervalTree: public AugmentRedBlackTree<MData<T>> {
 	public:
+		IntervalTree(): AugmentRedBlackTree<MData<T>>() {}
+		IntervalTree(CData<MData<T>> n): AugmentRedBlackTree<MData<T>>(n) {}
 		virtual void UpdateAttribute(Node<CData<MData<T>>>* x) {
 			if (x != this->nil) {
 				T& a = x->data.data.max;
