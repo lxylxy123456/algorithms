@@ -42,7 +42,7 @@ HEADER_TO_SYMBOL = {
 		'std::deque',
 	],
 	'cmath': [
-		'abs', 'pow', 'log2',
+		'abs', 'pow', 'log2', 'fabs',
 	],
 	'cassert': [
 		'assert',
