@@ -30,6 +30,8 @@ template <typename T>
 void RabinKarpMatcher(const std::vector<T>& S, const std::vector<T>& P,
 						size_t d, size_t q, T o, std::vector<size_t>& ans) {
 	size_t n = S.size(), m = P.size();
+	if (n < m)
+		return;
 	size_t h = ModularExponentiation(d, m - 1, q);
 	size_t p = 0, t = 0;
 	for (size_t i = 0; i < m; i++) {
