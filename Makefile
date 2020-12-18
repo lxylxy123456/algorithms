@@ -28,11 +28,15 @@ DEPENDS := $(patsubst %,%.d,$(TARGETS))
 TESTS := $(patsubst bin/%,test/%,$(filter %Test,$(TARGETS)))
 VALGRIND := $(patsubst bin/%,valgrind/%,$(filter %Test,$(TARGETS)))
 
+# VALGRIND_ALL has currently unavailable tests filtered out
+VALGRIND_ALL := $(VALGRIND)
+VALGRIND_ALL := $(filter-out valgrind/FordFulkersonTest,$(VALGRIND_ALL))
+
 all: $(TARGETS)
 
 test: $(TESTS)
 
-valgrind: $(VALGRIND)
+valgrind: $(VALGRIND_ALL)
 
 bin:
 	mkdir bin
