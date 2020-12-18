@@ -44,14 +44,25 @@ jobs:
       with:
         name: bin
         path: bin/*
-    - name: tmp
+    - name: tmp1
       run: |
         echo A;
-        ls -l;
+        ls -l --time-style=full-iso;
         echo B;
-        ls -l bin/*;
+        ls -l --time-style=full-iso bin/*;
         echo C;
-        ls -l src/*;
+        ls -l --time-style=full-iso src/*;
+    - name: touch bin
+      run: |
+        touch bin/*
+    - name: tmp2
+      run: |
+        echo A;
+        ls -l --time-style=full-iso;
+        echo B;
+        ls -l --time-style=full-iso bin/*;
+        echo C;
+        ls -l --time-style=full-iso src/*;
     - name: valgrind test
       run: make valgrind -j 4
 
