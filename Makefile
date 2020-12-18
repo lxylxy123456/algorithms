@@ -30,8 +30,6 @@ VALGRIND := $(patsubst bin/%,valgrind/%,$(filter %Test,$(TARGETS)))
 
 # VALGRIND_ALL has currently unavailable tests filtered out
 VALGRIND_ALL := $(VALGRIND)
-VALGRIND_ALL := $(filter-out valgrind/IntervalTreeTest,$(VALGRIND_ALL))
-VALGRIND_ALL := $(filter-out valgrind/RabinKarpMatcherTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/RelabelToFrontTest,$(VALGRIND_ALL))
 
 all: $(TARGETS)
