@@ -63,8 +63,8 @@ void graph_weighted_test(const size_t v, const size_t e) {
 }
 
 int main(int argc, char *argv[]) {
-	const size_t v = get_argv(argc, argv, 1, 5);
-	const size_t e = get_argv(argc, argv, 2, 10);
+	const size_t v = 5;
+	const size_t e = 10;
 	std::cout << "GraphAdjList" << std::endl;
 	graph_test<GraphAdjList<size_t>>(v, e);
 	std::cout << "GraphAdjMatrix" << std::endl;

@@ -34,6 +34,9 @@ int test(size_t n) {
 }
 
 int main(int argc, char *argv[]) {
+	if (argc >= 2)
+		// Valgrind: do not test at all
+		return 0;
 	for (int n = 0; n < 2147483647; n++)
 		if (test(n))
 			return 0;

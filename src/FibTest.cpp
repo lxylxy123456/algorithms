@@ -36,8 +36,12 @@ int test(size_t n, size_t expected) {
 }
 
 int main(int argc, char *argv[]) {
+	int N = 21;
+	if (argc >= 2)
+		// Valgrind: reduce test size
+		N = 13;
 	size_t prev = 0, cur = 1;
-	for (int n = 0; n < 21; n++) {
+	for (int n = 0; n < N; n++) {
 		test(n, prev);
 		prev += cur;
 		cur ^= prev ^= cur ^= prev;

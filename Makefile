@@ -33,7 +33,6 @@ VALGRIND := $(filter-out valgrind/RaceExampleTest,$(VALGRIND))
 
 # VALGRIND_ALL has currently unavailable tests filtered out
 VALGRIND_ALL := $(VALGRIND)
-VALGRIND_ALL := $(filter-out valgrind/FibTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/IntervalTreeTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/MatVecTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/PSquareMatrixMultiplyTest,$(VALGRIND_ALL))
@@ -57,7 +56,7 @@ $(TESTS): test/%: bin/%
 
 $(VALGRIND): valgrind/%: bin/%
 	# https://stackoverflow.com/a/55130152
-	valgrind $(VALGRINDFLAGS) ./$^ > /dev/null
+	valgrind $(VALGRINDFLAGS) ./$^ valgrind > /dev/null
 	echo valgrind ./$^ Completed
 
 clean:
