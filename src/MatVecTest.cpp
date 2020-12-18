@@ -60,6 +60,7 @@ int main(int argc, char *argv[]) {
 	for (int i = 0; i < I && !failed; i++)
 		for (int n = 1; n < N; n++)
 			failed |= test(n);
-	test_failed && assert(failed);
+	if (test_failed)
+		assert(failed);
 	return 0;
 }
