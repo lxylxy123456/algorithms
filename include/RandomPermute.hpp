@@ -33,9 +33,12 @@ void PermuteBySorting(std::vector<T>& a) {
 	std::vector<int> r;
 	random_integers(r, 1, n*n*n, n);
 	std::map<int, T> b;
-	for (auto i = r.begin(), j = a.begin(); j != a.end(); i++, j++)
+	typename std::vector<T>::iterator j = a.begin();
+	for (std::vector<int>::iterator i = r.begin(); j != a.end(); i++, j++)
 		b[*i] = *j;
-	for (auto i = b.begin(), j = a.begin(); j != a.end(); i++, j++)
+	j = a.begin();
+	for (typename std::map<int, T>::iterator i = b.begin(); j != a.end();
+		i++, j++)
 		*j = i->second;
 }
 
