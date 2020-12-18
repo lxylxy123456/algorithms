@@ -50,9 +50,17 @@ int test(size_t n) {
 
 int main(int argc, char *argv[]) {
 	int failed = 0;
-	for (int i = 0; i < 100 && !failed; i++)
-		for (int n = 1; n < 40; n++)
+	int I = 100, N = 40;
+	bool test_failed = true;
+	if (argc >= 2) {
+		I = 2;
+		N = 10;
+		test_failed = false;
+	}
+	for (int i = 0; i < I && !failed; i++)
+		for (int n = 1; n < N; n++)
 			failed |= test(n);
-	assert(failed);
+	if (test_failed)
+		assert(failed);
 	return 0;
 }
