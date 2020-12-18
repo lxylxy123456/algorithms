@@ -35,7 +35,6 @@ VALGRIND := $(filter-out valgrind/RaceExampleTest,$(VALGRIND))
 VALGRIND_ALL := $(VALGRIND)
 VALGRIND_ALL := $(filter-out valgrind/IntervalTreeTest,$(VALGRIND_ALL))
 VALGRIND_ALL := $(filter-out valgrind/RabinKarpMatcherTest,$(VALGRIND_ALL))
-VALGRIND_ALL := $(filter-out valgrind/RelabelToFrontTest,$(VALGRIND_ALL))
 
 all: $(TARGETS)
 
