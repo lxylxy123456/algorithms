@@ -56,7 +56,7 @@ class Complex {
 			return *this;
 		}
 		friend std::ostream& operator<<(std::ostream& os, const Complex<T>& r) {
-			if (abs(r.imag) > 0.0000000001)
+			if (fabs(r.imag) > 0.0000000001)
 				return os << r.real << " + " << r.imag << " i";
 			else
 				return os << r.real;

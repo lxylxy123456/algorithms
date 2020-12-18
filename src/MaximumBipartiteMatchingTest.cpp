@@ -18,6 +18,7 @@
 
 #include "MaximumBipartiteMatching.hpp"
 
+#include <algorithm>
 #include <cassert>
 #include <iostream>
 #include <vector>
@@ -42,7 +43,7 @@ int test(size_t vl, size_t vr, size_t e) {
 	for (auto i = G.all_edges(); !i.end(); i++) {
 		size_t l = i.s(), r = i.d();
 		if (G.L.find(l) == G.L.end())
-			l ^= r ^= l ^= r;
+			std::swap(l, r);
 		assert(G.L.find(l) != G.L.end() && G.R.find(r) != G.R.end());
 		if (ans.find(*i) != ans.end()) {
 			assert(used.find(i.s()) == used.end());

@@ -18,6 +18,7 @@
 
 #include "Fib.hpp"
 
+#include <algorithm>
 #include <cassert>
 #include <iostream>
 
@@ -44,7 +45,7 @@ int main(int argc, char *argv[]) {
 	for (int n = 0; n < N; n++) {
 		test(n, prev);
 		prev += cur;
-		cur ^= prev ^= cur ^= prev;
+		std::swap(cur, prev);
 	}
 	return 0;
 }
