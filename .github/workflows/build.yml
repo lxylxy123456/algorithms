@@ -44,6 +44,14 @@ jobs:
       with:
         name: bin
         path: bin/*
+    - name: tmp
+      run: |
+        echo A;
+        ls -l;
+        echo B;
+        ls -l bin/*;
+        echo C;
+        ls -l src/*;
     - name: valgrind test
       run: make valgrind -j 4
 
