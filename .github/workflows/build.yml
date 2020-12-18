@@ -11,13 +11,13 @@ jobs:
       matrix:
         cppstd:
         - 'c++11'
-        - 'c++14'
-        - 'c++17'
-        - 'c++20'
         - 'gnu++11'
+        - 'c++14'
         - 'gnu++14'
+        - 'c++17'
         - 'gnu++17'
-        - 'gnu++20'
+        # - 'c++20'
+        # - 'gnu++20'
 
     steps:
     - uses: actions/checkout@v2
