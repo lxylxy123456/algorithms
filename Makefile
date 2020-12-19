@@ -16,7 +16,8 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-CXXFLAGS=-Wall -Werror -g -std=c++11 -pthread
+CPPSTD ?= c++11
+CXXFLAGS=-Wall -Werror -g -std=$(CPPSTD) -pthread
 VALGRINDFLAGS=--error-exitcode=1 --tool=memcheck --leak-check=full \
 				--errors-for-leak-kinds=definite
 
@@ -30,7 +31,8 @@ VALGRIND := $(patsubst bin/%,valgrind/%,$(filter %Test,$(TARGETS)))
 
 # VALGRIND_ALL has currently unavailable tests filtered out
 VALGRIND_ALL := $(VALGRIND)
-VALGRIND_ALL := $(filter-out valgrind/RelabelToFrontTest,$(VALGRIND_ALL))
+# https://github.com/lxylxy123456/algorithms/pull/39/checks?check_run_id=1574645545
+VALGRIND_ALL := $(filter-out valgrind/FordFulkersonTest,$(VALGRIND_ALL))
 
 all: $(TARGETS)
 
