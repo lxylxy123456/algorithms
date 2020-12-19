@@ -21,7 +21,7 @@ CXXFLAGS=-Wall -Werror -g -std=$(CPPSTD) -pthread
 VALGRINDFLAGS=--error-exitcode=1 --tool=memcheck --leak-check=full \
 				--errors-for-leak-kinds=definite
 
-SOURCES := $(wildcard src/*.cpp)
+SOURCES := src/HashMain.cpp  src/HashTest.cpp
 TARGETS := $(patsubst src/%.cpp,bin/%,$(SOURCES))
 DEPENDS := $(patsubst %,%.d,$(TARGETS))
 -include $(DEPENDS)
