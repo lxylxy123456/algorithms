@@ -76,6 +76,11 @@ jobs:
       with:
         name: bin-${{ matrix.cxx }}-${{ matrix.cppstd }}
         path: bin/*
+    - name: download dependencies
+      uses: actions/download-artifact@v2
+      with:
+        name: dependencies-${{ matrix.cxx }}-${{ matrix.cppstd }}
+        path: d/*
     - name: tmp1
       run: |
         echo A;
