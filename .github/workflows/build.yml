@@ -26,7 +26,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: make
-      run: make -d all CXX=${{ matrix.cxx }} CPPSTD=${{ matrix.cppstd }} -j 4
+      run: make all CXX=${{ matrix.cxx }} CPPSTD=${{ matrix.cppstd }} -j 4
     - name: mv
       run: |
         mkdir -p d/
@@ -41,8 +41,11 @@ jobs:
       with:
         name: dependencies-${{ matrix.cxx }}-${{ matrix.cppstd }}
         path: d/*
+    - name: mv
+      run: |
+        mv d/*.d bin/
     - name: test
-      run: make -d test
+      run: make test
 
   valgrind:
 
@@ -80,7 +83,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: dependencies-${{ matrix.cxx }}-${{ matrix.cppstd }}
-        path: d/*
+        path: bin/*
     - name: tmp1
       run: |
         echo A;
@@ -101,5 +104,5 @@ jobs:
         echo C;
         ls -l --time-style=full-iso src/*;
     - name: valgrind test
-      run: make -d valgrind -j 4
+      run: make valgrind -j 4
 
