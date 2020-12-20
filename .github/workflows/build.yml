@@ -38,7 +38,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: dependencies-${{ matrix.cxx }}-${{ matrix.cppstd }}
-        path: bin/*
+        path: bin/*.d
     - name: test
       run: make test
 
