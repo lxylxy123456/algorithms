@@ -42,7 +42,7 @@ HEADER_TO_SYMBOL = {
 		'std::deque',
 	],
 	'cmath': [
-		'abs', 'pow', 'log2',
+		'abs', 'pow', 'log2', 'fabs',
 	],
 	'cassert': [
 		'assert',
@@ -146,6 +146,7 @@ def reorder_includes(pathname, includes):
 	return ans
 
 if __name__ == '__main__':
+	exit_stat = 0;
 	for pathname in all_files():
 		parsed = parse_file(pathname)
 		a = open(pathname).read()
@@ -161,11 +162,20 @@ if __name__ == '__main__':
 			print('in', pathname)
 			for i in sorted(p):
 				print('  -', '#include <%s>' % i)
+				exit_stat = 1
+				# parsed[1].remove('#include <%s>' % i)
 			for i in sorted(n):
 				print('  +', '#include <%s>' % i)
+				exit_stat = 1
+				# parsed[1].append('#include <%s>' % i)
 		for k in all_symbols:
 			if 'std::' in k and k not in SYMBOL_TO_HEADER:
 				print('  ?', k)
-		parsed = (parsed[0], reorder_includes(pathname, parsed[1]), parsed[2])
-		refresh_file(pathname, parsed)
+				exit_stat = 1
+		parsed_n = (parsed[0], reorder_includes(pathname, parsed[1]), parsed[2])
+		if parsed != parsed_n:
+			refresh_file(pathname, parsed_n)
+			print('parsed != parsed_n:', pathname)
+			exit_stat = 1
+	exit(exit_stat)
 
