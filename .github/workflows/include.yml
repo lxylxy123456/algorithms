@@ -1,0 +1,14 @@
+name: Include Check
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: check include
+      run: python3 include_check.py
+
