@@ -5,7 +5,8 @@ on: [push, pull_request]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     strategy:
       matrix:
@@ -30,10 +31,8 @@ jobs:
         clang++ --version
         ls /usr/bin/g++*
         ls /usr/bin/clang++*
-    - name: tmp2
-      run: |
-        sudo apt-get update
-        sudo apt-get upgrade g++ clang++
+        which g++
+        which clang++
     - name: make
       run: make all CXX=${{ matrix.cxx }} CPPSTD=${{ matrix.cppstd }} -j 4
     - name: upload bin
