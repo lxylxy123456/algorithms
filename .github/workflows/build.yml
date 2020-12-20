@@ -26,7 +26,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: make
-      run: make all CXX=${{ matrix.cxx }} CPPSTD=${{ matrix.cppstd }} -j 4
+      run: make all CXX=${{ matrix.cxx }} CPPSTD=${{ matrix.cppstd }}
     - name: mv
       run: |
         mkdir -p d/
@@ -71,8 +71,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: install valgrind
       run: |
-        sudo apt-get update
-        sudo apt-get install -y valgrind
         mkdir bin
     - name: download bin
       uses: actions/download-artifact@v2
@@ -86,23 +84,13 @@ jobs:
         path: bin/*
     - name: tmp1
       run: |
-        echo A;
-        ls -l --time-style=full-iso;
-        echo B;
-        ls -l --time-style=full-iso bin/*;
-        echo C;
-        ls -l --time-style=full-iso src/*;
+        ls -l --time-style=full-iso . {bin,src}/HashTest*;
     - name: touch bin
       run: |
         touch bin/*
     - name: tmp2
       run: |
-        echo A;
-        ls -l --time-style=full-iso;
-        echo B;
-        ls -l --time-style=full-iso bin/*;
-        echo C;
-        ls -l --time-style=full-iso src/*;
+        ls -l --time-style=full-iso . {bin,src}/HashTest*;
     - name: valgrind test
-      run: make valgrind -j 4
+      run: make valgrind
 
