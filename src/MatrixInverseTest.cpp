@@ -26,6 +26,7 @@
 #include <vector>
 
 #include "LUPSolve.hpp"
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -73,6 +74,7 @@ int test(size_t n, size_t tries) {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	test<double>(2, 50);
 	test<double>(5, 50);
 	test<double>(8, 50);

@@ -163,11 +163,11 @@ if __name__ == '__main__':
 			for i in sorted(p):
 				print('  -', '#include <%s>' % i)
 				exit_stat = 1
-				# parsed[1].remove('#include <%s>' % i)
+				parsed[1].remove('#include <%s>' % i)
 			for i in sorted(n):
 				print('  +', '#include <%s>' % i)
 				exit_stat = 1
-				# parsed[1].append('#include <%s>' % i)
+				parsed[1].append('#include <%s>' % i)
 		for k in all_symbols:
 			if 'std::' in k and k not in SYMBOL_TO_HEADER:
 				print('  ?', k)

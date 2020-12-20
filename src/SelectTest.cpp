@@ -22,6 +22,7 @@
 #include <vector>
 
 #include "RandomizedSelect.hpp"
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -39,6 +40,7 @@ int test(size_t n, size_t i) {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	std::vector<size_t> ns{1, 2, 5, 8, 19, 52, 100};
 	for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
 		for (size_t i = 0; i < *n; i++)

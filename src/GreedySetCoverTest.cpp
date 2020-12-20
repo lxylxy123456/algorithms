@@ -24,6 +24,7 @@
 #include <set>
 #include <vector>
 
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -61,6 +62,7 @@ int test(size_t n, size_t m, size_t l) {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	std::vector<size_t> ns = {2, 5, 10, 23, 49, 100, 200};
 	for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
 		for (std::vector<size_t>::iterator m = ns.begin(); m < ns.end(); m++)
