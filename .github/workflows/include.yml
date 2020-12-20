@@ -3,7 +3,7 @@ name: Include Check
 on: [push, pull_request]
 
 jobs:
-  build:
+  include_check:
 
     runs-on: ubuntu-latest
 
