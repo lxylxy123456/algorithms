@@ -33,6 +33,7 @@ VALGRIND := $(patsubst bin/%,valgrind/%,$(filter %Test,$(TARGETS)))
 VALGRIND_ALL := $(VALGRIND)
 # https://github.com/lxylxy123456/algorithms/pull/39/checks?check_run_id=1574645545
 VALGRIND_ALL := $(filter-out valgrind/FordFulkersonTest,$(VALGRIND_ALL))
+VALGRIND_ALL := $(filter-out valgrind/RelabelToFrontTest,$(VALGRIND_ALL))
 
 all: $(TARGETS)
 
