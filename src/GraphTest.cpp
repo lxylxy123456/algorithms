@@ -21,6 +21,7 @@
 #include <iostream>
 
 #include "SquareMatrixMultiply.hpp"
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -63,6 +64,7 @@ void graph_weighted_test(const size_t v, const size_t e) {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	const size_t v = 5;
 	const size_t e = 10;
 	std::cout << "GraphAdjList" << std::endl;

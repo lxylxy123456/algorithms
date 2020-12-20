@@ -21,6 +21,7 @@
 #include <cassert>
 #include <iostream>
 
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -34,6 +35,7 @@ int test(size_t n) {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	if (argc >= 2)
 		// Valgrind: do not test at all
 		return 0;

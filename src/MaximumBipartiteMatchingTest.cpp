@@ -23,6 +23,7 @@
 #include <iostream>
 #include <vector>
 
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -56,6 +57,7 @@ int test(size_t vl, size_t vr, size_t e) {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	std::vector<size_t> m = {5, 10, 23, 49, 100};
 	for (std::vector<size_t>::iterator vl = m.begin(); vl < m.end(); vl++)
 		for (std::vector<size_t>::iterator vr = m.begin(); vr < m.end(); vr++)

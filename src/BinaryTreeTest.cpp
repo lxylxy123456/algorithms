@@ -21,6 +21,7 @@
 #include <cassert>
 #include <vector>
 
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -93,6 +94,7 @@ int test3() {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	test0();
 	test1();
 	test2();
