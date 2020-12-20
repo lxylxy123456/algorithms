@@ -24,6 +24,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: tmp
+      run: |
+        g++ --version
+        clang++ --version
+        ls /usr/bin/g++*
+        ls /usr/bin/clang++*
+    - name: tmp2
+      run: |
+        sudo apt-get update
+        sudo apt-get upgrade g++ clang++
     - name: make
       run: make all CXX=${{ matrix.cxx }} CPPSTD=${{ matrix.cppstd }} -j 4
     - name: upload bin
@@ -33,14 +43,6 @@ jobs:
         path: |
           bin/*Main
           bin/*Test
-    - name: tmp
-      run: |
-        g++ --version
-        clang++ --version
-    - name: tmp2
-      run: |
-        sudo apt-get update
-        sudo apt-get upgrade g++ clang++
     - name: upload dependencies
       uses: actions/upload-artifact@v2
       with:
