@@ -29,23 +29,19 @@ jobs:
       run: make all CXX=${{ matrix.cxx }} CPPSTD=${{ matrix.cppstd }}
     - name: test 1
       run: make test
+    - name: ls 1
+      run: ls -l --time-style=full-iso . {bin,src}/HashTest*;
     - name: mv
       run: |
         mkdir -p d/
         mv bin/*.d d/
-    - name: upload bin
-      uses: actions/upload-artifact@v2
-      with:
-        name: bin-${{ matrix.cxx }}-${{ matrix.cppstd }}
-        path: bin/*
-    - name: upload dependencies
-      uses: actions/upload-artifact@v2
-      with:
-        name: dependencies-${{ matrix.cxx }}-${{ matrix.cppstd }}
-        path: d/*
+    - name: ls 2
+      run: ls -l --time-style=full-iso . {bin,src}/HashTest*;
     - name: mv
       run: |
         mv d/*.d bin/
+    - name: ls 3
+      run: ls -l --time-style=full-iso . {bin,src}/HashTest*;
     - name: test
       run: make test
     - name: test 2
