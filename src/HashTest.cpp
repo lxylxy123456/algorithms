@@ -23,6 +23,7 @@
 #include <map>
 #include <vector>
 
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -76,6 +77,7 @@ int test_u() {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	test_d();
 	test_m();
 	test_u();

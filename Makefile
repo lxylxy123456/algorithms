@@ -29,17 +29,11 @@ DEPENDS := $(patsubst %,%.d,$(TARGETS))
 TESTS := $(patsubst bin/%,test/%,$(filter %Test,$(TARGETS)))
 VALGRIND := $(patsubst bin/%,valgrind/%,$(filter %Test,$(TARGETS)))
 
-# VALGRIND_ALL has currently unavailable tests filtered out
-VALGRIND_ALL := $(VALGRIND)
-# https://github.com/lxylxy123456/algorithms/pull/39/checks?check_run_id=1574645545
-VALGRIND_ALL := $(filter-out valgrind/FordFulkersonTest,$(VALGRIND_ALL))
-VALGRIND_ALL := $(filter-out valgrind/RelabelToFrontTest,$(VALGRIND_ALL))
-
 all: $(TARGETS)
 
 test: $(TESTS)
 
-valgrind: $(VALGRIND_ALL)
+valgrind: $(VALGRIND)
 
 bin:
 	mkdir bin
@@ -52,7 +46,7 @@ $(TESTS): test/%: bin/%
 
 $(VALGRIND): valgrind/%: bin/%
 	# https://stackoverflow.com/a/55130152
-	valgrind $(VALGRINDFLAGS) ./$^ valgrind > /dev/null
+	valgrind $(VALGRINDFLAGS) ./$^ --valgrind > /dev/null
 	echo valgrind ./$^ Completed
 
 clean:

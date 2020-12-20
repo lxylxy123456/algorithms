@@ -22,6 +22,7 @@
 #include <vector>
 
 #include "FloydWarshall.hpp"
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -45,6 +46,7 @@ int test(size_t v, size_t e) {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	std::vector<size_t> m = {5, 10, 23, 49, 100};
 	for (std::vector<size_t>::iterator v = m.begin(); v < m.end(); v++)
 		for (std::vector<size_t>::iterator e = m.begin(); e < m.end(); e++)

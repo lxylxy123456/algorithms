@@ -23,6 +23,7 @@
 #include <vector>
 
 #include "FloydWarshall.hpp"
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -52,6 +53,7 @@ int test(size_t v, size_t e, size_t n) {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	std::vector<size_t> ns = {200, 400, 1000};
 	std::vector<size_t> m = {5, 10, 23, 49, 100};
 	for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
