@@ -61,7 +61,7 @@ jobs:
           *.gcov
     - name: install gcovr
       run: |
-        apt-get install gcovr
+        sudo apt-get install gcovr
     - name: gcovr
       run: |
         gcovr .
