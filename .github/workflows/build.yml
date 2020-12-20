@@ -21,7 +21,6 @@ jobs:
         cxx:
           - 'g++'
           - 'clang++'
-        
 
     steps:
     - uses: actions/checkout@v2
@@ -34,6 +33,14 @@ jobs:
         path: |
           bin/*Main
           bin/*Test
+    - name: tmp
+      run: |
+        g++ --version
+        clang++ --version
+    - name: tmp2
+      run: |
+        sudo apt-get update
+        sudo apt-get upgrade g++ clang++
     - name: upload dependencies
       uses: actions/upload-artifact@v2
       with:
