@@ -478,6 +478,7 @@ Supplementary Files
 * ``print_tree.hpp``: print a tree using ASCII art (inspired by UBC CS221)
 * ``random_integers.hpp``: generate a random integer or vector of integers
 * ``utils.hpp``: utility functions for cpp files
+* ``UtilsTest.cpp``: unit tests for utility hpp files
 
 Supplementary Programs
 ======================
