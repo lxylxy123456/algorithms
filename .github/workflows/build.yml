@@ -73,12 +73,12 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: bin-${{ matrix.cxx }}-${{ matrix.cppstd }}
-        path: bin/*
+        path: bin/
     - name: download dependencies
       uses: actions/download-artifact@v2
       with:
         name: dependencies-${{ matrix.cxx }}-${{ matrix.cppstd }}
-        path: bin/*
+        path: bin/
     - name: tmp1
       run: |
         ls -l --time-style=full-iso . {bin,src}/HashTest* || echo $?
