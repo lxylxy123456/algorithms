@@ -25,7 +25,7 @@ HEADER_TO_SYMBOL = {
 		'std::sort', 'std::swap',
 	],
 	'iostream': [
-		'std::istream', 'std::ostream', 'std::cout', 'std::cin',
+		'std::istream', 'std::ostream', 'std::cout', 'std::cin', 'std::cerr',
 		'std::boolalpha', 'std::endl', 'std::flush',
 	],
 	'string': [
