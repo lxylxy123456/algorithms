@@ -18,6 +18,8 @@
 
 CPPSTD ?= c++11
 CXXFLAGS=-Wall -Werror -g -std=$(CPPSTD) -pthread
+CXXFLAGS := $(CXXFLAGS) --coverage
+
 VALGRINDFLAGS=--error-exitcode=1 --tool=memcheck --leak-check=full \
 				--errors-for-leak-kinds=definite
 

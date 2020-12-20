@@ -11,16 +11,16 @@ jobs:
       matrix:
         cppstd:
           - 'c++11'
-          - 'gnu++11'
-          - 'c++14'
-          - 'gnu++14'
-          - 'c++17'
-          - 'gnu++17'
+          # - 'gnu++11'
+          # - 'c++14'
+          # - 'gnu++14'
+          # - 'c++17'
+          # - 'gnu++17'
           # - 'c++20'
           # - 'gnu++20'
         cxx:
           - 'g++'
-          - 'clang++'
+          # - 'clang++'
         
 
     steps:
@@ -43,38 +43,20 @@ jobs:
         path: d/*
     - name: test
       run: make test
-
-  valgrind:
-
-    strategy:
-      matrix:
-        cppstd:
-          - 'c++11'
-          - 'gnu++11'
-          - 'c++14'
-          - 'gnu++14'
-          - 'c++17'
-          - 'gnu++17'
-          # - 'c++20'
-          # - 'gnu++20'
-        cxx:
-          - 'g++'
-          - 'clang++'
-
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: install valgrind
-      run: |
-        sudo apt-get install -y valgrind
-        mkdir bin
-    - name: download bin
-      uses: actions/download-artifact@v2
+    - name: upload gcov
+      uses: actions/upload-artifact@v2
       with:
-        name: bin-${{ matrix.cxx }}-${{ matrix.cppstd }}
-        path: bin/*
-    - name: valgrind test
-      run: make valgrind -j 4
+        name: gcov-data-${{ matrix.cxx }}-${{ matrix.cppstd }}
+        path: |
+          *.gcno
+          *.gcda
+    - name: gcov
+      run: |
+        gcov ActivitySelectorTest.cpp AllPairsShortestPathsTest.cpp AnySegmentsIntersectTest.cpp ApproxMinWeightVCTest.cpp ApproxTSPTourTest.cpp ApproxVertexCoverTest.cpp BellmanFordTest.cpp BFSTest.cpp BinaryCounterTest.cpp BinarySearchTreeTest.cpp BinaryTreeTest.cpp BTreeTest.cpp BucketSortTest.cpp ChainedHashTest.cpp ClosestPairPointsTest.cpp CountingSortTest.cpp CutRodTest.cpp DagShortestPathsTest.cpp DFSTest.cpp DijkstraTest.cpp DirectAddressTest.cpp DisjointSetTest.cpp DynamicTableTest.cpp EuclidTest.cpp FibHeapTest.cpp FibTest.cpp FindMaximumSubarrayTest.cpp FiniteAutomatonMatcherTest.cpp FloydWarshallTest.cpp FordFulkersonTest.cpp GrahamScanTest.cpp GraphTest.cpp GreedySetCoverTest.cpp GreedyTest.cpp HashTest.cpp HireAssistantTest.cpp HuffmanTest.cpp InsertSortTest.cpp IntervalTreeTest.cpp IterativeFFTTest.cpp JarvisMarchTest.cpp JohnsonTest.cpp KMPMatcherTest.cpp LCSLengthTest.cpp LeastSquareApproxTest.cpp LinkedListTest.cpp LUPSolveTest.cpp MatrixChainOrderTest.cpp MatrixInverseTest.cpp MatVecTest.cpp MaxHeapTest.cpp MaximumBipartiteMatchingTest.cpp MergeSortTest.cpp MillerRabinTest.cpp MinimumTest.cpp ModLinEquationSolverTest.cpp ModularExponentiationTest.cpp MSTTest.cpp NaiveStringMatcherTest.cpp OnLineMaximumTest.cpp OpenAddressTest.cpp OptimalBSTTest.cpp OrderStatisticTreeTest.cpp PMergeSortTest.cpp PollardRhoTest.cpp ProtovEBTest.cpp PseudoprimeTest.cpp PSquareMatrixMultiplyTest.cpp QueueTest.cpp QuicksortTest.cpp RabinKarpMatcherTest.cpp RaceExampleTest.cpp RadixSortTest.cpp RandomizedSelectTest.cpp RandomPermuteTest.cpp RecursiveFFTTest.cpp RedBlackTreeTest.cpp RelabelToFrontTest.cpp SCCTest.cpp SegmentsIntersectTest.cpp SelectTest.cpp SimplexTest.cpp SquareMatrixMultiplyTest.cpp StackTest.cpp StorageManageTest.cpp SubsetSumTest.cpp TaskScheduleTest.cpp TopologicalSortTest.cpp TransitiveClosureTest.cpp vEBTest.cpp
+    - name: upload gcov
+      uses: actions/upload-artifact@v2
+      with:
+        name: gcov-${{ matrix.cxx }}-${{ matrix.cppstd }}
+        path: |
+          *.gcov
 
