@@ -18,8 +18,8 @@
 
 #include "Simplex.hpp"
 
-#include <cmath>
 #include <cassert>
+#include <cmath>
 #include <iostream>
 #include <stdexcept>
 #include <string>
