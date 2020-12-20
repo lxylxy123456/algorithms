@@ -84,6 +84,7 @@ jobs:
         ls -lt --time-style=full-iso * src/HashTest* bin/* || echo $?
     - name: touch
       run: |
+        chmod +x bin/*{Main,Test}
         touch bin
         touch bin/*.d
         touch bin/*Main
