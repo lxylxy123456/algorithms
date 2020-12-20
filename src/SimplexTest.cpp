@@ -89,7 +89,6 @@ int test(size_t m, size_t n, T epsilon) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::cout << random_seed_get() << std::endl;
 	std::vector<size_t> ns = {2, 5, 8, 19, 39, 52, 73};
 	for (std::vector<size_t>::iterator m = ns.begin(); m < ns.end(); m++)
 		for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
