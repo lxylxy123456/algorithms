@@ -172,7 +172,10 @@ if __name__ == '__main__':
 			if 'std::' in k and k not in SYMBOL_TO_HEADER:
 				print('  ?', k)
 				exit_stat = 1
-		parsed = (parsed[0], reorder_includes(pathname, parsed[1]), parsed[2])
-		refresh_file(pathname, parsed)
+		parsed_n = (parsed[0], reorder_includes(pathname, parsed[1]), parsed[2])
+		if parsed != parsed_n:
+			refresh_file(pathname, parsed_n)
+			print('parsed != parsed_n:', pathname)
+			exit_stat = 1
 	exit(exit_stat)
 
