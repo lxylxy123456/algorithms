@@ -81,7 +81,7 @@ jobs:
         path: bin/
     - name: tmp1
       run: |
-        ls -l --time-style=full-iso . {bin,src}/HashTest* || echo $?
+        ls -lt --time-style=full-iso * src/HashTest* bin/* || echo $?
     - name: touch
       run: |
         touch bin
@@ -90,8 +90,7 @@ jobs:
         touch bin/*Test
     - name: tmp2
       run: |
-        echo A;
-        ls -l --time-style=full-iso . {bin,src}/HashTest* || echo $?
+        ls -lt --time-style=full-iso * src/HashTest* bin/* || echo $?
     - name: valgrind test
       run: make valgrind -j 4
 
