@@ -5,8 +5,7 @@ on: [push, pull_request]
 jobs:
   build:
 
-    runs-on: {{ matrix.os }}
-    runs-on: ubuntu-20.04
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
