@@ -42,6 +42,14 @@ jobs:
         mv d/*.d bin/
     - name: ls 3
       run: ls -l --time-style=full-iso . {bin,src}/HashTest*;
+    - name: touch
+      run: |
+        touch bin
+        touch bin/*.d
+        touch bin/*Main
+        touch bin/*Test
+    - name: ls 4
+      run: ls -l --time-style=full-iso . {bin,src}/HashTest*;
     - name: test
       run: make test
     - name: test 2
