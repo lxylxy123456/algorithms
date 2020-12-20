@@ -22,6 +22,7 @@
 #include <iostream>
 #include <string>
 
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -50,6 +51,7 @@ int test(std::string t) {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	test<LinkedList<int>>("LinkedList");
 	test<LinkedList_prime<int>>("LinkedList_prime");
 	return 0;

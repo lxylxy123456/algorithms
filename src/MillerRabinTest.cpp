@@ -21,6 +21,7 @@
 #include <cassert>
 #include <iostream>
 
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -49,6 +50,7 @@ int test(T n) {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	for (int n = 2; n <= 23170; n += 10)
 		test(random_integer<int>(1, n) * 2 + 1);
 	for (long int n = 2; n <= 303700049; n += 300000)

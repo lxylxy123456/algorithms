@@ -52,7 +52,7 @@ $(TESTS): test/%: bin/%
 
 $(VALGRIND): valgrind/%: bin/%
 	# https://stackoverflow.com/a/55130152
-	valgrind $(VALGRINDFLAGS) ./$^ valgrind > /dev/null
+	valgrind $(VALGRINDFLAGS) ./$^ --valgrind > /dev/null
 	echo valgrind ./$^ Completed
 
 clean:

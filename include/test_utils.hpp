@@ -16,37 +16,37 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#include "FindMaximumSubarray.hpp"
+#ifndef ALGORITHMS_TEST_UTILS
+#define ALGORITHMS_TEST_UTILS
 
 #include <cassert>
-#include <numeric>
-#include <vector>
+#include <iostream>
+#include <random>
+#include <sstream>
+#include <string>
 
-#include "test_utils.hpp"
-#include "utils.hpp"
+#include "random_integers.hpp"
 
-using namespace algorithms;
+namespace algorithms {
 
-int test_vector(int n) {
-	std::vector<int> a;
-	random_integers(a, -n, n, n);
-	output_integers(a);
-	sinfo<int> ans2 = FindMaximumSubarray(a);
-	sinfo<int> ans1 = FindMaximumSubarray_On<int, 0>(a);
-	int sum2 = std::accumulate(a.begin() + ans2.begin, a.begin() + ans2.end, 0);
-	assert(sum2 == ans2.sum);
-	int sum1 = std::accumulate(a.begin() + ans1.begin, a.begin() + ans1.end, 0);
-	assert(sum1 == ans1.sum);
-	assert(ans2.sum == ans1.sum);
-	return 0;
+bool parse_args(int argc, char *argv[]) {
+	bool valgrind = false;
+	for (int i = 1; i < argc; i++) {
+		std::string opt(argv[i]);
+		if (opt == "--seed") {
+			std::random_device::result_type s;
+			std::istringstream(argv[++i]) >> s;
+			random_seed_reset(s);
+		} else if (opt == "--valgrind") {
+			valgrind = true;
+		} else {
+			assert(0);
+		}
+	}
+	std::cerr << argv[0] << ' ' << random_seed_get() << std::endl;
+	return valgrind;
 }
 
-int main(int argc, char *argv[]) {
-	parse_args(argc, argv);
-	test_vector(1);
-	test_vector(2);
-	test_vector(10);
-	test_vector(49);
-	test_vector(100);
-	return 0;
 }
+
+#endif

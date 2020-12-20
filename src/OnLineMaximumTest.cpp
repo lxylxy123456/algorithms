@@ -22,6 +22,7 @@
 #include <iostream>
 #include <vector>
 
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -52,6 +53,7 @@ bool test(size_t n, size_t k, size_t t) {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	test(27, 10, 1000);
 	test(271, 100, 1000);
 	test(2718, 1000, 100);
