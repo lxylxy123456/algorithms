@@ -11,10 +11,10 @@ jobs:
       matrix:
         cppstd:
           - 'c++11'
-          # - 'gnu++11'
-          # - 'c++14'
-          # - 'gnu++14'
-          # - 'c++17'
+          - 'gnu++11'
+          - 'c++14'
+          - 'gnu++14'
+          - 'c++17'
           - 'gnu++17'
           # - 'c++20'
           # - 'gnu++20'
@@ -48,10 +48,10 @@ jobs:
       matrix:
         cppstd:
           - 'c++11'
-          # - 'gnu++11'
-          # - 'c++14'
-          # - 'gnu++14'
-          # - 'c++17'
+          - 'gnu++11'
+          - 'c++14'
+          - 'gnu++14'
+          - 'c++17'
           - 'gnu++17'
           # - 'c++20'
           # - 'gnu++20'
@@ -79,9 +79,6 @@ jobs:
       with:
         name: dependencies-${{ matrix.cxx }}-${{ matrix.cppstd }}
         path: bin/
-    - name: tmp1
-      run: |
-        ls -lt --time-style=full-iso * src/HashTest* bin/* || echo $?
     - name: touch
       run: |
         chmod +x bin/*{Main,Test}
@@ -89,9 +86,6 @@ jobs:
         touch bin/*.d
         touch bin/*Main
         touch bin/*Test
-    - name: tmp2
-      run: |
-        ls -lt --time-style=full-iso * src/HashTest* bin/* || echo $?
     - name: valgrind test
       run: make valgrind -j 4
 
