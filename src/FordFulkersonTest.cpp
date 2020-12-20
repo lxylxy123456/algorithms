@@ -66,8 +66,6 @@ int test(size_t v, size_t e) {
 }
 
 int main(int argc, char *argv[]) {
-	random_seed_reset(1709819266);
-	std::cerr << random_seed_get() << std::endl;
 	std::vector<size_t> m = {5, 10, 23, 49, 100};
 	for (std::vector<size_t>::iterator v = m.begin(); v < m.end(); v++)
 		for (std::vector<size_t>::iterator e = m.begin(); e < m.end(); e++)
