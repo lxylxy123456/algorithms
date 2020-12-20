@@ -49,7 +49,7 @@ $(TARGETS): bin/%: src/%.cpp bin
 	$(CXX) $(CXXFLAGS) -MMD -MF $(patsubst %,%.d,$@) -I include/ -o $@ $<
 
 $(TESTS): test/%: bin/%
-	./$^
+	./$^ --seed 7016195851
 
 $(VALGRIND): valgrind/%: bin/%
 	# https://stackoverflow.com/a/55130152
