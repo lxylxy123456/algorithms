@@ -39,6 +39,13 @@ jobs:
       with:
         name: dependencies-${{ matrix.cxx }}-${{ matrix.cppstd }}
         path: bin/*.d
+    - name: touch
+      run: |
+        chmod +x bin/*{Main,Test}
+        touch bin
+        touch bin/*.d
+        touch bin/*Main
+        touch bin/*Test
     - name: test
       run: make test
 
