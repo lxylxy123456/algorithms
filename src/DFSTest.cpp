@@ -28,10 +28,30 @@ using namespace algorithms;
 int test(size_t v, size_t e, bool dir) {
 	GraphAdjList<size_t> G(dir);
 	random_graph(G, v, e);
-	graphviz(G);
 	umap<size_t, DFSInfo<size_t>> inf;
 	umap<Edge<size_t>, DFSEdgeType, EdgeHash<size_t>> edge_inf;
 	DFS(G, inf, &edge_inf);
+	auto f1 = [inf](size_t v) mutable {
+		DFSInfo<size_t>& i = inf[v];
+		std::cout << " [";
+		switch (i.color) {
+			case dfs_white:
+				break;
+			case dfs_black:
+				std::cout << "color=black style=filled fontcolor=white ";
+				break;
+			case dfs_gray:
+				std::cout << "color=gray style=filled ";
+				break;
+		}
+		std::cout << "label=\"" << v << "\\n" << "d = " << i.d;
+		std::cout << "; f = " << i.f << "; pi = " << i.pi << "\"]";
+		return true;
+	};
+	auto f2 = [edge_inf](Edge<size_t> e) mutable {
+		std::cout << " [" << "label=\"" << edge_inf[e] << "\"]";
+	};
+	graphviz(G, f1, f2);
 	for (size_t i = 0; i < v; i++) {
 		assert(inf[i].color == dfs_black);
 		if (!inf[i].pi.nil) {

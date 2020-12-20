@@ -144,7 +144,6 @@ class BinarySearchTree: public BinaryTree<T> {
 void tf(char& c, void* T, void* ptr) {
 	return;
 }
-// GCOV_EXCL_STOP
 
 template <typename TreeType, typename NodeType, typename DataType, typename Tf>
 void tree_interact(TreeType& T, std::string help_info, Tf func) {
@@ -230,6 +229,7 @@ void tree_interact(TreeType& T, std::string help_info, Tf func) {
 		}
 	}
 }
+// GCOV_EXCL_STOP
 
 }
 
