@@ -59,4 +59,10 @@ jobs:
         name: gcov-${{ matrix.cxx }}-${{ matrix.cppstd }}
         path: |
           *.gcov
+    - name: install gcovr
+      run: |
+        apt-get install gcovr
+    - name: gcovr
+      run: |
+        gcovr .
 

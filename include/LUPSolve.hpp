@@ -39,54 +39,70 @@ class Fraction
 		Fraction(T a): numerator(a), denominator(1) {}
 		Fraction(T a, T b): numerator(a), denominator(b) {
 			if (!b)
+				// GCOV_EXCL_START
 				throw std::invalid_argument("zero denominator");
+				// GCOV_EXCL_STOP
 			reduce_fraction();
 		}
 		Fraction& operator= (const Fraction& rhs) {
 			if (&rhs == this)
 				return *this;
 			if (!rhs.denominator)
+				// GCOV_EXCL_START
 				throw std::invalid_argument("zero denominator");
+				// GCOV_EXCL_STOP
 			this->numerator = rhs.numerator;
 			this->denominator = rhs.denominator;
 			return *this;
 		}
 		const Fraction operator- () const {
 			if (!denominator)
+				// GCOV_EXCL_START
 				throw std::invalid_argument("zero denominator");
+				// GCOV_EXCL_STOP
 			return Fraction(-numerator, denominator);
 		}
 		const Fraction operator+ (const Fraction& a) const {
 			if (!denominator || !a.denominator)
+				// GCOV_EXCL_START
 				throw std::invalid_argument("zero denominator");
+				// GCOV_EXCL_STOP
 			int num = numerator * a.denominator + denominator * a.numerator;
 			int den = denominator * a.denominator;
 			return Fraction(num, den);
 		}
 		const Fraction operator- (const Fraction& a) const {
 			if (!denominator || !a.denominator)
+				// GCOV_EXCL_START
 				throw std::invalid_argument("zero denominator");
+				// GCOV_EXCL_STOP
 			int num = numerator * a.denominator - denominator * a.numerator;
 			int den = denominator * a.denominator;
 			return Fraction(num, den);
 		}
 		const Fraction operator* (const Fraction& a) const {
 			if (!denominator || !a.denominator)
+				// GCOV_EXCL_START
 				throw std::invalid_argument("zero denominator");
+				// GCOV_EXCL_STOP
 			int num = numerator * a.numerator;
 			int den = denominator * a.denominator;
 			return Fraction(num, den);
 		}
 		const Fraction operator/ (const Fraction& a) const {
 			if (!denominator || !a.denominator || !a.numerator)
+				// GCOV_EXCL_START
 				throw std::invalid_argument("zero denominator");
+				// GCOV_EXCL_STOP
 			int num = numerator * a.denominator;
 			int den = denominator * a.numerator;
 			return Fraction(num, den);
 		}
 		Fraction& operator+= (const Fraction& a) {
 			if (!denominator || !a.denominator)
+				// GCOV_EXCL_START
 				throw std::invalid_argument("zero denominator");
+				// GCOV_EXCL_STOP
 			int num = numerator * a.denominator + denominator * a.numerator;
 			int den = denominator * a.denominator;
 			numerator = num;
@@ -96,7 +112,9 @@ class Fraction
 		}
 		Fraction& operator-= (const Fraction& a) {
 			if (!denominator || !a.denominator)
+				// GCOV_EXCL_START
 				throw std::invalid_argument("zero denominator");
+				// GCOV_EXCL_STOP
 			int num = numerator * a.denominator - denominator * a.numerator;
 			int den = denominator * a.denominator;
 			numerator = num;
@@ -106,7 +124,9 @@ class Fraction
 		}
 		Fraction& operator*= (const Fraction& a) {
 			if (!denominator || !a.denominator)
+				// GCOV_EXCL_START
 				throw std::invalid_argument("zero denominator");
+				// GCOV_EXCL_STOP
 			numerator *= a.numerator;
 			denominator *= a.denominator;
 			reduce_fraction();
@@ -114,7 +134,9 @@ class Fraction
 		}
 		Fraction& operator/= (const Fraction& a) {
 			if (!denominator || !a.denominator || !a.numerator)
+				// GCOV_EXCL_START
 				throw std::invalid_argument("zero denominator");
+				// GCOV_EXCL_STOP
 			numerator *= a.denominator;
 			denominator *= a.numerator;
 			reduce_fraction();
@@ -122,17 +144,23 @@ class Fraction
 		}
 		bool operator< (const Fraction& a) const {
 			if (!denominator || !a.denominator)
+				// GCOV_EXCL_START
 				throw std::invalid_argument("zero denominator");
+				// GCOV_EXCL_STOP
 			return numerator * a.denominator < denominator * a.numerator;
 		}
 		bool operator== (const Fraction& a) const {
 			if (!denominator || !a.denominator)
+				// GCOV_EXCL_START
 				throw std::invalid_argument("zero denominator");
+				// GCOV_EXCL_STOP
 			return numerator == a.numerator && denominator == a.denominator;
 		}
 		friend std::ostream& operator<< (std::ostream& os, const Fraction& v) {
 			if (!v.denominator)
+				// GCOV_EXCL_START
 				throw std::invalid_argument("zero denominator");
+				// GCOV_EXCL_STOP
 			if (v.denominator == 1)
 				return os << v.numerator;
 			else
