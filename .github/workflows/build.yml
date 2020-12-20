@@ -37,14 +37,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: tmp
-      run: |
-        g++ --version
-        clang++ --version
-        ls /usr/bin/g++*
-        ls /usr/bin/clang++*
-        which g++
-        which clang++
     - name: make
       run: make all CXX=${{ matrix.cxx }} CPPSTD=${{ matrix.cppstd }} -j 4
     - name: upload bin
