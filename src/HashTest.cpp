@@ -44,7 +44,7 @@ int test_d() {
 	std::vector<int> ps{19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73};
 	for (std::vector<int>::iterator k = ks.begin(); k < ks.end(); k++)
 		for (std::vector<int>::iterator p = ps.begin(); p < ps.end(); p++) {
-			std::cout << *k << " DivisionHash " << *p << std::endl;
+			// std::cout << *k << " DivisionHash " << *p << std::endl;
 			test_h(*k, *p, DivisionHash(*p));
 		}
 	return 0;
@@ -55,7 +55,7 @@ int test_m() {
 	std::vector<int> ms{1, 2, 3, 4, 5};
 	for (std::vector<int>::iterator k = ks.begin(); k < ks.end(); k++)
 		for (std::vector<int>::iterator m = ms.begin(); m < ms.end(); m++) {
-			std::cout << *k << " MultiplicationHash " << *m << std::endl;
+			// std::cout << *k << " MultiplicationHash " << *m << std::endl;
 			test_h(*k, 1 << *m, MultiplicationHash(*k, *m, 0.6180339887));
 		}
 	return 0;
@@ -68,8 +68,8 @@ int test_u() {
 	for (std::vector<int>::iterator k = ks.begin(); k < ks.end(); k++)
 		for (std::vector<int>::iterator p = ps.begin(); p < ps.end(); p++)
 			for (std::vector<int>::iterator m = ms.begin(); m < ms.end(); m++) {
-				std::cout << *k << " UniversalHash " << *p << ' ' << *m;
-				std::cout << std::endl;
+				// std::cout << *k << " UniversalHash " << *p << ' ' << *m;
+				// std::cout << std::endl;
 				test_h(*k, *m, UniversalHash(*p, *m));
 			}
 	return 0;
