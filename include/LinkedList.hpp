@@ -19,8 +19,6 @@
 #ifndef ALGORITHMS_LINKEDLIST
 #define ALGORITHMS_LINKEDLIST
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>
