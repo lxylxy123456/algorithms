@@ -25,6 +25,8 @@
 #include "Euclid.hpp"
 #include "random_integers.hpp"
 
+using std::size_t;
+
 namespace algorithms {
 
 template <typename T>

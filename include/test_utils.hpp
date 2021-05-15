@@ -27,6 +27,8 @@
 
 #include "random_integers.hpp"
 
+using std::size_t;
+
 namespace algorithms {
 
 bool parse_args(int argc, char *argv[]) {

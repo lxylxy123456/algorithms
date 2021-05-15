@@ -24,6 +24,8 @@
 
 #include <vector>
 
+using std::size_t;
+
 namespace algorithms {
 
 SIZT_2D OptimalBST(SIZT_1D& p, SIZT_1D& q, size_t n) {

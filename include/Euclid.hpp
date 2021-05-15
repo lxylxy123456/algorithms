@@ -19,6 +19,8 @@
 #ifndef ALGORITHMS_EUCLID
 #define ALGORITHMS_EUCLID
 
+using std::size_t;
+
 namespace algorithms {
 
 template <typename T>

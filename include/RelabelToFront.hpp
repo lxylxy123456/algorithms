@@ -25,6 +25,8 @@
 
 #include "Graph.hpp"
 
+using std::size_t;
+
 namespace algorithms {
 
 #define list_T typename std::list<T>

@@ -23,6 +23,8 @@
 
 #include "Graph.hpp"
 
+using std::size_t;
+
 namespace algorithms {
 
 enum DFSColor { dfs_white, dfs_gray, dfs_black };

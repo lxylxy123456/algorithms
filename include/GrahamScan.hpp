@@ -24,6 +24,8 @@
 
 #include "SegmentsIntersect.hpp"
 
+using std::size_t;
+
 namespace algorithms {
 
 template <typename T>

@@ -25,6 +25,8 @@
 #include <map>
 #include <vector>
 
+using std::size_t;
+
 namespace algorithms {
 
 template <typename T>
