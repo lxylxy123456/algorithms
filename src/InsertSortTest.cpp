@@ -21,6 +21,7 @@
 #include <cassert>
 #include <vector>
 
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -54,6 +55,7 @@ int test_iterator(int n) {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	test_vector(0);
 	test_vector(1);
 	test_vector(2);

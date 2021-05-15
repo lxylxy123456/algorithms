@@ -20,6 +20,7 @@
 
 #include <cassert>
 
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -33,6 +34,7 @@ int test(double p1x, double p1y, double p2x, double p2y, double p3x, double p3y,
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	test(1, 0, 0, 1, 0, 0, 1, 1, true);
 	test(1, 1, 0, 1, 0, 0, 1, 0, false);
 	test(10, 10, 50, 50, 29, 29, 70, 0, true);

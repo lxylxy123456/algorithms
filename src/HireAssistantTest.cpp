@@ -22,6 +22,7 @@
 #include <iostream>
 #include <vector>
 
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -48,6 +49,7 @@ int test(int n, int ci, int ch) {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	for (int n = 0; n < 100; n = (n + 1) * 2)
 		for (int ci = 0; ci < 10; ci += 5)
 			for (int ch = 0; ch < 30; ch += 13)

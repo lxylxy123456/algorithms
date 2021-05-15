@@ -23,6 +23,7 @@
 #include <iostream>
 #include <vector>
 
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -97,7 +98,7 @@ int test(int n, int m) {
 }
 
 int main(int argc, char *argv[]) {
-	std::cout << "seed = " << random_seed_get() << std::endl;
+	parse_args(argc, argv);
 	for (int m = 0; m > -1000; m -= 400) {
 		test(0, m);
 		test(1, m);

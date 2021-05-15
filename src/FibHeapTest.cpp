@@ -22,6 +22,7 @@
 #include <cassert>
 #include <vector>
 
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -126,6 +127,7 @@ int test(int n, int m) {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	std::vector<int> ns = {20000, 25000, 100000};
 	std::vector<int> ms = {2, 4, 5, 10};
 	for (std::vector<int>::iterator n = ns.begin(); n < ns.end(); n++)

@@ -22,6 +22,7 @@
 #include <cassert>
 #include <iostream>
 
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -37,6 +38,7 @@ int test(size_t n, size_t expected) {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	int N = 21;
 	if (argc >= 2)
 		// Valgrind: reduce test size

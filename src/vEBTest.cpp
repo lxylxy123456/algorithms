@@ -22,6 +22,7 @@
 #include <vector>
 
 #include "RedBlackTree.hpp"
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -105,6 +106,7 @@ int test(int k, int n) {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	std::vector<int> ns = {20000, 25000, 100000};
 	for (int k = 1; k <= 16; k++)
 		for (std::vector<int>::iterator n = ns.begin(); n < ns.end(); n++)

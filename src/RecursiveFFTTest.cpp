@@ -24,6 +24,7 @@
 #include <vector>
 
 #include "SquareMatrixMultiply.hpp"
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -58,6 +59,7 @@ int test(size_t n) {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	for (size_t n = 2; n <= 1024; n *= 2)
 		test(n);
 	return 0;

@@ -22,6 +22,7 @@
 #include <numeric>
 #include <vector>
 
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -54,6 +55,7 @@ int test(int n) {
 }
 
 int main(int argc, char *argv[]) {
+	parse_args(argc, argv);
 	test(0);
 	test(1);
 	test(4);

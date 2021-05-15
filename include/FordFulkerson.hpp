@@ -41,6 +41,8 @@ void FordFulkerson(GT& G, umap_WT& c, T s, T t, umap_WT& f) {
 	};
 	while (true) {
 		GT Gf(G.dir);
+		for (auto i = G.V.begin(); i != G.V.end(); i++)
+			Gf.add_vertex(*i);
 		for (auto i = G.all_edges(); !i.end(); i++) {
 			T u = i.s(), v = i.d();
 			if (cf(u, v))
