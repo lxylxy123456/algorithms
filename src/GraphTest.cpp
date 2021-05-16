@@ -122,7 +122,7 @@ void graph_test(const typename GT::vertex_type v, const std::size_t e) {
 }
 
 template <typename T, typename WT>
-void graph_weighted_test(const std::size_t v, const std::size_t e) {
+void graph_weighted_test(const T v, const std::size_t e) {
 	for (std::size_t dir = 0; dir <= 1; dir++) {
 		WeightedAdjMatrix<T, WT> G(dir);
 		random_weighted_adj_matrix(G, v, e, (WT) (1 - e), (WT) e);
