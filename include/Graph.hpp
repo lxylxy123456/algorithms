@@ -159,6 +159,7 @@ class Graph {
 		virtual void transpose() = 0;
 		virtual ~Graph() {}
 		typedef T vertex_type;
+		/*
 		class iterator {
 			public:
 				virtual void operator++(int) = 0;
@@ -166,53 +167,9 @@ class Graph {
 				virtual T s() = 0;
 				virtual T d() = 0;
 		};
+		*/
 		bool dir;
 		uset<T> V;
-};
-
-template <typename T>
-class EdgeIteratorAL1 {
-	public:
-		EdgeIteratorAL1(umap<T, uset<T>>::iterator mbegin,
-						umap<T, uset<T>>::iterator mend, bool direction,
-						bool rm_reverse):
-						dir(direction), rm_reverse(rm_reverse), mbegin(mbegin),
-						mend(mend) {
-			if (mbegin != mend) {
-				sbegin = mbegin->second.begin();
-				send = mbegin->second.end();
-			}
-			next();
-		}
-		void operator++(int) {
-			if (sbegin != send)
-				sbegin++;
-			next();
-		}
-		void next() {
-			if (mbegin != mend)
-				while (sbegin == send || (!dir && rm_reverse && s() > d())) {
-					if (sbegin == send) {
-						mbegin++;
-						if (mbegin == mend)
-							break;
-						sbegin = mbegin->second.begin();
-						send = mbegin->second.end();
-					} else
-						sbegin++;
-				}
-		}
-		bool end() {
-			return mbegin == mend;
-		}
-		Edge<T> operator*() {
-			return Edge<T>(mbegin->first, *sbegin, dir);
-		}
-		T s() { return mbegin->first; }
-		T d() { return *sbegin; }
-		bool dir, rm_reverse;
-		umap<T, uset<T>>::iterator mbegin, mend;
-		uset<T>::iterator sbegin, send;
 };
 
 template <typename T>
@@ -264,6 +221,50 @@ class EdgeIteratorAM1 {
 template <typename T>
 class GraphAdjList: public Graph<T> {
 	public:
+		class iterator {
+			public:
+				iterator(umap<T, uset<T>>::iterator mbegin,
+							umap<T, uset<T>>::iterator mend, bool direction,
+							bool rm_reverse):
+							dir(direction), rm_reverse(rm_reverse),
+							mbegin(mbegin), mend(mend) {
+					if (mbegin != mend) {
+						sbegin = mbegin->second.begin();
+						send = mbegin->second.end();
+					}
+					next();
+				}
+				void operator++(int) {
+					if (sbegin != send)
+						sbegin++;
+					next();
+				}
+				void next() {
+					if (mbegin != mend)
+						while (sbegin == send ||
+								(!dir && rm_reverse && s() > d())) {
+							if (sbegin == send) {
+								mbegin++;
+								if (mbegin == mend)
+									break;
+								sbegin = mbegin->second.begin();
+								send = mbegin->second.end();
+							} else
+								sbegin++;
+						}
+				}
+				bool end() {
+					return mbegin == mend;
+				}
+				Edge<T> operator*() {
+					return Edge<T>(mbegin->first, *sbegin, dir);
+				}
+				T s() { return mbegin->first; }
+				T d() { return *sbegin; }
+				bool dir, rm_reverse;
+				umap<T, uset<T>>::iterator mbegin, mend;
+				uset<T>::iterator sbegin, send;
+		};
 		GraphAdjList(bool directed): Graph<T>(directed) {}
 		virtual void add_edge(T s, T d) {
 			this->add_vertex(s);
@@ -275,12 +276,14 @@ class GraphAdjList: public Graph<T> {
 		virtual bool is_edge(T u, T v) {
 			return E[u].find(v) != E[u].end();
 		}
-		EdgeIteratorAL1<T> all_edges() {
-			return EdgeIteratorAL1<T>(E.begin(), E.end(), this->dir, true);
+		typename GraphAdjList<T>::iterator all_edges() {
+			return typename GraphAdjList<T>::iterator(E.begin(), E.end(), this->dir, true);
 		}
-		EdgeIteratorAL1<T> edges_from(T s) {
+		typename GraphAdjList<T>::iterator edges_from(T s) {
 			umap<T, uset<T>>::iterator i = E.find(s), j = i;
-			return EdgeIteratorAL1<T>(i, ++j, this->dir, false);
+			if (i != E.end())
+				j++;
+			return typename GraphAdjList<T>::iterator(i, ++j, this->dir, false);
 		}
 		virtual void transpose() {
 			assert(this->dir);
@@ -323,7 +326,9 @@ class GraphAdjMatrix: public Graph<T> {
 		}
 		EdgeIteratorAM1<T> edges_from(T s) {
 			umap<T, umap<T, bool>>::iterator i = E.find(s), j = i;
-			return EdgeIteratorAM1<T>(i, ++j, this->dir, false);
+			if (i != E.end())
+				j++;
+			return EdgeIteratorAM1<T>(i, j, this->dir, false);
 		}
 		virtual void transpose() {
 			assert(this->dir);

@@ -58,9 +58,8 @@ void graph_test(const size_t v, const size_t e) {
 		G.add_edge(4, 4);
 		{
 			uset<int> expected = {1, 102, 100, 304, 404};
-			if (!dir) {
+			if (!dir)
 				expected.erase(100);
-			}
 			for (auto i = G.all_edges(); !i.end(); i++) {
 				int a = i.s() * 100 + i.d();
 				assert(expected.find(a) != expected.end());
@@ -78,6 +77,17 @@ void graph_test(const size_t v, const size_t e) {
 			assert(expected.size() == 0);
 		}
 		{
+			uset<int> expected = {};
+			if (!dir)
+				expected.insert(201);
+			for (auto i = G.edges_from(2); !i.end(); i++) {
+				int a = i.s() * 100 + i.d();
+				assert(expected.find(a) != expected.end());
+				expected.erase(a);
+			}
+			assert(expected.size() == 0);
+		}
+		{
 			uset<int> expected = {304};
 			for (auto i = G.edges_from(3); !i.end(); i++) {
 				int a = i.s() * 100 + i.d();
@@ -88,10 +98,18 @@ void graph_test(const size_t v, const size_t e) {
 		}
 		{
 			uset<int> expected = {404};
-			if (!dir) {
+			if (!dir)
 				expected.insert(403);
-			}
 			for (auto i = G.edges_from(4); !i.end(); i++) {
+				int a = i.s() * 100 + i.d();
+				assert(expected.find(a) != expected.end());
+				expected.erase(a);
+			}
+			assert(expected.size() == 0);
+		}
+		{
+			uset<int> expected = {};
+			for (auto i = G.edges_from(5); !i.end(); i++) {
 				int a = i.s() * 100 + i.d();
 				assert(expected.find(a) != expected.end());
 				expected.erase(a);
