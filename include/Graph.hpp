@@ -409,6 +409,31 @@ class WeightedAdjMatrix {
 		umap<T, umap<T, Weight<WT>>> E;
 };
 
+template <typename GT>
+class Bipartite: public GT {
+	public:
+		using T = typename GT::vertex_type;
+		Bipartite(bool direction): GT(direction) {}
+		uset<T> L, R;
+};
+
+template <typename GT, typename T>
+void random_bipartite(Bipartite<GT>& G, T vl, T vr, size_t e) {
+	for (T i = 0; i < vl; i++) {
+		G.add_vertex(i);
+		G.L.insert(i);
+	}
+	for (T i = vl; i < vl + vr; i++) {
+		G.add_vertex(i);
+		G.R.insert(i);
+	}
+	std::vector<T> dl, dr;
+	random_integers<T>(dl, 0, vl - 1, e);
+	random_integers<T>(dr, vl, vl + vr - 1, e);
+	for (size_t i = 0; i < e; i++)
+		G.add_edge(dl[i], dr[i]);
+}
+
 template <typename T>
 void random_graph(Graph<T>& G, T v, std::size_t e) {
 	for (T i = 0; i < v; i++)
@@ -453,37 +478,6 @@ void random_weight(GT& G, umap_WT& w, WT l, WT u) {
 	std::uniform_int_distribution<T> d(l, u);
 	for (auto i = G.all_edges(); !i.end(); i++)
 		w[*i] = random_integer(d);
-}
-
-template <typename T, typename F1, typename F2>
-void graphviz(T& G, F1 f1, F2 f2) {
-	if (G.dir)
-		std::cout << "digraph G {" << std::endl;
-	else
-		std::cout << "graph G {" << std::endl;
-	std::cout << '\t';
-	for (auto i = G.V.begin(); i != G.V.end(); i++) {
-		std::cout << *i;
-		if (f1(*i))
-			std::cout << "; \n\t";
-		else
-			std::cout << "; ";
-	}
-	std::cout << std::endl;
-	for (auto i = G.all_edges(); !i.end(); i++) {
-		std::cout << '\t' << *i;
-		f2(*i);
-		std::cout << "; " << std::endl;
-	}
-	std::cout << "}" << std::endl;
-}
-
-template <typename T>
-void graphviz(T& G) {
-	// TODO: constrain to GraphAdjMatrix and GraphAdjList
-	auto f1 = [](typename T::vertex_type v) { return false; };
-	auto f2 = [](Edge<typename T::vertex_type>) {};
-	graphviz(G, f1, f2);
 }
 
 }

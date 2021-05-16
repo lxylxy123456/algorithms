@@ -33,6 +33,46 @@
 
 namespace algorithms {
 
+template <typename T, typename F1, typename F2>
+void graphviz(T& G, F1 f1, F2 f2) {
+	// TODO: constrain to Graph<T>
+	if (G.dir)
+		std::cout << "digraph G {" << std::endl;
+	else
+		std::cout << "graph G {" << std::endl;
+	std::cout << '\t';
+	for (auto i = G.V.begin(); i != G.V.end(); i++) {
+		std::cout << *i;
+		if (f1(*i))
+			std::cout << "; \n\t";
+		else
+			std::cout << "; ";
+	}
+	std::cout << std::endl;
+	for (auto i = G.all_edges(); !i.end(); i++) {
+		std::cout << '\t' << *i;
+		f2(*i);
+		std::cout << "; " << std::endl;
+	}
+	std::cout << "}" << std::endl;
+}
+
+template <typename T>
+void graphviz(GraphAdjList<T>& G) {
+	// TODO: constrain to Graph; combine with below
+	auto f1 = [](T v) { return false; };
+	auto f2 = [](Edge<T>) {};
+	graphviz(G, f1, f2);
+}
+
+template <typename T>
+void graphviz(GraphAdjMatrix<T>& G) {
+	// TODO: constrain to Graph; combine with above
+	auto f1 = [](T v) { return false; };
+	auto f2 = [](Edge<T>) {};
+	graphviz(G, f1, f2);
+}
+
 template <typename T, typename WT, typename F1, typename F2>
 void graphviz(WeightedAdjMatrix<T, WT> G, F1 f1, F2 f2) {
 	if (G.dir)
@@ -67,6 +107,63 @@ template <typename T, typename WT>
 void graphviz(WeightedAdjMatrix<T, WT> G) {
 	auto f1 = [](T v) { return false; };
 	auto f2 = [](Edge<T> e, Weight<WT> w) {};
+	graphviz(G, f1, f2);
+}
+
+template <typename GT, typename F1, typename F2>
+void graphviz(Bipartite<GT> G, F1 f1, F2 f2) {
+	if (G.dir)
+		std::cout << "digraph G {" << std::endl;
+	else
+		std::cout << "graph G {" << std::endl;
+	std::cout << '\t';
+	std::cout << "subgraph clusterL {\n\t";
+	bool newline = true;
+	for (auto i = G.L.begin(); i != G.L.end(); i++) {
+		if (newline)
+			std::cout << '\t';
+		std::cout << *i;
+		if (f1(*i)) {
+			std::cout << "; \n\t";
+			newline = true;
+		} else {
+			std::cout << "; ";
+			newline = false;
+		}
+	}
+	if (!newline)
+		std::cout << "\n\t";
+	std::cout << '}' << std::endl;
+	std::cout << '\t';
+	std::cout << "subgraph clusterR {\n\t";
+	newline = true;
+	for (auto i = G.R.begin(); i != G.R.end(); i++) {
+		if (newline)
+			std::cout << '\t';
+		std::cout << *i;
+		if (f1(*i)) {
+			std::cout << "; \n\t";
+			newline = true;
+		} else {
+			std::cout << "; ";
+			newline = false;
+		}
+	}
+	if (!newline)
+		std::cout << "\n\t";
+	std::cout << '}' << std::endl;
+	for (auto i = G.all_edges(); !i.end(); i++) {
+		std::cout << '\t' << *i;
+		f2(*i);
+		std::cout << "; " << std::endl;
+	}
+	std::cout << "}" << std::endl;
+}
+
+template <typename GT>
+void graphviz(Bipartite<GT> G) {
+	auto f1 = [](typename GT::vertex_type v) { return false; };
+	auto f2 = [](Edge<typename GT::vertex_type> e) {};
 	graphviz(G, f1, f2);
 }
 

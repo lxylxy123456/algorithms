@@ -40,7 +40,7 @@ int test(size_t vl, size_t vr, size_t e) {
 		if (ans.find(e) != ans.end())
 			std::cout << " [style=bold]";
 	};
-	G.graphviz(f1, f2);
+	graphviz(G, f1, f2);
 	uset<size_t> used;
 	for (auto i = G.all_edges(); !i.end(); i++) {
 		size_t l = i.s(), r = i.d();
