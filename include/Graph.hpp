@@ -173,9 +173,9 @@ class Graph {
 template <typename T>
 class EdgeIteratorAL1 {
 	public:
-		EdgeIteratorAL1(umap<T, uset<T>>& E, bool direction): dir(direction) {
-			mbegin = E.begin();
-			mend = E.end();
+		EdgeIteratorAL1(umap<T, uset<T>>::iterator mbegin,
+						umap<T, uset<T>>::iterator mend, bool direction):
+						dir(direction), mbegin(mbegin), mend(mend) {
 			if (mbegin != mend) {
 				sbegin = mbegin->second.begin();
 				send = mbegin->second.end();
@@ -281,6 +281,37 @@ class EdgeIteratorAM1 {
 };
 
 template <typename T>
+class EdgeIteratorAM2 {
+	public:
+		EdgeIteratorAM2(T ss, umap<T, bool>& E, bool direction): S(ss) {
+			dir = direction;
+			sbegin = E.begin();
+			send = E.end();
+			next();
+		}
+		void operator++(int) {
+			if (sbegin != send)
+				sbegin++;
+			next();
+		}
+		void next() {
+			while (sbegin != send && !sbegin->second)
+				sbegin++;
+		}
+		bool end() {
+			return sbegin == send;
+		}
+		Edge<T> operator*() {
+			return Edge<T>(S, sbegin->first, dir);
+		}
+		T s() { return S; }
+		T d() { return sbegin->first; }
+		T S;
+		bool dir;
+		umap<T, bool>::iterator sbegin, send;
+};
+
+template <typename T>
 class GraphAdjList: public Graph<T> {
 	public:
 		GraphAdjList(bool directed): Graph<T>(directed) {}
@@ -295,9 +326,11 @@ class GraphAdjList: public Graph<T> {
 			return E[u].find(v) != E[u].end();
 		}
 		EdgeIteratorAL1<T> all_edges() {
-			return EdgeIteratorAL1<T>(E, this->dir);
+			return EdgeIteratorAL1<T>(E.begin(), E.end(), this->dir);
 		}
 		EdgeIteratorAL2<T> edges_from(T s) {
+//			umap<T, uset<T>>::iterator i = E.find(s), j = i;
+//			return EdgeIteratorAL1<T>(i, j, this->dir);
 			return EdgeIteratorAL2<T>(s, E[s], this->dir);
 		}
 		virtual void transpose() {
@@ -339,9 +372,10 @@ class GraphAdjMatrix: public Graph<T> {
 		EdgeIteratorAM1<T> all_edges() {
 			return EdgeIteratorAM1<T>(E.begin(), E.end(), this->dir);
 		}
-		EdgeIteratorAM1<T> edges_from(T s) {
-			umap<T, umap<T, bool>>::iterator i = E.find(s), j = i;
-			return EdgeIteratorAM1<T>(i, ++j, this->dir);
+		EdgeIteratorAM2<T> edges_from(T s) {
+//			umap<T, umap<T, bool>>::iterator i = E.find(s), j = i;
+//			return EdgeIteratorAM1<T>(i, ++j, this->dir);
+			return EdgeIteratorAM2<T>(s, E[s], this->dir);
 		}
 		virtual void transpose() {
 			assert(this->dir);

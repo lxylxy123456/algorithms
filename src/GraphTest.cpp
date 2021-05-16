@@ -47,6 +47,57 @@ void graph_test(const size_t v, const size_t e) {
 		}
 		std::cout << std::endl;
 	}
+	for (size_t dir = 0; dir <= 1; dir++) {
+		// Constant test for iterators
+		T G(dir);
+		G.add_edge(0, 1);
+		G.add_edge(1, 2);
+		G.add_edge(1, 0);
+		G.add_edge(3, 4);
+		G.add_edge(4, 4);
+		{
+			uset<int> expected = {1, 102, 100, 304, 404};
+			if (!dir) {
+				expected.erase(100);
+			}
+			for (auto i = G.all_edges(); !i.end(); i++) {
+				int a = i.s() * 100 + i.d();
+				assert(expected.find(a) != expected.end());
+				expected.erase(a);
+			}
+			assert(expected.size() == 0);
+		}
+		{
+			uset<int> expected = {100, 102};
+			for (auto i = G.edges_from(1); !i.end(); i++) {
+				int a = i.s() * 100 + i.d();
+				assert(expected.find(a) != expected.end());
+				expected.erase(a);
+			}
+			assert(expected.size() == 0);
+		}
+		{
+			uset<int> expected = {304};
+			for (auto i = G.edges_from(3); !i.end(); i++) {
+				int a = i.s() * 100 + i.d();
+				assert(expected.find(a) != expected.end());
+				expected.erase(a);
+			}
+			assert(expected.size() == 0);
+		}
+		{
+			uset<int> expected = {404};
+			if (!dir) {
+				expected.insert(403);
+			}
+			for (auto i = G.edges_from(4); !i.end(); i++) {
+				int a = i.s() * 100 + i.d();
+				assert(expected.find(a) != expected.end());
+				expected.erase(a);
+			}
+			assert(expected.size() == 0);
+		}
+	}
 }
 
 template <typename T, typename WT>
