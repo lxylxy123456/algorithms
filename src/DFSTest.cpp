@@ -21,6 +21,7 @@
 #include <cassert>
 #include <vector>
 
+#include "graph_utils.hpp"
 #include "test_utils.hpp"
 #include "utils.hpp"
 

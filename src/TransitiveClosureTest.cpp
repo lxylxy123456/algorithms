@@ -22,6 +22,7 @@
 #include <vector>
 
 #include "FloydWarshall.hpp"
+#include "graph_utils.hpp"
 #include "test_utils.hpp"
 #include "utils.hpp"
 
@@ -32,8 +33,8 @@ int test(size_t v, size_t e) {
 	const int weight_lower = 0;
 	const int weight_upper = e;
 	WeightedAdjMatrix<size_t, int> G(dir);
-	G.random_graph(v, e, weight_lower, weight_upper);
-	G.graphviz();
+	random_weighted_adj_matrix(G, v, e, weight_lower, weight_upper);
+	graphviz(G);
 	Matrix<bool> ans = TransitiveClosure(G);
 	// FloydWarshall
 	Matrix<Weight<int>> W(v, v);

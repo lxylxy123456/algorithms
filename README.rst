@@ -473,6 +473,7 @@ Directory Structure
 Supplementary Files
 ===================
 * ``Graph.hpp``, ``GraphMain.cpp``, ``GraphTest.cpp``: ``Graph``-related classes
+* ``graph_utils.hpp``: utility functions for graphs
 * ``output_integers.hpp``: print a vector
 * ``print_ptr.hpp``: print a pointer
 * ``print_tree.hpp``: print a tree using ASCII art (inspired by UBC CS221)

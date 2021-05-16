@@ -22,6 +22,7 @@
 #include <iostream>
 
 #include "DFS.hpp"
+#include "graph_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;

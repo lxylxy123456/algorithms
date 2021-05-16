@@ -23,6 +23,7 @@
 #include <vector>
 
 #include "BellmanFord.hpp"
+#include "graph_utils.hpp"
 #include "test_utils.hpp"
 #include "utils.hpp"
 

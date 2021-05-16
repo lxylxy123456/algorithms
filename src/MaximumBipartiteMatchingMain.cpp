@@ -21,6 +21,7 @@
 #include <iostream>
 
 #include "FordFulkerson.hpp"
+#include "graph_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -39,6 +40,6 @@ int main(int argc, char *argv[]) {
 		if (ans.find(e) != ans.end())
 			std::cout << " [style=bold]";
 	};
-	G.graphviz(f1, f2);
+	graphviz(G, f1, f2);
 	return 0;
 }

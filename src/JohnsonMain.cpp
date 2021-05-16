@@ -22,6 +22,7 @@
 
 #include "Dijkstra.hpp"
 #include "SquareMatrixMultiply.hpp"
+#include "graph_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
