@@ -156,19 +156,6 @@ class Graph {
 		virtual void transpose() = 0;
 		virtual ~Graph() {}
 		typedef T vertex_type;
-		/*
-		// TODO: create a GraphIterator class outside
-		template <typename I>
-		class iterator {
-			public:
-				iterator(I itr): itr(itr) {}
-				void operator++(int) { itr++; }
-				Edge<T> operator*() { return *itr; }
-				T s() { return itr.s(); }
-				T d() { return itr.d(); }
-				I itr;
-		};
-		*/
 		bool dir;
 		uset<T> V;
 };
