@@ -1,5 +1,5 @@
 //
-//  algorithm - some algorithms in "Introduction to Algorithms", third edition
+//  algorithms - some algorithms in "Introduction to Algorithms", third edition
 //  Copyright (C) 2018  lxylxy123456
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include <vector>
 
 #include "Graph.hpp"
+#include "graph_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -33,8 +34,8 @@ int main(int argc, char *argv[]) {
 	const int weight_lower = get_argv<int>(argc, argv, 3, 0);
 	const int weight_upper = get_argv<int>(argc, argv, 4, e);
 	WeightedAdjMatrix<size_t, int> G(dir);
-	G.random_graph(v, e, weight_lower, weight_upper);
-	G.graphviz();
+	random_weighted_adj_matrix(G, v, e, weight_lower, weight_upper);
+	graphviz(G);
 	std::cout << std::endl;
 	Matrix<Weight<int>> W(v, v);
 	G.to_matrix(W);

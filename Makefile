@@ -1,5 +1,5 @@
 #
-#  algorithm - some algorithms in "Introduction to Algorithms", third edition
+#  algorithms - some algorithms in "Introduction to Algorithms", third edition
 #  Copyright (C) 2018  lxylxy123456
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -35,10 +35,8 @@ test: $(TESTS)
 
 valgrind: $(VALGRIND)
 
-bin:
-	mkdir bin
-
-$(TARGETS): bin/%: src/%.cpp bin
+$(TARGETS): bin/%: src/%.cpp
+	@mkdir -p bin
 	$(CXX) $(CXXFLAGS) -MMD -MF $(patsubst %,%.d,$@) -I include/ -o $@ $<
 
 $(TESTS): test/%: bin/%

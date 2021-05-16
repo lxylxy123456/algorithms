@@ -1,5 +1,5 @@
 //
-//  algorithm - some algorithms in "Introduction to Algorithms", third edition
+//  algorithms - some algorithms in "Introduction to Algorithms", third edition
 //  Copyright (C) 2020  lxylxy123456
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -18,25 +18,28 @@
 
 #include "Graph.hpp"
 
+#include <cassert>
 #include <iostream>
 
 #include "SquareMatrixMultiply.hpp"
+#include "graph_utils.hpp"
 #include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
 
-template <typename T>
-void graph_test(const size_t v, const size_t e) {
-	for (size_t dir = 0; dir <= 1; dir++) {
-		T G(dir);
+template <typename GT>
+void graph_test(const typename GT::vertex_type v, const std::size_t e) {
+	using T = typename GT::vertex_type;
+	for (std::size_t dir = 0; dir <= 1; dir++) {
+		GT G(dir);
 		random_graph(G, v, e);
-		for (auto i = G.all_edges(); !i.end(); i++)
+		for (typename GT::iterator i = G.all_edges(); !i.end(); i++)
 			std::cout << *i << std::endl;
 		std::cout << std::endl;
-		for (auto i = G.V.begin(); i != G.V.end(); i++) {
+		for (uset<T>::iterator i = G.V.begin(); i != G.V.end(); i++) {
 			std::cout << *i << std::endl;
-			for (auto j = G.edges_from(*i); !j.end(); j++)
+			for (typename GT::iterator j = G.edges_from(*i); !j.end(); j++)
 				std::cout << '\t' << *j << std::endl;
 		}
 		std::cout << std::endl;
@@ -47,16 +50,85 @@ void graph_test(const size_t v, const size_t e) {
 		}
 		std::cout << std::endl;
 	}
+	for (std::size_t dir = 0; dir <= 1; dir++) {
+		// Constant test for iterators
+		GT G(dir);
+		G.add_edge(0, 1);
+		G.add_edge(1, 2);
+		G.add_edge(1, 0);
+		G.add_edge(3, 4);
+		G.add_edge(4, 4);
+		{
+			uset<int> expected = {1, 102, 100, 304, 404};
+			if (!dir)
+				expected.erase(100);
+			for (typename GT::iterator i = G.all_edges(); !i.end(); i++) {
+				int a = i.s() * 100 + i.d();
+				assert(expected.find(a) != expected.end());
+				expected.erase(a);
+			}
+			assert(expected.size() == 0);
+		}
+		{
+			uset<int> expected = {100, 102};
+			for (typename GT::iterator i = G.edges_from(1); !i.end(); i++) {
+				int a = i.s() * 100 + i.d();
+				assert(expected.find(a) != expected.end());
+				expected.erase(a);
+			}
+			assert(expected.size() == 0);
+		}
+		{
+			uset<int> expected = {};
+			if (!dir)
+				expected.insert(201);
+			for (typename GT::iterator i = G.edges_from(2); !i.end(); i++) {
+				int a = i.s() * 100 + i.d();
+				assert(expected.find(a) != expected.end());
+				expected.erase(a);
+			}
+			assert(expected.size() == 0);
+		}
+		{
+			uset<int> expected = {304};
+			for (typename GT::iterator i = G.edges_from(3); !i.end(); i++) {
+				int a = i.s() * 100 + i.d();
+				assert(expected.find(a) != expected.end());
+				expected.erase(a);
+			}
+			assert(expected.size() == 0);
+		}
+		{
+			uset<int> expected = {404};
+			if (!dir)
+				expected.insert(403);
+			for (typename GT::iterator i = G.edges_from(4); !i.end(); i++) {
+				int a = i.s() * 100 + i.d();
+				assert(expected.find(a) != expected.end());
+				expected.erase(a);
+			}
+			assert(expected.size() == 0);
+		}
+		{
+			uset<int> expected = {};
+			for (typename GT::iterator i = G.edges_from(5); !i.end(); i++) {
+				int a = i.s() * 100 + i.d();
+				assert(expected.find(a) != expected.end());
+				expected.erase(a);
+			}
+			assert(expected.size() == 0);
+		}
+	}
 }
 
 template <typename T, typename WT>
-void graph_weighted_test(const size_t v, const size_t e) {
-	for (size_t dir = 0; dir <= 1; dir++) {
+void graph_weighted_test(const T v, const std::size_t e) {
+	for (std::size_t dir = 0; dir <= 1; dir++) {
 		WeightedAdjMatrix<T, WT> G(dir);
-		G.random_graph(v, e, 1 - e, e);
-		G.graphviz();
+		random_weighted_adj_matrix(G, v, e, (WT) (1 - e), (WT) e);
+		graphviz(G);
 		std::cout << std::endl;
-		Matrix<Weight<int>> M(v, v);
+		Matrix<Weight<WT>> M(v, v);
 		G.to_matrix(M);
 		std::cout << M;
 		std::cout << std::endl;
@@ -65,13 +137,19 @@ void graph_weighted_test(const size_t v, const size_t e) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	const size_t v = 5;
-	const size_t e = 10;
-	std::cout << "GraphAdjList" << std::endl;
-	graph_test<GraphAdjList<size_t>>(v, e);
-	std::cout << "GraphAdjMatrix" << std::endl;
-	graph_test<GraphAdjMatrix<size_t>>(v, e);
-	std::cout << "WeightedAdjMatrix" << std::endl;
-	graph_weighted_test<size_t, int>(v, e);
+	const std::size_t v = 5;
+	const std::size_t e = 10;
+	std::cout << "GraphAdjList<size_t>" << std::endl;
+	graph_test<GraphAdjList<std::size_t>>(v, e);
+	std::cout << "GraphAdjMatrix<size_t>" << std::endl;
+	graph_test<GraphAdjMatrix<std::size_t>>(v, e);
+	std::cout << "WeightedAdjMatrix<size_t, int>" << std::endl;
+	graph_weighted_test<std::size_t, int>(v, e);
+	std::cout << "GraphAdjList<int>" << std::endl;
+	graph_test<GraphAdjList<int>>(v, e);
+	std::cout << "GraphAdjMatrix<int>" << std::endl;
+	graph_test<GraphAdjMatrix<int>>(v, e);
+	std::cout << "WeightedAdjMatrix<int, long long int>" << std::endl;
+	graph_weighted_test<int, long long int>(v, e);
 	return 0;
 }

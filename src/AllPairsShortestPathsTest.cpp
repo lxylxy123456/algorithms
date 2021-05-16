@@ -1,5 +1,5 @@
 //
-//  algorithm - some algorithms in "Introduction to Algorithms", third edition
+//  algorithms - some algorithms in "Introduction to Algorithms", third edition
 //  Copyright (C) 2020  lxylxy123456
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include <vector>
 
 #include "FloydWarshall.hpp"
+#include "graph_utils.hpp"
 #include "test_utils.hpp"
 #include "utils.hpp"
 
@@ -32,8 +33,8 @@ int test(size_t v, size_t e) {
 	const int weight_lower = 0;
 	const int weight_upper = e;
 	WeightedAdjMatrix<size_t, int> G(dir);
-	G.random_graph(v, e, weight_lower, weight_upper);
-	G.graphviz();
+	random_weighted_adj_matrix(G, v, e, weight_lower, weight_upper);
+	graphviz(G);
 	Matrix<Weight<int>> W(v, v);
 	G.to_matrix(W);
 	Matrix<Weight<int>> ans1 = SlowAllPairsShortestPaths(W);

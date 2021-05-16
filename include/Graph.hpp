@@ -1,5 +1,5 @@
 //
-//  algorithm - some algorithms in "Introduction to Algorithms", third edition
+//  algorithms - some algorithms in "Introduction to Algorithms", third edition
 //  Copyright (C) 2018  lxylxy123456
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -23,13 +23,10 @@
 #include <cassert>
 #include <functional>
 #include <iostream>
-#include <random>
 #include <unordered_map>
 #include <unordered_set>
-#include <vector>
 
 #include "SquareMatrixMultiply.hpp"
-#include "random_integers.hpp"
 
 namespace algorithms {
 
@@ -142,148 +139,6 @@ class T_ptr {
 };
 
 template <typename T>
-class EdgeIteratorAL1 {
-	public:
-		EdgeIteratorAL1(umap<T, uset<T>>& E, bool direction): dir(direction) {
-			mbegin = E.begin();
-			mend = E.end();
-			if (mbegin != mend) {
-				sbegin = mbegin->second.begin();
-				send = mbegin->second.end();
-			}
-			next();
-		}
-		void operator++(int) {
-			if (sbegin != send)
-				sbegin++;
-			next();
-		}
-		void next() {
-			if (mbegin != mend)
-				while (sbegin == send || (!dir && s() > d())) {
-					if (sbegin == send) {
-						mbegin++;
-						if (mbegin == mend)
-							break;
-						sbegin = mbegin->second.begin();
-						send = mbegin->second.end();
-					} else
-						sbegin++;
-				}
-		}
-		bool end() {
-			return mbegin == mend;
-		}
-		Edge<T> operator*() {
-			return Edge<T>(mbegin->first, *sbegin, dir);
-		}
-		T s() { return mbegin->first; }
-		T d() { return *sbegin; }
-		bool dir;
-		umap<T, uset<T>>::iterator mbegin, mend;
-		uset<T>::iterator sbegin, send;
-};
-
-template <typename T>
-class EdgeIteratorAL2 {
-	public:
-		EdgeIteratorAL2(T ss, uset<T>& E, bool direction): S(ss),dir(direction){
-			sbegin = E.begin();
-			send = E.end();
-		}
-		void operator++(int) {
-			if (sbegin != send)
-				sbegin++;
-		}
-		bool end() {
-			return sbegin == send;
-		}
-		Edge<T> operator*() {
-			return Edge<T>(S, *sbegin, dir);
-		}
-		T s() { return S; }
-		T d() { return *sbegin; }
-		T S;
-		bool dir;
-		uset<T>::iterator sbegin, send;
-};
-
-template <typename T>
-class EdgeIteratorAM1 {
-	public:
-		EdgeIteratorAM1(umap<T, umap<T, bool>>& E, bool direction) {
-			dir = direction;
-			mbegin = E.begin();
-			mend = E.end();
-			if (mbegin != mend) {
-				sbegin = mbegin->second.begin();
-				send = mbegin->second.end();
-			}
-			next();
-		}
-		void operator++(int) {
-			if (sbegin != send)
-				sbegin++;
-			next();
-		}
-		void next() {
-			if (mbegin != mend)
-				while (sbegin == send || !sbegin->second || (!dir && s()>d())) {
-					if (sbegin == send) {
-						mbegin++;
-						if (mbegin == mend)
-							break;
-						sbegin = mbegin->second.begin();
-						send = mbegin->second.end();
-					} else
-						sbegin++;
-				}
-		}
-		bool end() {
-			return mbegin == mend;
-		}
-		Edge<T> operator*() {
-			return Edge<T>(mbegin->first, sbegin->first, dir);
-		}
-		T s() { return mbegin->first; }
-		T d() { return sbegin->first; }
-		bool dir;
-		umap<T, umap<T, bool>>::iterator mbegin, mend;
-		umap<T, bool>::iterator sbegin, send;
-};
-
-template <typename T>
-class EdgeIteratorAM2 {
-	public:
-		EdgeIteratorAM2(T ss, umap<T, bool>& E, bool direction): S(ss) {
-			dir = direction;
-			sbegin = E.begin();
-			send = E.end();
-			next();
-		}
-		void operator++(int) {
-			if (sbegin != send)
-				sbegin++;
-			next();
-		}
-		void next() {
-			while (sbegin != send && !sbegin->second)
-				sbegin++;
-		}
-		bool end() {
-			return sbegin == send;
-		}
-		Edge<T> operator*() {
-			return Edge<T>(S, sbegin->first, dir);
-		}
-		T s() { return S; }
-		T d() { return sbegin->first; }
-		T S;
-		bool dir;
-		umap<T, bool>::iterator sbegin, send;
-};
-
-template <typename T>
 class Graph {
 	public:
 		Graph(bool directed): dir(directed), V() {}
@@ -308,6 +163,50 @@ class Graph {
 template <typename T>
 class GraphAdjList: public Graph<T> {
 	public:
+		class iterator {
+			public:
+				iterator(umap<T, uset<T>>::iterator mbegin,
+							umap<T, uset<T>>::iterator mend, bool direction,
+							bool rm_reverse):
+							dir(direction), rm_reverse(rm_reverse),
+							mbegin(mbegin), mend(mend) {
+					if (mbegin != mend) {
+						sbegin = mbegin->second.begin();
+						send = mbegin->second.end();
+					}
+					next();
+				}
+				void operator++(int) {
+					if (sbegin != send)
+						sbegin++;
+					next();
+				}
+				void next() {
+					if (mbegin != mend)
+						while (sbegin == send ||
+								(!dir && rm_reverse && s() > d())) {
+							if (sbegin == send) {
+								mbegin++;
+								if (mbegin == mend)
+									break;
+								sbegin = mbegin->second.begin();
+								send = mbegin->second.end();
+							} else
+								sbegin++;
+						}
+				}
+				bool end() {
+					return mbegin == mend;
+				}
+				Edge<T> operator*() {
+					return Edge<T>(mbegin->first, *sbegin, dir);
+				}
+				T s() { return mbegin->first; }
+				T d() { return *sbegin; }
+				const bool dir, rm_reverse;
+				umap<T, uset<T>>::iterator mbegin, mend;
+				uset<T>::iterator sbegin, send;
+		};
 		GraphAdjList(bool directed): Graph<T>(directed) {}
 		virtual void add_edge(T s, T d) {
 			this->add_vertex(s);
@@ -319,18 +218,24 @@ class GraphAdjList: public Graph<T> {
 		virtual bool is_edge(T u, T v) {
 			return E[u].find(v) != E[u].end();
 		}
-		EdgeIteratorAL1<T> all_edges() {
-			return EdgeIteratorAL1<T>(E, this->dir);
+		typename GraphAdjList<T>::iterator all_edges() {
+			return typename GraphAdjList<T>::iterator(E.begin(), E.end(),
+														this->dir, true);
 		}
-		EdgeIteratorAL2<T> edges_from(T s) {
-			return EdgeIteratorAL2<T>(s, E[s], this->dir);
+		typename GraphAdjList<T>::iterator edges_from(T s) {
+			umap<T, uset<T>>::iterator i = E.find(s), j = i;
+			if (i != E.end())
+				j++;
+			return typename GraphAdjList<T>::iterator(i, j, this->dir, false);
 		}
 		virtual void transpose() {
 			assert(this->dir);
 			umap<T, uset<T>> old_E = E;
 			E.clear();
-			for (auto i = old_E.begin(); i != old_E.end(); i++)
-				for (auto j = i->second.begin(); j != i->second.end(); j++)
+			for (umap<T, uset<T>>::iterator i = old_E.begin(); i != old_E.end();
+				i++)
+				for (uset<T>::iterator j = i->second.begin();
+					j != i->second.end(); j++)
 					E[*j].insert(i->first);
 		}
 		virtual ~GraphAdjList() {}
@@ -340,10 +245,55 @@ class GraphAdjList: public Graph<T> {
 template <typename T>
 class GraphAdjMatrix: public Graph<T> {
 	public:
+		class iterator {
+			public:
+				iterator(umap<T, umap<T, bool>>::iterator mbegin,
+							umap<T, umap<T, bool>>::iterator mend,
+							bool direction, bool rm_reverse):
+							dir(direction), rm_reverse(rm_reverse),
+							mbegin(mbegin), mend(mend) {
+					if (mbegin != mend) {
+						sbegin = mbegin->second.begin();
+						send = mbegin->second.end();
+					}
+					next();
+				}
+				void operator++(int) {
+					if (sbegin != send)
+						sbegin++;
+					next();
+				}
+				void next() {
+					if (mbegin != mend)
+						while (sbegin == send || !sbegin->second ||
+								(!dir && rm_reverse && s() > d())) {
+							if (sbegin == send) {
+								mbegin++;
+								if (mbegin == mend)
+									break;
+								sbegin = mbegin->second.begin();
+								send = mbegin->second.end();
+							} else
+								sbegin++;
+						}
+				}
+				bool end() {
+					return mbegin == mend;
+				}
+				Edge<T> operator*() {
+					return Edge<T>(mbegin->first, sbegin->first, dir);
+				}
+				T s() { return mbegin->first; }
+				T d() { return sbegin->first; }
+				const bool dir, rm_reverse;
+				umap<T, umap<T, bool>>::iterator mbegin, mend;
+				umap<T, bool>::iterator sbegin, send;
+		};
 		GraphAdjMatrix(bool directed): Graph<T>(directed) {}
 		virtual bool add_vertex(T u) {
 			if (Graph<T>::add_vertex(u)) {
-				for (auto i = this->V.begin(); i != this->V.end(); i++) {
+				for (uset<T>::iterator i = this->V.begin(); i != this->V.end();
+					i++) {
 					E[*i][u] = false;
 					E[u][*i] = false;
 				}
@@ -361,16 +311,21 @@ class GraphAdjMatrix: public Graph<T> {
 		virtual bool is_edge(T u, T v) {
 			return E[u][v];
 		}
-		EdgeIteratorAM1<T> all_edges() {
-			return EdgeIteratorAM1<T>(E, this->dir);
+		typename GraphAdjMatrix<T>::iterator all_edges() {
+			return typename GraphAdjMatrix<T>::iterator(E.begin(), E.end(),
+														this->dir, true);
 		}
-		EdgeIteratorAM2<T> edges_from(T s) {
-			return EdgeIteratorAM2<T>(s, E[s], this->dir);
+		typename GraphAdjMatrix<T>::iterator edges_from(T s) {
+			umap<T, umap<T, bool>>::iterator i = E.find(s), j = i;
+			if (i != E.end())
+				j++;
+			return typename GraphAdjMatrix<T>::iterator(i, j, this->dir, false);
 		}
 		virtual void transpose() {
 			assert(this->dir);
-			for (auto i = this->V.begin(); i != this->V.end(); i++)
-				for (auto j = this->V.begin(); j != this->V.end(); j++)
+			for (uset<T>::iterator i = this->V.begin(); i != this->V.end(); i++)
+				for (uset<T>::iterator j = this->V.begin(); j != this->V.end();
+					j++)
 					if (*i < *j)
 						std::swap(E[*i][*j], E[*j][*i]);
 		}
@@ -386,7 +341,7 @@ class WeightedAdjMatrix {
 			if (V.find(u) != V.end())
 				return false;
 			V.insert(u);
-			for (auto i = V.begin(); i != V.end(); i++) {
+			for (uset<T>::iterator i = V.begin(); i != V.end(); i++) {
 				const T& v = *i;
 				if (u == v)
 					E[u][u] = Weight<WT>(0);
@@ -410,50 +365,6 @@ class WeightedAdjMatrix {
 		Weight<WT> get_edge(T u, T v) {
 			return E[u][v];
 		}
-		void random_graph(T v, std::size_t e, WT l, WT h) {
-			for (T i = 0; i < v; i++)
-				add_vertex(i);
-			std::vector<T> d;
-			std::vector<WT> w;
-			random_integers<T>(d, 0, v - 1, 2 * e);
-			random_integers<WT>(w, l, h, e);
-			for (std::size_t i = 0; i < e; i++)
-				add_edge(d[2 * i], d[2 * i + 1], w[i]);
-		}
-		template <typename F1, typename F2>
-		void graphviz(F1 f1, F2 f2) {
-			if (dir)
-				std::cout << "digraph G {" << std::endl;
-			else
-				std::cout << "graph G {" << std::endl;
-			std::cout << '\t';
-			for (auto i = V.begin(); i != V.end(); i++) {
-				std::cout << *i;
-				if (f1(*i))
-					std::cout << "; \n\t";
-				else
-					std::cout << "; ";
-			}
-			std::cout << std::endl;
-			for (auto i = E.begin(); i != E.end(); i++) {
-				for (auto j = i->second.begin(); j != i->second.end(); j++) {
-					if (i->first != j->first && !j->second.inf &&
-						(dir || i->first < j->first)) {
-						Edge<T> e(i->first, j->first, dir);
-						std::cout << '\t' << e;
-						std::cout << " [label=\"" << j->second << "\"";
-						f2(e, j->second);
-						std::cout << "]; " << std::endl;
-					}
-				}
-			}
-			std::cout << "}" << std::endl;
-		}
-		void graphviz() {
-			auto f1 = [](T v) { return false; };
-			auto f2 = [](Edge<T> e, Weight<WT> w) {};
-			graphviz(f1, f2);
-		}
 		void to_matrix(Matrix<Weight<WT>>& ans) {
 			const std::size_t n = V.size();
 			for (std::size_t i = 0; i < n; i++)
@@ -468,86 +379,19 @@ class WeightedAdjMatrix {
 				ans.data.push_back(row);
 			}
 		}
+		typedef T vertex_type;
 		bool dir;
 		uset<T> V;
 		umap<T, umap<T, Weight<WT>>> E;
 };
 
-template <typename T>
-void random_graph(Graph<T>& G, T v, std::size_t e) {
-	for (T i = 0; i < v; i++)
-		G.add_vertex(i);
-	std::vector<T> d;
-	random_integers<T>(d, 0, v - 1, 2 * e);
-	for (std::size_t i = 0; i < e; i++)
-		G.add_edge(d[2 * i], d[2 * i + 1]);
-}
-
-template <typename T>
-void random_dag(Graph<T>& G, T v, std::size_t e) {
-	for (T i = 0; i < v; i++)
-		G.add_vertex(i);
-	std::vector<T> d;
-	random_integers<T>(d, 0, v - 1, 2 * e);
-	for (std::size_t i = 0; i < e; i++) {
-		T a = d[2 * i], b = d[2 * i + 1];
-		if (a < b)
-			G.add_edge(a, b);
-		else if (a > b)
-			G.add_edge(b, a);
-	}
-}
-
-template <typename T>
-void random_flow(Graph<T>& G, T v, std::size_t e) {
-	// disables (u, v) and (v, u)
-	for (T i = 0; i < v; i++)
-		G.add_vertex(i);
-	std::vector<T> d;
-	random_integers<T>(d, 0, v - 1, 2 * e);
-	for (std::size_t i = 0; i < e; i++) {
-		T a = d[2 * i], b = d[2 * i + 1];
-		if (a != b && !G.is_edge(a, b) && !G.is_edge(b, a))
-			G.add_edge(a, b);
-	}
-}
-
-template <typename WT, typename T, typename GT>
-void random_weight(GT& G, umap_WT& w, WT l, WT u) {
-	std::uniform_int_distribution<T> d(l, u);
-	for (auto i = G.all_edges(); !i.end(); i++)
-		w[*i] = random_integer(d);
-}
-
-template <typename T, typename F1, typename F2>
-void graphviz(T& G, F1 f1, F2 f2) {
-	if (G.dir)
-		std::cout << "digraph G {" << std::endl;
-	else
-		std::cout << "graph G {" << std::endl;
-	std::cout << '\t';
-	for (auto i = G.V.begin(); i != G.V.end(); i++) {
-		std::cout << *i;
-		if (f1(*i))
-			std::cout << "; \n\t";
-		else
-			std::cout << "; ";
-	}
-	std::cout << std::endl;
-	for (auto i = G.all_edges(); !i.end(); i++) {
-		std::cout << '\t' << *i;
-		f2(*i);
-		std::cout << "; " << std::endl;
-	}
-	std::cout << "}" << std::endl;
-}
-
-template <typename T>
-void graphviz(T& G) {
-	auto f1 = [](typename T::vertex_type v) { return false; };
-	auto f2 = [](Edge<typename T::vertex_type>) {};
-	graphviz(G, f1, f2);
-}
+template <typename GT>
+class Bipartite: public GT {
+	public:
+		using T = typename GT::vertex_type;
+		Bipartite(bool direction): GT(direction) {}
+		uset<T> L, R;
+};
 
 }
 

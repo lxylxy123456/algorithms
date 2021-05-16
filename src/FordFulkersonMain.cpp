@@ -1,5 +1,5 @@
 //
-//  algorithm - some algorithms in "Introduction to Algorithms", third edition
+//  algorithms - some algorithms in "Introduction to Algorithms", third edition
 //  Copyright (C) 2018  lxylxy123456
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 #include <iostream>
 
 #include "BFS.hpp"
+#include "graph_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
