@@ -232,8 +232,10 @@ class GraphAdjList: public Graph<T> {
 			assert(this->dir);
 			umap<T, uset<T>> old_E = E;
 			E.clear();
-			for (auto i = old_E.begin(); i != old_E.end(); i++)
-				for (auto j = i->second.begin(); j != i->second.end(); j++)
+			for (umap<T, uset<T>>::iterator i = old_E.begin(); i != old_E.end();
+				i++)
+				for (uset<T>::iterator j = i->second.begin();
+					j != i->second.end(); j++)
 					E[*j].insert(i->first);
 		}
 		virtual ~GraphAdjList() {}
@@ -290,7 +292,8 @@ class GraphAdjMatrix: public Graph<T> {
 		GraphAdjMatrix(bool directed): Graph<T>(directed) {}
 		virtual bool add_vertex(T u) {
 			if (Graph<T>::add_vertex(u)) {
-				for (auto i = this->V.begin(); i != this->V.end(); i++) {
+				for (uset<T>::iterator i = this->V.begin(); i != this->V.end();
+					i++) {
 					E[*i][u] = false;
 					E[u][*i] = false;
 				}
@@ -320,8 +323,9 @@ class GraphAdjMatrix: public Graph<T> {
 		}
 		virtual void transpose() {
 			assert(this->dir);
-			for (auto i = this->V.begin(); i != this->V.end(); i++)
-				for (auto j = this->V.begin(); j != this->V.end(); j++)
+			for (uset<T>::iterator i = this->V.begin(); i != this->V.end(); i++)
+				for (uset<T>::iterator j = this->V.begin(); j != this->V.end();
+					j++)
 					if (*i < *j)
 						std::swap(E[*i][*j], E[*j][*i]);
 		}
@@ -337,7 +341,7 @@ class WeightedAdjMatrix {
 			if (V.find(u) != V.end())
 				return false;
 			V.insert(u);
-			for (auto i = V.begin(); i != V.end(); i++) {
+			for (uset<T>::iterator i = V.begin(); i != V.end(); i++) {
 				const T& v = *i;
 				if (u == v)
 					E[u][u] = Weight<WT>(0);

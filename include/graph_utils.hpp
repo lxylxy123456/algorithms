@@ -35,7 +35,8 @@ void graphviz(T& G, F1 f1, F2 f2) {
 	else
 		std::cout << "graph G {" << std::endl;
 	std::cout << '\t';
-	for (auto i = G.V.begin(); i != G.V.end(); i++) {
+	for (uset<typename T::vertex_type>::iterator i = G.V.begin();
+		i != G.V.end(); i++) {
 		std::cout << *i;
 		if (f1(*i))
 			std::cout << "; \n\t";
@@ -43,7 +44,7 @@ void graphviz(T& G, F1 f1, F2 f2) {
 			std::cout << "; ";
 	}
 	std::cout << std::endl;
-	for (auto i = G.all_edges(); !i.end(); i++) {
+	for (typename T::iterator i = G.all_edges(); !i.end(); i++) {
 		std::cout << '\t' << *i;
 		f2(*i);
 		std::cout << "; " << std::endl;
@@ -65,7 +66,7 @@ void graphviz(WeightedAdjMatrix<T, WT> G, F1 f1, F2 f2) {
 	else
 		std::cout << "graph G {" << std::endl;
 	std::cout << '\t';
-	for (auto i = G.V.begin(); i != G.V.end(); i++) {
+	for (uset<T>::iterator i = G.V.begin(); i != G.V.end(); i++) {
 		std::cout << *i;
 		if (f1(*i))
 			std::cout << "; \n\t";
@@ -73,8 +74,10 @@ void graphviz(WeightedAdjMatrix<T, WT> G, F1 f1, F2 f2) {
 			std::cout << "; ";
 	}
 	std::cout << std::endl;
-	for (auto i = G.E.begin(); i != G.E.end(); i++) {
-		for (auto j = i->second.begin(); j != i->second.end(); j++) {
+	for (umap<T, umap<T, Weight<WT>>>::iterator i = G.E.begin(); i != G.E.end();
+		i++) {
+		for (umap<T, Weight<WT>>::iterator j = i->second.begin();
+			j != i->second.end(); j++) {
 			if (i->first != j->first && !j->second.inf &&
 				(G.dir || i->first < j->first)) {
 				Edge<T> e(i->first, j->first, G.dir);
@@ -104,7 +107,8 @@ void graphviz(Bipartite<GT> G, F1 f1, F2 f2) {
 	std::cout << '\t';
 	std::cout << "subgraph clusterL {\n\t";
 	bool newline = true;
-	for (auto i = G.L.begin(); i != G.L.end(); i++) {
+	for (uset<typename GT::vertex_type>::iterator i = G.L.begin();
+		i != G.L.end(); i++) {
 		if (newline)
 			std::cout << '\t';
 		std::cout << *i;
@@ -122,7 +126,8 @@ void graphviz(Bipartite<GT> G, F1 f1, F2 f2) {
 	std::cout << '\t';
 	std::cout << "subgraph clusterR {\n\t";
 	newline = true;
-	for (auto i = G.R.begin(); i != G.R.end(); i++) {
+	for (uset<typename GT::vertex_type>::iterator i = G.R.begin();
+		i != G.R.end(); i++) {
 		if (newline)
 			std::cout << '\t';
 		std::cout << *i;
@@ -137,7 +142,7 @@ void graphviz(Bipartite<GT> G, F1 f1, F2 f2) {
 	if (!newline)
 		std::cout << "\n\t";
 	std::cout << '}' << std::endl;
-	for (auto i = G.all_edges(); !i.end(); i++) {
+	for (typename GT::iterator i = G.all_edges(); !i.end(); i++) {
 		std::cout << '\t' << *i;
 		f2(*i);
 		std::cout << "; " << std::endl;
@@ -194,7 +199,7 @@ void random_flow(Graph<T>& G, T v, std::size_t e) {
 template <typename WT, typename T, typename GT>
 void random_weight(GT& G, umap_WT& w, WT l, WT u) {
 	std::uniform_int_distribution<T> d(l, u);
-	for (auto i = G.all_edges(); !i.end(); i++)
+	for (typename GT::iterator i = G.all_edges(); !i.end(); i++)
 		w[*i] = random_integer(d);
 }
 
