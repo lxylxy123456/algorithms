@@ -18,6 +18,7 @@
 
 #include "Graph.hpp"
 
+#include <cassert>
 #include <iostream>
 
 #include "SquareMatrixMultiply.hpp"

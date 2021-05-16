@@ -174,8 +174,10 @@ template <typename T>
 class EdgeIteratorAL1 {
 	public:
 		EdgeIteratorAL1(umap<T, uset<T>>::iterator mbegin,
-						umap<T, uset<T>>::iterator mend, bool direction):
-						dir(direction), mbegin(mbegin), mend(mend) {
+						umap<T, uset<T>>::iterator mend, bool direction,
+						bool rm_reverse):
+						dir(direction), rm_reverse(rm_reverse), mbegin(mbegin),
+						mend(mend) {
 			if (mbegin != mend) {
 				sbegin = mbegin->second.begin();
 				send = mbegin->second.end();
@@ -189,7 +191,7 @@ class EdgeIteratorAL1 {
 		}
 		void next() {
 			if (mbegin != mend)
-				while (sbegin == send || (!dir && s() > d())) {
+				while (sbegin == send || (!dir && rm_reverse && s() > d())) {
 					if (sbegin == send) {
 						mbegin++;
 						if (mbegin == mend)
@@ -208,32 +210,8 @@ class EdgeIteratorAL1 {
 		}
 		T s() { return mbegin->first; }
 		T d() { return *sbegin; }
-		bool dir;
+		bool dir, rm_reverse;
 		umap<T, uset<T>>::iterator mbegin, mend;
-		uset<T>::iterator sbegin, send;
-};
-
-template <typename T>
-class EdgeIteratorAL2 {
-	public:
-		EdgeIteratorAL2(T ss, uset<T>& E, bool direction): S(ss),dir(direction){
-			sbegin = E.begin();
-			send = E.end();
-		}
-		void operator++(int) {
-			if (sbegin != send)
-				sbegin++;
-		}
-		bool end() {
-			return sbegin == send;
-		}
-		Edge<T> operator*() {
-			return Edge<T>(S, *sbegin, dir);
-		}
-		T s() { return S; }
-		T d() { return *sbegin; }
-		T S;
-		bool dir;
 		uset<T>::iterator sbegin, send;
 };
 
@@ -298,12 +276,11 @@ class GraphAdjList: public Graph<T> {
 			return E[u].find(v) != E[u].end();
 		}
 		EdgeIteratorAL1<T> all_edges() {
-			return EdgeIteratorAL1<T>(E.begin(), E.end(), this->dir);
+			return EdgeIteratorAL1<T>(E.begin(), E.end(), this->dir, true);
 		}
-		EdgeIteratorAL2<T> edges_from(T s) {
-//			umap<T, uset<T>>::iterator i = E.find(s), j = i;
-//			return EdgeIteratorAL1<T>(i, j, this->dir);
-			return EdgeIteratorAL2<T>(s, E[s], this->dir);
+		EdgeIteratorAL1<T> edges_from(T s) {
+			umap<T, uset<T>>::iterator i = E.find(s), j = i;
+			return EdgeIteratorAL1<T>(i, ++j, this->dir, false);
 		}
 		virtual void transpose() {
 			assert(this->dir);
