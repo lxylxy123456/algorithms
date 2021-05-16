@@ -51,7 +51,7 @@ T random_integer(std::uniform_int_distribution<T> dis) {
 
 void random_integers(std::vector<int>& a, int l, int u, size_t size) {
 	a.reserve(size);
-    std::uniform_int_distribution<int> d(l, u);
+	std::uniform_int_distribution<int> d(l, u);
 	for (size_t i = 0; i < size; i++)
 		a.push_back(d(random_gen));
 }
@@ -59,7 +59,7 @@ void random_integers(std::vector<int>& a, int l, int u, size_t size) {
 template <typename T>
 void random_integers(std::vector<T>& a, T l, T u, size_t size) {
 	a.reserve(size);
-    std::uniform_int_distribution<T> d(l, u);
+	std::uniform_int_distribution<T> d(l, u);
 	for (size_t i = 0; i < size; i++)
 		a.push_back(d(random_gen));
 }

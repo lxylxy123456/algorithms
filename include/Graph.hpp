@@ -31,8 +31,6 @@
 #include "SquareMatrixMultiply.hpp"
 #include "random_integers.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 #define uset typename std::unordered_set
@@ -62,16 +60,16 @@ class Edge {
 
 template <typename T>
 struct EdgeHash {
-    std::size_t operator()(Edge<T> t) const {
-	    size_t a = std::hash<T>()(t.s);
-	    size_t b = std::hash<T>()(t.d);
-    	if (t.dir) {
-		    const size_t shift = sizeof(size_t) * 4;
-		    size_t B = b >> shift | b << shift;
-		    return a ^ B;
-        } else
-        	return a ^ b ^ (a * b);
-    }
+	std::size_t operator()(Edge<T> t) const {
+		std::size_t a = std::hash<T>()(t.s);
+		std::size_t b = std::hash<T>()(t.d);
+		if (t.dir) {
+			const std::size_t shift = sizeof(std::size_t) * 4;
+			std::size_t B = b >> shift | b << shift;
+			return a ^ B;
+		} else
+			return a ^ b ^ (a * b);
+	}
 };
 
 template <typename T>
@@ -412,14 +410,14 @@ class WeightedAdjMatrix {
 		Weight<WT> get_edge(T u, T v) {
 			return E[u][v];
 		}
-		void random_graph(T v, size_t e, WT l, WT h) {
+		void random_graph(T v, std::size_t e, WT l, WT h) {
 			for (T i = 0; i < v; i++)
 				add_vertex(i);
 			std::vector<T> d;
 			std::vector<WT> w;
 			random_integers<T>(d, 0, v - 1, 2 * e);
 			random_integers<WT>(w, l, h, e);
-			for (size_t i = 0; i < e; i++)
+			for (std::size_t i = 0; i < e; i++)
 				add_edge(d[2 * i], d[2 * i + 1], w[i]);
 		}
 		template <typename F1, typename F2>
@@ -457,15 +455,15 @@ class WeightedAdjMatrix {
 			graphviz(f1, f2);
 		}
 		void to_matrix(Matrix<Weight<WT>>& ans) {
-			const size_t n = V.size();
-			for (size_t i = 0; i < n; i++)
+			const std::size_t n = V.size();
+			for (std::size_t i = 0; i < n; i++)
 				assert(V.find(i) != V.end());
 			ans.cols = ans.rows = n;
 			ans.data.reserve(n);
-			for (size_t i = 0; i < n; i++) {
+			for (std::size_t i = 0; i < n; i++) {
 				MatrixRow<Weight<WT>> row;
 				row.reserve(n);
-				for (size_t j = 0; j < n; j++)
+				for (std::size_t j = 0; j < n; j++)
 					row.push_back(E[i][j]);
 				ans.data.push_back(row);
 			}
@@ -476,22 +474,22 @@ class WeightedAdjMatrix {
 };
 
 template <typename T>
-void random_graph(Graph<T>& G, T v, size_t e) {
+void random_graph(Graph<T>& G, T v, std::size_t e) {
 	for (T i = 0; i < v; i++)
 		G.add_vertex(i);
 	std::vector<T> d;
 	random_integers<T>(d, 0, v - 1, 2 * e);
-	for (size_t i = 0; i < e; i++)
+	for (std::size_t i = 0; i < e; i++)
 		G.add_edge(d[2 * i], d[2 * i + 1]);
 }
 
 template <typename T>
-void random_dag(Graph<T>& G, T v, size_t e) {
+void random_dag(Graph<T>& G, T v, std::size_t e) {
 	for (T i = 0; i < v; i++)
 		G.add_vertex(i);
 	std::vector<T> d;
 	random_integers<T>(d, 0, v - 1, 2 * e);
-	for (size_t i = 0; i < e; i++) {
+	for (std::size_t i = 0; i < e; i++) {
 		T a = d[2 * i], b = d[2 * i + 1];
 		if (a < b)
 			G.add_edge(a, b);
@@ -501,13 +499,13 @@ void random_dag(Graph<T>& G, T v, size_t e) {
 }
 
 template <typename T>
-void random_flow(Graph<T>& G, T v, size_t e) {
+void random_flow(Graph<T>& G, T v, std::size_t e) {
 	// disables (u, v) and (v, u)
 	for (T i = 0; i < v; i++)
 		G.add_vertex(i);
 	std::vector<T> d;
 	random_integers<T>(d, 0, v - 1, 2 * e);
-	for (size_t i = 0; i < e; i++) {
+	for (std::size_t i = 0; i < e; i++) {
 		T a = d[2 * i], b = d[2 * i + 1];
 		if (a != b && !G.is_edge(a, b) && !G.is_edge(b, a))
 			G.add_edge(a, b);
@@ -516,7 +514,7 @@ void random_flow(Graph<T>& G, T v, size_t e) {
 
 template <typename WT, typename T, typename GT>
 void random_weight(GT& G, umap_WT& w, WT l, WT u) {
-    std::uniform_int_distribution<T> d(l, u);
+	std::uniform_int_distribution<T> d(l, u);
 	for (auto i = G.all_edges(); !i.end(); i++)
 		w[*i] = random_integer(d);
 }
