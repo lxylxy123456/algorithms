@@ -377,18 +377,6 @@ class WeightedAdjMatrix {
 		Weight<WT> get_edge(T u, T v) {
 			return E[u][v];
 		}
-		void random_graph(T v, std::size_t e, WT l, WT h) {
-			// TODO: move this outside this class
-			// TODO: move this to something like graph_utils.hpp
-			for (T i = 0; i < v; i++)
-				add_vertex(i);
-			std::vector<T> d;
-			std::vector<WT> w;
-			random_integers<T>(d, 0, v - 1, 2 * e);
-			random_integers<WT>(w, l, h, e);
-			for (std::size_t i = 0; i < e; i++)
-				add_edge(d[2 * i], d[2 * i + 1], w[i]);
-		}
 		void to_matrix(Matrix<Weight<WT>>& ans) {
 			const std::size_t n = V.size();
 			for (std::size_t i = 0; i < n; i++)
@@ -416,69 +404,6 @@ class Bipartite: public GT {
 		Bipartite(bool direction): GT(direction) {}
 		uset<T> L, R;
 };
-
-template <typename GT, typename T>
-void random_bipartite(Bipartite<GT>& G, T vl, T vr, size_t e) {
-	for (T i = 0; i < vl; i++) {
-		G.add_vertex(i);
-		G.L.insert(i);
-	}
-	for (T i = vl; i < vl + vr; i++) {
-		G.add_vertex(i);
-		G.R.insert(i);
-	}
-	std::vector<T> dl, dr;
-	random_integers<T>(dl, 0, vl - 1, e);
-	random_integers<T>(dr, vl, vl + vr - 1, e);
-	for (size_t i = 0; i < e; i++)
-		G.add_edge(dl[i], dr[i]);
-}
-
-template <typename T>
-void random_graph(Graph<T>& G, T v, std::size_t e) {
-	for (T i = 0; i < v; i++)
-		G.add_vertex(i);
-	std::vector<T> d;
-	random_integers<T>(d, 0, v - 1, 2 * e);
-	for (std::size_t i = 0; i < e; i++)
-		G.add_edge(d[2 * i], d[2 * i + 1]);
-}
-
-template <typename T>
-void random_dag(Graph<T>& G, T v, std::size_t e) {
-	for (T i = 0; i < v; i++)
-		G.add_vertex(i);
-	std::vector<T> d;
-	random_integers<T>(d, 0, v - 1, 2 * e);
-	for (std::size_t i = 0; i < e; i++) {
-		T a = d[2 * i], b = d[2 * i + 1];
-		if (a < b)
-			G.add_edge(a, b);
-		else if (a > b)
-			G.add_edge(b, a);
-	}
-}
-
-template <typename T>
-void random_flow(Graph<T>& G, T v, std::size_t e) {
-	// disables (u, v) and (v, u)
-	for (T i = 0; i < v; i++)
-		G.add_vertex(i);
-	std::vector<T> d;
-	random_integers<T>(d, 0, v - 1, 2 * e);
-	for (std::size_t i = 0; i < e; i++) {
-		T a = d[2 * i], b = d[2 * i + 1];
-		if (a != b && !G.is_edge(a, b) && !G.is_edge(b, a))
-			G.add_edge(a, b);
-	}
-}
-
-template <typename WT, typename T, typename GT>
-void random_weight(GT& G, umap_WT& w, WT l, WT u) {
-	std::uniform_int_distribution<T> d(l, u);
-	for (auto i = G.all_edges(); !i.end(); i++)
-		w[*i] = random_integer(d);
-}
 
 }
 

@@ -125,7 +125,7 @@ template <typename T, typename WT>
 void graph_weighted_test(const T v, const std::size_t e) {
 	for (std::size_t dir = 0; dir <= 1; dir++) {
 		WeightedAdjMatrix<T, WT> G(dir);
-		G.random_graph(v, e, 1 - e, e);
+		random_weighted_adj_matrix(G, v, e, 1 - e, e);
 		graphviz(G);
 		std::cout << std::endl;
 		Matrix<Weight<WT>> M(v, v);

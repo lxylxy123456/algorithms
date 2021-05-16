@@ -33,7 +33,7 @@ int test(size_t v, size_t e) {
 	const int weight_lower = 0;
 	const int weight_upper = e;
 	WeightedAdjMatrix<size_t, int> G(dir);
-	G.random_graph(v, e, weight_lower, weight_upper);
+	random_weighted_adj_matrix(G, v, e, weight_lower, weight_upper);
 	graphviz(G);
 	Matrix<bool> ans = TransitiveClosure(G);
 	// FloydWarshall
