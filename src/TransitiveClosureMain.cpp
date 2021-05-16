@@ -33,7 +33,6 @@ int main(int argc, char *argv[]) {
 	const int weight_lower = get_argv<int>(argc, argv, 3, 0);
 	const int weight_upper = get_argv<int>(argc, argv, 4, e);
 	WeightedAdjMatrix<std::size_t, int> G(dir);
-	WeightedAdjMatrix<size_t, int> G(dir);
 	random_weighted_adj_matrix(G, v, e, weight_lower, weight_upper);
 	std::cout << std::endl;
 	Matrix<bool> ans = TransitiveClosure(G);

@@ -139,11 +139,11 @@ int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
 	const std::size_t v = 5;
 	const std::size_t e = 10;
-	std::cout << "GraphAdjList<size_t>" << std::endl;
+	std::cout << "GraphAdjList<std::size_t>" << std::endl;
 	graph_test<GraphAdjList<std::size_t>>(v, e);
-	std::cout << "GraphAdjMatrix<size_t>" << std::endl;
+	std::cout << "GraphAdjMatrix<std::size_t>" << std::endl;
 	graph_test<GraphAdjMatrix<std::size_t>>(v, e);
-	std::cout << "WeightedAdjMatrix<size_t, int>" << std::endl;
+	std::cout << "WeightedAdjMatrix<std::size_t, int>" << std::endl;
 	graph_weighted_test<std::size_t, int>(v, e);
 	std::cout << "GraphAdjList<int>" << std::endl;
 	graph_test<GraphAdjList<int>>(v, e);
