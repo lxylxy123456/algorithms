@@ -215,7 +215,7 @@ class GraphAdjList: public Graph<T> {
 				}
 				T s() { return mbegin->first; }
 				T d() { return *sbegin; }
-				bool dir, rm_reverse;
+				const bool dir, rm_reverse;
 				umap<T, uset<T>>::iterator mbegin, mend;
 				uset<T>::iterator sbegin, send;
 		};
@@ -231,7 +231,8 @@ class GraphAdjList: public Graph<T> {
 			return E[u].find(v) != E[u].end();
 		}
 		typename GraphAdjList<T>::iterator all_edges() {
-			return typename GraphAdjList<T>::iterator(E.begin(), E.end(), this->dir, true);
+			return typename GraphAdjList<T>::iterator(E.begin(), E.end(),
+														this->dir, true);
 		}
 		typename GraphAdjList<T>::iterator edges_from(T s) {
 			umap<T, uset<T>>::iterator i = E.find(s), j = i;
@@ -294,7 +295,7 @@ class GraphAdjMatrix: public Graph<T> {
 				}
 				T s() { return mbegin->first; }
 				T d() { return sbegin->first; }
-				bool dir, rm_reverse;
+				const bool dir, rm_reverse;
 				umap<T, umap<T, bool>>::iterator mbegin, mend;
 				umap<T, bool>::iterator sbegin, send;
 		};
