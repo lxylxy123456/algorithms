@@ -26,7 +26,7 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 16);
+	const std::size_t n = get_argv(argc, argv, 1, 16);
 	StorageManage<long int> S(n);
 	std::vector<Data<long int>*> allocated;
 	std::cout << "a: alloc" << std::endl;
@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
 				std::cout << static_cast<void*>(ans) << std::endl;
 				break;
 			case 'f':
-				for (size_t i = 0; i < allocated.size(); i++)
+				for (std::size_t i = 0; i < allocated.size(); i++)
 					std::cout << "[" << i << "] = "
 							 << static_cast<void*>(allocated[i]) << std::endl;
 				std::cout << "x = ";

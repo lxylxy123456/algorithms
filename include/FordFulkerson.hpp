@@ -59,9 +59,9 @@ void FordFulkerson(GT& G, umap_WT& c, T s, T t, umap_WT& f) {
 		if (!p.size())
 			break;
 		WT cfp = cf(p[0], p[1]);
-		for (size_t i = 2; i < p.size(); i++)
+		for (std::size_t i = 2; i < p.size(); i++)
 			cfp = std::min(cfp, cf(p[i - 1], p[i]));
-		for (size_t i = 1; i < p.size(); i++) {
+		for (std::size_t i = 1; i < p.size(); i++) {
 			if (G.is_edge(p[i - 1], p[i]))
 				f[Edge<T>(p[i - 1], p[i], G.dir)] += cfp;
 			else

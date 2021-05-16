@@ -92,7 +92,7 @@ class Bipartite: public GT {
 };
 
 template <typename GT, typename T>
-void random_bipartite(Bipartite<GT>& G, T vl, T vr, size_t e) {
+void random_bipartite(Bipartite<GT>& G, T vl, T vr, std::size_t e) {
 	for (T i = 0; i < vl; i++) {
 		G.add_vertex(i);
 		G.L.insert(i);
@@ -104,14 +104,14 @@ void random_bipartite(Bipartite<GT>& G, T vl, T vr, size_t e) {
 	std::vector<T> dl, dr;
 	random_integers<T>(dl, 0, vl - 1, e);
 	random_integers<T>(dr, vl, vl + vr - 1, e);
-	for (size_t i = 0; i < e; i++)
+	for (std::size_t i = 0; i < e; i++)
 		G.add_edge(dl[i], dr[i]);
 }
 
 template <typename GT, typename T>
 void MaximumBipartiteMatching(GT& G, uset<Edge<T>, EdgeHash<T>>& ans) {
 	GraphAdjList<T> GF(true);
-	umap<Edge<T>, T, EdgeHash<size_t>> c, f;
+	umap<Edge<T>, T, EdgeHash<std::size_t>> c, f;
 	T s = G.V.size(), t = s + 1;
 	assert(G.V.find(s) == G.V.end() && G.V.find(t) == G.V.end());
 	for (auto i = G.L.begin(); i != G.L.end(); i++) {

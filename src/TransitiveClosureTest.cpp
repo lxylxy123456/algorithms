@@ -27,11 +27,11 @@
 
 using namespace algorithms;
 
-int test(size_t v, size_t e) {
+int test(std::size_t v, size_t e) {
 	const bool dir = 1;
 	const int weight_lower = 0;
 	const int weight_upper = e;
-	WeightedAdjMatrix<size_t, int> G(dir);
+	WeightedAdjMatrix<std::size_t, int> G(dir);
 	G.random_graph(v, e, weight_lower, weight_upper);
 	G.graphviz();
 	Matrix<bool> ans = TransitiveClosure(G);
@@ -39,17 +39,17 @@ int test(size_t v, size_t e) {
 	Matrix<Weight<int>> W(v, v);
 	G.to_matrix(W);
 	Matrix<Weight<int>> ans_fw = FloydWarshall(W).first;
-	for (size_t i = 0; i < v; i++)
-		for (size_t j = 0; j < v; j++)
+	for (std::size_t i = 0; i < v; i++)
+		for (std::size_t j = 0; j < v; j++)
 			assert((ans[i][j] == 1) == (ans_fw[i][j].inf == 0));
 	return 0;
 }
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> m = {5, 10, 23, 49, 100};
-	for (std::vector<size_t>::iterator v = m.begin(); v < m.end(); v++)
-		for (std::vector<size_t>::iterator e = m.begin(); e < m.end(); e++)
+	std::vector<std::size_t> m = {5, 10, 23, 49, 100};
+	for (std::vector<std::size_t>::iterator v = m.begin(); v < m.end(); v++)
+		for (std::vector<std::size_t>::iterator e = m.begin(); e < m.end(); e++)
 			for (int n = 0; n < 5; n++)
 				test(*v, *e);
 	return 0;

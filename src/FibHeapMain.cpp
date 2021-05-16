@@ -28,7 +28,7 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	std::vector<FibHeap<int>> FH_list(get_argv<size_t>(argc, argv, 1, 10));
+	std::vector<FibHeap<int>> FH_list(get_argv<std::size_t>(argc, argv, 1, 10));
 	FibHeap<int>* FH = &(FH_list[0]);
 	std::cout << "s: select" << std::endl;
 	std::cout << "i: insert" << std::endl;
@@ -44,9 +44,9 @@ int main(int argc, char *argv[]) {
 	std::cout << "P: print tree" << std::endl;
 	std::cout << "q: quit" << std::endl;
 	FNode<int>* ptr = nullptr;
-	size_t n = 0;
+	std::size_t n = 0;
 	while (true) {
-		char c; int x; size_t n2;
+		char c; int x; std::size_t n2;
 		std::cout << "n   = " << n << std::endl;
 		std::cout << "ptr = " << pptr(ptr) << std::endl;
 		if (ptr)

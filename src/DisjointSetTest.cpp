@@ -28,21 +28,21 @@
 
 using namespace algorithms;
 
-int test(size_t v, size_t e, size_t n) {
-	std::vector<size_t> c, d;
-	random_integers<size_t>(c, 0, v - 1, n);
-	random_integers<size_t>(d, 0, v - 1, n);
-	GraphAdjList<size_t> G(false);
+int test(std::size_t v, size_t e, size_t n) {
+	std::vector<std::size_t> c, d;
+	random_integers<std::size_t>(c, 0, v - 1, n);
+	random_integers<std::size_t>(d, 0, v - 1, n);
+	GraphAdjList<std::size_t> G(false);
 	random_graph(G, v, e);
 	graphviz(G);
-	ConnectedComponents<size_t> CC(G);
+	ConnectedComponents<std::size_t> CC(G);
 	Matrix<Weight<int>> W(v, v, Weight<int>());
 	for (auto i = G.all_edges(); !i.end(); i++) {
 		W[(*i).s][(*i).d] = 0;
 		W[(*i).d][(*i).s] = 0;
 	}
 	auto ans = FloydWarshall(W);
-	for (size_t i = 0; i < n; i++) {
+	for (std::size_t i = 0; i < n; i++) {
 		std::cout << c[i] << "\t" << d[i] << "\tconnected = " << std::boolalpha;
 		std::cout << CC.SameComponent(c[i], d[i]) << std::endl;
 		bool actual = CC.SameComponent(c[i], d[i]);
@@ -54,11 +54,11 @@ int test(size_t v, size_t e, size_t n) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> ns = {200, 400, 1000};
-	std::vector<size_t> m = {5, 10, 23, 49, 100};
-	for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
-		for (std::vector<size_t>::iterator v = m.begin(); v < m.end(); v++)
-			for (std::vector<size_t>::iterator e = m.begin(); e < m.end(); e++)
+	std::vector<std::size_t> ns = {200, 400, 1000};
+	std::vector<std::size_t> m = {5, 10, 23, 49, 100};
+	for (std::vector<std::size_t>::iterator n = ns.begin(); n < ns.end(); n++)
+		for (std::vector<std::size_t>::iterator v = m.begin(); v < m.end(); v++)
+			for (std::vector<std::size_t>::iterator e = m.begin(); e < m.end(); e++)
 					test(*v, *e, *n);
 	return 0;
 }

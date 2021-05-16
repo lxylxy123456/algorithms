@@ -54,7 +54,7 @@ T Median(T p, T r) {
 }
 
 template <typename T>
-T Select(T p, T r, size_t i) {
+T Select(T p, T r, std::size_t i) {
 	if (p == r - 1)
 		return p;
 	std::vector<typename T::value_type> m;
@@ -68,7 +68,7 @@ T Select(T p, T r, size_t i) {
 	}
 	T pos = Select(m.begin(), m.end(), (m.size() - 1) / 2);
 	T q = ModifiedPartition(p, r, *pos);
-	size_t k = q - p;
+	std::size_t k = q - p;
 	if (i == k)
 		return q;
 	else if (i < k)
@@ -78,7 +78,7 @@ T Select(T p, T r, size_t i) {
 }
 
 template <typename T>
-T Select(std::vector<T> A, size_t i) {
+T Select(std::vector<T> A, std::size_t i) {
 	return *Select(A.begin(), A.end(), i);
 }
 

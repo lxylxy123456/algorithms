@@ -25,9 +25,9 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	size_t n = get_argv(argc, argv, 1, 10);
+	std::size_t n = get_argv(argc, argv, 1, 10);
 	std::vector<int> o;
-	for (size_t i = 0; i < n; i++)
+	for (std::size_t i = 0; i < n; i++)
 		o.push_back(i);
 	std::vector<int> a(o), b(o);
 	PermuteBySorting(a);

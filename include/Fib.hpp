@@ -25,21 +25,21 @@ using std::size_t;
 
 namespace algorithms {
 
-size_t Fib(size_t n) {
+std::size_t Fib(size_t n) {
 	if (n <= 1)
 		return n;
 	else {
-		size_t x = Fib(n - 1);
-		size_t y = Fib(n - 2);
+		std::size_t x = Fib(n - 1);
+		std::size_t y = Fib(n - 2);
 		return x + y;
 	}
 }
 
-void PFib(size_t n, size_t* ret) {
+void PFib(std::size_t n, size_t* ret) {
 	if (n <= 1)
 		*ret = n;
 	else {
-		size_t x, y;
+		std::size_t x, y;
 		std::thread t1(PFib, n - 1, &x);
 		PFib(n - 2, &y);
 		t1.join();
@@ -47,8 +47,8 @@ void PFib(size_t n, size_t* ret) {
 	}
 }
 
-size_t PFib(size_t n) {
-	size_t ret;
+std::size_t PFib(size_t n) {
+	std::size_t ret;
 	PFib(n, &ret);
 	return ret;
 }

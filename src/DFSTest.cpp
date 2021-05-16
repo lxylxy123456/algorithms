@@ -26,17 +26,17 @@
 
 using namespace algorithms;
 
-int test(size_t v, size_t e, bool dir) {
-	GraphAdjList<size_t> G(dir);
+int test(std::size_t v, size_t e, bool dir) {
+	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
 	graphviz(G);
-	umap<size_t, DFSInfo<size_t>> inf;
-	umap<Edge<size_t>, DFSEdgeType, EdgeHash<size_t>> edge_inf;
+	umap<std::size_t, DFSInfo<size_t>> inf;
+	umap<Edge<std::size_t>, DFSEdgeType, EdgeHash<size_t>> edge_inf;
 	DFS(G, inf, &edge_inf);
-	for (size_t i = 0; i < v; i++) {
+	for (std::size_t i = 0; i < v; i++) {
 		assert(inf[i].color == dfs_black);
 		if (!inf[i].pi.nil) {
-			size_t p = inf[i].pi.val;
+			std::size_t p = inf[i].pi.val;
 			assert(inf[i].d > inf[p].d);
 			assert(inf[i].f < inf[p].f);
 		}
@@ -90,9 +90,9 @@ int test(size_t v, size_t e, bool dir) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> m = {5, 10, 23, 49, 100};
-	for (std::vector<size_t>::iterator v = m.begin(); v < m.end(); v++)
-		for (std::vector<size_t>::iterator e = m.begin(); e < m.end(); e++)
+	std::vector<std::size_t> m = {5, 10, 23, 49, 100};
+	for (std::vector<std::size_t>::iterator v = m.begin(); v < m.end(); v++)
+		for (std::vector<std::size_t>::iterator e = m.begin(); e < m.end(); e++)
 			for (int i = 0; i < 2; i++)
 				test(*v, *e, (bool) i);
 	return 0;

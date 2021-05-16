@@ -28,7 +28,7 @@ namespace algorithms {
 template <typename T>
 class Queue {
 	public:
-		Queue(size_t size): head(0), tail(0), length(size), data(new T[size]) {}
+		Queue(std::size_t size): head(0), tail(0), length(size), data(new T[size]) {}
 		void Enqueue(T x) {
 			data[tail++] = x;
 			if (tail == length)
@@ -49,7 +49,7 @@ class Queue {
 		}
 		~Queue() { delete [] data; }
 	private:
-		size_t head, tail, length;
+		std::size_t head, tail, length;
 		T* data;
 };
 

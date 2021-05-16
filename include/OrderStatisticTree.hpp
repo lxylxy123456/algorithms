@@ -33,7 +33,7 @@ class SData {
 	public:
 		SData(): size(0) {}
 		SData(T d): data(d), size(0) {}
-		SData(T d, size_t s): data(d), size(s) {}
+		SData(T d, std::size_t s): data(d), size(s) {}
 		friend bool operator<(T x, const SData<T>& rhs) {
 			return x < rhs.data;
 		}
@@ -47,7 +47,7 @@ class SData {
 			return os << rhs.data << '/' << rhs.size;
 		}
 		T data;
-		size_t size;
+		std::size_t size;
 };
 
 template <typename T>
@@ -153,8 +153,8 @@ class OrderStatisticTree: public RedBlackTree<SData<T>> {
 			if (y_original_color == black)
 				RedBlackTree<SData<T>>::RBDeleteFixup(x);
 		}
-		Node<CData<SData<T>>>* OSSelect(Node<CData<SData<T>>>* x, size_t i) {
-			size_t& r = x->left->data.data.size;
+		Node<CData<SData<T>>>* OSSelect(Node<CData<SData<T>>>* x, std::size_t i) {
+			std::size_t& r = x->left->data.data.size;
 			if (i == r)
 				return x;
 			else if (i < r)
@@ -162,11 +162,11 @@ class OrderStatisticTree: public RedBlackTree<SData<T>> {
 			else
 				return OSSelect(x->right, i - r - 1);
 		}
-		Node<CData<SData<T>>>* OSSelect(size_t i) {
+		Node<CData<SData<T>>>* OSSelect(std::size_t i) {
 			return OSSelect(this->root, i);
 		}
-		size_t OSRank(Node<CData<SData<T>>>* x) {
-			size_t r = x->left->data.data.size;
+		std::size_t OSRank(Node<CData<SData<T>>>* x) {
+			std::size_t r = x->left->data.data.size;
 			for (Node<CData<SData<T>>>* y = x; y != this->root; y = y->parent) {
 				if (y == y->parent->right)
 					r += y->parent->left->data.data.size + 1;

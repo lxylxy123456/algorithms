@@ -28,11 +28,11 @@ using std::size_t;
 namespace algorithms {
 
 template <typename T>
-void Merge(std::vector<T>& A, size_t p, size_t q, size_t r) {
+void Merge(std::vector<T>& A, std::size_t p, size_t q, size_t r) {
 	// A[p:q] and A[q:r] are sorted
 	std::list<T> L(A.begin() + p, A.begin() + q);
 	std::list<T> R(A.begin() + q, A.begin() + r);
-	for (size_t k = p; k < r; k++) {
+	for (std::size_t k = p; k < r; k++) {
 		if (!R.size() || (L.size() && L.front() <= R.front())) {
 			A[k] = L.front();
 			L.pop_front();
@@ -45,9 +45,9 @@ void Merge(std::vector<T>& A, size_t p, size_t q, size_t r) {
 }
 
 template <typename T>
-void MergeSort(std::vector<T>& A, size_t p, size_t r) {
+void MergeSort(std::vector<T>& A, std::size_t p, size_t r) {
 	if (p + 1 < r) {
-		size_t q = (p + r) / 2;
+		std::size_t q = (p + r) / 2;
 		MergeSort(A, p, q);
 		MergeSort(A, q, r);
 		Merge(A, p, q, r);

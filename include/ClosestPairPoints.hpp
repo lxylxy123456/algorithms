@@ -65,7 +65,7 @@ VecPair<T> ClosestPairPoints(uset_vec& P, std::vector<Vector<T>>& X,
 		}
 		return ans;
 	}
-	size_t index = X.size() / 2;
+	std::size_t index = X.size() / 2;
 	T l = X[index].x;
 	uset_vec PL(X.begin(), X.begin() + index), PR(X.begin() + index, X.end());
 	std::vector<Vector<T>> XL(X.begin(), X.begin() + index);
@@ -87,8 +87,8 @@ VecPair<T> ClosestPairPoints(uset_vec& P, std::vector<Vector<T>>& X,
 		if (d*d < delta.Dist())
 			YY.push_back(*i);
 	}
-	for (size_t i = 0; i < YY.size(); i++)
-		for (size_t j = i + 1; j <= i + 8 && j < YY.size(); j++) {
+	for (std::size_t i = 0; i < YY.size(); i++)
+		for (std::size_t j = i + 1; j <= i + 8 && j < YY.size(); j++) {
 			VecPair<T> vp(YY[i], YY[j]);
 			if (vp.Dist() < delta.Dist())
 				delta = vp;

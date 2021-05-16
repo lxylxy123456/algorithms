@@ -27,16 +27,16 @@ namespace algorithms {
 
 template <typename GT>
 Matrix<bool> TransitiveClosure(GT& G) {
-	const size_t n = G.V.size();
+	const std::size_t n = G.V.size();
 	Matrix<bool> T(n, n, false);
-	for (size_t i = 0; i < n; i++)
-		for (size_t j = 0; j < n; j++)
+	for (std::size_t i = 0; i < n; i++)
+		for (std::size_t j = 0; j < n; j++)
 			if (i == j || G.is_edge(i, j))
 				T[i][j] = true;
-	for (size_t k = 0; k < n; k++) {
+	for (std::size_t k = 0; k < n; k++) {
 		Matrix<bool> T_new = T;
-		for (size_t i = 0; i < n; i++)
-			for (size_t j = 0; j < n; j++)
+		for (std::size_t i = 0; i < n; i++)
+			for (std::size_t j = 0; j < n; j++)
 				T_new[i][j] = T[i][j] || (T[i][k] && T[k][j]);
 		T = T_new;
 	}

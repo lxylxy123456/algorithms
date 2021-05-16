@@ -28,8 +28,8 @@ using namespace algorithms;
 
 int main(int argc, char *argv[]) {
 	std::vector<int> a;
-	const size_t n = get_argv(argc, argv, 1, 10);
-	const size_t compute = get_argv(argc, argv, 2, 3);
+	const std::size_t n = get_argv(argc, argv, 1, 10);
+	const std::size_t compute = get_argv(argc, argv, 2, 3);
 	random_integers(a, 0, n - 1, n);
 	std::vector<int> b(a);
 	if (compute >> 0 & 1) {

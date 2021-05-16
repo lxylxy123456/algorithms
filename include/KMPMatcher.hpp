@@ -28,13 +28,13 @@ using std::size_t;
 namespace algorithms {
 
 template <typename T>
-std::vector<size_t> ComputePrefixFunction(const std::vector<T>& P) {
-	size_t m = P.size();
-	std::vector<size_t> pi;
+std::vector<std::size_t> ComputePrefixFunction(const std::vector<T>& P) {
+	std::size_t m = P.size();
+	std::vector<std::size_t> pi;
 	pi.push_back(0);
 	pi.push_back(0);
-	size_t k = 0;
-	for (size_t q = 2; q <= m; q++) {
+	std::size_t k = 0;
+	for (std::size_t q = 2; q <= m; q++) {
 		while (k && P[k] != P[q - 1])
 			k = pi[k];
 		if (P[k] == P[q - 1])
@@ -46,11 +46,11 @@ std::vector<size_t> ComputePrefixFunction(const std::vector<T>& P) {
 
 template <typename T>
 void KMPMatcher(const std::vector<T>& S, const std::vector<T>& P,
-				std::vector<size_t>& ans) {
-	size_t n = S.size(), m = P.size();
-	std::vector<size_t> pi = ComputePrefixFunction(P);
-	size_t q = 0;
-	for (size_t i = 0; i < n; i++) {
+				std::vector<std::size_t>& ans) {
+	std::size_t n = S.size(), m = P.size();
+	std::vector<std::size_t> pi = ComputePrefixFunction(P);
+	std::size_t q = 0;
+	for (std::size_t i = 0; i < n; i++) {
 		while (q && P[q] != S[i])
 			q = pi[q];
 		if (P[q] == S[i])

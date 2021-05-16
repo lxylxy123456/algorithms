@@ -27,14 +27,14 @@
 using namespace algorithms;
 
 template <typename T>
-void main_T(const size_t n, const size_t compute) {
+void main_T(const std::size_t n, const size_t compute) {
 	std::vector<int> int_a, int_b;
 	random_integers(int_a, -n, n, n * n);
 	random_integers(int_b, -n, n, n);
 	std::vector<T> buf_a(n * n), buf_b(n);
-	for (size_t i = 0; i < int_a.size(); i++)
+	for (std::size_t i = 0; i < int_a.size(); i++)
 		buf_a[i] = int_a[i];
-	for (size_t i = 0; i < int_b.size(); i++)
+	for (std::size_t i = 0; i < int_b.size(); i++)
 		buf_b[i] = int_b[i];
 	Matrix<T> A(n, n, buf_a);
 	Matrix<T> b(n, 1, buf_b);
@@ -43,7 +43,7 @@ void main_T(const size_t n, const size_t compute) {
 	if (compute >> 0 & 1) {
 		Matrix<T> A1(A), L(0, 0), U(0, 0);
 		PT pi(n);
-		for (size_t i = 0; i < n; i++)
+		for (std::size_t i = 0; i < n; i++)
 			pi[i] = i;
 		LUDecomposition(A1, L, U);
 		Matrix<T> x = LUPSolve(L, U, pi, b);
@@ -59,11 +59,11 @@ void main_T(const size_t n, const size_t compute) {
 		Matrix<T> bb = SquareMatrixMultiply(A, x, (T) 0);
 		ans1 = ans1.concat_h(bb);
 	}
-	for (size_t i = 0; i < n; i++) {
+	for (std::size_t i = 0; i < n; i++) {
 		output_integers(ans1[i], "\t");
 	}
 	std::cout << std::endl;
-	for (size_t i = 0; i < n; i++) {
+	for (std::size_t i = 0; i < n; i++) {
 		std::cout << "\t";
 		output_integers(ans2[i], "\t");
 	}
@@ -71,9 +71,9 @@ void main_T(const size_t n, const size_t compute) {
 }
 
 int main(int argc, char *argv[]) {
-	const size_t type = get_argv(argc, argv, 1, 0);
-	const size_t n = get_argv(argc, argv, 2, 5);
-	const size_t compute = get_argv(argc, argv, 3, 3);
+	const std::size_t type = get_argv(argc, argv, 1, 0);
+	const std::size_t n = get_argv(argc, argv, 2, 5);
+	const std::size_t compute = get_argv(argc, argv, 3, 3);
 	if (!type)
 		main_T<double>(n, compute);
 	else

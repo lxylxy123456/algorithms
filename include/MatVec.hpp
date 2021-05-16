@@ -40,13 +40,13 @@ void parallel_for(T i1, T i2, F func) {
 }
 
 template <typename T>
-void MatVecMainLoop(Matrix<T>* A, Matrix<T>* x, Matrix<T>* y, size_t n,
-					size_t i1, size_t i2) {
+void MatVecMainLoop(Matrix<T>* A, Matrix<T>* x, Matrix<T>* y, std::size_t n,
+					std::size_t i1, size_t i2) {
 	if (i1 == i2 - 1)
-		for (size_t j = 0; j < n; j++)
+		for (std::size_t j = 0; j < n; j++)
 			(*y)[i1][0] += (*A)[i1][j] * (*x)[j][0];
 	else {
-		size_t mid = (i1 + i2) / 2;
+		std::size_t mid = (i1 + i2) / 2;
 		std::thread t1(MatVecMainLoop<T>, A, x, y, n, i1, mid);
 		MatVecMainLoop(A, x, y, n, mid, i2);
 		t1.join();
@@ -55,24 +55,24 @@ void MatVecMainLoop(Matrix<T>* A, Matrix<T>* x, Matrix<T>* y, size_t n,
 
 template <typename T>
 void MatVecRecursive(Matrix<T>& A, Matrix<T>& x, Matrix<T>& y) {
-	size_t n = A.rows;
+	std::size_t n = A.rows;
 	MatVecMainLoop(&A, &x, &y, n, 0, n);
 }
 
 template <typename T>
 void MatVec(Matrix<T>& A, Matrix<T>& x, Matrix<T>& y) {
-	size_t n = A.rows;
-	parallel_for<size_t>(0, n, [&](size_t i){
-		for (size_t j = 0; j < n; j++)
+	std::size_t n = A.rows;
+	parallel_for<std::size_t>(0, n, [&](size_t i){
+		for (std::size_t j = 0; j < n; j++)
 			y[i][0] += A[i][j] * x[j][0];
 	});
 }
 
 template <typename T>
 void MatVecWrong(Matrix<T>& A, Matrix<T>& x, Matrix<T>& y) {
-	size_t n = A.rows;
-	parallel_for<size_t>(0, n, [&](size_t i){
-		parallel_for<size_t>(0, n, [&](size_t j){
+	std::size_t n = A.rows;
+	parallel_for<std::size_t>(0, n, [&](size_t i){
+		parallel_for<std::size_t>(0, n, [&](size_t j){
 			y[i][0] += A[i][j] * x[j][0];
 		});
 	});

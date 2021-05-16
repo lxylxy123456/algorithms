@@ -26,10 +26,10 @@
 
 using namespace algorithms;
 
-int test(size_t n) {
+int test(std::size_t n) {
 	while (true) {
 		std::vector<int> o;
-		for (size_t i = 0; i < n; i++)
+		for (std::size_t i = 0; i < n; i++)
 			o.push_back(i);
 		std::vector<int> a(o), b(o);
 		PermuteBySorting(a);
@@ -40,7 +40,7 @@ int test(size_t n) {
 		assert(o.size() == a.size());
 		assert(o.size() == b.size());
 		bool flag_oa = false, flag_ob = false, flag_ab = false;
-		for (size_t i = 0; i < n; i++) {
+		for (std::size_t i = 0; i < n; i++) {
 			flag_oa = flag_oa || (o[i] != a[i]);
 			flag_ob = flag_ob || (o[i] != b[i]);
 			flag_ab = flag_ab || (a[i] != b[i]);

@@ -31,7 +31,7 @@ using std::size_t;
 
 namespace algorithms {
 
-using PT = std::vector<size_t>;
+using PT = std::vector<std::size_t>;
 
 template <typename T>
 class Fraction
@@ -161,18 +161,18 @@ class Fraction
 
 template <typename T>
 Matrix<T> LUPSolve(Matrix<T>& L, Matrix<T>& U, PT& pi, Matrix<T>& b) {
-	size_t n = L.rows;
+	std::size_t n = L.rows;
 	Matrix<T> x(n, 1, 0), y(n, 1, 0);
-	for (size_t i = 0; i < n; i++) {
+	for (std::size_t i = 0; i < n; i++) {
 		T& yy = y[i][0];
 		yy = b[pi[i]][0];
-		for (size_t j = 0; j < i; j++)
+		for (std::size_t j = 0; j < i; j++)
 			yy -= L[i][j] * y[j][0];
 	}
-	for (size_t i = n; i-- > 0; ) {
+	for (std::size_t i = n; i-- > 0; ) {
 		T& xx = x[i][0];
 		xx = y[i][0];
-		for (size_t j = i + 1; j < n; j++)
+		for (std::size_t j = i + 1; j < n; j++)
 			xx -= U[i][j] * x[j][0];
 		xx /= U[i][i];
 	}
@@ -181,32 +181,32 @@ Matrix<T> LUPSolve(Matrix<T>& L, Matrix<T>& U, PT& pi, Matrix<T>& b) {
 
 template <typename T>
 void LUDecomposition(Matrix<T>& A, Matrix<T>& L, Matrix<T>& U) {
-	const size_t n = A.rows;
+	const std::size_t n = A.rows;
 	U = L = Matrix<T>(n, n, 0);
-	for (size_t i = 0; i < n; i++)
+	for (std::size_t i = 0; i < n; i++)
 		L[i][i] = 1;
-	for (size_t k = 0; k < n; k++) {
+	for (std::size_t k = 0; k < n; k++) {
 		U[k][k] = A[k][k];
-		for (size_t i = k + 1; i < n; i++) {
+		for (std::size_t i = k + 1; i < n; i++) {
 			L[i][k] = A[i][k] / U[k][k];
 			U[k][i] = A[k][i];
 		}
-		for (size_t i = k + 1; i < n; i++)
-			for (size_t j = k + 1; j < n; j++)
+		for (std::size_t i = k + 1; i < n; i++)
+			for (std::size_t j = k + 1; j < n; j++)
 				A[i][j] -= L[i][k] * U[k][j];
 	}
 }
 
 template <typename T>
 PT LUPDecomposition(Matrix<T>& A) {
-	const size_t n = A.rows;
+	const std::size_t n = A.rows;
 	PT pi(n);
-	for (size_t i = 0; i < n; i++)
+	for (std::size_t i = 0; i < n; i++)
 		pi[i] = i;
-	for (size_t k = 0; k < n; k++) {
+	for (std::size_t k = 0; k < n; k++) {
 		T p = 0;
-		size_t kk;
-		for (size_t i = k; i < n; i++) {
+		std::size_t kk;
+		for (std::size_t i = k; i < n; i++) {
 			T abs = A[i][k] < (T) 0 ? -A[i][k] : A[i][k];
 			if (p < abs) {
 				p = abs;
@@ -216,11 +216,11 @@ PT LUPDecomposition(Matrix<T>& A) {
 		if (p == (T) 0)
 			throw std::invalid_argument("singular matrix");
 		std::swap(pi[k], pi[kk]);
-		for (size_t i = 0; i < n; i++)
+		for (std::size_t i = 0; i < n; i++)
 			std::swap(A[k][i], A[kk][i]);
-		for (size_t i = k + 1; i < n; i++) {
+		for (std::size_t i = k + 1; i < n; i++) {
 			A[i][k] /= A[k][k];
-			for (size_t j = k + 1; j < n; j++)
+			for (std::size_t j = k + 1; j < n; j++)
 				A[i][j] -= A[i][k] * A[k][j];
 		}
 	}

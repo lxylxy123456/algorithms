@@ -28,18 +28,18 @@
 
 using namespace algorithms;
 
-int test(size_t v, size_t e) {
+int test(std::size_t v, size_t e) {
 	const bool dir = 0;
-	GraphAdjList<size_t> G(dir);
+	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	uset<size_t> ans;
+	uset<std::size_t> ans;
 	ApproxVertexCover(G, ans);
-	auto f1 = [ans](size_t v) {
+	auto f1 = [ans](std::size_t v) {
 		if (ans.find(v) != ans.end())
 			std::cout << " [color=green]";
 		return false;
 	};
-	auto f2 = [](Edge<size_t>) mutable {};
+	auto f2 = [](Edge<std::size_t>) mutable {};
 	graphviz(G, f1, f2);
 	for (auto i = G.all_edges(); !i.end(); i++)
 		assert(ans.find(i.s()) != ans.end() || ans.find(i.d()) != ans.end());
@@ -48,9 +48,9 @@ int test(size_t v, size_t e) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> m = {5, 10, 23, 49, 100};
-	for (std::vector<size_t>::iterator v = m.begin(); v < m.end(); v++)
-		for (std::vector<size_t>::iterator e = m.begin(); e < m.end(); e++)
+	std::vector<std::size_t> m = {5, 10, 23, 49, 100};
+	for (std::vector<std::size_t>::iterator v = m.begin(); v < m.end(); v++)
+		for (std::vector<std::size_t>::iterator e = m.begin(); e < m.end(); e++)
 			for (int n = 0; n < 5; n++)
 				test(*v, *e);
 	return 0;

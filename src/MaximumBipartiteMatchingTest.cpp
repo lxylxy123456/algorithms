@@ -28,21 +28,21 @@
 
 using namespace algorithms;
 
-int test(size_t vl, size_t vr, size_t e) {
+int test(std::size_t vl, size_t vr, size_t e) {
 	const bool dir = false;
-	Bipartite<GraphAdjList<size_t>> G(dir);
+	Bipartite<GraphAdjList<std::size_t>> G(dir);
 	random_bipartite(G, vl, vr, e);
-	uset<Edge<size_t>, EdgeHash<size_t>> ans;
+	uset<Edge<std::size_t>, EdgeHash<size_t>> ans;
 	MaximumBipartiteMatching(G, ans);
-	auto f1 = [](size_t v) { return false; };
-	auto f2 = [ans](Edge<size_t> e) mutable {
+	auto f1 = [](std::size_t v) { return false; };
+	auto f2 = [ans](Edge<std::size_t> e) mutable {
 		if (ans.find(e) != ans.end())
 			std::cout << " [style=bold]";
 	};
 	G.graphviz(f1, f2);
-	uset<size_t> used;
+	uset<std::size_t> used;
 	for (auto i = G.all_edges(); !i.end(); i++) {
-		size_t l = i.s(), r = i.d();
+		std::size_t l = i.s(), r = i.d();
 		if (G.L.find(l) == G.L.end())
 			std::swap(l, r);
 		assert(G.L.find(l) != G.L.end() && G.R.find(r) != G.R.end());
@@ -58,10 +58,10 @@ int test(size_t vl, size_t vr, size_t e) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> m = {5, 10, 23, 49, 100};
-	for (std::vector<size_t>::iterator vl = m.begin(); vl < m.end(); vl++)
-		for (std::vector<size_t>::iterator vr = m.begin(); vr < m.end(); vr++)
-			for (std::vector<size_t>::iterator e = m.begin(); e < m.end(); e++)
+	std::vector<std::size_t> m = {5, 10, 23, 49, 100};
+	for (std::vector<std::size_t>::iterator vl = m.begin(); vl < m.end(); vl++)
+		for (std::vector<std::size_t>::iterator vr = m.begin(); vr < m.end(); vr++)
+			for (std::vector<std::size_t>::iterator e = m.begin(); e < m.end(); e++)
 				for (int n = 0; n < 5; n++)
 					test(*vl, *vr, *e);
 	return 0;

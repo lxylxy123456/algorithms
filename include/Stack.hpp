@@ -28,7 +28,7 @@ namespace algorithms {
 template <typename T>
 class Stack {
 	public:
-		Stack(size_t size): top(0), data(new T[size]) {}
+		Stack(std::size_t size): top(0), data(new T[size]) {}
 		bool StackEmpty() { return top == 0; }
 		void Push(T x) { data[top++] = x; }
 		T Pop() {
@@ -37,13 +37,13 @@ class Stack {
 			else
 				return data[--top];
 		}
-		void MultiPop(size_t k) {
+		void MultiPop(std::size_t k) {
 			while (!StackEmpty() && k--)
 				Pop();
 		}
 		~Stack() { delete [] data; }
 	private:
-		size_t top;
+		std::size_t top;
 		T* data;
 };
 

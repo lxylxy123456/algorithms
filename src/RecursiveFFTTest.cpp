@@ -33,15 +33,15 @@ bool almost_equal(Complex<double> lhs, Complex<double> rhs) {
 	return fabs(lhs.real - rhs.real) + fabs(lhs.imag - rhs.imag) < 1e-5;
 }
 
-int test(size_t n) {
+int test(std::size_t n) {
 	std::vector<int> int_a, int_b;
 	random_integers(int_a, -n, n, n);
 	random_integers(int_b, -n, n, n);
 	using T = Complex<double>;
 	std::vector<T> buf_a(n), buf_b(n);
-	for (size_t i = 0; i < n; i++)
+	for (std::size_t i = 0; i < n; i++)
 		buf_a[i] = int_a[i];
-	for (size_t i = 0; i < n; i++)
+	for (std::size_t i = 0; i < n; i++)
 		buf_b[i] = int_b[i];
 	output_integers(int_a);
 	output_integers(int_b);
@@ -49,10 +49,10 @@ int test(size_t n) {
 	Matrix<T> b(n, 1, buf_b);
 	Matrix<T> c = PolynomialMultiply(a, b);
 	Matrix<int> d(2 * n, 1, 0);
-	for (size_t i = 0; i < n; i++)
-		for (size_t j = 0; j < n; j++)
+	for (std::size_t i = 0; i < n; i++)
+		for (std::size_t j = 0; j < n; j++)
 			d[i + j][0] += int_a[i] * int_b[j];
-	for (size_t i = 0; i < 2 * n; i++)
+	for (std::size_t i = 0; i < 2 * n; i++)
 		assert(almost_equal(c[i][0], d[i][0]));
 	std::cout << std::endl;
 	return 0;
@@ -60,7 +60,7 @@ int test(size_t n) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	for (size_t n = 2; n <= 1024; n *= 2)
+	for (std::size_t n = 2; n <= 1024; n *= 2)
 		test(n);
 	return 0;
 }

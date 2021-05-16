@@ -29,7 +29,7 @@ using std::size_t;
 
 namespace algorithms {
 
-size_t debug;
+std::size_t debug;
 
 template <typename T>
 T* DiskRead(T* x) {
@@ -66,7 +66,7 @@ class BNode {
 					FreeNode((*i)->recursive_destruct());
 			return this;
 		}
-		size_t n;
+		std::size_t n;
 		std::vector<T> key;
 		std::vector<BNode<T>*> c;
 		bool leaf;
@@ -74,7 +74,7 @@ class BNode {
 
 template <typename T>
 void pop_front(std::vector<T>& x) {
-	for (size_t i = 0; i < x.size() - 1; i++)
+	for (std::size_t i = 0; i < x.size() - 1; i++)
 		x[i] = x[i + 1];
 	x.pop_back();
 }
@@ -82,7 +82,7 @@ void pop_front(std::vector<T>& x) {
 template <typename T>
 void push_front(std::vector<T>& x, const T& k) {
 	x.push_back(k);
-	for (size_t i = x.size() - 1; i > 0; i--)
+	for (std::size_t i = x.size() - 1; i > 0; i--)
 		x[i] = x[i - 1];
 	x[0] = k;
 }
@@ -90,25 +90,25 @@ void push_front(std::vector<T>& x, const T& k) {
 template <typename T>
 class BTree {
 	public:
-		BTree(size_t tt): root(BTreeCreate()), t(tt), size(0) {}
-		std::pair<BNode<T>*, size_t> BTreeSearch(BNode<T>* x, const T& k) {
-			size_t i;
+		BTree(std::size_t tt): root(BTreeCreate()), t(tt), size(0) {}
+		std::pair<BNode<T>*, std::size_t> BTreeSearch(BNode<T>* x, const T& k) {
+			std::size_t i;
 			for (i = 0; i < x->n && x->key[i] < k; i++);
 			if (i < x->n && k == x->key[i])
-				return std::pair<BNode<T>*, size_t>(x, i);
+				return std::pair<BNode<T>*, std::size_t>(x, i);
 			else if (x->leaf)
-				return std::pair<BNode<T>*, size_t>(nullptr, 0);
+				return std::pair<BNode<T>*, std::size_t>(nullptr, 0);
 			else
 				return BTreeSearch(DiskRead(x->c[i]), k);
 		}
-		std::pair<BNode<T>*, size_t> BTreeSearch(const T& k) {
+		std::pair<BNode<T>*, std::size_t> BTreeSearch(const T& k) {
 			return BTreeSearch(root, k);
 		}
 		BNode<T>* BTreeCreate() {
 			BNode<T>* x = AllocateNode<BNode<T>>(true);
 			return DiskWrite(x);
 		}
-		void BTreeSplitChild(BNode<T>* x, size_t i) {
+		void BTreeSplitChild(BNode<T>* x, std::size_t i) {
 			BNode<T>* y = x->c[i];
 			BNode<T>* z = AllocateNode<BNode<T>>(y->leaf);
 			z->n = t - 1;
@@ -119,11 +119,11 @@ class BTree {
 					z->c.push_back(*j);
 			y->n = t - 1;
 			x->c.push_back(x->c[x->n]);
-			for (size_t j = x->n; j > i + 1; j--)
+			for (std::size_t j = x->n; j > i + 1; j--)
 				x->c[j] = x->c[j - 1];
 			x->c[i + 1] = z;
 			x->key.push_back(y->key[t - 1]); 	// push back a known legal value
-			for (size_t j = x->n; j > i; j--)
+			for (std::size_t j = x->n; j > i; j--)
 				x->key[j] = x->key[j - 1];
 			x->key[i] = y->key[t - 1];
 			x->n++;
@@ -134,7 +134,7 @@ class BTree {
 			DiskWrite(x);
 		}
 		void BTreeInsertNonfull(BNode<T>* x, const T& k) {
-			size_t i = x->n;
+			std::size_t i = x->n;
 			if (x->leaf) {
 				x->key.push_back(k); 			// push back a known legal value
 				while (i && k < x->key[i - 1]) {
@@ -168,7 +168,7 @@ class BTree {
 				BTreeInsertNonfull(r, k);
 			size++;
 		}
-		void BTreeMergeChild(BNode<T>* x, size_t i) {
+		void BTreeMergeChild(BNode<T>* x, std::size_t i) {
 			// merge x->key[i] and z = x->c[i + 1] to y = x->c[i]
 			// assume y and z are read, assume y.n == z.n == t - 1
 			BNode<T> *y = x->c[i], *z = x->c[i + 1];
@@ -180,7 +180,7 @@ class BTree {
 			y->n = 2 * t - 1;
 			DiskWrite(y);
 			FreeNode(z);
-			for (size_t j = i; j < x->n - 1; j++) {
+			for (std::size_t j = i; j < x->n - 1; j++) {
 				x->key[j] = x->key[j + 1];
 				x->c[j + 1] = x->c[j + 2];
 			}
@@ -189,7 +189,7 @@ class BTree {
 			x->n--;
 			DiskWrite(x);
 		}
-		void BTreeRotateLeft(BNode<T>* x, size_t i) {
+		void BTreeRotateLeft(BNode<T>* x, std::size_t i) {
 			// z = x->c[i + 1] ===> x->key[i] ===> y = x->c[i]
 			// assume y and z are read
 			BNode<T> *y = x->c[i], *z = x->c[i + 1];
@@ -206,7 +206,7 @@ class BTree {
 			DiskWrite(y);
 			DiskWrite(z);
 		}
-		void BTreeRotateRight(BNode<T>* x, size_t i) {
+		void BTreeRotateRight(BNode<T>* x, std::size_t i) {
 			// y = x->c[i] ===> x->key[i] ===> z = x->c[i + 1]
 			// assume y and z are read
 			BNode<T> *y = x->c[i], *z = x->c[i + 1];
@@ -230,7 +230,7 @@ class BTree {
 				x->n--;
 				return ans;
 			} else {		// case 3
-				size_t i = 0;
+				std::size_t i = 0;
 				BNode<T>* c = DiskRead(x->c[i]);
 				if (c->n == t - 1) {
 					if (DiskRead(x->c[i + 1])->n >= t)
@@ -248,7 +248,7 @@ class BTree {
 				x->n--;
 				return ans;
 			} else {		// case 3
-				size_t i = x->n;
+				std::size_t i = x->n;
 				BNode<T>* c = DiskRead(x->c[i]);
 				if (c->n == t - 1) {
 					if (DiskRead(x->c[i - 1])->n >= t)
@@ -262,7 +262,7 @@ class BTree {
 		bool BTreeDelete(BNode<T>* x, const T& k) {
 			if (x->leaf) {	// case 1
 				bool deleting = false;
-				for (size_t i = 0; i < x->n; i++) {
+				for (std::size_t i = 0; i < x->n; i++) {
 					if (!deleting) {
 						if (x->key[i] == k)
 							deleting = true;
@@ -279,7 +279,7 @@ class BTree {
 				return deleting;
 			}
 			bool k_in_x = false;
-			size_t i;
+			std::size_t i;
 			for (i = 0; i < x->n; i++) {
 				if (x->key[i] == k) {
 					k_in_x = true; 		// x->key[i] = k
@@ -331,12 +331,12 @@ class BTree {
 			}
 			return ans;
 		}
-		void print_tree(BNode<T>* x, size_t depth, bool term) {
-			const size_t ind = 4;
+		void print_tree(BNode<T>* x, std::size_t depth, bool term) {
+			const std::size_t ind = 4;
 			const std::string indent(ind * depth, ' ');
 			if (!term)
 				std::cout << indent << std::string(3, '_') << std::endl;
-			for (size_t i = 0; i <= x->n; i++) {
+			for (std::size_t i = 0; i <= x->n; i++) {
 				if (!x->leaf)
 					print_tree(x->c[i], depth + 1, term);
 				if (i == x->n)
@@ -363,7 +363,7 @@ class BTree {
 		}
 		~BTree() { delete root->recursive_destruct(); }
 		BNode<T> *root;
-		size_t t, size;
+		std::size_t t, size;
 };
 
 }

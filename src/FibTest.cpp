@@ -27,10 +27,10 @@
 
 using namespace algorithms;
 
-int test(size_t n, size_t expected) {
-	size_t a = Fib(n);
+int test(std::size_t n, size_t expected) {
+	std::size_t a = Fib(n);
 	std::cout << n << '\t' << expected << '\t' << a << '\t' << std::flush;
-	size_t b = PFib(n);
+	std::size_t b = PFib(n);
 	assert(a == expected);
 	std::cout << b << std::endl;
 	assert(a == b);
@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 	if (argc >= 2)
 		// Valgrind: reduce test size
 		N = 13;
-	size_t prev = 0, cur = 1;
+	std::size_t prev = 0, cur = 1;
 	for (int n = 0; n < N; n++) {
 		test(n, prev);
 		prev += cur;

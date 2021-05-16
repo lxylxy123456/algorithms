@@ -27,12 +27,12 @@
 
 using namespace algorithms;
 
-int test(size_t n) {
+int test(std::size_t n) {
 	std::vector<Event<int>> e, ans1, ans2;
 	// prepare event list
 	std::vector<int> time_list;
 	random_integers(time_list, 0, n - 1, 2 * n);
-	for (size_t i = 0; i < n; i++)
+	for (std::size_t i = 0; i < n; i++)
 		e.push_back(Event<int>(time_list[2 * i], time_list[2 * i + 1]));
 	Quicksort(e.begin(), e.end());
 	output_integers(e);

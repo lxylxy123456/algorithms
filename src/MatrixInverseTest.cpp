@@ -41,21 +41,21 @@ bool almost_equal(Fraction<T> lhs, Fraction<T> rhs) {
 }
 
 template <typename T>
-int test(size_t n, size_t tries) {
-	for (size_t index = 0; index < tries; index++) {
+int test(std::size_t n, size_t tries) {
+	for (std::size_t index = 0; index < tries; index++) {
 		try {
 			std::vector<int> int_a, int_b;
 			random_integers(int_a, -n, n, n * n);
 			std::vector<T> buf_a(n * n), buf_b(n);
-			for (size_t i = 0; i < int_a.size(); i++)
+			for (std::size_t i = 0; i < int_a.size(); i++)
 				buf_a[i] = int_a[i];
 			Matrix<T> A(n, n, buf_a);
 			std::cout << A << std::endl;
 			Matrix<T> B = MatrixInverse(A);
 			Matrix<T> C = SquareMatrixMultiply(A, B, (T) 0);
 			bool test_flag = true;
-			for (size_t i = 0; i < n; i++)
-				for (size_t j = 0; j < n; j++) {
+			for (std::size_t i = 0; i < n; i++)
+				for (std::size_t j = 0; j < n; j++) {
 					if (i == j)
 						test_flag = test_flag && almost_equal(C[i][j], (T) 1);
 					else

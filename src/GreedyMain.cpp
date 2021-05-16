@@ -26,20 +26,20 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 6);
+	const std::size_t n = get_argv(argc, argv, 1, 6);
 	// prepare data
-	std::set<size_t> S, ans;
-	for (size_t i = 0; i < n; i++)
+	std::set<std::size_t> S, ans;
+	for (std::size_t i = 0; i < n; i++)
 		S.insert(i);
-	Matroid<size_t> M(S);
-	std::vector<size_t> weights;
-	size_t (*f)(size_t) = [](size_t a) { return a; };
-	for (std::set<size_t>::iterator i = M.S.begin(); i != M.S.end(); i++)
+	Matroid<std::size_t> M(S);
+	std::vector<std::size_t> weights;
+	std::size_t (*f)(size_t) = [](size_t a) { return a; };
+	for (std::set<std::size_t>::iterator i = M.S.begin(); i != M.S.end(); i++)
 		weights.push_back(f(*i));
 	output_integers(M.S, "\t");
 	output_integers(weights, "\t");
 	// call function
-	Greedy<size_t, size_t>(M, f, ans);
+	Greedy<std::size_t, size_t>(M, f, ans);
 	output_integers(ans);
 	return 0;
 }

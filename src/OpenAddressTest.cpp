@@ -36,7 +36,7 @@ int test(int n) {
 		D.HashInsert(i, i ^ 0xaa);
 	for (int i = 0; i < n; i++) {
 		const Pair<int>* searched = D.HashSearch(i);
-		assert(searched->key == (size_t) i);
+		assert(searched->key == (std::size_t) i);
 		assert(searched->value == (i ^ 0xaa));
 	}
 	try {

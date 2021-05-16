@@ -31,13 +31,14 @@ using std::size_t;
 
 namespace algorithms {
 
-#define usetst typename std::unordered_set<size_t>
-#define vectst typename std::unordered_map<size_t, T>
-#define matst typename std::unordered_map<size_t, std::unordered_map<size_t, T>>
+#define usetst typename std::unordered_set<std::size_t>
+#define vectst typename std::unordered_map<std::size_t, T>
+#define matst typename \
+	std::unordered_map<std::size_t, std::unordered_map<size_t, T>>
 
 template <typename T>
 void Pivot(usetst& N, usetst& B, matst& A, vectst& b, vectst& c, T& v,
-			size_t l, size_t e) {
+			std::size_t l, size_t e) {
 	matst A_hat;
 	vectst b_hat, c_hat;
 	b_hat[e] = b[l] / A[l][e];
@@ -66,13 +67,13 @@ void Pivot(usetst& N, usetst& B, matst& A, vectst& b, vectst& c, T& v,
 template <typename T>
 void InitializeSimplex(usetst& N, usetst& B, matst& A, vectst& b, vectst& c,
 						T& v, const T epsilon) {
-	const size_t n = c.size(), m = b.size();
-	for (size_t i = 1; i <= n; i++)
+	const std::size_t n = c.size(), m = b.size();
+	for (std::size_t i = 1; i <= n; i++)
 		N.insert(i);
-	for (size_t i = n + 1; i <= n + m; i++)
+	for (std::size_t i = n + 1; i <= n + m; i++)
 		B.insert(i);
 	v = 0;
-	size_t k = n + 1;
+	std::size_t k = n + 1;
 	for (auto i = B.begin(); i != B.end(); i++)
 		if (b[*i] < b[k])
 			k = *i;
@@ -88,7 +89,7 @@ void InitializeSimplex(usetst& N, usetst& B, matst& A, vectst& b, vectst& c,
 	N.insert(0);
 	Pivot(N, B, A, b, Lc, Lv, k, 0);
 	while (true) {
-		size_t e = NIL, l = NIL;
+		std::size_t e = NIL, l = NIL;
 		for (auto i = N.begin(); i != N.end(); i++)
 			if (epsilon < Lc[*i]) {
 				e = *i;
@@ -110,7 +111,7 @@ void InitializeSimplex(usetst& N, usetst& B, matst& A, vectst& b, vectst& c,
 	}
 	if (Lv == 0) {
 		if (B.find(0) != B.end()) {
-			size_t e = NIL;
+			std::size_t e = NIL;
 			for (auto i = N.begin(); i != N.end(); i++)
 				if (!(-epsilon < A[0][*i] && A[0][*i] < epsilon)) {
 					e = *i;
@@ -144,7 +145,7 @@ vectst Simplex(matst A, vectst b, vectst c, const T epsilon) {
 	T v;
 	InitializeSimplex(N, B, A, b, c, v, epsilon);
 	while (true) {
-		size_t e = NIL, l = NIL;
+		std::size_t e = NIL, l = NIL;
 		for (auto i = N.begin(); i != N.end(); i++)
 			if (epsilon < c[*i]) {
 				e = *i;
@@ -166,7 +167,7 @@ vectst Simplex(matst A, vectst b, vectst c, const T epsilon) {
 		Pivot(N, B, A, b, c, v, l, e);
 	}
 	vectst x;
-	for (size_t i = 1; i <= c.size(); i++) {
+	for (std::size_t i = 1; i <= c.size(); i++) {
 		if (B.find(i) != B.end())
 			x[i] = b[i];
 		else

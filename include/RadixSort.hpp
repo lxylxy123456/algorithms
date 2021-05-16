@@ -31,15 +31,15 @@ namespace algorithms {
 template <typename T>
 class GetBit {
 	public:
-		GetBit(size_t b): bit(b) {}
-		size_t operator()(T x) { return (x >> bit) & 1; }
-		size_t bit;
+		GetBit(std::size_t b): bit(b) {}
+		std::size_t operator()(T x) { return (x >> bit) & 1; }
+		std::size_t bit;
 };
 
 template <typename T>
-void RadixSort(std::vector<T>& A, size_t b) {
+void RadixSort(std::vector<T>& A, std::size_t b) {
 	std::vector<T> B(A.size(), 0);
-	for (size_t i = 0; i < b; i++) {
+	for (std::size_t i = 0; i < b; i++) {
 		CountingSort(A, B, 2, GetBit<T>(i));
 		std::copy(B.begin(), B.end(), A.begin());
 	}

@@ -32,7 +32,7 @@ namespace algorithms {
 template <typename T>
 class Task {
 	public:
-		Task(size_t i, size_t ddl, T pun): id(i), d(ddl), w(pun) {}
+		Task(std::size_t i, size_t ddl, T pun): id(i), d(ddl), w(pun) {}
 		bool operator<(const Task<T> rhs) const {
 			if (d != rhs.d)
 				return d < rhs.d;
@@ -45,8 +45,8 @@ class Task {
 			return os << rhs.id << ',' << rhs.d << ',' << rhs.w;
 		}
 		static T get_p(Task<T> x) { return x.w; }
-		size_t id;
-		size_t d;
+		std::size_t id;
+		std::size_t d;
 		T w;
 };
 
@@ -55,7 +55,7 @@ class TaskMatroid: public Matroid<Task<T>> {
 	public:
 		TaskMatroid(std::set<Task<T>> s): Matroid<Task<T>>(s) {}
 		virtual bool I(const std::set<Task<T>>& A) const {
-			size_t t = 0;
+			std::size_t t = 0;
 			for (auto i = A.begin(); i != A.end(); i++)
 				if (i->d <= t++)
 					return false;

@@ -25,7 +25,7 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 0);
+	const std::size_t n = get_argv(argc, argv, 1, 0);
 	LinkedListBase<int>* S;
 	if (n)
 		S = new LinkedList_prime<int>;

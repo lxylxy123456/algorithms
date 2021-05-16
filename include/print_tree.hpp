@@ -32,8 +32,8 @@ namespace algorithms {
 class StringLen: public std::string {
 	public:
 		StringLen(std::string s): std::string(s), len(s.size()) {}
-		StringLen(std::string s, size_t l): std::string(s), len(l) {}
-		size_t len;
+		StringLen(std::string s, std::size_t l): std::string(s), len(l) {}
+		std::size_t len;
 };
 
 // Helper class to navigate through a tree
@@ -49,14 +49,14 @@ class TreeNavigator {
 class TextMatrix {
 	public:
 		TextMatrix(std::string s): w(s.size()), h(1), l(0), r(w), m(1, s) {}
-		TextMatrix(std::string s, size_t w): w(w), h(1), l(0), r(w), m(1, s) {}
+		TextMatrix(std::string s, std::size_t w): w(w), h(1), l(0), r(w), m(1, s) {}
 		TextMatrix(StringLen s): w(s.len), h(1), l(0), r(w), m(1, s) {}
-		TextMatrix(size_t w, size_t h): w(w), h(h), l(0), r(w), m() {}
-		TextMatrix(size_t w, size_t h, char d):
+		TextMatrix(std::size_t w, size_t h): w(w), h(h), l(0), r(w), m() {}
+		TextMatrix(std::size_t w, size_t h, char d):
 			w(w), h(h), l(0), r(w), m(h, std::string(w, d)) {}
-		TextMatrix(size_t w, size_t h, size_t l, size_t r):
+		TextMatrix(std::size_t w, size_t h, size_t l, size_t r):
 			w(w), h(h), l(l), r(r), m() {}
-		TextMatrix(size_t w, size_t h, size_t l, size_t r, char d):
+		TextMatrix(std::size_t w, size_t h, size_t l, size_t r, char d):
 			w(w), h(h), l(l), r(r), m(h, std::string(w, d)) {}
 		friend std::ostream& operator<<(std::ostream& os, TextMatrix& rhs) {
 			for (std::vector<std::string>::iterator i = rhs.m.begin();
@@ -72,7 +72,7 @@ class TextMatrix {
 		}
 		// w / h: width / height of matrix
 		// l / r: left / right of root string
-		size_t w, h, l, r;
+		std::size_t w, h, l, r;
 		std::vector<std::string> m;
 		//   0123456789
 		//  +----------+
@@ -85,7 +85,7 @@ class TextMatrix {
 template <typename NodeType, typename Navigator>
 class TreePrinter {
 	private:
-		static TextMatrix lbranch(size_t w) {
+		static TextMatrix lbranch(std::size_t w) {
 			// 1     2      3       4        5         6
 			// +---+ +----+ +-----+ +------+ +-------+ +--------+
 			// |  r| |   r| |    r| |     r| |    _ r| |     _ r|
@@ -95,12 +95,12 @@ class TreePrinter {
 			// First row: ' ' * ? + '_' * max((w - 3) // 2, 0) + (' ' if w != 1)
 			// Second row: '_' * max((w - 2) // 2, 0) + '/' + (' ' if w == 2) +
 			//             ' ' * max((w - 1) // 2, 0)
-			size_t w11 = w > 1 ? 1 : 0;
-			size_t w12 = w >= 3 ? (w - 3) / 2 : 0;
-			size_t w13 = w - w11 - w12;
-			size_t w22 = w >= 2 ? (w - 2) / 2 : 0;
-			size_t w23 = w > 2 ? 1 : 0;
-			size_t w21 = w - w22 - w23 - 1;
+			std::size_t w11 = w > 1 ? 1 : 0;
+			std::size_t w12 = w >= 3 ? (w - 3) / 2 : 0;
+			std::size_t w13 = w - w11 - w12;
+			std::size_t w22 = w >= 2 ? (w - 2) / 2 : 0;
+			std::size_t w23 = w > 2 ? 1 : 0;
+			std::size_t w21 = w - w22 - w23 - 1;
 			TextMatrix ans(w, 2);
 			ans.m.push_back(std::string(w13, ' ') + std::string(w12, '_') +
 							std::string(w11, ' '));
@@ -108,7 +108,7 @@ class TreePrinter {
 							"/" + std::string(w21, ' '));
 			return ans;
 		}
-		static TextMatrix rbranch(size_t w) {
+		static TextMatrix rbranch(std::size_t w) {
 			// 1     2      3       4        5         6
 			// +---+ +----+ +-----+ +------+ +-------+ +--------+
 			// |r  | |r   | |r    | |r     | |r _    | |r _     |
@@ -118,12 +118,12 @@ class TreePrinter {
 			// First row: (' ' if w != 1) + '_' * max((w - 3) // 2, 0) + ' ' * ?
 			// Second row: (' ' if w == 2) + ' ' * max((w - 1) // 2, 0) + '\' +
 			//             '_' * max((w - 2) // 2, 0)
-			size_t w11 = w > 1 ? 1 : 0;
-			size_t w12 = w >= 3 ? (w - 3) / 2 : 0;
-			size_t w13 = w - w11 - w12;
-			size_t w22 = w >= 2 ? (w - 2) / 2 : 0;
-			size_t w23 = w > 2 ? 1 : 0;
-			size_t w21 = w - w22 - w23 - 1;
+			std::size_t w11 = w > 1 ? 1 : 0;
+			std::size_t w12 = w >= 3 ? (w - 3) / 2 : 0;
+			std::size_t w13 = w - w11 - w12;
+			std::size_t w22 = w >= 2 ? (w - 2) / 2 : 0;
+			std::size_t w23 = w > 2 ? 1 : 0;
+			std::size_t w21 = w - w22 - w23 - 1;
 			TextMatrix ans(w, 2);
 			ans.m.push_back(std::string(w11, ' ') + std::string(w12, '_') +
 							std::string(w13, ' '));
@@ -150,8 +150,8 @@ class TreePrinter {
 					// +-----------+ +---------------+ +----------+
 					//                                      ^ rseam
 					TextMatrix tm_right(print(nav.right(root)));
-					size_t rseam_w = tm_right.l == 0 ? 1 : 0;
-					size_t rbranch_w = rseam_w + tm_right.l;
+					std::size_t rseam_w = tm_right.l == 0 ? 1 : 0;
+					std::size_t rbranch_w = rseam_w + tm_right.l;
 					TextMatrix ans(tm_root.w + rseam_w + tm_right.w,
 									tm_right.h + 2, 0, tm_root.w);
 					TextMatrix tm_rbranch = rbranch(rbranch_w);
@@ -160,7 +160,7 @@ class TreePrinter {
 					ans.m.push_back(std::string(tm_root.w, ' ') +
 									tm_rbranch.m[1] +
 									std::string(tm_right.w - tm_right.l, ' '));
-					for (size_t i = 0; i < tm_right.h; i++) {
+					for (std::size_t i = 0; i < tm_right.h; i++) {
 						ans.m.push_back(std::string(tm_root.w + rseam_w, ' ') +
 										tm_right.m[i]);
 					}
@@ -178,8 +178,8 @@ class TreePrinter {
 					// +-----------+ +---------------+ +----------+
 					//                                       ^ lseam
 					TextMatrix tm_left(print(nav.left(root)));
-					size_t lseam_w = tm_left.r == tm_left.w ? 1 : 0;
-					size_t lbranch_w = lseam_w + tm_left.w - tm_left.r;
+					std::size_t lseam_w = tm_left.r == tm_left.w ? 1 : 0;
+					std::size_t lbranch_w = lseam_w + tm_left.w - tm_left.r;
 					TextMatrix ans(tm_root.w + lseam_w + tm_left.w,
 									tm_left.h + 2, lseam_w + tm_left.w,
 									tm_root.w + lseam_w + tm_left.w);
@@ -189,7 +189,7 @@ class TreePrinter {
 					ans.m.push_back(std::string(tm_left.r, ' ') +
 									tm_lbranch.m[1] +
 									std::string(tm_root.w, ' '));
-					for (size_t i = 0; i < tm_left.h; i++) {
+					for (std::size_t i = 0; i < tm_left.h; i++) {
 						ans.m.push_back(tm_left.m[i] +
 										std::string(tm_root.w + lseam_w, ' '));
 					}
@@ -198,10 +198,10 @@ class TreePrinter {
 					// Have both sub-trees
 					TextMatrix tm_left(print(nav.left(root)));
 					TextMatrix tm_right(print(nav.right(root)));
-					size_t rseam_w = tm_right.l == 0 ? 1 : 0;
-					size_t rbranch_w = rseam_w + tm_right.l;
-					size_t lseam_w = tm_left.r == tm_left.w ? 1 : 0;
-					size_t lbranch_w = lseam_w + tm_left.w - tm_left.r;
+					std::size_t rseam_w = tm_right.l == 0 ? 1 : 0;
+					std::size_t rbranch_w = rseam_w + tm_right.l;
+					std::size_t lseam_w = tm_left.r == tm_left.w ? 1 : 0;
+					std::size_t lbranch_w = lseam_w + tm_left.w - tm_left.r;
 					TextMatrix tm_rbranch = rbranch(rbranch_w);
 					TextMatrix tm_lbranch = lbranch(lbranch_w);
 					TextMatrix ans(
@@ -217,7 +217,7 @@ class TreePrinter {
 						tm_lbranch.m[1] + std::string(tm_root.w, ' ') +
 						tm_rbranch.m[1] +
 						std::string(tm_right.w - tm_right.l, ' '));
-					for (size_t i = 0; i < tm_left.h || i < tm_right.h; i++) {
+					for (std::size_t i = 0; i < tm_left.h || i < tm_right.h; i++) {
 						ans.m.push_back(
 							(i < tm_left.h ? tm_left.m[i] :
 											std::string(tm_left.w, ' ')) +

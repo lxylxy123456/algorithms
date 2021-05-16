@@ -26,8 +26,8 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 16);
-	const size_t compute = get_argv(argc, argv, 2, 7);
+	const std::size_t n = get_argv(argc, argv, 1, 16);
+	const std::size_t compute = get_argv(argc, argv, 2, 7);
 	std::vector<int> buf_a, buf_b;
 	random_integers(buf_a, 0, n, n * n);
 	random_integers(buf_b, 0, n, n * n);

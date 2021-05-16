@@ -27,11 +27,11 @@
 using namespace algorithms;
 
 template <typename T>
-void main_T(const size_t n) {
+void main_T(const std::size_t n) {
 	std::vector<int> int_a, int_b;
 	random_integers(int_a, -n, n, n * n);
 	std::vector<T> buf_a(n * n), buf_b(n);
-	for (size_t i = 0; i < int_a.size(); i++)
+	for (std::size_t i = 0; i < int_a.size(); i++)
 		buf_a[i] = int_a[i];
 	Matrix<T> A(n, n, buf_a);
 	std::cout << A << std::endl;
@@ -42,8 +42,8 @@ void main_T(const size_t n) {
 }
 
 int main(int argc, char *argv[]) {
-	const size_t type = get_argv(argc, argv, 1, 0);
-	const size_t n = get_argv(argc, argv, 2, 5);
+	const std::size_t type = get_argv(argc, argv, 1, 0);
+	const std::size_t n = get_argv(argc, argv, 2, 5);
 	if (!type)
 		main_T<double>(n);
 	else

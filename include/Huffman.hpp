@@ -33,8 +33,8 @@ namespace algorithms {
 template <typename T>
 class CNode {
 	public:
-		CNode(T d, size_t f): disp(d), freq(f), left(nullptr), right(nullptr) {}
-		CNode(T d, size_t f, CNode<T>* l, CNode<T>* r): disp(d), freq(f),
+		CNode(T d, std::size_t f): disp(d), freq(f), left(nullptr), right(nullptr) {}
+		CNode(T d, std::size_t f, CNode<T>* l, CNode<T>* r): disp(d), freq(f),
 														left(l), right(r) {}
 		CNode<T>* recursive_destruct() {
 			if (left)
@@ -49,20 +49,20 @@ class CNode {
 		bool operator<(const CNode<T>& rhs) const { return freq > rhs.freq; }
 		bool operator>(const CNode<T>& rhs) const { return freq < rhs.freq; }
 		T disp;
-		size_t freq;
+		std::size_t freq;
 		CNode<T> *left, *right;
 };
 
 template <typename T>
 CNode<T>* Huffman(std::vector<CNode<T>> C) {
-	size_t n = C.size();
+	std::size_t n = C.size();
 	PriorityQueue<CNode<T>> P;
 	for (typename std::vector<CNode<T>>::iterator i = C.begin();
 		i != C.end(); i++) {
 		P.push_back(*i);
 		P.MaxHeapInsert(*i);
 	}
-	for (size_t i = 1; i < n; i++) {
+	for (std::size_t i = 1; i < n; i++) {
 		CNode<T>* x = new CNode<T>(P.HeapExtractMax());
 		P.pop_back();
 		CNode<T>* y = new CNode<T>(P.HeapExtractMax());

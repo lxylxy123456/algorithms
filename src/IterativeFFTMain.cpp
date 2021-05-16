@@ -27,18 +27,18 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	for (size_t i = 0; i < 8; i++) {
+	for (std::size_t i = 0; i < 8; i++) {
 		std::cout << rev(i, 8) << std::endl;
 	}
-	const size_t n = get_argv(argc, argv, 1, 16);
+	const std::size_t n = get_argv(argc, argv, 1, 16);
 	std::vector<int> int_a, int_b;
 	random_integers(int_a, -n, n, n);
 	random_integers(int_b, -n, n, n);
 	using T = Complex<double>;
 	std::vector<T> buf_a(n), buf_b(n);
-	for (size_t i = 0; i < int_a.size(); i++)
+	for (std::size_t i = 0; i < int_a.size(); i++)
 		buf_a[i] = int_a[i];
-	for (size_t i = 0; i < int_a.size(); i++)
+	for (std::size_t i = 0; i < int_a.size(); i++)
 		buf_b[i] = int_b[i];
 	Matrix<T> a(n, 1, buf_a);
 	std::cout << a << std::endl;

@@ -31,21 +31,21 @@ class Data {
 	public:
 		Data(void) {}
 		Data(T k): key(k) {}
-		Data(size_t n) { next() = n; }
+		Data(std::size_t n) { next() = n; }
 		bool operator==(const Data<T>& rhs) const { return key == rhs.key; }
 		bool operator!=(const Data<T>& rhs) const { return key != rhs.key; }
 		bool operator==(const T& rhs) const { return key == rhs; }
 		bool operator!=(const T& rhs) const { return key != rhs; }
-		size_t& next() { return *reinterpret_cast<size_t*>(&key); }
+		std::size_t& next() { return *reinterpret_cast<size_t*>(&key); }
 		T key;
 };
 
 template <typename T>
 class StorageManage {
 	public:
-		StorageManage(size_t n): data(new Data<T>[n]), len(n), free(1) {
-			assert(sizeof(T) >= sizeof(size_t));
-			for (size_t i = 0; i < n - 1; i++)
+		StorageManage(std::size_t n): data(new Data<T>[n]), len(n), free(1) {
+			assert(sizeof(T) >= sizeof(std::size_t));
+			for (std::size_t i = 0; i < n - 1; i++)
 				data[i].next() = i + 2;
 			data[n - 1].next() = 0;
 		}
@@ -53,7 +53,7 @@ class StorageManage {
 			if (!free)
 				throw std::invalid_argument("out of space");
 			else {
-				size_t x = free - 1;
+				std::size_t x = free - 1;
 				free = data[x].next();
 				return data + x;
 			}
@@ -67,7 +67,7 @@ class StorageManage {
 		}
 	private:
 		Data<T>* data;
-		size_t len, free;
+		std::size_t len, free;
 };
 
 }

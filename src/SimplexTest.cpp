@@ -41,40 +41,40 @@ bool almost_equal(Fraction<T> lhs, Fraction<T> rhs) {
 }
 
 template <typename T>
-int test(size_t m, size_t n, T epsilon) {
+int test(std::size_t m, size_t n, T epsilon) {
 	std::vector<int> int_a, int_b, int_c;
 	random_integers(int_a, -m, m, m * n);
 	random_integers(int_b, -m, m, m);
 	random_integers(int_c, -m, m, n);
 	matst A;
 	vectst b, c;
-	for (size_t i = 1; i <= n; i++)
+	for (std::size_t i = 1; i <= n; i++)
 		c[i] = int_c[i - 1];
-	for (size_t i = 1; i <= m; i++)
+	for (std::size_t i = 1; i <= m; i++)
 		b[n + i] = int_b[i - 1];
-	for (size_t i = 1; i <= m; i++)
-		for (size_t j = 1; j <= n; j++)
+	for (std::size_t i = 1; i <= m; i++)
+		for (std::size_t j = 1; j <= n; j++)
 			A[n + i][j] = int_a[(i - 1) * n + (j - 1)];
-	for (size_t i = 1; i <= m; i++) {
-		for (size_t j = 1; j <= n; j++)
+	for (std::size_t i = 1; i <= m; i++) {
+		for (std::size_t j = 1; j <= n; j++)
 			std::cout << A[n + i][j] << " ";
 		std::cout << std::endl;
 	}
 	std::cout << std::endl;
-	for (size_t i = 1; i <= m; i++)
+	for (std::size_t i = 1; i <= m; i++)
 		std::cout << b[n + i] << " ";
 	std::cout << std::endl;
-	for (size_t i = 1; i <= n; i++)
+	for (std::size_t i = 1; i <= n; i++)
 		std::cout << c[i] << " ";
 	std::cout << std::endl;
 	try {
 		vectst x = Simplex(A, b, c, epsilon);
-		for (size_t i = 1; i <= n; i++)
+		for (std::size_t i = 1; i <= n; i++)
 			std::cout << x[i] << " ";
 		std::cout << std::endl;
-		for (size_t i = 1; i <= m; i++) {
+		for (std::size_t i = 1; i <= m; i++) {
 			T s(0);
-			for (size_t j = 1; j <= n; j++)
+			for (std::size_t j = 1; j <= n; j++)
 				s += A[n + i][j] * x[j];
 			assert(s - b[n + i] < (T) 1 / (T) 100000);
 		}
@@ -89,9 +89,9 @@ int test(size_t m, size_t n, T epsilon) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> ns = {2, 5, 8, 19, 39, 52, 73};
-	for (std::vector<size_t>::iterator m = ns.begin(); m < ns.end(); m++)
-		for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
+	std::vector<std::size_t> ns = {2, 5, 8, 19, 39, 52, 73};
+	for (std::vector<std::size_t>::iterator m = ns.begin(); m < ns.end(); m++)
+		for (std::vector<std::size_t>::iterator n = ns.begin(); n < ns.end(); n++)
 			if (*m > *n)
 				test<double>(*m, *n, 1e-5);
 	test<Fraction<long long int>>(3, 2, (Fraction<long long int>) 0);

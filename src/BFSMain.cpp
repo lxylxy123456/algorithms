@@ -28,16 +28,16 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t v = get_argv(argc, argv, 1, 5);
-	const size_t e = get_argv(argc, argv, 2, 10);
+	const std::size_t v = get_argv(argc, argv, 1, 5);
+	const std::size_t e = get_argv(argc, argv, 2, 10);
 	const bool dir = get_argv(argc, argv, 3, 0);
-	GraphAdjList<size_t> G(dir);
+	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	umap<size_t, BFSInfo<size_t>> inf;
-	size_t s = 0;
+	umap<std::size_t, BFSInfo<size_t>> inf;
+	std::size_t s = 0;
 	BFS(G, s, inf);
-	auto f1 = [inf](size_t v) mutable {
-		BFSInfo<size_t>& i = inf[v];
+	auto f1 = [inf](std::size_t v) mutable {
+		BFSInfo<std::size_t>& i = inf[v];
 		std::cout << " [";
 		switch (i.color) {
 			case bfs_white:
@@ -57,10 +57,10 @@ int main(int argc, char *argv[]) {
 		std::cout << "\"]";
 		return true;
 	};
-	auto f2 = [](Edge<size_t> e) {};
+	auto f2 = [](Edge<std::size_t> e) {};
 	graphviz(G, f1, f2);
 	for (auto i = G.V.begin(); i != G.V.end(); i++) {
-		std::vector<size_t> ans;
+		std::vector<std::size_t> ans;
 		PrintPath(s, *i, inf, ans);
 		std::cout << *i << '\t';
 		if (ans.size())

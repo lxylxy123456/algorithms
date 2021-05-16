@@ -25,15 +25,19 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	size_t k = get_argv(argc, argv, 1, 7);  	// max key < 1<<k
-	size_t md = get_argv(argc, argv, 2, 23); 	// prime in DivisionHash
-	size_t mm = get_argv(argc, argv, 3, 5); 	// MultiplicationHash: m < 1<<p
-	size_t p = get_argv(argc, argv, 4, 131);  	// prime in UniversalHash > 1<<k
+	// max key < 1<<k
+	std::size_t k = get_argv(argc, argv, 1, 7);
+	// prime in DivisionHash
+	std::size_t md = get_argv(argc, argv, 2, 23);
+	// MultiplicationHash: m < 1<<p
+	std::size_t mm = get_argv(argc, argv, 3, 5);
+	// prime in UniversalHash > 1<<k
+	std::size_t p = get_argv(argc, argv, 4, 131);
 	DivisionHash d(md);
 	MultiplicationHash m(k, mm, 0.6180339887);
 	UniversalHash u(p, md);
 	std::cout << "key\tdiv\tmul\tuniv" << std::endl;
-	for (size_t i = 0; i < 1u<<k; i++) {
+	for (std::size_t i = 0; i < 1u<<k; i++) {
 		std::cout << i << '\t' << d(i) << '\t' << m(i)
 				 << '\t' << u(i) << std::endl;
 	}

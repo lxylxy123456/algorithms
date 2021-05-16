@@ -26,16 +26,16 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t v = get_argv(argc, argv, 1, 5);
-	const size_t e = get_argv(argc, argv, 2, 10);
+	const std::size_t v = get_argv(argc, argv, 1, 5);
+	const std::size_t e = get_argv(argc, argv, 2, 10);
 	const bool dir = get_argv(argc, argv, 3, 0);
-	GraphAdjList<size_t> G(dir);
+	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	umap<size_t, DFSInfo<size_t>> inf;
-	umap<Edge<size_t>, DFSEdgeType, EdgeHash<size_t>> edge_inf;
+	umap<std::size_t, DFSInfo<size_t>> inf;
+	umap<Edge<std::size_t>, DFSEdgeType, EdgeHash<size_t>> edge_inf;
 	DFS(G, inf, &edge_inf);
-	auto f1 = [inf](size_t v) mutable {
-		DFSInfo<size_t>& i = inf[v];
+	auto f1 = [inf](std::size_t v) mutable {
+		DFSInfo<std::size_t>& i = inf[v];
 		std::cout << " [";
 		switch (i.color) {
 			case dfs_white:
@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
 		std::cout << "; f = " << i.f << "; pi = " << i.pi << "\"]";
 		return true;
 	};
-	auto f2 = [edge_inf](Edge<size_t> e) mutable {
+	auto f2 = [edge_inf](Edge<std::size_t> e) mutable {
 		std::cout << " [" << "label=\"" << edge_inf[e] << "\"]";
 	};
 	graphviz(G, f1, f2);

@@ -27,9 +27,9 @@ namespace algorithms {
 
 template <typename T>
 void InsertSort(std::vector<T>& list) {
-	for (size_t i = 1; i < list.size(); i++) {
+	for (std::size_t i = 1; i < list.size(); i++) {
 		T tmp = list[i];
-		size_t j;
+		std::size_t j;
 		for (j = i; j > 0 && tmp < list[j - 1]; j--)
 			list[j] = list[j - 1];
 		list[j] = tmp;

@@ -26,13 +26,13 @@ using std::size_t;
 namespace algorithms {
 
 template <typename T>
-size_t OnLineMaximum(std::vector<T> candidates, size_t k) {
-	size_t n = candidates.size();
+std::size_t OnLineMaximum(std::vector<T> candidates, size_t k) {
+	std::size_t n = candidates.size();
 	T best_score = candidates[0];
-	for (size_t i = 0; i < k; i++)
+	for (std::size_t i = 0; i < k; i++)
 		if (candidates[i] > best_score)
 			best_score = candidates[i];
-	for (size_t i = k; i < n; i++)
+	for (std::size_t i = k; i < n; i++)
 		if (candidates[i] > best_score)
 			return i;
 	return n - 1;

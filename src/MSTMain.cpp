@@ -28,19 +28,19 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t v = get_argv(argc, argv, 1, 5);
-	const size_t e = get_argv(argc, argv, 2, 10);
+	const std::size_t v = get_argv(argc, argv, 1, 5);
+	const std::size_t e = get_argv(argc, argv, 2, 10);
 	const bool dir = 0;
-	const size_t algorithm = get_argv(argc, argv, 3, 0);
-	GraphAdjList<size_t> G(dir);
+	const std::size_t algorithm = get_argv(argc, argv, 3, 0);
+	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	umap<Edge<size_t>, size_t, EdgeHash<size_t>> w;
-	random_weight(G, w, (size_t) 0, e - 1);
+	umap<Edge<std::size_t>, size_t, EdgeHash<size_t>> w;
+	random_weight(G, w, (std::size_t) 0, e - 1);
 	if (algorithm == 0) {
-		uset<Edge<size_t>, EdgeHash<size_t>> A;
+		uset<Edge<std::size_t>, EdgeHash<size_t>> A;
 		MSTKruskal(G, w, A);
-		auto f1 = [](size_t v) { return false; };
-		auto f2 = [w, A](Edge<size_t> e) mutable {
+		auto f1 = [](std::size_t v) { return false; };
+		auto f2 = [w, A](Edge<std::size_t> e) mutable {
 			std::cout << " [label=\"" << w[e] << "\"";
 			if (A.find(e) != A.end())
 				std::cout << " style=bold";
@@ -48,10 +48,10 @@ int main(int argc, char *argv[]) {
 		};
 		graphviz(G, f1, f2);
 	} else {
-		umap<size_t, MSTPrimInfo<size_t, size_t>> ans;
+		umap<std::size_t, MSTPrimInfo<size_t, size_t>> ans;
 		MSTPrim(G, w, *G.V.begin(), ans);
-		auto f1 = [](size_t v) { return false; };
-		auto f2 = [w, ans](Edge<size_t> e) mutable {
+		auto f1 = [](std::size_t v) { return false; };
+		auto f2 = [w, ans](Edge<std::size_t> e) mutable {
 			std::cout << " [label=\"" << w[e] << "\"";
 			if ((!ans[e.s].pi_nil && ans[e.s].pi == e.d) ||
 				(!ans[e.d].pi_nil && ans[e.d].pi == e.s))

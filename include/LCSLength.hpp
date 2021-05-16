@@ -19,7 +19,7 @@
 #ifndef ALGORITHMS_LCSLENGTH
 #define ALGORITHMS_LCSLENGTH
 
-#define VECT_SIZT std::vector<size_t>
+#define VECT_SIZT std::vector<std::size_t>
 
 #include <algorithm>
 #include <iostream>
@@ -31,10 +31,10 @@ namespace algorithms {
 
 template <typename T>
 std::vector<VECT_SIZT> LCSLength(std::vector<T> X, std::vector<T> Y) {
-	size_t m = X.size(), n = Y.size();
+	std::size_t m = X.size(), n = Y.size();
 	std::vector<VECT_SIZT> c(m + 1, VECT_SIZT(n + 1, 0));
-	for (size_t i = 1; i <= m; i++)
-		for (size_t j = 1; j <= n; j++) {
+	for (std::size_t i = 1; i <= m; i++)
+		for (std::size_t j = 1; j <= n; j++) {
 			if (X[i - 1] == Y[j - 1])
 				c[i][j] = c[i-1][j-1] + 1;
 			else
@@ -44,7 +44,8 @@ std::vector<VECT_SIZT> LCSLength(std::vector<T> X, std::vector<T> Y) {
 }
 
 template <typename T>
-void PrintLCS(std::vector<VECT_SIZT>& c, std::vector<T> X, size_t i, size_t j) {
+void PrintLCS(std::vector<VECT_SIZT>& c, std::vector<T> X, std::size_t i,
+				size_t j) {
 	if (!i || !j)
 		return;
 	if (c[i][j] == c[i-1][j])
@@ -58,8 +59,8 @@ void PrintLCS(std::vector<VECT_SIZT>& c, std::vector<T> X, size_t i, size_t j) {
 }
 
 template <typename T>
-void PrintLCS(std::vector<VECT_SIZT>& c, std::vector<T> X, size_t i, size_t j,
-				std::ostream& os) {
+void PrintLCS(std::vector<VECT_SIZT>& c, std::vector<T> X, std::size_t i,
+				size_t j, std::ostream& os) {
 	if (!i || !j)
 		return;
 	if (c[i][j] == c[i-1][j])

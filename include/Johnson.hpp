@@ -32,8 +32,8 @@ namespace algorithms {
 
 template <typename GT, typename T, typename WT>
 Matrix<Weight<WT>> Johnson(GT& G, umap_WT& w) {
-	static_assert(std::is_same<T, size_t>::value, "Only supports T = size_t");
-	const size_t n = G.V.size();
+	static_assert(std::is_same<T, std::size_t>::value, "Only supports T = size_t");
+	const std::size_t n = G.V.size();
 	T s;
 	GT G_prime = G;
 	umap_WT w_prime = w;

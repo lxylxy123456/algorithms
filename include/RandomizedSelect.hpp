@@ -28,11 +28,11 @@ using std::size_t;
 namespace algorithms {
 
 template <typename T>
-T RandomizedSelect(T p, T r, size_t i) {
+T RandomizedSelect(T p, T r, std::size_t i) {
 	if (p == r - 1)
 		return p;
 	T q = RandomizedPartition(p, r);
-	size_t k = q - p;
+	std::size_t k = q - p;
 	if (i == k)
 		return q;
 	else if (i < k)
@@ -42,18 +42,18 @@ T RandomizedSelect(T p, T r, size_t i) {
 }
 
 template <typename T>
-T RandomizedSelect(std::vector<T> A, size_t i) {
+T RandomizedSelect(std::vector<T> A, std::size_t i) {
 	return *RandomizedSelect(A.begin(), A.end(), i);
 }
 
 template <typename T>
-T RandomizedSelectIter(std::vector<T> A, size_t i) {
+T RandomizedSelectIter(std::vector<T> A, std::size_t i) {
 	typename std::vector<T>::iterator p = A.begin(), q, r = A.end();
 	while (true) {
 		if (p == r - 1)
 			return *p;
 		q = RandomizedPartition(p, r);
-		size_t k = q - p;
+		std::size_t k = q - p;
 		if (i == k)
 			return *q;
 		else if (i < k)

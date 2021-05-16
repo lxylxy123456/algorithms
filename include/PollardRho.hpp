@@ -39,7 +39,7 @@ T abs(T x) {
 
 template <typename T>
 T PollardRho(T n) {
-	size_t i = 1, k = 2;
+	std::size_t i = 1, k = 2;
 	T x = random_integer<T>(0, n - 1), y = x;
 	while (i < 1048576) {
 		i++;

@@ -26,15 +26,15 @@
 
 using namespace algorithms;
 
-int test(size_t n) {
+int test(std::size_t n) {
 	SIZT_1D p, q;
-	random_integers<size_t>(p, 1, n, n);
-	random_integers<size_t>(q, 1, n, n + 1);
+	random_integers<std::size_t>(p, 1, n, n);
+	random_integers<std::size_t>(q, 1, n, n + 1);
 	output_integers(p);
 	output_integers(q);
 	SIZT_2D root = OptimalBST(p, q, n);
-	for (size_t i = 0; i < n; i++)
-		for (size_t j = 0; j <= i; j++)
+	for (std::size_t i = 0; i < n; i++)
+		for (std::size_t j = 0; j <= i; j++)
 			assert(root[i][j] == 0);
 	return 0;
 }

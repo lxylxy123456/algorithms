@@ -28,30 +28,30 @@ namespace algorithms {
 template <typename T>
 class DirectAddress {
 	public:
-		DirectAddress(size_t s): size(s), data(new T*[size]) {
-			for (size_t i = 0; i < size; i++)
+		DirectAddress(std::size_t s): size(s), data(new T*[size]) {
+			for (std::size_t i = 0; i < size; i++)
 				data[i] = nullptr;
 		}
-		T* DirectAddressSearch(size_t k) {
+		T* DirectAddressSearch(std::size_t k) {
 			return data[k];
 		}
-		void DirectAddressInsert(size_t k, T x) {
+		void DirectAddressInsert(std::size_t k, T x) {
 			if (data[k])
 				delete data[k];
 			data[k] = new T(x);
 		}
-		void DirectAddressDelete(size_t k) {
+		void DirectAddressDelete(std::size_t k) {
 			delete data[k];
 			data[k] = nullptr;
 		}
 		~DirectAddress() {
-			for (size_t i = 0; i < size; i++)
+			for (std::size_t i = 0; i < size; i++)
 				if (data[i])
 					delete data[i];
 			delete [] data;
 		}
 	private:
-		size_t size;
+		std::size_t size;
 		T** data;
 };
 

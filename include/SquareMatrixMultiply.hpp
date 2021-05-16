@@ -34,16 +34,16 @@ class MatrixRow: public std::vector<T> {
 	MatrixRow(const std::vector<T>& d): std::vector<T>(d) {}
 	MatrixRow(typename std::vector<T>::iterator s,
 				typename std::vector<T>::iterator e): std::vector<T>(s, e) {}
-	MatrixRow(size_t c, T T0): std::vector<T>(std::vector<T>(c, T0)) {}
+	MatrixRow(std::size_t c, T T0): std::vector<T>(std::vector<T>(c, T0)) {}
 	MatrixRow<T> operator+(const MatrixRow<T> rhs) {
 		assert(this->size() == rhs.size());
 		MatrixRow<T> ans(this->size());
-		for (size_t i = 0; i < this->size(); i++)
+		for (std::size_t i = 0; i < this->size(); i++)
 			ans[i] = (*this)[i] + rhs[i];
 		return ans;
 	}
 	friend std::ostream& operator<<(std::ostream& os, const MatrixRow& rhs) {
-		for (size_t i = 0; i < rhs.size(); i++)
+		for (std::size_t i = 0; i < rhs.size(); i++)
 			os << rhs[i] << ' ';
 		return os;
 	}
@@ -58,48 +58,48 @@ class MatrixRow: public std::vector<T> {
 template <typename T>
 class Matrix {
 	public:
-	Matrix(size_t r, size_t c, std::vector<T> d): rows(r), cols(c) {
+	Matrix(std::size_t r, size_t c, std::vector<T> d): rows(r), cols(c) {
 		data.reserve(r);
 		typename std::vector<T>::iterator begin = d.begin(), end = begin;
-		for (size_t i = 0; i < r; i++) {
+		for (std::size_t i = 0; i < r; i++) {
 			end = begin + c;
 			data.push_back(MatrixRow<T>(begin, end));
 			begin += c;
 		}
 	}
-	Matrix(size_t r, size_t c, T T0): rows(r), cols(c) {
+	Matrix(std::size_t r, size_t c, T T0): rows(r), cols(c) {
 		data.reserve(r);
-		for (size_t i = 0; i < r; i++)
+		for (std::size_t i = 0; i < r; i++)
 			data.push_back(MatrixRow<T>(c, T0));
 	}
-	Matrix(size_t r, size_t c): rows(r), cols(c) {
+	Matrix(std::size_t r, size_t c): rows(r), cols(c) {
 		data.reserve(r);
 	}
 	friend std::ostream& operator<<(std::ostream& os, const Matrix& rhs) {
-		for (size_t i = 0; i < rhs.rows; i++)
+		for (std::size_t i = 0; i < rhs.rows; i++)
 			os << rhs.data[i] << std::endl;
 		return os;
 	}
 	std::ostream& octave(std::ostream& os) {
 		os << '[';
-		for (size_t i = 0; i < rows; i++) {
+		for (std::size_t i = 0; i < rows; i++) {
 			os << data[i];
 			if (i != rows - 1)
 				os << ';';
 		}
 		return os << ']' << std::endl;
 	}
-	MatrixRow<T>& operator[](size_t index) { return data[index]; }
+	MatrixRow<T>& operator[](std::size_t index) { return data[index]; }
 	bool operator==(const Matrix<T>& rhs) const {
 		return data == rhs.data;
 	}
 	Matrix<T> operator+(Matrix<T>& rhs) {
 		Matrix<T> ans(rows, cols);
 		assert(rows == rhs.rows && cols == rhs.cols);
-		for (size_t i = 0; i < rows; i++) {
+		for (std::size_t i = 0; i < rows; i++) {
 			MatrixRow<T> tmp;
 			tmp.reserve(ans.cols);
-			for (size_t j = 0; j < cols; j++)
+			for (std::size_t j = 0; j < cols; j++)
 				tmp.push_back((*this)[i][j] + rhs[i][j]);
 			ans.data.push_back(tmp);
 		}
@@ -108,10 +108,10 @@ class Matrix {
 	Matrix<T> operator-(Matrix<T>& rhs) {
 		Matrix<T> ans(rows, cols);
 		assert(rows == rhs.rows && cols == rhs.cols);
-		for (size_t i = 0; i < rows; i++) {
+		for (std::size_t i = 0; i < rows; i++) {
 			MatrixRow<T> tmp;
 			tmp.reserve(ans.cols);
-			for (size_t j = 0; j < cols; j++)
+			for (std::size_t j = 0; j < cols; j++)
 				tmp.push_back((*this)[i][j] - rhs[i][j]);
 			ans.data.push_back(tmp);
 		}
@@ -120,7 +120,7 @@ class Matrix {
 	Matrix<T> concat_h(Matrix<T> rhs) {
 		assert(rows == rhs.rows);
 		Matrix<T> ans(rows, cols + rhs.cols);
-		for (size_t i = 0; i < rows; i++)
+		for (std::size_t i = 0; i < rows; i++)
 			ans.data.push_back(data[i].concat_h(rhs[i]));
 		return ans;
 	}
@@ -133,8 +133,8 @@ class Matrix {
 	}
 	Matrix<T> transpose() {
 		Matrix<T> ans(cols, rows, 0);
-		for (size_t i = 0; i < cols; i++)
-			for (size_t j = 0; j < rows; j++)
+		for (std::size_t i = 0; i < cols; i++)
+			for (std::size_t j = 0; j < rows; j++)
 				ans[i][j] = (*this)[j][i];
 		return ans;
 	}
@@ -144,11 +144,11 @@ class Matrix {
 	}
 	void add_col(T T0) {
 		cols += 1;
-		for (size_t i = 0; i < rows; i++)
+		for (std::size_t i = 0; i < rows; i++)
 			data[i].push_back(T0);
 	}
 	// members
-	size_t rows, cols;
+	std::size_t rows, cols;
 	std::vector<MatrixRow<T>> data;
 };
 
@@ -157,12 +157,12 @@ class SubMatrix {
 	public:
 	SubMatrix(Matrix<T>& dd): data(dd), left(0), right(dd.cols), up(0),
 		down(dd.rows) {}
-	SubMatrix(Matrix<T>& dd, size_t l, size_t r, size_t u, size_t d):
+	SubMatrix(Matrix<T>& dd, std::size_t l, size_t r, size_t u, size_t d):
 		data(dd), left(l), right(r), up(u), down(d) {}
-	SubMatrix(SubMatrix<T> dd, size_t l, size_t r, size_t u, size_t d):
+	SubMatrix(SubMatrix<T> dd, std::size_t l, size_t r, size_t u, size_t d):
 		data(dd.data), left(dd.left + l), right(dd.left + r), up(dd.up + u),
 		down(dd.up + d) {}
-	T& get_elem(size_t i1, size_t i2) const {
+	T& get_elem(std::size_t i1, size_t i2) const {
 		assert(i1 >= 0 && i1 < down - up);
 		assert(i2 >= 0 && i2 < right - left);
 		return data[up + i1][left + i2];
@@ -170,10 +170,10 @@ class SubMatrix {
 	Matrix<T> operator+(SubMatrix<T> rhs) {
 		Matrix<T> ans(rows(), cols());
 		assert(ans.rows == rhs.rows() && ans.cols == rhs.cols());
-		for (size_t i = 0; i < ans.rows; i++) {
+		for (std::size_t i = 0; i < ans.rows; i++) {
 			MatrixRow<T> tmp;
 			tmp.reserve(ans.cols);
-			for (size_t j = 0; j < ans.cols; j++)
+			for (std::size_t j = 0; j < ans.cols; j++)
 				tmp.push_back(get_elem(i, j) + rhs.get_elem(i, j));
 			ans.data.push_back(tmp);
 		}
@@ -182,29 +182,29 @@ class SubMatrix {
 	Matrix<T> operator-(SubMatrix<T> rhs) {
 		Matrix<T> ans(rows(), cols());
 		assert(ans.rows == rhs.rows() && ans.cols == rhs.cols());
-		for (size_t i = 0; i < ans.rows; i++) {
+		for (std::size_t i = 0; i < ans.rows; i++) {
 			MatrixRow<T> tmp;
 			tmp.reserve(ans.cols);
-			for (size_t j = 0; j < ans.cols; j++)
+			for (std::size_t j = 0; j < ans.cols; j++)
 				tmp.push_back(get_elem(i, j) - rhs.get_elem(i, j));
 			ans.data.push_back(tmp);
 		}
 		return ans;
 	}
-	size_t rows(void) const { return down - up; }
-	size_t cols(void) const { return right - left; }
+	std::size_t rows(void) const { return down - up; }
+	std::size_t cols(void) const { return right - left; }
 	// members
 	Matrix<T>& data;
-	size_t left, right, up, down;
+	std::size_t left, right, up, down;
 };
 
 template <typename T>
 Matrix<T> SquareMatrixMultiply(Matrix<T>&A, Matrix<T>&B, T T0){
 	Matrix<T> C(A.rows, B.cols, T0);
-	for (size_t i = 0; i < C.rows; i++) {
-		for(size_t j = 0; j < C.cols; j++) {
+	for (std::size_t i = 0; i < C.rows; i++) {
+		for(std::size_t j = 0; j < C.cols; j++) {
 			T& loc = C.data[i][j];
-			for(size_t k = 0; k < A.cols; k++) {
+			for(std::size_t k = 0; k < A.cols; k++) {
 				loc += A[i][k] * B[k][j];
 			}
 		}
@@ -215,9 +215,9 @@ Matrix<T> SquareMatrixMultiply(Matrix<T>&A, Matrix<T>&B, T T0){
 template <typename T>
 void SquareMatrixMultiplyRecursive(SubMatrix<T>& A, SubMatrix<T>& B,
 									SubMatrix<T>& C) {
-	size_t a_row = A.rows(), a_col = A.cols();
-	size_t b_row = B.rows(), b_col = B.cols();
-	size_t c_row = C.rows(), c_col = C.cols();
+	std::size_t a_row = A.rows(), a_col = A.cols();
+	std::size_t b_row = B.rows(), b_col = B.cols();
+	std::size_t c_row = C.rows(), c_col = C.cols();
 	assert(a_row == c_row && b_col == c_col && a_col == b_row);
 	switch(a_row * a_col * b_col) {
 		case 1:
@@ -225,9 +225,9 @@ void SquareMatrixMultiplyRecursive(SubMatrix<T>& A, SubMatrix<T>& B,
 		case 0:
 			return;
 		default:
-			size_t a_mid = c_row / 2; 	// Rows of A & C
-			size_t b_mid = c_col / 2; 	// Cols of B & C
-			size_t c_mid = a_col / 2; 	// Cols of A & Rows of B
+			std::size_t a_mid = c_row / 2; 	// Rows of A & C
+			std::size_t b_mid = c_col / 2; 	// Cols of B & C
+			std::size_t c_mid = a_col / 2; 	// Cols of A & Rows of B
 			SubMatrix<T> A11(A,     0, c_mid,     0, a_mid);
 			SubMatrix<T> A12(A, c_mid, a_col,     0, a_mid);
 			SubMatrix<T> A21(A,     0, c_mid, a_mid, a_row);
@@ -261,8 +261,8 @@ Matrix<T> SquareMatrixMultiplyRecursive(Matrix<T>& A, Matrix<T>& B, T T0) {
 
 template <typename T, T T0>
 Matrix<T> SquareMatrixMultiplyStrassen(SubMatrix<T> A, SubMatrix<T> B) {
-	size_t a_row = A.rows(), a_col = A.cols();
-	size_t b_row = B.rows(), b_col = B.cols();
+	std::size_t a_row = A.rows(), a_col = A.cols();
+	std::size_t b_row = B.rows(), b_col = B.cols();
 	assert(a_col == b_row);
 	switch(a_row * a_col * b_col) {
 		case 1:
@@ -270,12 +270,12 @@ Matrix<T> SquareMatrixMultiplyStrassen(SubMatrix<T> A, SubMatrix<T> B) {
 		case 0:
 			return Matrix<T>(0, 0);
 		default:
-			size_t a_mid = a_row / 2; 	// Rows of A & C
-			size_t b_mid = b_col / 2; 	// Cols of B & C
-			size_t c_mid = a_col / 2; 	// Cols of A & Rows of B
-			size_t a_end = a_mid * 2;
-			size_t b_end = b_mid * 2;
-			size_t c_end = c_mid * 2;
+			std::size_t a_mid = a_row / 2; 	// Rows of A & C
+			std::size_t b_mid = b_col / 2; 	// Cols of B & C
+			std::size_t c_mid = a_col / 2; 	// Cols of A & Rows of B
+			std::size_t a_end = a_mid * 2;
+			std::size_t b_end = b_mid * 2;
+			std::size_t c_end = c_mid * 2;
 			SubMatrix<T> A11(A,     0, c_mid,     0, a_mid);
 			SubMatrix<T> A12(A, c_mid, c_end,     0, a_mid);
 			SubMatrix<T> A21(A,     0, c_mid, a_mid, a_end);
@@ -302,23 +302,23 @@ Matrix<T> SquareMatrixMultiplyStrassen(SubMatrix<T> A, SubMatrix<T> B) {
 			if (a_end != a_row) {
 				assert(a_end == a_row - 1);
 				C.add_row(T0);
-				for (size_t i = 0; i < b_end; i++)
-					for (size_t j = 0; j < c_end; j++)
+				for (std::size_t i = 0; i < b_end; i++)
+					for (std::size_t j = 0; j < c_end; j++)
 						C[a_end][i] += A.get_elem(a_end, j) * B.get_elem(j, i);
 				a_end += 1;
 			}
 			if (b_end != b_col) {
 				assert(b_end == b_col - 1);
 				C.add_col(T0);
-				for (size_t i = 0; i < a_end; i++)
-					for (size_t j = 0; j < c_end; j++)
+				for (std::size_t i = 0; i < a_end; i++)
+					for (std::size_t j = 0; j < c_end; j++)
 						C[i][b_end] += A.get_elem(i, j) * B.get_elem(j, b_end);
 				b_end += 1;
 			}
 			if (c_end != a_col) {
 				assert(c_end == a_col - 1);
-				for (size_t i = 0; i < a_end; i++)
-					for (size_t j = 0; j < b_end; j++)
+				for (std::size_t i = 0; i < a_end; i++)
+					for (std::size_t j = 0; j < b_end; j++)
 						C[i][j] += A.get_elem(i, c_end) * B.get_elem(c_end, j);
 			}
 			return C;

@@ -27,42 +27,42 @@
 using namespace algorithms;
 
 template <typename T>
-void main_T(const size_t n, const size_t m) {
+void main_T(const std::size_t n, const size_t m) {
 	std::vector<int> int_a, int_b, int_c;
 	random_integers(int_a, -m, m, m * n);
 	random_integers(int_b, -m, m, m);
 	random_integers(int_c, -m, m, n);
 	matst A;
 	vectst b, c;
-	for (size_t i = 1; i <= n; i++)
+	for (std::size_t i = 1; i <= n; i++)
 		c[i] = int_c[i - 1];
-	for (size_t i = 1; i <= m; i++)
+	for (std::size_t i = 1; i <= m; i++)
 		b[n + i] = int_b[i - 1];
-	for (size_t i = 1; i <= m; i++)
-		for (size_t j = 1; j <= n; j++)
+	for (std::size_t i = 1; i <= m; i++)
+		for (std::size_t j = 1; j <= n; j++)
 			A[n + i][j] = int_a[(i - 1) * n + (j - 1)];
-	for (size_t i = 1; i <= m; i++) {
-		for (size_t j = 1; j <= n; j++)
+	for (std::size_t i = 1; i <= m; i++) {
+		for (std::size_t j = 1; j <= n; j++)
 			std::cout << A[n + i][j] << " ";
 		std::cout << std::endl;
 	}
 	std::cout << std::endl;
-	for (size_t i = 1; i <= m; i++)
+	for (std::size_t i = 1; i <= m; i++)
 		std::cout << b[n + i] << " ";
 	std::cout << std::endl;
-	for (size_t i = 1; i <= n; i++)
+	for (std::size_t i = 1; i <= n; i++)
 		std::cout << c[i] << " ";
 	std::cout << std::endl;
 	vectst x = Simplex(A, b, c, (T) 0);
-	for (size_t i = 1; i <= n; i++)
+	for (std::size_t i = 1; i <= n; i++)
 		std::cout << x[i] << " ";
 	std::cout << std::endl;
 }
 
 int main(int argc, char *argv[]) {
-	const size_t type = get_argv(argc, argv, 1, 0);
-	const size_t m = get_argv(argc, argv, 2, 4);
-	const size_t n = get_argv(argc, argv, 3, 2);
+	const std::size_t type = get_argv(argc, argv, 1, 0);
+	const std::size_t m = get_argv(argc, argv, 2, 4);
+	const std::size_t n = get_argv(argc, argv, 3, 2);
 	if (!type)
 		main_T<double>(n, m);
 	else

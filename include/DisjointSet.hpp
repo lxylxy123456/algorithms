@@ -56,7 +56,7 @@ class DisjointSetForest {
 			Link(FindSet(x), FindSet(y));
 		}
 		std::map<T, T> p;
-		std::map<T, size_t> rank;
+		std::map<T, std::size_t> rank;
 };
 
 template <typename T>

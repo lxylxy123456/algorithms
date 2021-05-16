@@ -30,24 +30,24 @@
 
 using namespace algorithms;
 
-int test(size_t v, size_t e) {
+int test(std::size_t v, size_t e) {
 	const bool dir = 1;
 	const int weight_lower = (0 - e) / 4;
 	const int weight_upper = e;
-	GraphAdjList<size_t> G(dir);
+	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	umap<Edge<size_t>, int, EdgeHash<size_t>> w;
+	umap<Edge<std::size_t>, int, EdgeHash<size_t>> w;
 	random_weight(G, w, weight_lower, weight_upper);
-	auto f1 = [](size_t v) { return false; };
-	auto f2 = [w](Edge<size_t> e) mutable {
+	auto f1 = [](std::size_t v) { return false; };
+	auto f2 = [w](Edge<std::size_t> e) mutable {
 		std::cout << " [label=\"" << w[e] << "\"]";
 	};
 	graphviz(G, f1, f2);
 	try {
 		Matrix<Weight<int>> ans = Johnson(G, w);
 		// FloydWarshall
-		WeightedAdjMatrix<size_t, int> GG(dir);
-		for (size_t i = 0; i < v; i++)
+		WeightedAdjMatrix<std::size_t, int> GG(dir);
+		for (std::size_t i = 0; i < v; i++)
 			GG.add_vertex(i);
 		for (auto i = G.all_edges(); !i.end(); i++)
 			GG.add_edge(i.s(), i.d(), w[*i]);
@@ -59,8 +59,8 @@ int test(size_t v, size_t e) {
 		assert(std::string(e.what()) == "negative-weight cycle");
 		std::cout << e.what() << std::endl;
 		bool found = false;
-		for (size_t i = 0; i < v; i++) {
-			umap<size_t, RelaxInfo<size_t, int>> BF_ans;
+		for (std::size_t i = 0; i < v; i++) {
+			umap<std::size_t, RelaxInfo<size_t, int>> BF_ans;
 			if (!BellmanFord(G, w, i, BF_ans)) {
 				found = true;
 				break;
@@ -73,9 +73,9 @@ int test(size_t v, size_t e) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> m = {5, 10, 23, 49, 100};
-	for (std::vector<size_t>::iterator v = m.begin(); v < m.end(); v++)
-		for (std::vector<size_t>::iterator e = m.begin(); e < m.end(); e++)
+	std::vector<std::size_t> m = {5, 10, 23, 49, 100};
+	for (std::vector<std::size_t>::iterator v = m.begin(); v < m.end(); v++)
+		for (std::vector<std::size_t>::iterator e = m.begin(); e < m.end(); e++)
 			for (int n = 0; n < 5; n++)
 				test(*v, *e);
 	return 0;

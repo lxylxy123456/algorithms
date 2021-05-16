@@ -26,8 +26,8 @@
 using namespace algorithms;
 
 template <typename T>
-void graph_test(const size_t v, const size_t e) {
-	for (size_t dir = 0; dir <= 1; dir++) {
+void graph_test(const std::size_t v, const size_t e) {
+	for (std::size_t dir = 0; dir <= 1; dir++) {
 		T G(dir);
 		random_graph(G, v, e);
 		for (auto i = G.all_edges(); !i.end(); i++)
@@ -49,8 +49,8 @@ void graph_test(const size_t v, const size_t e) {
 }
 
 template <typename T, typename WT>
-void graph_weighted_test(const size_t v, const size_t e) {
-	for (size_t dir = 0; dir <= 1; dir++) {
+void graph_weighted_test(const std::size_t v, const size_t e) {
+	for (std::size_t dir = 0; dir <= 1; dir++) {
 		WeightedAdjMatrix<T, WT> G(dir);
 		G.random_graph(v, e, 1 - e, e);
 		G.graphviz();
@@ -63,13 +63,13 @@ void graph_weighted_test(const size_t v, const size_t e) {
 }
 
 int main(int argc, char *argv[]) {
-	const size_t v = get_argv(argc, argv, 1, 5);
-	const size_t e = get_argv(argc, argv, 2, 10);
+	const std::size_t v = get_argv(argc, argv, 1, 5);
+	const std::size_t e = get_argv(argc, argv, 2, 10);
 	std::cout << "GraphAdjList" << std::endl;
-	graph_test<GraphAdjList<size_t>>(v, e);
+	graph_test<GraphAdjList<std::size_t>>(v, e);
 	std::cout << "GraphAdjMatrix" << std::endl;
-	graph_test<GraphAdjMatrix<size_t>>(v, e);
+	graph_test<GraphAdjMatrix<std::size_t>>(v, e);
 	std::cout << "WeightedAdjMatrix" << std::endl;
-	graph_weighted_test<size_t, int>(v, e);
+	graph_weighted_test<std::size_t, int>(v, e);
 	return 0;
 }

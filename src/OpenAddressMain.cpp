@@ -25,13 +25,13 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	size_t n = get_argv(argc, argv, 1, 16);
+	std::size_t n = get_argv(argc, argv, 1, 16);
 	OpenAddress<int> O(n);
 	std::cout << "i: insert" << std::endl;
 	std::cout << "s: search" << std::endl;
 	std::cout << "q: quit" << std::endl;
 	while (true) {
-		char c; size_t k; int v;
+		char c; std::size_t k; int v;
 		std::cout << ">> ";
 		if (!(std::cin >> c)) {
 			std::cout << std::endl;

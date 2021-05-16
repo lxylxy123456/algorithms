@@ -36,7 +36,7 @@ bool is_substr(std::vector<char>& sub, std::vector<char>& ori) {
 	return j == sub.end();
 }
 
-int test(size_t x, size_t y, size_t n) {
+int test(std::size_t x, size_t y, size_t n) {
 	std::vector<char> X, Y;
 	random_integers<char>(X, 'a', 'a' + n, x);
 	random_integers<char>(Y, 'a', 'a' + n, y);

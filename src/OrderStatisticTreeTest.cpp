@@ -48,7 +48,7 @@ void sanity_check(OrderStatisticTree<int>& BT, std::vector<int>& data) {
 		i < in_order_cdata.end(); i++)
 		in_order.push_back(i->data.data);
 	assert(data == in_order);
-	for (size_t i = 0; i < data.size(); i++) {
+	for (std::size_t i = 0; i < data.size(); i++) {
 		Node<CData<SData<int>>>* selected = BT.OSSelect(i);
 		assert(selected->data.data == data[i]);
 		assert(BT.OSRank(selected) == i);

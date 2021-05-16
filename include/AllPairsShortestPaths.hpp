@@ -29,29 +29,29 @@ namespace algorithms {
 
 template <typename T>
 Matrix<T> ExtendShortestPaths(Matrix<T>& L, Matrix<T>& W) {
-	const size_t n = L.rows;
+	const std::size_t n = L.rows;
 	Matrix<T> ans(n, n, T());
-	for (size_t i = 0; i < n; i++)
-		for (size_t j = 0; j < n; j++)
-			for (size_t k = 0; k < n; k++)
+	for (std::size_t i = 0; i < n; i++)
+		for (std::size_t j = 0; j < n; j++)
+			for (std::size_t k = 0; k < n; k++)
 				ans[i][j] = std::min(ans[i][j], L[i][k] + W[k][j]);
 	return ans;
 }
 
 template <typename T>
 Matrix<T> SlowAllPairsShortestPaths(Matrix<T>& W) {
-	const size_t n = W.rows;
+	const std::size_t n = W.rows;
 	Matrix<T> L = W;
-	for (size_t m = 2; m < n; m++)
+	for (std::size_t m = 2; m < n; m++)
 		L = ExtendShortestPaths(L, W);
 	return L;
 }
 
 template <typename T>
 Matrix<T> FasterAllPairsShortestPaths(Matrix<T>& W) {
-	const size_t n = W.rows;
+	const std::size_t n = W.rows;
 	Matrix<T> L = W;
-	for (size_t m = 1; m < n - 1; m *= 2)
+	for (std::size_t m = 1; m < n - 1; m *= 2)
 		L = ExtendShortestPaths(L, L);
 	return L;
 }

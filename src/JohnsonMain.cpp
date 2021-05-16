@@ -27,18 +27,18 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t v = get_argv(argc, argv, 1, 5);
-	const size_t e = get_argv(argc, argv, 2, 10);
+	const std::size_t v = get_argv(argc, argv, 1, 5);
+	const std::size_t e = get_argv(argc, argv, 2, 10);
 	const bool dir = get_argv<int>(argc, argv, 3, 1);
 	const int weight_lower = get_argv<int>(argc, argv, 4, (0-e) / 4);
 	const int weight_upper = get_argv<int>(argc, argv, 5, e);
-	GraphAdjList<size_t> G(dir);
+	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	umap<Edge<size_t>, int, EdgeHash<size_t>> w;
+	umap<Edge<std::size_t>, int, EdgeHash<size_t>> w;
 	random_weight(G, w, weight_lower, weight_upper);
 	Matrix<Weight<int>> ans = Johnson(G, w);
-	auto f1 = [](size_t v) { return false; };
-	auto f2 = [w](Edge<size_t> e) mutable {
+	auto f1 = [](std::size_t v) { return false; };
+	auto f2 = [w](Edge<std::size_t> e) mutable {
 		std::cout << " [label=\"" << w[e] << "\"]";
 	};
 	graphviz(G, f1, f2);

@@ -27,24 +27,24 @@
 using namespace algorithms;
 
 template <typename T>
-int test(size_t n, size_t m, size_t d) {
+int test(std::size_t n, size_t m, size_t d) {
 	std::vector<T> S, P;
 	random_integers<T>(S, 'a', 'a' + d, n);
 	random_integers<T>(P, 'a', 'a' + d, m);
 	output_integers(S);
 	output_integers(P);
-	std::vector<size_t> ans;
+	std::vector<std::size_t> ans;
 	NaiveStringMatcher(S, P, ans);
-	for (std::vector<size_t>::iterator i = ans.begin(); i < ans.end(); i++)
+	for (std::vector<std::size_t>::iterator i = ans.begin(); i < ans.end(); i++)
 		assert(std::vector<T>(S.begin() + *i, S.begin() + *i + m) == P);
 	return 0;
 }
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> ns = {2, 5, 10, 23, 49, 100};
-	for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
-		for (std::vector<size_t>::iterator m = ns.begin(); m < ns.end(); m++) {
+	std::vector<std::size_t> ns = {2, 5, 10, 23, 49, 100};
+	for (std::vector<std::size_t>::iterator n = ns.begin(); n < ns.end(); n++)
+		for (std::vector<std::size_t>::iterator m = ns.begin(); m < ns.end(); m++) {
 			for (int d = 1; d < 20; d += 2)
 				test<char>(*m, *n, d);
 			for (int d = 2; d < 1000; d += 10)

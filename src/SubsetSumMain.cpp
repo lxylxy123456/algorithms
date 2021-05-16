@@ -27,8 +27,8 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 100);
-	const size_t m = get_argv(argc, argv, 2, 100);
+	const std::size_t n = get_argv(argc, argv, 1, 100);
+	const std::size_t m = get_argv(argc, argv, 2, 100);
 	using T = int;
 	using FT = float;
 	const T t = get_argv(argc, argv, 3, 500);

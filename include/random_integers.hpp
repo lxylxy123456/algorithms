@@ -49,18 +49,18 @@ T random_integer(std::uniform_int_distribution<T> dis) {
 	return dis(random_gen);
 }
 
-void random_integers(std::vector<int>& a, int l, int u, size_t size) {
+void random_integers(std::vector<int>& a, int l, int u, std::size_t size) {
 	a.reserve(size);
 	std::uniform_int_distribution<int> d(l, u);
-	for (size_t i = 0; i < size; i++)
+	for (std::size_t i = 0; i < size; i++)
 		a.push_back(d(random_gen));
 }
 
 template <typename T>
-void random_integers(std::vector<T>& a, T l, T u, size_t size) {
+void random_integers(std::vector<T>& a, T l, T u, std::size_t size) {
 	a.reserve(size);
 	std::uniform_int_distribution<T> d(l, u);
-	for (size_t i = 0; i < size; i++)
+	for (std::size_t i = 0; i < size; i++)
 		a.push_back(d(random_gen));
 }
 

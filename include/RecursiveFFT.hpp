@@ -73,21 +73,21 @@ Complex<T> expi(T x) {
 
 template <typename T>
 Matrix<T> RecursiveFFT(Matrix<T>& a, bool neg = false) {
-	const size_t n = a.rows;
+	const std::size_t n = a.rows;
 	if (n == 1)
 		return a;
 	assert(n % 2 == 0);
 	T wn = expi((neg ? -1 : 1) * 2 * M_PI / n);
 	T w = 1;
 	Matrix<T> a0(n / 2, 1), a1(n / 2, 1);
-	for (size_t i = 0; i < n; i += 2) {
+	for (std::size_t i = 0; i < n; i += 2) {
 		a0.data.push_back(a[i]);
 		a1.data.push_back(a[i + 1]);
 	}
 	Matrix<T> y0 = RecursiveFFT(a0, neg);
 	Matrix<T> y1 = RecursiveFFT(a1, neg);
 	Matrix<T> y(n, 1, 0);
-	for (size_t k = 0; k < n / 2; k++) {
+	for (std::size_t k = 0; k < n / 2; k++) {
 		y[k][0] = y0[k][0] + w * y1[k][0];
 		y[k + n/2][0] = y0[k][0] - w * y1[k][0];
 		w *= wn;
@@ -97,16 +97,16 @@ Matrix<T> RecursiveFFT(Matrix<T>& a, bool neg = false) {
 
 template <typename T>
 Matrix<T> InverseFFT(Matrix<T>& a) {
-	const size_t n = a.rows;
+	const std::size_t n = a.rows;
 	Matrix<T> ans = RecursiveFFT(a, true);
-	for (size_t i = 0; i < n; i++)
+	for (std::size_t i = 0; i < n; i++)
 		ans[i][0] /= n;
 	return ans;
 }
 
 template <typename T>
 Matrix<T> PolynomialMultiply(Matrix<T>& a, Matrix<T>& b) {
-	const size_t n = a.rows;
+	const std::size_t n = a.rows;
 	assert(n == b.rows);
 	Matrix<T> n0(n, 1, 0);
 	Matrix<T> aa = a.concat_v(n0);
@@ -114,7 +114,7 @@ Matrix<T> PolynomialMultiply(Matrix<T>& a, Matrix<T>& b) {
 	Matrix<T> fa = RecursiveFFT(aa);
 	Matrix<T> fb = RecursiveFFT(bb);
 	Matrix<T> fc(2 * n, 1, 0);
-	for (size_t i = 0; i < 2 * n; i++)
+	for (std::size_t i = 0; i < 2 * n; i++)
 		fc[i][0] = fa[i][0] * fb[i][0];
 	return InverseFFT(fc);
 }

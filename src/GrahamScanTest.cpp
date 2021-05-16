@@ -27,19 +27,19 @@
 
 using namespace algorithms;
 
-int test(size_t n, size_t m) {
+int test(std::size_t n, size_t m) {
 	std::vector<int> b;
 	random_integers(b, -n, n, m * 2);
 	output_integers(b);
 	using T = double;
 	std::vector<Vector<T>> Q, S;
 	Q.reserve(m);
-	for (size_t i = 0; i < m; i++)
+	for (std::size_t i = 0; i < m; i++)
 		Q.push_back(Vector<T>(b[2 * i + 0], b[2 * i + 1]));
 	GrahamScan(Q, S);
 	assert(S.size() >= 3);
 	T cross1 = (S[0] - S[1]).Cross(S[2] - S[1]);
-	for (size_t i = 0; i < S.size(); i++) {
+	for (std::size_t i = 0; i < S.size(); i++) {
 		Vector<T> a = S[i], b, c;
 		if (i == S.size() - 2) {
 			b = S[i + 1];
@@ -53,7 +53,7 @@ int test(size_t n, size_t m) {
 		}
 		assert((a - b).Cross(c - b) * cross1 > 0);
 		bool found = false;
-		for (size_t i = 0; i < m; i++) {
+		for (std::size_t i = 0; i < m; i++) {
 			assert((a - b).Cross(Q[i] - b) * cross1 >= 0);
 			assert((Q[i] - b).Cross(c - b) * cross1 >= 0);
 			found = found || a == Q[i];
@@ -65,10 +65,10 @@ int test(size_t n, size_t m) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> ns = {100, 1024, 10000};
-	std::vector<size_t> ms = {3, 5, 10, 23, 49, 100};
-	for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
-		for (std::vector<size_t>::iterator m = ms.begin(); m < ms.end(); m++)
+	std::vector<std::size_t> ns = {100, 1024, 10000};
+	std::vector<std::size_t> ms = {3, 5, 10, 23, 49, 100};
+	for (std::vector<std::size_t>::iterator n = ns.begin(); n < ns.end(); n++)
+		for (std::vector<std::size_t>::iterator m = ms.begin(); m < ms.end(); m++)
 			test(*n, *m);
 	return 0;
 }

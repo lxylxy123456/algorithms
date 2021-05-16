@@ -34,10 +34,10 @@ template <typename T>
 class BFSInfo {
 	public:
 		BFSInfo(): color(bfs_white) {}
-		BFSInfo(enum BFSColor c, size_t dist): color(c), d(dist) {}
-		BFSInfo(enum BFSColor c, size_t dist, T p): color(c), d(dist), pi(p) {}
+		BFSInfo(enum BFSColor c, std::size_t dist): color(c), d(dist) {}
+		BFSInfo(enum BFSColor c, std::size_t dist, T p): color(c), d(dist), pi(p) {}
 		enum BFSColor color;
-		Weight<size_t> d;
+		Weight<std::size_t> d;
 		T pi;
 };
 

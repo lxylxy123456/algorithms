@@ -26,7 +26,7 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	size_t n = get_argv(argc, argv, 1, 0);
+	std::size_t n = get_argv(argc, argv, 1, 0);
 	RedBlackTree<int> RB;
 	if (n) {
 		std::vector<int> a;
