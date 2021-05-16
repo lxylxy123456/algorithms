@@ -283,7 +283,7 @@ class GraphAdjList: public Graph<T> {
 			umap<T, uset<T>>::iterator i = E.find(s), j = i;
 			if (i != E.end())
 				j++;
-			return typename GraphAdjList<T>::iterator(i, ++j, this->dir, false);
+			return typename GraphAdjList<T>::iterator(i, j, this->dir, false);
 		}
 		virtual void transpose() {
 			assert(this->dir);
