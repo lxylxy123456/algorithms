@@ -22,6 +22,7 @@
 #include <iostream>
 
 #include "SquareMatrixMultiply.hpp"
+#include "graph_utils.hpp"
 #include "test_utils.hpp"
 #include "utils.hpp"
 
@@ -125,7 +126,7 @@ void graph_weighted_test(const T v, const std::size_t e) {
 	for (std::size_t dir = 0; dir <= 1; dir++) {
 		WeightedAdjMatrix<T, WT> G(dir);
 		G.random_graph(v, e, 1 - e, e);
-		G.graphviz();
+		graphviz(G);
 		std::cout << std::endl;
 		Matrix<Weight<WT>> M(v, v);
 		G.to_matrix(M);

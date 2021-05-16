@@ -22,6 +22,7 @@
 #include <vector>
 
 #include "FloydWarshall.hpp"
+#include "graph_utils.hpp"
 #include "test_utils.hpp"
 #include "utils.hpp"
 
@@ -33,7 +34,7 @@ int test(size_t v, size_t e) {
 	const int weight_upper = e;
 	WeightedAdjMatrix<size_t, int> G(dir);
 	G.random_graph(v, e, weight_lower, weight_upper);
-	G.graphviz();
+	graphviz(G);
 	Matrix<Weight<int>> W(v, v);
 	G.to_matrix(W);
 	Matrix<Weight<int>> ans1 = SlowAllPairsShortestPaths(W);

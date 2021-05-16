@@ -36,6 +36,7 @@ class Bipartite: public GT {
 		Bipartite(bool direction): GT(direction) {}
 		template <typename F1, typename F2>
 		void graphviz(F1 f1, F2 f2) {
+			// TODO: move this to graph_utils.hpp
 			if (GT::dir)
 				std::cout << "digraph G {" << std::endl;
 			else

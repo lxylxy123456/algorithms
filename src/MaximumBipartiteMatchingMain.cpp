@@ -21,6 +21,7 @@
 #include <iostream>
 
 #include "FordFulkerson.hpp"
+#include "graph_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;

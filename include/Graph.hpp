@@ -378,7 +378,8 @@ class WeightedAdjMatrix {
 			return E[u][v];
 		}
 		void random_graph(T v, std::size_t e, WT l, WT h) {
-			// TODO: move this to something like random_graph.hpp
+			// TODO: move this outside this class
+			// TODO: move this to something like graph_utils.hpp
 			for (T i = 0; i < v; i++)
 				add_vertex(i);
 			std::vector<T> d;
@@ -387,40 +388,6 @@ class WeightedAdjMatrix {
 			random_integers<WT>(w, l, h, e);
 			for (std::size_t i = 0; i < e; i++)
 				add_edge(d[2 * i], d[2 * i + 1], w[i]);
-		}
-		template <typename F1, typename F2>
-		void graphviz(F1 f1, F2 f2) {
-			if (dir)
-				std::cout << "digraph G {" << std::endl;
-			else
-				std::cout << "graph G {" << std::endl;
-			std::cout << '\t';
-			for (auto i = V.begin(); i != V.end(); i++) {
-				std::cout << *i;
-				if (f1(*i))
-					std::cout << "; \n\t";
-				else
-					std::cout << "; ";
-			}
-			std::cout << std::endl;
-			for (auto i = E.begin(); i != E.end(); i++) {
-				for (auto j = i->second.begin(); j != i->second.end(); j++) {
-					if (i->first != j->first && !j->second.inf &&
-						(dir || i->first < j->first)) {
-						Edge<T> e(i->first, j->first, dir);
-						std::cout << '\t' << e;
-						std::cout << " [label=\"" << j->second << "\"";
-						f2(e, j->second);
-						std::cout << "]; " << std::endl;
-					}
-				}
-			}
-			std::cout << "}" << std::endl;
-		}
-		void graphviz() {
-			auto f1 = [](T v) { return false; };
-			auto f2 = [](Edge<T> e, Weight<WT> w) {};
-			graphviz(f1, f2);
 		}
 		void to_matrix(Matrix<Weight<WT>>& ans) {
 			const std::size_t n = V.size();
@@ -436,6 +403,7 @@ class WeightedAdjMatrix {
 				ans.data.push_back(row);
 			}
 		}
+		typedef T vertex_type;
 		bool dir;
 		uset<T> V;
 		umap<T, umap<T, Weight<WT>>> E;
@@ -512,6 +480,7 @@ void graphviz(T& G, F1 f1, F2 f2) {
 
 template <typename T>
 void graphviz(T& G) {
+	// TODO: constrain to GraphAdjMatrix and GraphAdjList
 	auto f1 = [](typename T::vertex_type v) { return false; };
 	auto f2 = [](Edge<typename T::vertex_type>) {};
 	graphviz(G, f1, f2);
