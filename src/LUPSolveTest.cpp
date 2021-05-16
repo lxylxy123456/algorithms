@@ -42,7 +42,7 @@ bool almost_equal(Fraction<T> lhs, Fraction<T> rhs) {
 }
 
 template <typename T>
-int test(std::size_t n, size_t tries) {
+int test(std::size_t n, std::size_t tries) {
 	for (std::size_t index = 0; index < tries; index++) {
 		try {
 			std::vector<int> int_a, int_b;

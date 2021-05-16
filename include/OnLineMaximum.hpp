@@ -26,7 +26,7 @@ using std::size_t;
 namespace algorithms {
 
 template <typename T>
-std::size_t OnLineMaximum(std::vector<T> candidates, size_t k) {
+std::size_t OnLineMaximum(std::vector<T> candidates, std::size_t k) {
 	std::size_t n = candidates.size();
 	T best_score = candidates[0];
 	for (std::size_t i = 0; i < k; i++)

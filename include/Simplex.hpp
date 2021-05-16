@@ -34,11 +34,11 @@ namespace algorithms {
 #define usetst typename std::unordered_set<std::size_t>
 #define vectst typename std::unordered_map<std::size_t, T>
 #define matst typename \
-	std::unordered_map<std::size_t, std::unordered_map<size_t, T>>
+	std::unordered_map<std::size_t, std::unordered_map<std::size_t, T>>
 
 template <typename T>
 void Pivot(usetst& N, usetst& B, matst& A, vectst& b, vectst& c, T& v,
-			std::size_t l, size_t e) {
+			std::size_t l, std::size_t e) {
 	matst A_hat;
 	vectst b_hat, c_hat;
 	b_hat[e] = b[l] / A[l][e];

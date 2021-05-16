@@ -28,7 +28,7 @@ using std::size_t;
 namespace algorithms {
 
 template <typename T>
-void Merge(std::vector<T>& A, std::size_t p, size_t q, size_t r) {
+void Merge(std::vector<T>& A, std::size_t p, std::size_t q, std::size_t r) {
 	// A[p:q] and A[q:r] are sorted
 	std::list<T> L(A.begin() + p, A.begin() + q);
 	std::list<T> R(A.begin() + q, A.begin() + r);
@@ -45,7 +45,7 @@ void Merge(std::vector<T>& A, std::size_t p, size_t q, size_t r) {
 }
 
 template <typename T>
-void MergeSort(std::vector<T>& A, std::size_t p, size_t r) {
+void MergeSort(std::vector<T>& A, std::size_t p, std::size_t r) {
 	if (p + 1 < r) {
 		std::size_t q = (p + r) / 2;
 		MergeSort(A, p, q);

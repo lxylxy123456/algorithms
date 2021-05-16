@@ -58,7 +58,7 @@ class MatrixRow: public std::vector<T> {
 template <typename T>
 class Matrix {
 	public:
-	Matrix(std::size_t r, size_t c, std::vector<T> d): rows(r), cols(c) {
+	Matrix(std::size_t r, std::size_t c, std::vector<T> d): rows(r), cols(c) {
 		data.reserve(r);
 		typename std::vector<T>::iterator begin = d.begin(), end = begin;
 		for (std::size_t i = 0; i < r; i++) {
@@ -67,12 +67,12 @@ class Matrix {
 			begin += c;
 		}
 	}
-	Matrix(std::size_t r, size_t c, T T0): rows(r), cols(c) {
+	Matrix(std::size_t r, std::size_t c, T T0): rows(r), cols(c) {
 		data.reserve(r);
 		for (std::size_t i = 0; i < r; i++)
 			data.push_back(MatrixRow<T>(c, T0));
 	}
-	Matrix(std::size_t r, size_t c): rows(r), cols(c) {
+	Matrix(std::size_t r, std::size_t c): rows(r), cols(c) {
 		data.reserve(r);
 	}
 	friend std::ostream& operator<<(std::ostream& os, const Matrix& rhs) {
@@ -157,12 +157,13 @@ class SubMatrix {
 	public:
 	SubMatrix(Matrix<T>& dd): data(dd), left(0), right(dd.cols), up(0),
 		down(dd.rows) {}
-	SubMatrix(Matrix<T>& dd, std::size_t l, size_t r, size_t u, size_t d):
-		data(dd), left(l), right(r), up(u), down(d) {}
-	SubMatrix(SubMatrix<T> dd, std::size_t l, size_t r, size_t u, size_t d):
+	SubMatrix(Matrix<T>& dd, std::size_t l, std::size_t r, std::size_t u,
+				std::size_t d): data(dd), left(l), right(r), up(u), down(d) {}
+	SubMatrix(SubMatrix<T> dd, std::size_t l, std::size_t r, std::size_t u,
+				std::size_t d):
 		data(dd.data), left(dd.left + l), right(dd.left + r), up(dd.up + u),
 		down(dd.up + d) {}
-	T& get_elem(std::size_t i1, size_t i2) const {
+	T& get_elem(std::size_t i1, std::size_t i2) const {
 		assert(i1 >= 0 && i1 < down - up);
 		assert(i2 >= 0 && i2 < right - left);
 		return data[up + i1][left + i2];

@@ -25,7 +25,7 @@ using std::size_t;
 
 namespace algorithms {
 
-std::size_t Fib(size_t n) {
+std::size_t Fib(std::size_t n) {
 	if (n <= 1)
 		return n;
 	else {
@@ -35,7 +35,7 @@ std::size_t Fib(size_t n) {
 	}
 }
 
-void PFib(std::size_t n, size_t* ret) {
+void PFib(std::size_t n, std::size_t* ret) {
 	if (n <= 1)
 		*ret = n;
 	else {
@@ -47,7 +47,7 @@ void PFib(std::size_t n, size_t* ret) {
 	}
 }
 
-std::size_t PFib(size_t n) {
+std::size_t PFib(std::size_t n) {
 	std::size_t ret;
 	PFib(n, &ret);
 	return ret;

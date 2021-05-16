@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
 	const bool dir = false;
 	Bipartite<GraphAdjList<std::size_t>> G(dir);
 	random_bipartite(G, vl, vr, e);
-	uset<Edge<std::size_t>, EdgeHash<size_t>> ans;
+	uset<Edge<std::size_t>, EdgeHash<std::size_t>> ans;
 	MaximumBipartiteMatching(G, ans);
 	auto f1 = [](std::size_t v) { return false; };
 	auto f2 = [ans](Edge<std::size_t> e) mutable {

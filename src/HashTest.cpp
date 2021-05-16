@@ -29,8 +29,8 @@
 using namespace algorithms;
 
 template <typename H>
-int test_h(std::size_t k, size_t u, H h) {
-	std::map<std::size_t, size_t> count;
+int test_h(std::size_t k, std::size_t u, H h) {
+	std::map<std::size_t, std::size_t> count;
 	for (std::size_t i = 0; i < 1u<<k; i++) {
 		std::size_t v = h(i);
 		assert(v < u);

@@ -65,7 +65,7 @@ void sanity_check(BTree<int>& BT, std::vector<int>& data) {
 	}
 }
 
-int test(std::size_t n, size_t k) {
+int test(std::size_t n, std::size_t k) {
 	std::cout << "n = " << n << "; k = " << k << std::endl;
 	BTree<int> BT(k);
 	std::vector<int> data;

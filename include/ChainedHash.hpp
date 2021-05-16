@@ -51,7 +51,7 @@ class ChainedHash {
 		void ChainedHashDelete(Element<Pair<T>>* p) {
 			data[h(p->key.key)].ListDelete(p);
 		}
-		std::size_t h(size_t k) {
+		std::size_t h(std::size_t k) {
 			return k % size;
 		}
 		~ChainedHash() {

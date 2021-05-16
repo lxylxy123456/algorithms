@@ -40,9 +40,9 @@ class vEB {
 			}
 		}
 		// indexing
-		std::size_t high(size_t x) { return x >> lsqrt_bit; }
-		std::size_t low(size_t x) { return x & (lsqrtu - 1); }
-		std::size_t index(size_t x, size_t y) { return x << lsqrt_bit | y; }
+		std::size_t high(std::size_t x) { return x >> lsqrt_bit; }
+		std::size_t low(std::size_t x) { return x & (lsqrtu - 1); }
+		std::size_t index(std::size_t x, std::size_t y) { return x << lsqrt_bit | y; }
 		// algorithms
 		std::size_t vEBTreeMinimum() {
 			return min;
@@ -58,7 +58,7 @@ class vEB {
 			else
 				return cluster[high(x)]->vEBTreeMember(low(x));
 		}
-		std::size_t vEBTreeSuccessor(size_t x) {
+		std::size_t vEBTreeSuccessor(std::size_t x) {
 			if (k == 1) {
 				if (x == 0 && max == 1)
 					return 1;
@@ -83,7 +83,7 @@ class vEB {
 				}
 			}
 		}
-		std::size_t vEBTreePredecessor(size_t x) {
+		std::size_t vEBTreePredecessor(std::size_t x) {
 			if (k == 1) {
 				if (x == 1 && min == 0)
 					return 0;

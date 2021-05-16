@@ -29,12 +29,12 @@
 
 using namespace algorithms;
 
-int test(std::size_t v, size_t e) {
+int test(std::size_t v, std::size_t e) {
 	GraphAdjList<std::size_t> G(true);
 	random_graph(G, v, e);
 	{
-		umap<std::size_t, DFSInfo<size_t>> inf;
-		umap<Edge<std::size_t>, DFSEdgeType, EdgeHash<size_t>> edge_inf;
+		umap<std::size_t, DFSInfo<std::size_t>> inf;
+		umap<Edge<std::size_t>, DFSEdgeType, EdgeHash<std::size_t>> edge_inf;
 		DFS(G, inf, &edge_inf);
 		graphviz(G);
 		for (auto i = G.all_edges(); !i.end(); i++)
@@ -42,7 +42,7 @@ int test(std::size_t v, size_t e) {
 				return 0;
 	}
 	std::cout << "TopologicalSort" << std::endl;
-	umap<std::size_t, DFSInfo<size_t>> inf;
+	umap<std::size_t, DFSInfo<std::size_t>> inf;
 	std::deque<std::size_t> ans;
 	TopologicalSort(G, inf, ans);
 	for (auto i = G.all_edges(); !i.end(); i++) {

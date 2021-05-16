@@ -27,7 +27,7 @@
 
 using namespace algorithms;
 
-int test(std::size_t v, size_t e) {
+int test(std::size_t v, std::size_t e) {
 	const bool dir = 1;
 	const int weight_lower = 0;
 	const int weight_upper = e;
@@ -40,7 +40,7 @@ int test(std::size_t v, size_t e) {
 	Matrix<Weight<int>> D = ans.first;
 	Matrix<T_ptr<std::size_t>> PI = ans.second;
 	GraphAdjList<std::size_t> GG(dir);
-	umap<Edge<std::size_t>, int, EdgeHash<size_t>> w;
+	umap<Edge<std::size_t>, int, EdgeHash<std::size_t>> w;
 	for (std::size_t i = 0; i < v; i++) {
 		GG.add_vertex(i);
 		for (std::size_t j = 0; j < v; j++)
@@ -50,7 +50,7 @@ int test(std::size_t v, size_t e) {
 			}
 	}
 	for (std::size_t i = 0; i < v; i++) {
-		umap<std::size_t, RelaxInfo<size_t, int>> ans_bf;
+		umap<std::size_t, RelaxInfo<std::size_t, int>> ans_bf;
 		assert(BellmanFord(GG, w, i, ans_bf));
 		for (std::size_t j = 0; j < v; j++)
 			if (i != j) {

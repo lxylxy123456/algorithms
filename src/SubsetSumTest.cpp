@@ -28,7 +28,7 @@
 using namespace algorithms;
 
 template <typename T, typename FT>
-int test(std::size_t n, size_t m, T t, FT e) {
+int test(std::size_t n, std::size_t m, T t, FT e) {
 	std::vector<T> S_int;
 	random_integers(S_int, 1, m, n);
 	set_T S;

@@ -33,9 +33,9 @@ int main(int argc, char *argv[]) {
 	const int weight_upper = get_argv<int>(argc, argv, 4, e);
 	GraphAdjList<std::size_t> G(dir);
 	random_flow(G, v, e);
-	umap<Edge<std::size_t>, int, EdgeHash<size_t>> c;
+	umap<Edge<std::size_t>, int, EdgeHash<std::size_t>> c;
 	random_weight(G, c, weight_lower, weight_upper);
-	umap<Edge<std::size_t>, int, EdgeHash<size_t>> f;
+	umap<Edge<std::size_t>, int, EdgeHash<std::size_t>> f;
 	FordFulkerson(G, c, 0ul, v - 1ul, f);
 	auto f1 = [v](std::size_t vv) {
 		if (vv == v - 1 || vv == 0)

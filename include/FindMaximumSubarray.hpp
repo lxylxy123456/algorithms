@@ -29,7 +29,7 @@ namespace algorithms {
 template <typename T>
 class sinfo {
 	public:
-		sinfo(std::size_t a, size_t b, T c): begin(a), end(b), sum(c) {}
+		sinfo(std::size_t a, std::size_t b, T c): begin(a), end(b), sum(c) {}
 		bool operator<(const sinfo& rhs) const { return sum < rhs.sum; }
 		std::size_t begin;
 		std::size_t end;
@@ -37,8 +37,8 @@ class sinfo {
 };
 
 template <typename T>
-sinfo<T> FindMaxCrossingSubarray(std::vector<T>& A, std::size_t l, size_t m,
-									size_t h) {
+sinfo<T> FindMaxCrossingSubarray(std::vector<T>& A, std::size_t l,
+									std::size_t m, std::size_t h) {
 	T lsum, rsum, sum = 0;
 	std::size_t lmax, rmax;
 	for (std::size_t i = m; (i--) > l; ) {
@@ -60,7 +60,7 @@ sinfo<T> FindMaxCrossingSubarray(std::vector<T>& A, std::size_t l, size_t m,
 }
 
 template <typename T>
-sinfo<T> FindMaximumSubarray(std::vector<T>& A, std::size_t l, size_t h) {
+sinfo<T> FindMaximumSubarray(std::vector<T>& A, std::size_t l, std::size_t h) {
 	if (l == h - 1) {
 		return sinfo<T>(l, h, A[l]);
 	} else {

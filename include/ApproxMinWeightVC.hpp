@@ -28,7 +28,7 @@ namespace algorithms {
 
 template <typename GT, typename T, typename WT>
 void ApproxMinWeightVC(GT& G, umap<T, WT>& w, uset<T>& C, const WT epsilon) {
-	umap<std::size_t, umap<size_t, WT>> A;
+	umap<std::size_t, umap<std::size_t, WT>> A;
 	umap<std::size_t, WT> b, c;
 	for (auto i = G.V.begin(); i != G.V.end(); i++)
 		c[*i + 1] = -w[*i];

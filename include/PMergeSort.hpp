@@ -30,7 +30,7 @@ using std::size_t;
 namespace algorithms {
 
 template <typename T>
-void MergeSort_prime(std::vector<T>* A, std::size_t p, size_t r) {
+void MergeSort_prime(std::vector<T>* A, std::size_t p, std::size_t r) {
 	if (p < r - 1) {
 		std::size_t q = (p + r) / 2;
 		std::thread t1(MergeSort_prime<T>, A, p, q);
@@ -46,7 +46,7 @@ void MergeSort_prime(std::vector<T>& A) {
 }
 
 template <typename T>
-std::size_t BinarySearch(T x, std::vector<T>& S, size_t p, size_t r) {
+std::size_t BinarySearch(T x, std::vector<T>& S, std::size_t p, std::size_t r) {
 	std::size_t low = p;
 	std::size_t high = std::max(p, r);
 	while (low < high) {
@@ -60,8 +60,8 @@ std::size_t BinarySearch(T x, std::vector<T>& S, size_t p, size_t r) {
 }
 
 template <typename T>
-void PMerge(std::vector<T>* S, std::size_t p1, size_t r1, size_t p2, size_t r2,
-			std::vector<T>* A, std::size_t p3) {
+void PMerge(std::vector<T>* S, std::size_t p1, std::size_t r1, std::size_t p2,
+			std::size_t r2, std::vector<T>* A, std::size_t p3) {
 	std::size_t n1 = r1 - p1;
 	std::size_t n2 = r2 - p2;
 	if (n1 < n2) {
@@ -81,8 +81,8 @@ void PMerge(std::vector<T>* S, std::size_t p1, size_t r1, size_t p2, size_t r2,
 }
 
 template <typename T>
-void PMergeSort(std::vector<T>* A, std::size_t p, size_t r, std::vector<T>* B,
-				std::size_t s) {
+void PMergeSort(std::vector<T>* A, std::size_t p, std::size_t r,
+				std::vector<T>* B, std::size_t s) {
 	std::size_t n = r - p;
 	if (n == 1)
 		(*B)[s] = (*A)[p];

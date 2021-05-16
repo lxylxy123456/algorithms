@@ -33,9 +33,9 @@ int main(int argc, char *argv[]) {
 	const int weight_upper = get_argv<int>(argc, argv, 4, e);
 	GraphAdjList<std::size_t> G(dir);
 	random_flow(G, v, e);
-	umap<Edge<std::size_t>, int, EdgeHash<size_t>> c;
+	umap<Edge<std::size_t>, int, EdgeHash<std::size_t>> c;
 	random_weight(G, c, weight_lower, weight_upper);
-	umap<Edge<std::size_t>, int, EdgeHash<size_t>> f;
+	umap<Edge<std::size_t>, int, EdgeHash<std::size_t>> f;
 	for (auto i = G.all_edges(); !i.end(); i++)
 		if (i.s() == i.d())
 			c[*i] = 0;

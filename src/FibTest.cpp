@@ -27,7 +27,7 @@
 
 using namespace algorithms;
 
-int test(std::size_t n, size_t expected) {
+int test(std::size_t n, std::size_t expected) {
 	std::size_t a = Fib(n);
 	std::cout << n << '\t' << expected << '\t' << a << '\t' << std::flush;
 	std::size_t b = PFib(n);

@@ -49,15 +49,16 @@ class TreeNavigator {
 class TextMatrix {
 	public:
 		TextMatrix(std::string s): w(s.size()), h(1), l(0), r(w), m(1, s) {}
-		TextMatrix(std::string s, std::size_t w): w(w), h(1), l(0), r(w), m(1, s) {}
+		TextMatrix(std::string s, std::size_t w):
+			w(w), h(1), l(0), r(w), m(1, s) {}
 		TextMatrix(StringLen s): w(s.len), h(1), l(0), r(w), m(1, s) {}
-		TextMatrix(std::size_t w, size_t h): w(w), h(h), l(0), r(w), m() {}
-		TextMatrix(std::size_t w, size_t h, char d):
+		TextMatrix(std::size_t w, std::size_t h): w(w), h(h), l(0), r(w), m() {}
+		TextMatrix(std::size_t w, std::size_t h, char d):
 			w(w), h(h), l(0), r(w), m(h, std::string(w, d)) {}
-		TextMatrix(std::size_t w, size_t h, size_t l, size_t r):
+		TextMatrix(std::size_t w, std::size_t h, std::size_t l, std::size_t r):
 			w(w), h(h), l(l), r(r), m() {}
-		TextMatrix(std::size_t w, size_t h, size_t l, size_t r, char d):
-			w(w), h(h), l(l), r(r), m(h, std::string(w, d)) {}
+		TextMatrix(std::size_t w, std::size_t h, std::size_t l, std::size_t r,
+					char d): w(w), h(h), l(l), r(r), m(h, std::string(w, d)) {}
 		friend std::ostream& operator<<(std::ostream& os, TextMatrix& rhs) {
 			for (std::vector<std::string>::iterator i = rhs.m.begin();
 				i < rhs.m.end(); i++)
@@ -217,7 +218,8 @@ class TreePrinter {
 						tm_lbranch.m[1] + std::string(tm_root.w, ' ') +
 						tm_rbranch.m[1] +
 						std::string(tm_right.w - tm_right.l, ' '));
-					for (std::size_t i = 0; i < tm_left.h || i < tm_right.h; i++) {
+					for (std::size_t i = 0; i < tm_left.h || i < tm_right.h;
+						i++) {
 						ans.m.push_back(
 							(i < tm_left.h ? tm_left.m[i] :
 											std::string(tm_left.w, ' ')) +

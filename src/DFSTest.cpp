@@ -26,12 +26,12 @@
 
 using namespace algorithms;
 
-int test(std::size_t v, size_t e, bool dir) {
+int test(std::size_t v, std::size_t e, bool dir) {
 	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
 	graphviz(G);
-	umap<std::size_t, DFSInfo<size_t>> inf;
-	umap<Edge<std::size_t>, DFSEdgeType, EdgeHash<size_t>> edge_inf;
+	umap<std::size_t, DFSInfo<std::size_t>> inf;
+	umap<Edge<std::size_t>, DFSEdgeType, EdgeHash<std::size_t>> edge_inf;
 	DFS(G, inf, &edge_inf);
 	for (std::size_t i = 0; i < v; i++) {
 		assert(inf[i].color == dfs_black);

@@ -27,14 +27,14 @@
 
 using namespace algorithms;
 
-int test(std::size_t v, size_t e, int weight_lower) {
+int test(std::size_t v, std::size_t e, int weight_lower) {
 	const bool dir = 1;
 	const int weight_upper = e;
 	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	umap<Edge<std::size_t>, int, EdgeHash<size_t>> w;
+	umap<Edge<std::size_t>, int, EdgeHash<std::size_t>> w;
 	random_weight(G, w, weight_lower, weight_upper);
-	umap<std::size_t, RelaxInfo<size_t, int>> ans;
+	umap<std::size_t, RelaxInfo<std::size_t, int>> ans;
 	bool valid = BellmanFord(G, w, *G.V.begin(), ans);
 	std::cout << std::boolalpha << valid << std::endl;
 	auto f1 = [ans](std::size_t v) mutable {

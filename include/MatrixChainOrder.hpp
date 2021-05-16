@@ -66,7 +66,8 @@ std::size_t MatrixChainOrder(VECT_SIZT& p, std::vector<VECT_SIZT>& s) {
 	return m[0][n];
 }
 
-void PrintOptimalParens(std::vector<VECT_SIZT>& s, std::size_t i, size_t j) {
+void PrintOptimalParens(std::vector<VECT_SIZT>& s, std::size_t i,
+						std::size_t j) {
 	if (i == j - 1)
 		std::cout << "A" << i;
 	else {
@@ -78,7 +79,7 @@ void PrintOptimalParens(std::vector<VECT_SIZT>& s, std::size_t i, size_t j) {
 	}
 }
 
-std::size_t RecursiveMatrixChain(VECT_SIZT& p, size_t i, size_t j) {
+std::size_t RecursiveMatrixChain(VECT_SIZT& p, std::size_t i, std::size_t j) {
 	if (i == j - 1)
 		return 0;
 	std::size_t m = -1;
@@ -96,8 +97,8 @@ std::size_t RecursiveMatrixChain(VECT_SIZT& p) {
 	return RecursiveMatrixChain(p, 0, p.size() - 1);
 }
 
-std::size_t LookupChain(std::vector<VECT_SIZT>& m, VECT_SIZT& p, size_t i,
-						size_t j){
+std::size_t LookupChain(std::vector<VECT_SIZT>& m, VECT_SIZT& p, std::size_t i,
+						std::size_t j){
 	if (m[i][j] != (std::size_t)-1)
 		return m[i][j];
 	if (i + 1 == j)

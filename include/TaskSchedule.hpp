@@ -32,7 +32,7 @@ namespace algorithms {
 template <typename T>
 class Task {
 	public:
-		Task(std::size_t i, size_t ddl, T pun): id(i), d(ddl), w(pun) {}
+		Task(std::size_t i, std::size_t ddl, T pun): id(i), d(ddl), w(pun) {}
 		bool operator<(const Task<T> rhs) const {
 			if (d != rhs.d)
 				return d < rhs.d;

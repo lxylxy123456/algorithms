@@ -33,8 +33,8 @@ namespace algorithms {
 template <typename T>
 Matrix<T> PSquareMatrixMultiply(Matrix<T>&A, Matrix<T>&B, T T0) {
 	Matrix<T> C(A.rows, B.cols, T0);
-	parallel_for<std::size_t>(0, C.rows, [&](size_t i){
-		parallel_for<std::size_t>(0, C.cols, [&](size_t j){
+	parallel_for<std::size_t>(0, C.rows, [&](std::size_t i){
+		parallel_for<std::size_t>(0, C.cols, [&](std::size_t j){
 			int& loc = C.data[i][j];
 			for(std::size_t k = 0; k < A.cols; k++) {
 				loc += A[i][k] * B[k][j];
@@ -91,8 +91,8 @@ void PMatrixMultiplyRecursive(SM A, SM B, SM C, T T0) {
 			t5.join();
 			t6.join();
 			t7.join();
-			parallel_for<std::size_t>(0, c_row, [&](size_t i){
-				parallel_for<std::size_t>(0, c_col, [&](size_t j){
+			parallel_for<std::size_t>(0, c_row, [&](std::size_t i){
+				parallel_for<std::size_t>(0, c_col, [&](std::size_t j){
 					C.get_elem(i, j) += S[i][j];
 				});
 			});
@@ -113,8 +113,8 @@ Matrix<T> PMatAdd(SM A, SM B) {
 	std::size_t b_row = B.rows(), b_col = B.cols();
 	assert(a_row == b_row && a_col == b_col);
 	Matrix<T> C(a_row, a_col, 0);
-	parallel_for<std::size_t>(0, a_row, [&](size_t i){
-		parallel_for<std::size_t>(0, a_col, [&](size_t j){
+	parallel_for<std::size_t>(0, a_row, [&](std::size_t i){
+		parallel_for<std::size_t>(0, a_col, [&](std::size_t j){
 			C[i][j] = A.get_elem(i, j) + B.get_elem(i, j);
 		});
 	});
@@ -132,8 +132,8 @@ Matrix<T> PMatSub(SM A, SM B) {
 	std::size_t b_row = B.rows(), b_col = B.cols();
 	assert(a_row == b_row && a_col == b_col);
 	Matrix<T> C(a_row, a_col, 0);
-	parallel_for<std::size_t>(0, a_row, [&](size_t i){
-		parallel_for<std::size_t>(0, a_col, [&](size_t j){
+	parallel_for<std::size_t>(0, a_row, [&](std::size_t i){
+		parallel_for<std::size_t>(0, a_col, [&](std::size_t j){
 			C[i][j] = A.get_elem(i, j) - B.get_elem(i, j);
 		});
 	});
@@ -206,7 +206,7 @@ void PMatrixMultiplyStrassen(SM A, SM B, SM CC) {
 			if (a_end != a_row) {
 				assert(a_end == a_row - 1);
 				C.add_row(T0);
-				parallel_for<std::size_t>(0, b_end, [&](size_t i){
+				parallel_for<std::size_t>(0, b_end, [&](std::size_t i){
 					for (std::size_t j = 0; j < c_end; j++)
 						C[a_end][i] += A.get_elem(a_end, j) * B.get_elem(j, i);
 				});
@@ -215,7 +215,7 @@ void PMatrixMultiplyStrassen(SM A, SM B, SM CC) {
 			if (b_end != b_col) {
 				assert(b_end == b_col - 1);
 				C.add_col(T0);
-				parallel_for<std::size_t>(0, a_end, [&](size_t i){
+				parallel_for<std::size_t>(0, a_end, [&](std::size_t i){
 					for (std::size_t j = 0; j < c_end; j++)
 						C[i][b_end] += A.get_elem(i, j) * B.get_elem(j, b_end);
 				});
@@ -223,7 +223,7 @@ void PMatrixMultiplyStrassen(SM A, SM B, SM CC) {
 			}
 			if (c_end != a_col) {
 				assert(c_end == a_col - 1);
-				parallel_for<std::size_t>(0, a_end, [&](size_t i){
+				parallel_for<std::size_t>(0, a_end, [&](std::size_t i){
 					for (std::size_t j = 0; j < b_end; j++)
 						C[i][j] += A.get_elem(i, c_end) * B.get_elem(c_end, j);
 				});

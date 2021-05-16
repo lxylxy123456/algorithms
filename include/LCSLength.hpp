@@ -45,7 +45,7 @@ std::vector<VECT_SIZT> LCSLength(std::vector<T> X, std::vector<T> Y) {
 
 template <typename T>
 void PrintLCS(std::vector<VECT_SIZT>& c, std::vector<T> X, std::size_t i,
-				size_t j) {
+				std::size_t j) {
 	if (!i || !j)
 		return;
 	if (c[i][j] == c[i-1][j])
@@ -60,7 +60,7 @@ void PrintLCS(std::vector<VECT_SIZT>& c, std::vector<T> X, std::size_t i,
 
 template <typename T>
 void PrintLCS(std::vector<VECT_SIZT>& c, std::vector<T> X, std::size_t i,
-				size_t j, std::ostream& os) {
+				std::size_t j, std::ostream& os) {
 	if (!i || !j)
 		return;
 	if (c[i][j] == c[i-1][j])

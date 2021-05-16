@@ -29,15 +29,15 @@
 
 using namespace algorithms;
 
-int test(std::size_t v, size_t e) {
+int test(std::size_t v, std::size_t e) {
 	const bool dir = 1;
 	const int weight_lower = - (std::size_t) e;
 	const int weight_upper = e;
 	GraphAdjList<std::size_t> G(dir);
 	random_dag(G, v, e);
-	umap<Edge<std::size_t>, int, EdgeHash<size_t>> w;
+	umap<Edge<std::size_t>, int, EdgeHash<std::size_t>> w;
 	random_weight(G, w, weight_lower, weight_upper);
-	umap<std::size_t, RelaxInfo<size_t, int>> ans, ans_bf;
+	umap<std::size_t, RelaxInfo<std::size_t, int>> ans, ans_bf;
 	std::size_t s = *std::min_element(G.V.begin(), G.V.end());
 	DagShortestPaths(G, w, s, ans);
 	assert(BellmanFord(G, w, s, ans_bf));

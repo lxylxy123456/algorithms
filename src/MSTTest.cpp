@@ -28,15 +28,15 @@
 
 using namespace algorithms;
 
-int test(std::size_t v, size_t e) {
+int test(std::size_t v, std::size_t e) {
 	const bool dir = 0;
 	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	umap<Edge<std::size_t>, size_t, EdgeHash<size_t>> w;
+	umap<Edge<std::size_t>, std::size_t, EdgeHash<std::size_t>> w;
 	random_weight(G, w, (std::size_t) 0, e - 1);
-	uset<Edge<std::size_t>, EdgeHash<size_t>> A;
+	uset<Edge<std::size_t>, EdgeHash<std::size_t>> A;
 	MSTKruskal(G, w, A);
-	umap<std::size_t, MSTPrimInfo<size_t, size_t>> ans;
+	umap<std::size_t, MSTPrimInfo<std::size_t, std::size_t>> ans;
 	MSTPrim(G, w, *G.V.begin(), ans);
 	DisjointSetForest<std::size_t> F_kruskal, F_prim, F_all;
 	std::size_t span_kruskal = 0, span_prim = 0;

@@ -27,7 +27,7 @@
 
 using namespace algorithms;
 
-int test(std::size_t v, size_t e) {
+int test(std::size_t v, std::size_t e) {
 	const bool dir = 1;
 	const int weight_lower = 0;
 	const int weight_upper = e;

@@ -27,7 +27,7 @@
 using namespace algorithms;
 
 template <typename T>
-void main_T(const std::size_t n, const size_t m) {
+void main_T(const std::size_t n, const std::size_t m) {
 	std::vector<int> int_a, int_b, int_c;
 	random_integers(int_a, -m, m, m * n);
 	random_integers(int_b, -m, m, m);

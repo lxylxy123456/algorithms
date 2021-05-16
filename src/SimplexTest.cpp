@@ -41,7 +41,7 @@ bool almost_equal(Fraction<T> lhs, Fraction<T> rhs) {
 }
 
 template <typename T>
-int test(std::size_t m, size_t n, T epsilon) {
+int test(std::size_t m, std::size_t n, T epsilon) {
 	std::vector<int> int_a, int_b, int_c;
 	random_integers(int_a, -m, m, m * n);
 	random_integers(int_b, -m, m, m);

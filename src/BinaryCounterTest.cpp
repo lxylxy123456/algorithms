@@ -27,7 +27,7 @@
 
 using namespace algorithms;
 
-int test(std::size_t n, size_t k) {
+int test(std::size_t n, std::size_t k) {
 	BinaryCounter A(k);
 	for (std::size_t i = 0; i < n; i++) {
 		A.Increment();

@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
 	auto f2 = [](Edge<std::size_t> e) {};
 	graphviz(G, f1, f2);
 	// print ans
-	std::map<std::size_t, uset<size_t>> components;
+	std::map<std::size_t, uset<std::size_t>> components;
 	for (auto i = G.V.begin(); i != G.V.end(); i++)
 		components[ans.FindSet(*i)].insert(*i);
 	for (auto i = components.begin(); i != components.end(); i++)

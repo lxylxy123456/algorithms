@@ -42,7 +42,7 @@ T norm(Matrix<T> lhs, Matrix<T> rhs) {
 }
 
 template <typename T>
-int test(std::size_t m, size_t n, size_t tries) {
+int test(std::size_t m, std::size_t n, std::size_t tries) {
 	for (std::size_t index = 0; index < tries; index++) {
 		try {
 			std::vector<int> int_a, int_b;

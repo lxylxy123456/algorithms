@@ -28,7 +28,7 @@
 
 using namespace algorithms;
 
-int test(std::size_t v, size_t e) {
+int test(std::size_t v, std::size_t e) {
 	const bool dir = 0;
 	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);

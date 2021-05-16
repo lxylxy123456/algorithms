@@ -36,7 +36,7 @@ class Data {
 		bool operator!=(const Data<T>& rhs) const { return key != rhs.key; }
 		bool operator==(const T& rhs) const { return key == rhs; }
 		bool operator!=(const T& rhs) const { return key != rhs; }
-		std::size_t& next() { return *reinterpret_cast<size_t*>(&key); }
+		std::size_t& next() { return *reinterpret_cast<std::size_t*>(&key); }
 		T key;
 };
 

@@ -27,7 +27,7 @@
 using namespace algorithms;
 
 template <typename T>
-void graph_test(const std::size_t v, const size_t e) {
+void graph_test(const std::size_t v, const std::size_t e) {
 	for (std::size_t dir = 0; dir <= 1; dir++) {
 		T G(dir);
 		random_graph(G, v, e);
@@ -50,7 +50,7 @@ void graph_test(const std::size_t v, const size_t e) {
 }
 
 template <typename T, typename WT>
-void graph_weighted_test(const std::size_t v, const size_t e) {
+void graph_weighted_test(const std::size_t v, const std::size_t e) {
 	for (std::size_t dir = 0; dir <= 1; dir++) {
 		WeightedAdjMatrix<T, WT> G(dir);
 		G.random_graph(v, e, 1 - e, e);

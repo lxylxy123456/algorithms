@@ -31,8 +31,8 @@ int main(int argc, char *argv[]) {
 	const bool dir = get_argv(argc, argv, 3, 0);
 	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	umap<std::size_t, DFSInfo<size_t>> inf;
-	umap<Edge<std::size_t>, DFSEdgeType, EdgeHash<size_t>> edge_inf;
+	umap<std::size_t, DFSInfo<std::size_t>> inf;
+	umap<Edge<std::size_t>, DFSEdgeType, EdgeHash<std::size_t>> edge_inf;
 	DFS(G, inf, &edge_inf);
 	auto f1 = [inf](std::size_t v) mutable {
 		DFSInfo<std::size_t>& i = inf[v];

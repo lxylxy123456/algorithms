@@ -33,13 +33,13 @@ int main(int argc, char *argv[]) {
 		S.insert(i);
 	Matroid<std::size_t> M(S);
 	std::vector<std::size_t> weights;
-	std::size_t (*f)(size_t) = [](size_t a) { return a; };
+	std::size_t (*f)(std::size_t) = [](std::size_t a) { return a; };
 	for (std::set<std::size_t>::iterator i = M.S.begin(); i != M.S.end(); i++)
 		weights.push_back(f(*i));
 	output_integers(M.S, "\t");
 	output_integers(weights, "\t");
 	// call function
-	Greedy<std::size_t, size_t>(M, f, ans);
+	Greedy<std::size_t, std::size_t>(M, f, ans);
 	output_integers(ans);
 	return 0;
 }

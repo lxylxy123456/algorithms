@@ -28,7 +28,7 @@
 using namespace algorithms;
 
 template <typename T>
-int test(std::size_t n, size_t m, size_t d) {
+int test(std::size_t n, std::size_t m, std::size_t d) {
 	std::vector<T> S, P;
 	random_integers<T>(S, 'a', 'a' + d, n);
 	random_integers<T>(P, 'a', 'a' + d, m);

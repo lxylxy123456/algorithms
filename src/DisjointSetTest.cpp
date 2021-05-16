@@ -28,7 +28,7 @@
 
 using namespace algorithms;
 
-int test(std::size_t v, size_t e, size_t n) {
+int test(std::size_t v, std::size_t e, std::size_t n) {
 	std::vector<std::size_t> c, d;
 	random_integers<std::size_t>(c, 0, v - 1, n);
 	random_integers<std::size_t>(d, 0, v - 1, n);

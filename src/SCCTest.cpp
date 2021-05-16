@@ -27,7 +27,7 @@
 
 using namespace algorithms;
 
-int test(std::size_t v, size_t e) {
+int test(std::size_t v, std::size_t e) {
 	GraphAdjList<std::size_t> G(true);
 	random_graph(G, v, e);
 	graphviz(G);

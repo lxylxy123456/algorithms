@@ -27,7 +27,7 @@ using std::size_t;
 
 namespace algorithms {
 
-std::size_t rev(size_t k, size_t n) {
+std::size_t rev(std::size_t k, std::size_t n) {
 	std::size_t ans = 0;
 	for (std::size_t i = 1; i != n; i <<= 1) {
 		ans <<= 1;
@@ -50,7 +50,7 @@ template <typename T>
 Matrix<T> IterativeFFT(Matrix<T>& a, bool neg = false) {
 	const std::size_t n = a.rows;
 	Matrix<T> A = BitReverseCopy(a);
-	for (std::size_t s = 1; size_t (1 << s) <= n; s++) {
+	for (std::size_t s = 1; std::size_t (1 << s) <= n; s++) {
 		std::size_t m = 1 << s;
 		T wm = expi((neg ? -1 : 1) * 2 * M_PI / m);
 		for (std::size_t k = 0; k < n; k += m) {

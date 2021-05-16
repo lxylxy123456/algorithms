@@ -35,9 +35,9 @@ int main(int argc, char *argv[]) {
 	const int weight_upper = get_argv<int>(argc, argv, 4, e);
 	GraphAdjList<std::size_t> G(dir);
 	random_dag(G, v, e);
-	umap<Edge<std::size_t>, int, EdgeHash<size_t>> w;
+	umap<Edge<std::size_t>, int, EdgeHash<std::size_t>> w;
 	random_weight(G, w, weight_lower, weight_upper);
-	umap<std::size_t, RelaxInfo<size_t, int>> ans;
+	umap<std::size_t, RelaxInfo<std::size_t, int>> ans;
 	DagShortestPaths(G, w, *std::min_element(G.V.begin(), G.V.end()), ans);
 	auto f1 = [ans](std::size_t v) mutable {
 		std::cout << " [label=\"" << v << " (" << ans[v] << ")\"]";

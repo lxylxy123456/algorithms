@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
 	const bool dir = get_argv(argc, argv, 3, 0);
 	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	umap<std::size_t, BFSInfo<size_t>> inf;
+	umap<std::size_t, BFSInfo<std::size_t>> inf;
 	std::size_t s = 0;
 	BFS(G, s, inf);
 	auto f1 = [inf](std::size_t v) mutable {

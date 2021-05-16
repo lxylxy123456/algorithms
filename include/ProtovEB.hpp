@@ -52,9 +52,9 @@ class ProtovEB {
 			}
 		}
 		// indexing
-		std::size_t high(size_t x) { return x >> sqrt_bit; }
-		std::size_t low(size_t x) { return x & (sqrtu - 1); }
-		std::size_t index(size_t x, size_t y) { return x << sqrt_bit | y; }
+		std::size_t high(std::size_t x) { return x >> sqrt_bit; }
+		std::size_t low(std::size_t x) { return x & (sqrtu - 1); }
+		std::size_t index(std::size_t x, std::size_t y) { return x << sqrt_bit | y; }
 		// algorithms
 		bool ProtovEBMember(std::size_t x) {
 			if (k)
@@ -94,7 +94,7 @@ class ProtovEB {
 					return NIL;
 			}
 		}
-		std::size_t ProtovEBSuccessor(size_t x) {
+		std::size_t ProtovEBSuccessor(std::size_t x) {
 			if (k) {
 				std::size_t offset = cluster[high(x)]->ProtovEBSuccessor(low(x));
 				if (offset != NIL)
@@ -115,7 +115,7 @@ class ProtovEB {
 					return NIL;
 			}
 		}
-		std::size_t ProtovEBPredecessor(size_t x) {
+		std::size_t ProtovEBPredecessor(std::size_t x) {
 			if (k) {
 				std::size_t offset = cluster[high(x)]->ProtovEBPredecessor(low(x));
 				if (offset != NIL)

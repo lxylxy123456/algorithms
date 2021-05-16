@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
 	std::cout << "P: print all" << std::endl;
 	std::cout << "q: quit" << std::endl;
 	while (true) {
-		char c; std::size_t x; std::vector<size_t> l;
+		char c; std::size_t x; std::vector<std::size_t> l;
 		std::cout << ">> ";
 		if (!(std::cin >> c)) {
 			std::cout << std::endl;

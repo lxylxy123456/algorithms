@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
 	const bool dir = get_argv(argc, argv, 3, 0);
 	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	umap<std::size_t, DFSInfo<size_t>> inf;
+	umap<std::size_t, DFSInfo<std::size_t>> inf;
 	std::deque<std::size_t> ans;
 	TopologicalSort(G, inf, ans);
 	auto f1 = [inf](std::size_t v) mutable {

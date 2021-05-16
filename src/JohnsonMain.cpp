@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
 	const int weight_upper = get_argv<int>(argc, argv, 5, e);
 	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	umap<Edge<std::size_t>, int, EdgeHash<size_t>> w;
+	umap<Edge<std::size_t>, int, EdgeHash<std::size_t>> w;
 	random_weight(G, w, weight_lower, weight_upper);
 	Matrix<Weight<int>> ans = Johnson(G, w);
 	auto f1 = [](std::size_t v) { return false; };

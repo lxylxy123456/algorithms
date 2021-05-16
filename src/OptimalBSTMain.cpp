@@ -31,7 +31,8 @@ enum PQ { red, black };
 
 class PQData {
 	public:
-		PQData(std::size_t r, size_t d, PQ c): rank(r), data(d), color(c) {}
+		PQData(std::size_t r, std::size_t d, PQ c):
+			rank(r), data(d), color(c) {}
 		bool operator<(const PQData& rhs) const {
 			if (rank != rhs.rank)
 				return rank < rhs.rank;
@@ -67,7 +68,8 @@ class OBSTNavigator {
 		NodeType nil;
 };
 
-void insert_OBST(SIZT_1D& p, SIZT_1D& q, SIZT_2D& root, std::size_t i, size_t j,
+void insert_OBST(SIZT_1D& p, SIZT_1D& q, SIZT_2D& root, std::size_t i,
+				std::size_t j,
 	BinarySearchTree<PQData>& T) {
 	if (i == j) {
 		T.TreeInsert(PQData(i, q[i], red));

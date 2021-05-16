@@ -33,7 +33,7 @@ int test1(bool dir) {
 	G.add_edge(2, 3);
 	G.add_edge(3, 4);
 	G.add_edge(5, 6);
-	umap<std::size_t, BFSInfo<size_t>> inf;
+	umap<std::size_t, BFSInfo<std::size_t>> inf;
 	std::size_t s = 0;
 	graphviz(G);
 	BFS(G, s, inf);
@@ -63,7 +63,7 @@ int test2(bool dir) {
 	G.add_edge(1, 5);
 	G.add_edge(2, 6);
 	G.add_edge(2, 7);
-	umap<std::size_t, BFSInfo<size_t>> inf;
+	umap<std::size_t, BFSInfo<std::size_t>> inf;
 	std::size_t s = 0;
 	graphviz(G);
 	BFS(G, s, inf);
@@ -95,7 +95,7 @@ int test3() {
 	G.add_edge(1, 5);
 	G.add_edge(2, 6);
 	G.add_edge(2, 7);
-	umap<std::size_t, BFSInfo<size_t>> inf;
+	umap<std::size_t, BFSInfo<std::size_t>> inf;
 	std::size_t s = 1;
 	graphviz(G);
 	BFS(G, s, inf);

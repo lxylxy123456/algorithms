@@ -27,7 +27,7 @@ namespace algorithms {
 
 template <typename T>
 bool equal(const std::vector<T>& S, std::size_t Ss,
-			const std::vector<T>& P, std::size_t Ps, size_t n) {
+			const std::vector<T>& P, std::size_t Ps, std::size_t n) {
 	for (std::size_t i = 0; i < n; i++)
 		if (S[Ss + i] != P[Ps + i])
 			return false;
@@ -35,8 +35,8 @@ bool equal(const std::vector<T>& S, std::size_t Ss,
 }
 
 template <typename T>
-bool equal(const std::vector<T>& S, std::size_t Ss, size_t Se,
-			const std::vector<T>& P, std::size_t Ps, size_t Pe) {
+bool equal(const std::vector<T>& S, std::size_t Ss, std::size_t Se,
+			const std::vector<T>& P, std::size_t Ps, std::size_t Pe) {
 	std::size_t n = Se - Ss;
 	if (n != Pe - Ps)
 		return false;

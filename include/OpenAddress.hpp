@@ -34,7 +34,7 @@ class OpenAddress {
 			for (std::size_t i = 0; i < s; i++)
 				data[i] = nullptr;
 		}
-		std::size_t HashInsert(size_t k, T v) {
+		std::size_t HashInsert(std::size_t k, T v) {
 			for (std::size_t i = 0; i < size; i++) {
 				std::size_t j = h(k, i);
 				if (!data[j]) {
@@ -54,7 +54,7 @@ class OpenAddress {
 			}
 			return nullptr;
 		}
-		std::size_t h(size_t k, size_t i) {
+		std::size_t h(std::size_t k, std::size_t i) {
 			return (k + i) % size;
 		}
 		~OpenAddress() {

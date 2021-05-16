@@ -30,13 +30,13 @@
 
 using namespace algorithms;
 
-int test(std::size_t v, size_t e) {
+int test(std::size_t v, std::size_t e) {
 	const bool dir = 1;
 	const int weight_lower = (0 - e) / 4;
 	const int weight_upper = e;
 	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	umap<Edge<std::size_t>, int, EdgeHash<size_t>> w;
+	umap<Edge<std::size_t>, int, EdgeHash<std::size_t>> w;
 	random_weight(G, w, weight_lower, weight_upper);
 	auto f1 = [](std::size_t v) { return false; };
 	auto f2 = [w](Edge<std::size_t> e) mutable {
@@ -60,7 +60,7 @@ int test(std::size_t v, size_t e) {
 		std::cout << e.what() << std::endl;
 		bool found = false;
 		for (std::size_t i = 0; i < v; i++) {
-			umap<std::size_t, RelaxInfo<size_t, int>> BF_ans;
+			umap<std::size_t, RelaxInfo<std::size_t, int>> BF_ans;
 			if (!BellmanFord(G, w, i, BF_ans)) {
 				found = true;
 				break;

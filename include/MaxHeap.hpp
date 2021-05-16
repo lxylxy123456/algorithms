@@ -27,13 +27,13 @@ using std::size_t;
 
 namespace algorithms {
 
-inline std::size_t Left(size_t x) { return x * 2 + 1; }
+inline std::size_t Left(std::size_t x) { return x * 2 + 1; }
 
-inline std::size_t Right(size_t x) { return x * 2 + 2; }
+inline std::size_t Right(std::size_t x) { return x * 2 + 2; }
 
-inline std::size_t Parent(size_t x) { return (x - 1) / 2; }
+inline std::size_t Parent(std::size_t x) { return (x - 1) / 2; }
 
-inline std::size_t Root(size_t x) { return !x; }
+inline std::size_t Root(std::size_t x) { return !x; }
 
 template <typename T>
 class Heap: public std::vector<T> {

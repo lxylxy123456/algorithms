@@ -34,10 +34,10 @@ int main(int argc, char *argv[]) {
 	const std::size_t algorithm = get_argv(argc, argv, 3, 0);
 	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	umap<Edge<std::size_t>, size_t, EdgeHash<size_t>> w;
+	umap<Edge<std::size_t>, std::size_t, EdgeHash<std::size_t>> w;
 	random_weight(G, w, (std::size_t) 0, e - 1);
 	if (algorithm == 0) {
-		uset<Edge<std::size_t>, EdgeHash<size_t>> A;
+		uset<Edge<std::size_t>, EdgeHash<std::size_t>> A;
 		MSTKruskal(G, w, A);
 		auto f1 = [](std::size_t v) { return false; };
 		auto f2 = [w, A](Edge<std::size_t> e) mutable {
@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
 		};
 		graphviz(G, f1, f2);
 	} else {
-		umap<std::size_t, MSTPrimInfo<size_t, size_t>> ans;
+		umap<std::size_t, MSTPrimInfo<std::size_t, std::size_t>> ans;
 		MSTPrim(G, w, *G.V.begin(), ans);
 		auto f1 = [](std::size_t v) { return false; };
 		auto f2 = [w, ans](Edge<std::size_t> e) mutable {

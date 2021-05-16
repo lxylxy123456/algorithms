@@ -29,7 +29,7 @@
 
 using namespace algorithms;
 
-int test(std::size_t n, size_t m, size_t l) {
+int test(std::size_t n, std::size_t m, std::size_t l) {
 	std::cout << n << ' ' << m << ' ' << l << std::endl;
 	using T = std::size_t;
 	set_T X;

@@ -28,15 +28,15 @@
 
 using namespace algorithms;
 
-int test(std::size_t v, size_t e) {
+int test(std::size_t v, std::size_t e) {
 	const bool dir = true;
 	const int weight_lower = 0;
 	const int weight_upper = e;
 	GraphAdjList<std::size_t> G(dir);
 	random_flow(G, v, e);
-	umap<Edge<std::size_t>, int, EdgeHash<size_t>> c;
+	umap<Edge<std::size_t>, int, EdgeHash<std::size_t>> c;
 	random_weight(G, c, weight_lower, weight_upper);
-	umap<Edge<std::size_t>, int, EdgeHash<size_t>> f, f_ff;
+	umap<Edge<std::size_t>, int, EdgeHash<std::size_t>> f, f_ff;
 	std::size_t s = 0, t = v - 1;
 	for (auto i = G.all_edges(); !i.end(); i++)
 		if (i.s() == i.d())
