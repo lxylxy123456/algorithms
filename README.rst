@@ -489,7 +489,7 @@ Example
 
 .. code:: bash
 
-	$ ls include/Fib.hpp src/FibMain.cpp src/FibTest.cpp 
+	$ ls include/Fib.hpp src/FibMain.cpp src/FibTest.cpp
 	include/Fib.hpp  src/FibMain.cpp  src/FibTest.cpp
 	$ make bin/FibMain > /dev/null
 	$ bin/FibMain

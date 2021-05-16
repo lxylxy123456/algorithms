@@ -105,7 +105,7 @@ class TreePrinter {
 			TextMatrix ans(w, 2);
 			ans.m.push_back(std::string(w13, ' ') + std::string(w12, '_') +
 							std::string(w11, ' '));
-			ans.m.push_back(std::string(w23, ' ') + std::string(w22, '_') + 
+			ans.m.push_back(std::string(w23, ' ') + std::string(w22, '_') +
 							"/" + std::string(w21, ' '));
 			return ans;
 		}

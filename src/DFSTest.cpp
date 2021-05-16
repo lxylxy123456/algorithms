@@ -58,14 +58,14 @@ int test(std::size_t v, std::size_t e, bool dir) {
 			case back:
 				if (dir)
 					assert(inf[i.d()].d <= inf[i.s()].d &&
-							inf[i.s()].d < inf[i.s()].f && 
+							inf[i.s()].d < inf[i.s()].f &&
 							inf[i.s()].f <= inf[i.d()].f);
 				else
 					assert((inf[i.d()].d <= inf[i.s()].d &&
-							inf[i.s()].d < inf[i.s()].f && 
+							inf[i.s()].d < inf[i.s()].f &&
 							inf[i.s()].f <= inf[i.d()].f) ||
 							(inf[i.s()].d <= inf[i.d()].d &&
-							inf[i.d()].d < inf[i.d()].f && 
+							inf[i.d()].d < inf[i.d()].f &&
 							inf[i.d()].f <= inf[i.s()].f));
 				break;
 			case forward:
