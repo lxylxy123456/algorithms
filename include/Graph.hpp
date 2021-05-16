@@ -173,52 +173,6 @@ class Graph {
 };
 
 template <typename T>
-class EdgeIteratorAM1 {
-	public:
-		EdgeIteratorAM1(umap<T, umap<T, bool>>::iterator mbegin,
-						umap<T, umap<T, bool>>::iterator mend, bool direction,
-						bool rm_reverse):
-						dir(direction), rm_reverse(rm_reverse), mbegin(mbegin),
-						mend(mend) {
-			if (mbegin != mend) {
-				sbegin = mbegin->second.begin();
-				send = mbegin->second.end();
-			}
-			next();
-		}
-		void operator++(int) {
-			if (sbegin != send)
-				sbegin++;
-			next();
-		}
-		void next() {
-			if (mbegin != mend)
-				while (sbegin == send || !sbegin->second ||
-						(!dir && rm_reverse && s() > d())) {
-					if (sbegin == send) {
-						mbegin++;
-						if (mbegin == mend)
-							break;
-						sbegin = mbegin->second.begin();
-						send = mbegin->second.end();
-					} else
-						sbegin++;
-				}
-		}
-		bool end() {
-			return mbegin == mend;
-		}
-		Edge<T> operator*() {
-			return Edge<T>(mbegin->first, sbegin->first, dir);
-		}
-		T s() { return mbegin->first; }
-		T d() { return sbegin->first; }
-		bool dir, rm_reverse;
-		umap<T, umap<T, bool>>::iterator mbegin, mend;
-		umap<T, bool>::iterator sbegin, send;
-};
-
-template <typename T>
 class GraphAdjList: public Graph<T> {
 	public:
 		class iterator {
@@ -300,6 +254,50 @@ class GraphAdjList: public Graph<T> {
 template <typename T>
 class GraphAdjMatrix: public Graph<T> {
 	public:
+		class iterator {
+			public:
+				iterator(umap<T, umap<T, bool>>::iterator mbegin,
+							umap<T, umap<T, bool>>::iterator mend,
+							bool direction, bool rm_reverse):
+							dir(direction), rm_reverse(rm_reverse),
+							mbegin(mbegin), mend(mend) {
+					if (mbegin != mend) {
+						sbegin = mbegin->second.begin();
+						send = mbegin->second.end();
+					}
+					next();
+				}
+				void operator++(int) {
+					if (sbegin != send)
+						sbegin++;
+					next();
+				}
+				void next() {
+					if (mbegin != mend)
+						while (sbegin == send || !sbegin->second ||
+								(!dir && rm_reverse && s() > d())) {
+							if (sbegin == send) {
+								mbegin++;
+								if (mbegin == mend)
+									break;
+								sbegin = mbegin->second.begin();
+								send = mbegin->second.end();
+							} else
+								sbegin++;
+						}
+				}
+				bool end() {
+					return mbegin == mend;
+				}
+				Edge<T> operator*() {
+					return Edge<T>(mbegin->first, sbegin->first, dir);
+				}
+				T s() { return mbegin->first; }
+				T d() { return sbegin->first; }
+				bool dir, rm_reverse;
+				umap<T, umap<T, bool>>::iterator mbegin, mend;
+				umap<T, bool>::iterator sbegin, send;
+		};
 		GraphAdjMatrix(bool directed): Graph<T>(directed) {}
 		virtual bool add_vertex(T u) {
 			if (Graph<T>::add_vertex(u)) {
@@ -321,14 +319,15 @@ class GraphAdjMatrix: public Graph<T> {
 		virtual bool is_edge(T u, T v) {
 			return E[u][v];
 		}
-		EdgeIteratorAM1<T> all_edges() {
-			return EdgeIteratorAM1<T>(E.begin(), E.end(), this->dir, true);
+		typename GraphAdjMatrix<T>::iterator all_edges() {
+			return typename GraphAdjMatrix<T>::iterator(E.begin(), E.end(),
+														this->dir, true);
 		}
-		EdgeIteratorAM1<T> edges_from(T s) {
+		typename GraphAdjMatrix<T>::iterator edges_from(T s) {
 			umap<T, umap<T, bool>>::iterator i = E.find(s), j = i;
 			if (i != E.end())
 				j++;
-			return EdgeIteratorAM1<T>(i, j, this->dir, false);
+			return typename GraphAdjMatrix<T>::iterator(i, j, this->dir, false);
 		}
 		virtual void transpose() {
 			assert(this->dir);
