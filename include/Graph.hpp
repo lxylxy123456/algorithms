@@ -160,12 +160,16 @@ class Graph {
 		virtual ~Graph() {}
 		typedef T vertex_type;
 		/*
+		// TODO: create a GraphIterator class outside
+		template <typename I>
 		class iterator {
 			public:
-				virtual void operator++(int) = 0;
-				virtual Edge<T> operator*() = 0;
-				virtual T s() = 0;
-				virtual T d() = 0;
+				iterator(I itr): itr(itr) {}
+				void operator++(int) { itr++; }
+				Edge<T> operator*() { return *itr; }
+				T s() { return itr.s(); }
+				T d() { return itr.d(); }
+				I itr;
 		};
 		*/
 		bool dir;
@@ -374,6 +378,7 @@ class WeightedAdjMatrix {
 			return E[u][v];
 		}
 		void random_graph(T v, std::size_t e, WT l, WT h) {
+			// TODO: move this to something like random_graph.hpp
 			for (T i = 0; i < v; i++)
 				add_vertex(i);
 			std::vector<T> d;
