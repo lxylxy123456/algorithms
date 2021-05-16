@@ -30,7 +30,6 @@ namespace algorithms {
 
 template <typename T, typename F1, typename F2>
 void graphviz(T& G, F1 f1, F2 f2) {
-	// TODO: constrain to Graph<T>
 	if (G.dir)
 		std::cout << "digraph G {" << std::endl;
 	else
@@ -53,18 +52,9 @@ void graphviz(T& G, F1 f1, F2 f2) {
 }
 
 template <typename T>
-void graphviz(GraphAdjList<T>& G) {
-	// TODO: constrain to Graph; combine with below
-	auto f1 = [](T v) { return false; };
-	auto f2 = [](Edge<T>) {};
-	graphviz(G, f1, f2);
-}
-
-template <typename T>
-void graphviz(GraphAdjMatrix<T>& G) {
-	// TODO: constrain to Graph; combine with above
-	auto f1 = [](T v) { return false; };
-	auto f2 = [](Edge<T>) {};
+void graphviz(T& G) {
+	auto f1 = [](typename T::vertex_type v) { return false; };
+	auto f2 = [](Edge<typename T::vertex_type>) {};
 	graphviz(G, f1, f2);
 }
 
