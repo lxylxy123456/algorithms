@@ -54,8 +54,11 @@ HEADER_TO_SYMBOL = {
 		'std::random_device', 'std::mt19937', 'std::uniform_int_distribution',
 		'std::random_device::result_type',
 	],
+	'DEPRECATED': [	# TODO: remove before merge to master
+		'size_t',
+	],
 	'cstddef': [
-		'size_t', 'std::size_t',
+		'std::size_t',
 	],
 	'iomanip': [
 		'std::left', 'std::setw',
@@ -114,7 +117,8 @@ def parse_file(pathname):
 
 def refresh_file(pathname, parsed):
 	pre, include, post = parsed
-	open(pathname, 'w').write('\n'.join(pre + include + post))
+	# TODO: remove comment before merge to master
+	# open(pathname, 'w').write('\n'.join(pre + include + post))
 
 def reorder_includes(pathname, includes):
 	if not includes:
