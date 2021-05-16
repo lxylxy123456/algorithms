@@ -27,6 +27,8 @@
 #include "LUPSolve.hpp"
 #include "ProtovEB.hpp"
 
+using std::size_t;
+
 namespace algorithms {
 
 #define usetst typename std::unordered_set<size_t>

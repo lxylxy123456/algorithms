@@ -25,6 +25,8 @@
 #include <string>
 #include <vector>
 
+using std::size_t;
+
 namespace algorithms {
 
 size_t debug;

@@ -23,6 +23,8 @@
 
 #include "ProtovEB.hpp"
 
+using std::size_t;
+
 namespace algorithms {
 
 class vEB {

@@ -22,6 +22,8 @@
 #include <cassert>
 #include <stdexcept>
 
+using std::size_t;
+
 namespace algorithms {
 
 template <typename T>

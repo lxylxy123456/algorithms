@@ -24,6 +24,8 @@
 #include "Graph.hpp"
 #include "ProtovEB.hpp"
 
+using std::size_t;
+
 namespace algorithms {
 
 template <typename T>

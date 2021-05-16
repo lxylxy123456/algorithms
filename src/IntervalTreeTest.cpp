@@ -99,7 +99,6 @@ int test(int n, int m) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::cout << "seed = " << random_seed_get() << std::endl;
 	for (int m = 0; m > -1000; m -= 400) {
 		test(0, m);
 		test(1, m);

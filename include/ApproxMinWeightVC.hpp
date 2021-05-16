@@ -22,6 +22,8 @@
 #include "Graph.hpp"
 #include "Simplex.hpp"
 
+using std::size_t;
+
 namespace algorithms {
 
 template <typename GT, typename T, typename WT>

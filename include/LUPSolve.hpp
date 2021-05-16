@@ -27,6 +27,8 @@
 
 #include "SquareMatrixMultiply.hpp"
 
+using std::size_t;
+
 namespace algorithms {
 
 using PT = std::vector<size_t>;

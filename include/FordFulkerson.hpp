@@ -24,6 +24,8 @@
 
 #include "BFS.hpp"
 
+using std::size_t;
+
 namespace algorithms {
 
 template <typename GT, typename T, typename WT>
@@ -52,7 +54,7 @@ void FordFulkerson(GT& G, umap_WT& c, T s, T t, umap_WT& f) {
 		}
 		umap<T, BFSInfo<T>> BFS_ans;
 		BFS(Gf, s, BFS_ans);
-		std::vector<size_t> p;
+		std::vector<T> p;
 		PrintPath(s, t, BFS_ans, p);
 		if (!p.size())
 			break;

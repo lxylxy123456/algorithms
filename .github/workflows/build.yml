@@ -38,7 +38,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: make
-      run: make all CXX=${{ matrix.cxx }} CPPSTD=${{ matrix.cppstd }} -j 4
+      run: make all CXX=${{ matrix.cxx }} CPPSTD=${{ matrix.cppstd }} -j `nproc`
     - name: upload bin
       uses: actions/upload-artifact@v2
       with:
@@ -59,7 +59,7 @@ jobs:
         touch bin/*Main
         touch bin/*Test
     - name: test
-      run: make test -j 4
+      run: make test -j `nproc`
 
   valgrind:
 
@@ -113,5 +113,5 @@ jobs:
         touch bin/*Main
         touch bin/*Test
     - name: valgrind test
-      run: make valgrind -j 4
+      run: make valgrind -j `nproc`
 

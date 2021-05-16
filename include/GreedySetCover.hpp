@@ -23,6 +23,8 @@
 #include <set>
 #include <vector>
 
+using std::size_t;
+
 namespace algorithms {
 
 #define set_T typename std::set<T>
