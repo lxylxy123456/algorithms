@@ -21,8 +21,6 @@
 
 #include <vector>
 
-using std::size_t;
-
 namespace algorithms {
 
 class BinaryCounter {

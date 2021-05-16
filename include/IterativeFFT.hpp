@@ -23,8 +23,6 @@
 
 #include "RecursiveFFT.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 std::size_t rev(std::size_t k, std::size_t n) {

@@ -23,8 +23,6 @@
 #include <stdexcept>
 #include <vector>
 
-using std::size_t;
-
 namespace algorithms {
 
 inline std::size_t Left(std::size_t x) { return x * 2 + 1; }

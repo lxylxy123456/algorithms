@@ -24,8 +24,6 @@
 
 #include "MatVec.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 #define SM SubMatrix<T>

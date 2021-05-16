@@ -22,8 +22,6 @@
 #include <random>
 #include <vector>
 
-using std::size_t;
-
 namespace algorithms {
 
 static std::random_device random_dev;

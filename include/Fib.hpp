@@ -21,8 +21,6 @@
 
 #include <thread>
 
-using std::size_t;
-
 namespace algorithms {
 
 std::size_t Fib(std::size_t n) {

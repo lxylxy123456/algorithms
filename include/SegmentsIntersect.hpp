@@ -24,8 +24,6 @@
 #include <iostream>
 #include <string>
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>

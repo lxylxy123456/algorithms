@@ -24,8 +24,6 @@
 #include <string>
 #include <vector>
 
-using std::size_t;
-
 namespace algorithms {
 
 // A string with custom length

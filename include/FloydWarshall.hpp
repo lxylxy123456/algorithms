@@ -24,8 +24,6 @@
 
 #include "Graph.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 void PrintAllPairsShortestPath(Matrix<T_ptr<std::size_t>>& PI, std::size_t i,

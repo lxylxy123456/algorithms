@@ -21,8 +21,6 @@
 
 #include <stdexcept>
 
-using std::size_t;
-
 namespace algorithms {
 
 const std::size_t NIL = -1;

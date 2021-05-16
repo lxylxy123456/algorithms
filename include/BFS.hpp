@@ -24,8 +24,6 @@
 #include "Graph.hpp"
 #include "Queue.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 enum BFSColor { bfs_white, bfs_gray, bfs_black };

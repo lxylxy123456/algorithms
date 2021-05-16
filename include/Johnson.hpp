@@ -26,8 +26,6 @@
 #include "Dijkstra.hpp"
 #include "SquareMatrixMultiply.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename GT, typename T, typename WT>
