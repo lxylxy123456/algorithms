@@ -23,8 +23,8 @@
 #include <vector>
 
 #include "DisjointSet.hpp"
-#include "test_utils.hpp"
 #include "graph_utils.hpp"
+#include "test_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
