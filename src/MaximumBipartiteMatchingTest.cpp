@@ -1,5 +1,5 @@
 //
-//  algorithm - some algorithms in "Introduction to Algorithms", third edition
+//  algorithms - some algorithms in "Introduction to Algorithms", third edition
 //  Copyright (C) 2020  lxylxy123456
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #include <iostream>
 #include <vector>
 
+#include "graph_utils.hpp"
 #include "test_utils.hpp"
 #include "utils.hpp"
 
@@ -39,7 +40,7 @@ int test(std::size_t vl, std::size_t vr, std::size_t e) {
 		if (ans.find(e) != ans.end())
 			std::cout << " [style=bold]";
 	};
-	G.graphviz(f1, f2);
+	graphviz(G, f1, f2);
 	uset<std::size_t> used;
 	for (auto i = G.all_edges(); !i.end(); i++) {
 		std::size_t l = i.s(), r = i.d();

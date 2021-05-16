@@ -1,5 +1,5 @@
 //
-//  algorithm - some algorithms in "Introduction to Algorithms", third edition
+//  algorithms - some algorithms in "Introduction to Algorithms", third edition
 //  Copyright (C) 2018  lxylxy123456
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@ namespace algorithms {
 
 template <typename T>
 class Matroid {
-	public :
+	public:
 		Matroid(const std::set<T>& s): S(s) {}
 		virtual bool I(const std::set<T>& A) const { return true; }
 		std::set<T> S;

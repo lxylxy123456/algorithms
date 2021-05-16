@@ -1,5 +1,5 @@
 //
-//  algorithm - some algorithms in "Introduction to Algorithms", third edition
+//  algorithms - some algorithms in "Introduction to Algorithms", third edition
 //  Copyright (C) 2018  lxylxy123456
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 #include <iostream>
 
 #include "SquareMatrixMultiply.hpp"
+#include "graph_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
@@ -52,8 +53,8 @@ template <typename T, typename WT>
 void graph_weighted_test(const std::size_t v, const std::size_t e) {
 	for (std::size_t dir = 0; dir <= 1; dir++) {
 		WeightedAdjMatrix<T, WT> G(dir);
-		G.random_graph(v, e, 1 - e, e);
-		G.graphviz();
+		random_weighted_adj_matrix(G, v, e, (WT) (1 - e), (WT) e);
+		graphviz(G);
 		std::cout << std::endl;
 		Matrix<Weight<int>> M(v, v);
 		G.to_matrix(M);
