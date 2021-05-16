@@ -142,6 +142,35 @@ class T_ptr {
 };
 
 template <typename T>
+class Graph {
+	public:
+		Graph(bool directed): dir(directed), V() {}
+		virtual bool add_vertex(T u) {
+			if (V.find(u) != V.end())
+				return false;
+			V.insert(u);
+			return true;
+		}
+		void add_edge(Edge<T> e) {
+			this->add_edge(e.s, e.d);
+		}
+		virtual void add_edge(T, T) = 0;
+		virtual bool is_edge(T u, T v) = 0;
+		virtual void transpose() = 0;
+		virtual ~Graph() {}
+		typedef T vertex_type;
+		class iterator {
+			public:
+				virtual void operator++(int) = 0;
+				virtual Edge<T> operator*() = 0;
+				virtual T s() = 0;
+				virtual T d() = 0;
+		};
+		bool dir;
+		uset<T> V;
+};
+
+template <typename T>
 class EdgeIteratorAL1 {
 	public:
 		EdgeIteratorAL1(umap<T, uset<T>>& E, bool direction): dir(direction) {
@@ -211,10 +240,9 @@ class EdgeIteratorAL2 {
 template <typename T>
 class EdgeIteratorAM1 {
 	public:
-		EdgeIteratorAM1(umap<T, umap<T, bool>>& E, bool direction) {
-			dir = direction;
-			mbegin = E.begin();
-			mend = E.end();
+		EdgeIteratorAM1(umap<T, umap<T, bool>>::iterator mbegin,
+						umap<T, umap<T, bool>>::iterator mend, bool direction):
+						dir(direction), mbegin(mbegin), mend(mend) {
 			if (mbegin != mend) {
 				sbegin = mbegin->second.begin();
 				send = mbegin->second.end();
@@ -250,59 +278,6 @@ class EdgeIteratorAM1 {
 		bool dir;
 		umap<T, umap<T, bool>>::iterator mbegin, mend;
 		umap<T, bool>::iterator sbegin, send;
-};
-
-template <typename T>
-class EdgeIteratorAM2 {
-	public:
-		EdgeIteratorAM2(T ss, umap<T, bool>& E, bool direction): S(ss) {
-			dir = direction;
-			sbegin = E.begin();
-			send = E.end();
-			next();
-		}
-		void operator++(int) {
-			if (sbegin != send)
-				sbegin++;
-			next();
-		}
-		void next() {
-			while (sbegin != send && !sbegin->second)
-				sbegin++;
-		}
-		bool end() {
-			return sbegin == send;
-		}
-		Edge<T> operator*() {
-			return Edge<T>(S, sbegin->first, dir);
-		}
-		T s() { return S; }
-		T d() { return sbegin->first; }
-		T S;
-		bool dir;
-		umap<T, bool>::iterator sbegin, send;
-};
-
-template <typename T>
-class Graph {
-	public:
-		Graph(bool directed): dir(directed), V() {}
-		virtual bool add_vertex(T u) {
-			if (V.find(u) != V.end())
-				return false;
-			V.insert(u);
-			return true;
-		}
-		void add_edge(Edge<T> e) {
-			this->add_edge(e.s, e.d);
-		}
-		virtual void add_edge(T, T) = 0;
-		virtual bool is_edge(T u, T v) = 0;
-		virtual void transpose() = 0;
-		virtual ~Graph() {}
-		typedef T vertex_type;
-		bool dir;
-		uset<T> V;
 };
 
 template <typename T>
@@ -362,10 +337,11 @@ class GraphAdjMatrix: public Graph<T> {
 			return E[u][v];
 		}
 		EdgeIteratorAM1<T> all_edges() {
-			return EdgeIteratorAM1<T>(E, this->dir);
+			return EdgeIteratorAM1<T>(E.begin(), E.end(), this->dir);
 		}
-		EdgeIteratorAM2<T> edges_from(T s) {
-			return EdgeIteratorAM2<T>(s, E[s], this->dir);
+		EdgeIteratorAM1<T> edges_from(T s) {
+			umap<T, umap<T, bool>>::iterator i = E.find(s), j = i;
+			return EdgeIteratorAM1<T>(i, ++j, this->dir);
 		}
 		virtual void transpose() {
 			assert(this->dir);
