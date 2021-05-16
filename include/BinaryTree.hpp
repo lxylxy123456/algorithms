@@ -81,7 +81,9 @@ class BinaryTree {
 				PreorderTreeWalk(v, x->right);
 			}
 		}
-		void PreorderTreeWalk(std::vector<T>& v) { PreorderTreeWalk(v, root); }
+		void PreorderTreeWalk(std::vector<T>& v) {
+			PreorderTreeWalk(v, root);
+		}
 		void PostorderTreeWalk(std::vector<T>& v, Node<T>* x) {
 			if (x != nil) {
 				PostorderTreeWalk(v, x->left);
@@ -92,7 +94,9 @@ class BinaryTree {
 		void print_tree() {
 			TreePrint(root, BinaryTreeNavigator<Node<T>*>(nil));
 		}
-		void PostorderTreeWalk(std::vector<T>& v) { PostorderTreeWalk(v, root); }
+		void PostorderTreeWalk(std::vector<T>& v) {
+			PostorderTreeWalk(v, root);
+		}
 		~BinaryTree() { if(root) delete root->recursive_destruct(nil); }
 		Node<T> *root, *nil;
 };

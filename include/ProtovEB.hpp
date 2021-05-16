@@ -29,8 +29,8 @@ const std::size_t NIL = -1;
 
 class ProtovEB {
 	public:
-		ProtovEB(std::size_t kk): k(kk), u(1 << (1 << k)), sqrt_bit(1 << (k - 1)),
-							sqrtu(1 << sqrt_bit) {
+		ProtovEB(std::size_t kk): k(kk), u(1 << (1 << k)),
+			sqrt_bit(1 << (k - 1)), sqrtu(1 << sqrt_bit) {
 			if (k) {
 				summary = new ProtovEB(k - 1);
 				cluster = new ProtovEB* [sqrtu];
@@ -54,7 +54,9 @@ class ProtovEB {
 		// indexing
 		std::size_t high(std::size_t x) { return x >> sqrt_bit; }
 		std::size_t low(std::size_t x) { return x & (sqrtu - 1); }
-		std::size_t index(std::size_t x, std::size_t y) { return x << sqrt_bit | y; }
+		std::size_t index(std::size_t x, std::size_t y) {
+			return x << sqrt_bit | y;
+		}
 		// algorithms
 		bool ProtovEBMember(std::size_t x) {
 			if (k)
@@ -96,7 +98,8 @@ class ProtovEB {
 		}
 		std::size_t ProtovEBSuccessor(std::size_t x) {
 			if (k) {
-				std::size_t offset = cluster[high(x)]->ProtovEBSuccessor(low(x));
+				std::size_t offset = \
+					cluster[high(x)]->ProtovEBSuccessor(low(x));
 				if (offset != NIL)
 					return index(high(x), offset);
 				else {
@@ -117,7 +120,8 @@ class ProtovEB {
 		}
 		std::size_t ProtovEBPredecessor(std::size_t x) {
 			if (k) {
-				std::size_t offset = cluster[high(x)]->ProtovEBPredecessor(low(x));
+				std::size_t offset = \
+					cluster[high(x)]->ProtovEBPredecessor(low(x));
 				if (offset != NIL)
 					return index(high(x), offset);
 				else {

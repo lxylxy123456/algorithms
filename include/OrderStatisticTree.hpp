@@ -153,7 +153,8 @@ class OrderStatisticTree: public RedBlackTree<SData<T>> {
 			if (y_original_color == black)
 				RedBlackTree<SData<T>>::RBDeleteFixup(x);
 		}
-		Node<CData<SData<T>>>* OSSelect(Node<CData<SData<T>>>* x, std::size_t i) {
+		Node<CData<SData<T>>>* OSSelect(Node<CData<SData<T>>>* x,
+										std::size_t i) {
 			std::size_t& r = x->left->data.data.size;
 			if (i == r)
 				return x;

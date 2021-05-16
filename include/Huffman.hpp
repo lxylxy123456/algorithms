@@ -33,9 +33,10 @@ namespace algorithms {
 template <typename T>
 class CNode {
 	public:
-		CNode(T d, std::size_t f): disp(d), freq(f), left(nullptr), right(nullptr) {}
-		CNode(T d, std::size_t f, CNode<T>* l, CNode<T>* r): disp(d), freq(f),
-														left(l), right(r) {}
+		CNode(T d, std::size_t f):
+			disp(d), freq(f), left(nullptr), right(nullptr) {}
+		CNode(T d, std::size_t f, CNode<T>* l, CNode<T>* r):
+			disp(d), freq(f), left(l), right(r) {}
 		CNode<T>* recursive_destruct() {
 			if (left)
 				delete left->recursive_destruct();

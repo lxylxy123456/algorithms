@@ -84,7 +84,8 @@ int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
 	std::vector<std::size_t> ns = {2, 5, 8, 19, 52, 100};
 	for (std::vector<std::size_t>::iterator m = ns.begin(); m < ns.end(); m++)
-		for (std::vector<std::size_t>::iterator n = ns.begin(); n < ns.end(); n++)
+		for (std::vector<std::size_t>::iterator n = ns.begin(); n < ns.end();
+			n++)
 			if (*m > *n)
 				test<double>(*m, *n, 1);
 	test<Fraction<long long int>>(3, 1, 100);

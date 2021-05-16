@@ -48,7 +48,8 @@ int main(int argc, char *argv[]) {
 	std::vector<std::size_t> ns = {10, 23, 49, 100};
 	std::vector<int> ts = {50, 100, 500, 2000, 9000};
 	for (std::vector<std::size_t>::iterator n = ns.begin(); n < ns.end(); n++)
-		for (std::vector<std::size_t>::iterator m = ns.begin(); m < ns.end(); m++)
+		for (std::vector<std::size_t>::iterator m = ns.begin(); m < ns.end();
+			m++)
 			for (std::vector<int>::iterator t = ts.begin(); t < ts.end(); t++)
 				for (float e = 0.1; e < 1; e += 0.1)
 					test(*n, *m, *t, e);

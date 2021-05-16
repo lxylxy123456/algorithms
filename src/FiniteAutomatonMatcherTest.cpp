@@ -48,7 +48,8 @@ int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
 	std::vector<std::size_t> ns = {2, 5, 10, 23, 49, 100};
 	for (std::vector<std::size_t>::iterator n = ns.begin(); n < ns.end(); n++)
-		for (std::vector<std::size_t>::iterator m = ns.begin(); m < ns.end(); m++) {
+		for (std::vector<std::size_t>::iterator m = ns.begin(); m < ns.end();
+			m++) {
 			for (int d = 1; d < 20; d += 2)
 				test<char>(*m, *n, d);
 			for (int d = 2; d < 1000; d += 10)

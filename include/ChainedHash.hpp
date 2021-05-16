@@ -41,7 +41,8 @@ class Pair {
 template <typename T>
 class ChainedHash {
 	public:
-		ChainedHash(std::size_t s): size(s), data(new LinkedList<Pair<T>>[size]) {}
+		ChainedHash(std::size_t s):
+			size(s), data(new LinkedList<Pair<T>>[size]) {}
 		void ChainedHashInsert(std::size_t k, T x) {
 			data[h(k)].ListInsert(Pair<T>(k, x));
 		}

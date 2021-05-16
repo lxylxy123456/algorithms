@@ -30,8 +30,8 @@ namespace algorithms {
 class vEB {
 	public:
 		vEB(std::size_t kk): k(kk), u(1 << k), min(NIL), max(NIL),
-						lsqrt_bit(k / 2), lsqrtu(1 << lsqrt_bit),
-						usqrt_bit((k - 1) / 2 + 1), usqrtu(1 << usqrt_bit) {
+							lsqrt_bit(k / 2), lsqrtu(1 << lsqrt_bit),
+							usqrt_bit((k - 1) / 2 + 1), usqrtu(1 << usqrt_bit) {
 			if (k > 1) {
 				summary = new vEB(usqrt_bit);
 				cluster = new vEB* [usqrtu];
@@ -42,7 +42,9 @@ class vEB {
 		// indexing
 		std::size_t high(std::size_t x) { return x >> lsqrt_bit; }
 		std::size_t low(std::size_t x) { return x & (lsqrtu - 1); }
-		std::size_t index(std::size_t x, std::size_t y) { return x << lsqrt_bit | y; }
+		std::size_t index(std::size_t x, std::size_t y) {
+			return x << lsqrt_bit | y;
+		}
 		// algorithms
 		std::size_t vEBTreeMinimum() {
 			return min;
@@ -156,7 +158,8 @@ class vEB {
 						if (summ_max == NIL)
 							max = min;
 						else {
-							std::size_t offset = cluster[summ_max]->vEBTreeMaximum();
+							std::size_t offset = \
+								cluster[summ_max]->vEBTreeMaximum();
 							max = index(summ_max, offset);
 						}
 					}

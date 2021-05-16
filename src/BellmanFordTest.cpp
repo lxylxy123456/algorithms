@@ -55,7 +55,8 @@ int test(std::size_t v, std::size_t e, int weight_lower) {
 				assert(ans[*i].pi.nil);
 			} else if (!ans[*i].pi.nil) {
 				std::size_t j = ans[*i].pi.val;
-				assert(ans[*i].d - ans[j].d == w[Edge<std::size_t>(j, *i, dir)]);
+				assert(ans[*i].d - ans[j].d ==
+						w[Edge<std::size_t>(j, *i, dir)]);
 			}
 		}
 		for (auto i = G.all_edges(); !i.end(); i++) {

@@ -36,7 +36,8 @@ int test(T a, T b, T n) {
 	if (ans.size()) {
 		std::cout << "x = ";
 		output_integers(ans);
-		for (typename std::vector<T>::iterator i = ans.begin(); i != ans.end(); i++)
+		for (typename std::vector<T>::iterator i = ans.begin(); i != ans.end();
+			i++)
 			assert((a * *i - b) % n == 0);
 	} else {
 		std::cout << "no solutions" << std::endl;

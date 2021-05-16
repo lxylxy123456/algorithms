@@ -40,7 +40,8 @@ class Heap: public std::vector<T> {
 	public:
 		Heap(void): std::vector<T>(), heap_size(0) {}
 		Heap(std::vector<T>& v): std::vector<T>(v), heap_size(0) {}
-		Heap(std::vector<T>& v, std::size_t hs): std::vector<T>(v), heap_size(hs) {}
+		Heap(std::vector<T>& v, std::size_t hs):
+			std::vector<T>(v), heap_size(hs) {}
 		void MaxHeapify(std::size_t i) {
 			std::size_t l = Left(i), r = Right(i);
 			std::size_t largest = i;

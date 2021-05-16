@@ -65,9 +65,10 @@ int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
 	std::vector<std::size_t> ns = {2, 5, 10, 23, 49, 100, 200};
 	for (std::vector<std::size_t>::iterator n = ns.begin(); n < ns.end(); n++)
-		for (std::vector<std::size_t>::iterator m = ns.begin(); m < ns.end(); m++)
-			for (std::vector<std::size_t>::iterator l = ns.begin(); l < ns.end();
-				l++)
+		for (std::vector<std::size_t>::iterator m = ns.begin(); m < ns.end();
+			m++)
+			for (std::vector<std::size_t>::iterator l = ns.begin();
+				l < ns.end(); l++)
 				test(*n, *m, *l);
 	return 0;
 }

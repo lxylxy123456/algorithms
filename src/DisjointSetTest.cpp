@@ -58,7 +58,8 @@ int main(int argc, char *argv[]) {
 	std::vector<std::size_t> m = {5, 10, 23, 49, 100};
 	for (std::vector<std::size_t>::iterator n = ns.begin(); n < ns.end(); n++)
 		for (std::vector<std::size_t>::iterator v = m.begin(); v < m.end(); v++)
-			for (std::vector<std::size_t>::iterator e = m.begin(); e < m.end(); e++)
+			for (std::vector<std::size_t>::iterator e = m.begin(); e < m.end();
+				e++)
 					test(*v, *e, *n);
 	return 0;
 }
