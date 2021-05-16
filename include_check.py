@@ -16,7 +16,7 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-import os, re
+import os, re, argparse
 
 HEADER_TO_SYMBOL = {
 	'algorithm': [
@@ -145,37 +145,84 @@ def reorder_includes(pathname, includes):
 	assert ans.pop(-1) == ''
 	return ans
 
-if __name__ == '__main__':
-	exit_stat = 0;
-	for pathname in all_files():
+def graphviz_escape(s):
+	assert '\\\n\t' not in s
+	return '"%s"' % s.replace('"', r'\"')
+
+def draw_includes(pathnames):
+	include_info = {}
+	for pathname in pathnames:
 		parsed = parse_file(pathname)
-		a = open(pathname).read()
-		actual = set(re.findall('#include <(\w+)>', a))
-		expected = set()
-		all_symbols = re.findall('[a-zA-Z0-9_:]+', a)
-		for k, v in SYMBOL_TO_HEADER.items():
-			if k in all_symbols:
-				expected.add(v)
-		p = actual.difference(expected)
-		n = expected.difference(actual).difference({'cstddef'})
-		if p or n:
-			print('in', pathname)
-			for i in sorted(p):
-				print('  -', '#include <%s>' % i)
-				exit_stat = 1
-				parsed[1].remove('#include <%s>' % i)
-			for i in sorted(n):
-				print('  +', '#include <%s>' % i)
-				exit_stat = 1
-				parsed[1].append('#include <%s>' % i)
-		for k in all_symbols:
-			if 'std::' in k and k not in SYMBOL_TO_HEADER:
-				print('  ?', k)
-				exit_stat = 1
-		parsed_n = (parsed[0], reorder_includes(pathname, parsed[1]), parsed[2])
-		if parsed != parsed_n:
-			refresh_file(pathname, parsed_n)
-			print('parsed != parsed_n:', pathname)
+		includes = parsed[1]
+		info = []
+		for include in includes:
+			if not include:
+				continue
+			header = re.fullmatch('\#include (.+)', include).groups()[0]
+			info.append(header)
+		name = '"%s"' % os.path.split(pathname)[1]
+		include_info[name] = info
+	print('digraph G {')
+	for name, info in include_info.items():
+		for rhs in info:
+			if '.cpp' in name:
+				continue
+			if '<' in rhs:
+				continue
+			print('\t%s -> %s' % (graphviz_escape(name), graphviz_escape(rhs)))
+	print('}')
+	# import pdb; pdb.set_trace(); 0/0
+
+def check_includes(pathname, autofix=False):
+	exit_stat = 0
+	parsed = parse_file(pathname)
+	a = open(pathname).read()
+	actual = set(re.findall('#include <(\w+)>', a))
+	expected = set()
+	all_symbols = re.findall('[a-zA-Z0-9_:]+', a)
+	for k, v in SYMBOL_TO_HEADER.items():
+		if k in all_symbols:
+			expected.add(v)
+	p = actual.difference(expected)
+	n = expected.difference(actual).difference({'cstddef'})
+	if p or n:
+		print('in', pathname)
+		for i in sorted(p):
+			print('  -', '#include <%s>' % i)
 			exit_stat = 1
-	exit(exit_stat)
+			parsed[1].remove('#include <%s>' % i)
+		for i in sorted(n):
+			print('  +', '#include <%s>' % i)
+			exit_stat = 1
+			parsed[1].append('#include <%s>' % i)
+	for k in all_symbols:
+		if 'std::' in k and k not in SYMBOL_TO_HEADER:
+			print('  ?', k)
+			exit_stat = 1
+	parsed_n = (parsed[0], reorder_includes(pathname, parsed[1]), parsed[2])
+	if parsed != parsed_n:
+		if autofix:
+			refresh_file(pathname, parsed_n)
+		print('parsed != parsed_n:', pathname)
+		exit_stat = 1
+	return exit_stat
+
+def main():
+	exit_stat = 0
+	parser = argparse.ArgumentParser()
+	parser.add_argument('-f', '--auto-fix', action='store_true',
+						help='automatically add include')
+	parser.add_argument('-g', '--graphviz', action='store_true',
+						help='draw include relationship in Graphviz')
+	args = parser.parse_args()
+	if args.graphviz:
+		draw_includes(all_files())
+	else:
+		for pathname in all_files():
+			if check_includes(pathname, autofix=args.auto_fix) != 0:
+				exit_stat = 1
+	return exit_stat
+
+if __name__ == '__main__':
+	exit(main())
 
