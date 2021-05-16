@@ -23,6 +23,7 @@
 
 #include "Graph.hpp"
 #include "Queue.hpp"
+#include "graph_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;

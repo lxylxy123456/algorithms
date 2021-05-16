@@ -35,10 +35,8 @@ test: $(TESTS)
 
 valgrind: $(VALGRIND)
 
-bin:
-	mkdir bin
-
-$(TARGETS): bin/%: src/%.cpp bin
+$(TARGETS): bin/%: src/%.cpp
+	@mkdir -p bin
 	$(CXX) $(CXXFLAGS) -MMD -MF $(patsubst %,%.d,$@) -I include/ -o $@ $<
 
 $(TESTS): test/%: bin/%

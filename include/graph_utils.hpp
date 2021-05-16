@@ -19,13 +19,8 @@
 #ifndef ALGORITHMS_GRAPH_UTILS
 #define ALGORITHMS_GRAPH_UTILS
 
-#include <algorithm>
-#include <cassert>
-#include <functional>
 #include <iostream>
 #include <random>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
 #include "Graph.hpp"

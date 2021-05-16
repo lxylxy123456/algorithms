@@ -22,6 +22,7 @@
 
 #include "BellmanFord.hpp"
 #include "FibHeap.hpp"
+#include "graph_utils.hpp"
 #include "utils.hpp"
 
 using namespace algorithms;
