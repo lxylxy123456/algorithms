@@ -217,7 +217,7 @@ void random_weighted_adj_matrix(WeightedAdjMatrix<T, WT>& G, T v, std::size_t e,
 }
 
 template <typename GT, typename T>
-void random_bipartite(Bipartite<GT>& G, T vl, T vr, size_t e) {
+void random_bipartite(Bipartite<GT>& G, T vl, T vr, std::size_t e) {
 	for (T i = 0; i < vl; i++) {
 		G.add_vertex(i);
 		G.L.insert(i);
@@ -229,7 +229,7 @@ void random_bipartite(Bipartite<GT>& G, T vl, T vr, size_t e) {
 	std::vector<T> dl, dr;
 	random_integers<T>(dl, 0, vl - 1, e);
 	random_integers<T>(dr, vl, vl + vr - 1, e);
-	for (size_t i = 0; i < e; i++)
+	for (std::size_t i = 0; i < e; i++)
 		G.add_edge(dl[i], dr[i]);
 }
 
