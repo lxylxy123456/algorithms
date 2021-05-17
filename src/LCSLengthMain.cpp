@@ -26,9 +26,9 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t x = get_argv(argc, argv, 1, 8);
-	const size_t y = get_argv(argc, argv, 2, 9);
-	const size_t n = get_argv(argc, argv, 3, 25);
+	const std::size_t x = get_argv(argc, argv, 1, 8);
+	const std::size_t y = get_argv(argc, argv, 2, 9);
+	const std::size_t n = get_argv(argc, argv, 3, 25);
 	std::vector<char> X, Y;
 	random_integers<char>(X, 'a', 'a' + n, x);
 	random_integers<char>(Y, 'a', 'a' + n, y);

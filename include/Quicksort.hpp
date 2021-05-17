@@ -23,8 +23,6 @@
 
 #include "random_integers.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>
@@ -53,7 +51,7 @@ void Quicksort(T p, T r) {
 
 template <typename T>
 T RandomizedPartition(T p, T r) {
-	size_t i = random_integer<int>(0, r - p - 1);
+	std::size_t i = random_integer<int>(0, r - p - 1);
 	std::swap(*(p + i), *(r - 1));
 	return Partition(p, r);
 }

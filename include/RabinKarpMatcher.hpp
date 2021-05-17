@@ -24,23 +24,21 @@
 #include "ModularExponentiation.hpp"
 #include "NaiveStringMatcher.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>
 void RabinKarpMatcher(const std::vector<T>& S, const std::vector<T>& P,
-						size_t d, size_t q, T o, std::vector<size_t>& ans) {
-	size_t n = S.size(), m = P.size();
+	std::size_t d, std::size_t q, T o, std::vector<std::size_t>& ans) {
+	std::size_t n = S.size(), m = P.size();
 	if (n < m)
 		return;
-	size_t h = ModularExponentiation(d, m - 1, q);
-	size_t p = 0, t = 0;
-	for (size_t i = 0; i < m; i++) {
+	std::size_t h = ModularExponentiation(d, m - 1, q);
+	std::size_t p = 0, t = 0;
+	for (std::size_t i = 0; i < m; i++) {
 		p = (d * p + P[i] - o) % q;
 		t = (d * t + S[i] - o) % q;
 	}
-	for (size_t s = 0; s + m <= n; s++) {
+	for (std::size_t s = 0; s + m <= n; s++) {
 		if (p == t && equal(P, 0, S, s, m))
 			ans.push_back(s);
 		if (s < n - m)

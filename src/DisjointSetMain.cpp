@@ -28,17 +28,17 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t v = get_argv(argc, argv, 1, 10);
-	const size_t e = get_argv(argc, argv, 2, 10);
-	const size_t n = get_argv(argc, argv, 3, 10);
-	std::vector<size_t> c, d;
-	random_integers<size_t>(c, 0, v - 1, n);
-	random_integers<size_t>(d, 0, v - 1, n);
-	GraphAdjList<size_t> G(false);
+	const std::size_t v = get_argv(argc, argv, 1, 10);
+	const std::size_t e = get_argv(argc, argv, 2, 10);
+	const std::size_t n = get_argv(argc, argv, 3, 10);
+	std::vector<std::size_t> c, d;
+	random_integers<std::size_t>(c, 0, v - 1, n);
+	random_integers<std::size_t>(d, 0, v - 1, n);
+	GraphAdjList<std::size_t> G(false);
 	random_graph(G, v, e);
 	graphviz(G);
-	ConnectedComponents<size_t> CC(G);
-	for (size_t i = 0; i < n; i++) {
+	ConnectedComponents<std::size_t> CC(G);
+	for (std::size_t i = 0; i < n; i++) {
 		std::cout << c[i] << "\t" << d[i] << "\tconnected = " << std::boolalpha;
 		std::cout << CC.SameComponent(c[i], d[i]) << std::endl;
 	}

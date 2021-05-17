@@ -24,8 +24,6 @@
 #include "ModularExponentiation.hpp"
 #include "random_integers.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>
@@ -48,7 +46,7 @@ bool Witness(T a, T n) {
 }
 
 template <typename T>
-bool MillerRabin(T n, size_t s) {
+bool MillerRabin(T n, std::size_t s) {
 	std::vector<T> a;
 	random_integers<T>(a, 1, n - 1, s);
 	for (auto i = a.begin(); i != a.end(); i++) {

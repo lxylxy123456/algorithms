@@ -26,14 +26,14 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 16);
+	const std::size_t n = get_argv(argc, argv, 1, 16);
 	ChainedHash<int> D(n);
 	std::cout << "d: delete" << std::endl;
 	std::cout << "i: insert" << std::endl;
 	std::cout << "s: search" << std::endl;
 	std::cout << "q: quit" << std::endl;
 	while (true) {
-		char c; size_t k; int v;
+		char c; std::size_t k; int v;
 		std::cout << ">> ";
 		if (!(std::cin >> c)) {
 			std::cout << std::endl;

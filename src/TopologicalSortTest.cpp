@@ -30,12 +30,12 @@
 
 using namespace algorithms;
 
-int test(size_t v, size_t e) {
-	GraphAdjList<size_t> G(true);
+int test(std::size_t v, std::size_t e) {
+	GraphAdjList<std::size_t> G(true);
 	random_graph(G, v, e);
 	{
-		umap<size_t, DFSInfo<size_t>> inf;
-		umap<Edge<size_t>, DFSEdgeType, EdgeHash<size_t>> edge_inf;
+		umap<std::size_t, DFSInfo<std::size_t>> inf;
+		umap<Edge<std::size_t>, DFSEdgeType, EdgeHash<std::size_t>> edge_inf;
 		DFS(G, inf, &edge_inf);
 		graphviz(G);
 		for (auto i = G.all_edges(); !i.end(); i++)
@@ -43,12 +43,14 @@ int test(size_t v, size_t e) {
 				return 0;
 	}
 	std::cout << "TopologicalSort" << std::endl;
-	umap<size_t, DFSInfo<size_t>> inf;
-	std::deque<size_t> ans;
+	umap<std::size_t, DFSInfo<std::size_t>> inf;
+	std::deque<std::size_t> ans;
 	TopologicalSort(G, inf, ans);
 	for (auto i = G.all_edges(); !i.end(); i++) {
-		std::deque<size_t>::iterator s = std::find(ans.begin(), ans.end(), i.s());
-		std::deque<size_t>::iterator d = std::find(ans.begin(), ans.end(), i.d());
+		std::deque<std::size_t>::iterator s = std::find(ans.begin(), ans.end(),
+														i.s());
+		std::deque<std::size_t>::iterator d = std::find(ans.begin(), ans.end(),
+														i.d());
 		assert(s < d);
 	}
 	return 0;
@@ -56,9 +58,9 @@ int test(size_t v, size_t e) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> m = {5, 10, 23, 49, 100};
-	for (std::vector<size_t>::iterator v = m.begin(); v < m.end(); v++)
-		for (std::vector<size_t>::iterator e = m.begin(); e < m.end(); e++)
+	std::vector<std::size_t> m = {5, 10, 23, 49, 100};
+	for (std::vector<std::size_t>::iterator v = m.begin(); v < m.end(); v++)
+		for (std::vector<std::size_t>::iterator e = m.begin(); e < m.end(); e++)
 			for (int n = 0; n < 100; n++)
 				test(*v, *e);
 	return 0;

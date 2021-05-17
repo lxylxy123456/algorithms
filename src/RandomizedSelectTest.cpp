@@ -27,7 +27,7 @@
 
 using namespace algorithms;
 
-int test(size_t n, size_t i) {
+int test(std::size_t n, std::size_t i) {
 	std::vector<int> a;
 	random_integers(a, 0, n - 1, n);
 	std::vector<int> b(a);
@@ -44,9 +44,9 @@ int test(size_t n, size_t i) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> ns{1, 2, 5, 8, 19, 52, 100};
-	for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
-		for (size_t i = 0; i < *n; i++)
+	std::vector<std::size_t> ns{1, 2, 5, 8, 19, 52, 100};
+	for (std::vector<std::size_t>::iterator n = ns.begin(); n < ns.end(); n++)
+		for (std::size_t i = 0; i < *n; i++)
 			test(*n, i);
 	return 0;
 }

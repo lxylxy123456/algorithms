@@ -23,12 +23,10 @@
 
 #include "DFS.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename GT, typename T, typename VT>
-void DFSVisit_TS(GT& G, VT& inf, std::deque<T>& ans, T u, size_t& time) {
+void DFSVisit_TS(GT& G, VT& inf, std::deque<T>& ans, T u, std::size_t& time) {
 	DFSInfo<T>& info = inf[u];
 	info.set_color(dfs_gray, time);
 	for (auto i = G.edges_from(u); !i.end(); i++) {
@@ -47,7 +45,7 @@ template <typename GT, typename VT, typename T>
 void DFS_TS(GT& G, VT& inf, std::deque<T>& ans) {
 	for (auto i = G.V.begin(); i != G.V.end(); i++)
 		inf[*i] = DFSInfo<T>();
-	size_t time = 0;
+	std::size_t time = 0;
 	for (auto i = G.V.begin(); i != G.V.end(); i++)
 		if (inf[*i].color == dfs_white)
 			DFSVisit_TS(G, inf, ans, *i, time);

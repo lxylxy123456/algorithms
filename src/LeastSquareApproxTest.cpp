@@ -34,7 +34,7 @@ template <typename T>
 T norm(Matrix<T> lhs, Matrix<T> rhs) {
 	T ans = 0;
 	assert(lhs.rows == rhs.rows && lhs.cols == 1 && rhs.cols == 1);
-	for (size_t i = 0; i < lhs.rows; i++) {
+	for (std::size_t i = 0; i < lhs.rows; i++) {
 		T tmp = lhs[i][0] - rhs[i][0];
 		ans += tmp * tmp;
 	}
@@ -42,16 +42,16 @@ T norm(Matrix<T> lhs, Matrix<T> rhs) {
 }
 
 template <typename T>
-int test(size_t m, size_t n, size_t tries) {
-	for (size_t index = 0; index < tries; index++) {
+int test(std::size_t m, std::size_t n, std::size_t tries) {
+	for (std::size_t index = 0; index < tries; index++) {
 		try {
 			std::vector<int> int_a, int_b;
 			random_integers(int_a, 0, m, m * n);
 			random_integers(int_b, 0, m, m);
 			std::vector<T> buf_a(m * n), buf_b(m);
-			for (size_t i = 0; i < int_a.size(); i++)
+			for (std::size_t i = 0; i < int_a.size(); i++)
 				buf_a[i] = int_a[i];
-			for (size_t i = 0; i < int_b.size(); i++)
+			for (std::size_t i = 0; i < int_b.size(); i++)
 				buf_b[i] = int_b[i];
 			Matrix<T> A(m, n, buf_a);
 			Matrix<T> b(m, 1, buf_b);
@@ -60,7 +60,7 @@ int test(size_t m, size_t n, size_t tries) {
 			Matrix<T> x = LeastSquareApprox(A, b);
 			Matrix<T> bb = SquareMatrixMultiply(A, x, (T) 0);
 			bool test_flag = true;
-			for (size_t i = 0; i < n; i++)
+			for (std::size_t i = 0; i < n; i++)
 				for (T j = -1; j < (T) 11 / (T) 10; j += (T) 1 / (T) 10) {
 					Matrix<T> y(x);
 					y[i][0] += j;
@@ -82,9 +82,10 @@ int test(size_t m, size_t n, size_t tries) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> ns = {2, 5, 8, 19, 52, 100};
-	for (std::vector<size_t>::iterator m = ns.begin(); m < ns.end(); m++)
-		for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
+	std::vector<std::size_t> ns = {2, 5, 8, 19, 52, 100};
+	for (std::vector<std::size_t>::iterator m = ns.begin(); m < ns.end(); m++)
+		for (std::vector<std::size_t>::iterator n = ns.begin(); n < ns.end();
+			n++)
 			if (*m > *n)
 				test<double>(*m, *n, 1);
 	test<Fraction<long long int>>(3, 1, 100);

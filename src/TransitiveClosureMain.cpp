@@ -27,14 +27,13 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t v = get_argv(argc, argv, 1, 5);
-	const size_t e = get_argv(argc, argv, 2, 10);
+	const std::size_t v = get_argv(argc, argv, 1, 5);
+	const std::size_t e = get_argv(argc, argv, 2, 10);
 	const bool dir = 1;
 	const int weight_lower = get_argv<int>(argc, argv, 3, 0);
 	const int weight_upper = get_argv<int>(argc, argv, 4, e);
-	WeightedAdjMatrix<size_t, int> G(dir);
+	WeightedAdjMatrix<std::size_t, int> G(dir);
 	random_weighted_adj_matrix(G, v, e, weight_lower, weight_upper);
-	graphviz(G);
 	std::cout << std::endl;
 	Matrix<bool> ans = TransitiveClosure(G);
 	std::cout << ans << std::endl;

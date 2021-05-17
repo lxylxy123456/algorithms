@@ -22,8 +22,6 @@
 #include <algorithm>
 #include <vector>
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>
@@ -62,7 +60,7 @@ class DynamicTable {
 			return ans;
 		}
 		~DynamicTable() { delete table; }
-		size_t size, num;
+		std::size_t size, num;
 		std::vector<T>* table;
 };
 

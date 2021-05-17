@@ -28,8 +28,8 @@ using namespace algorithms;
 
 int main(int argc, char *argv[]) {
 	using T = int;
-	const size_t n = get_argv(argc, argv, 1, 16);
-	const size_t compute = get_argv(argc, argv, 2, 15);
+	const std::size_t n = get_argv(argc, argv, 1, 16);
+	const std::size_t compute = get_argv(argc, argv, 2, 15);
 	std::vector<int> l;
 	random_integers(l, 0, n - 1, n);
 	std::vector<int> p = {0};

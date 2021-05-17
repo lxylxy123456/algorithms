@@ -42,7 +42,7 @@ int test(int n) {
 	assert(bucr == ebucr.first);
 	assert(std::accumulate(ebucr.second.begin(), ebucr.second.end(), 0) == n);
 	int tot = 0;
-	for (std::vector<size_t>::iterator i = ebucr.second.begin();
+	for (std::vector<std::size_t>::iterator i = ebucr.second.begin();
 		i != ebucr.second.end(); i++)
 		tot += p[*i];
 	assert(tot == ebucr.first);

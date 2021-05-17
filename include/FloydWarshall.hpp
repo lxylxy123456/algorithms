@@ -24,12 +24,10 @@
 
 #include "Graph.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
-void PrintAllPairsShortestPath(Matrix<T_ptr<size_t>>& PI, size_t i, size_t j,
-	std::vector<size_t>& ans) {
+void PrintAllPairsShortestPath(Matrix<T_ptr<std::size_t>>& PI, std::size_t i,
+								std::size_t j, std::vector<std::size_t>& ans) {
 	if (i == j)
 		ans.push_back(i);
 	else if (!PI[i][j].nil) {
@@ -39,19 +37,19 @@ void PrintAllPairsShortestPath(Matrix<T_ptr<size_t>>& PI, size_t i, size_t j,
 }
 
 template <typename T>
-std::pair<Matrix<T>, Matrix<T_ptr<size_t>>> FloydWarshall(Matrix<T>& W) {
-	const size_t n = W.rows;
+std::pair<Matrix<T>, Matrix<T_ptr<std::size_t>>> FloydWarshall(Matrix<T>& W) {
+	const std::size_t n = W.rows;
 	Matrix<T> D = W;
-	Matrix<T_ptr<size_t>> PI(n, n, T_ptr<size_t>());
-	for (size_t i = 0; i < n; i++)
-		for (size_t j = 0; j < n; j++)
+	Matrix<T_ptr<std::size_t>> PI(n, n, T_ptr<std::size_t>());
+	for (std::size_t i = 0; i < n; i++)
+		for (std::size_t j = 0; j < n; j++)
 			if (i != j && !W[i][j].inf)
 				PI[i][j] = i;
-	for (size_t k = 0; k < n; k++) {
+	for (std::size_t k = 0; k < n; k++) {
 		Matrix<T> D_new = D;
-		Matrix<T_ptr<size_t>> PI_new = PI;
-		for (size_t i = 0; i < n; i++)
-			for (size_t j = 0; j < n; j++) {
+		Matrix<T_ptr<std::size_t>> PI_new = PI;
+		for (std::size_t i = 0; i < n; i++)
+			for (std::size_t j = 0; j < n; j++) {
 				T n = D[i][k] + D[k][j];
 				if (n < D_new[i][j]) {
 					D_new[i][j] = n;
@@ -61,7 +59,7 @@ std::pair<Matrix<T>, Matrix<T_ptr<size_t>>> FloydWarshall(Matrix<T>& W) {
 		D = D_new;
 		PI = PI_new;
 	}
-	return std::pair<Matrix<T>, Matrix<T_ptr<size_t>>>(D, PI);
+	return std::pair<Matrix<T>, Matrix<T_ptr<std::size_t>>>(D, PI);
 }
 
 }

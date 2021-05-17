@@ -25,7 +25,7 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 16);
+	const std::size_t n = get_argv(argc, argv, 1, 16);
 	Queue<int> S(n);
 	std::cout << "d: dequeue" << std::endl;
 	std::cout << "e: enqueue" << std::endl;

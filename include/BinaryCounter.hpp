@@ -21,13 +21,11 @@
 
 #include <vector>
 
-using std::size_t;
-
 namespace algorithms {
 
 class BinaryCounter {
 	public:
-		BinaryCounter(size_t k): A(k) {}
+		BinaryCounter(std::size_t k): A(k) {}
 		void Increment() {
 			for (std::vector<bool>::iterator i = A.begin(); i != A.end(); i++) {
 				*i = !*i;

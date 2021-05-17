@@ -27,23 +27,23 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t v = get_argv(argc, argv, 1, 5);
-	const size_t e = get_argv(argc, argv, 2, 10);
+	const std::size_t v = get_argv(argc, argv, 1, 5);
+	const std::size_t e = get_argv(argc, argv, 2, 10);
 	const bool dir = true;
 	const int weight_lower = get_argv<int>(argc, argv, 3, 0);
 	const int weight_upper = get_argv<int>(argc, argv, 4, e);
-	GraphAdjList<size_t> G(dir);
+	GraphAdjList<std::size_t> G(dir);
 	random_flow(G, v, e);
-	umap<Edge<size_t>, int, EdgeHash<size_t>> c;
+	umap<Edge<std::size_t>, int, EdgeHash<std::size_t>> c;
 	random_weight(G, c, weight_lower, weight_upper);
-	umap<Edge<size_t>, int, EdgeHash<size_t>> f;
+	umap<Edge<std::size_t>, int, EdgeHash<std::size_t>> f;
 	FordFulkerson(G, c, 0ul, v - 1ul, f);
-	auto f1 = [v](size_t vv) {
+	auto f1 = [v](std::size_t vv) {
 		if (vv == v - 1 || vv == 0)
 			std::cout << " [style=bold]";
 		return false;
 	};
-	auto f2 = [c, f](Edge<size_t> e) mutable {
+	auto f2 = [c, f](Edge<std::size_t> e) mutable {
 		std::cout << " [label=\"" << f[e] << "/" << c[e] << "\"";
 		if (f[e])
 			std::cout << " style=bold";

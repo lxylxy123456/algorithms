@@ -30,13 +30,13 @@
 
 using namespace algorithms;
 
-int test(size_t n) {
+int test(std::size_t n) {
 	std::cout << n << std::endl;
 	StorageManage<long int> S(n);
 	std::vector<Data<long int>*> allocated;
-	std::uniform_int_distribution<size_t> d1(0, 5);
-	std::uniform_int_distribution<size_t> d2(0, n * 5);
-	for (size_t i = 0; i < (n + 5) * 5; i++) {
+	std::uniform_int_distribution<std::size_t> d1(0, 5);
+	std::uniform_int_distribution<std::size_t> d2(0, n * 5);
+	for (std::size_t i = 0; i < (n + 5) * 5; i++) {
 		if (random_integer(d1) < 3) {
 			if (allocated.size() < n) {
 				Data<long int>* ans = S.AllocateObject();
@@ -53,7 +53,7 @@ int test(size_t n) {
 		} else {
 			if (!allocated.size())
 				continue;
-			size_t x = random_integer(d2) % allocated.size();
+			std::size_t x = random_integer(d2) % allocated.size();
 			std::cout << "f, " << static_cast<void*>(allocated[x]) << std::endl;
 			S.FreeObject(allocated[x]);
 			allocated.erase(allocated.begin() + x, allocated.begin() + x + 1);
@@ -64,8 +64,8 @@ int test(size_t n) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> ns{1, 2, 5, 8, 19, 52, 100};
-	for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
+	std::vector<std::size_t> ns{1, 2, 5, 8, 19, 52, 100};
+	for (std::vector<std::size_t>::iterator n = ns.begin(); n < ns.end(); n++)
 		test(*n);
 	return 0;
 }

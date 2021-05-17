@@ -26,10 +26,10 @@
 
 using namespace algorithms;
 
-int test(size_t n) {
+int test(std::size_t n) {
 	std::cout << n << std::endl;
-	for (size_t i = 0; i < n; i++)
-		if (RaceExample<size_t>() != 2)
+	for (std::size_t i = 0; i < n; i++)
+		if (RaceExample<std::size_t>() != 2)
 			return 1;
 	return 0;
 }

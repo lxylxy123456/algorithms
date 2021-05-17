@@ -42,16 +42,16 @@ bool almost_equal(Fraction<T> lhs, Fraction<T> rhs) {
 }
 
 template <typename T>
-int test(size_t n, size_t tries) {
-	for (size_t index = 0; index < tries; index++) {
+int test(std::size_t n, std::size_t tries) {
+	for (std::size_t index = 0; index < tries; index++) {
 		try {
 			std::vector<int> int_a, int_b;
 			random_integers(int_a, -n, n, n * n);
 			random_integers(int_b, -n, n, n);
 			std::vector<T> buf_a(n * n), buf_b(n);
-			for (size_t i = 0; i < int_a.size(); i++)
+			for (std::size_t i = 0; i < int_a.size(); i++)
 				buf_a[i] = int_a[i];
-			for (size_t i = 0; i < int_b.size(); i++)
+			for (std::size_t i = 0; i < int_b.size(); i++)
 				buf_b[i] = int_b[i];
 			Matrix<T> A(n, n, buf_a);
 			Matrix<T> b(n, 1, buf_b);
@@ -60,7 +60,7 @@ int test(size_t n, size_t tries) {
 			{
 				Matrix<T> A1(A), L(0, 0), U(0, 0);
 				PT pi(n);
-				for (size_t i = 0; i < n; i++)
+				for (std::size_t i = 0; i < n; i++)
 					pi[i] = i;
 				LUDecomposition(A1, L, U);
 				Matrix<T> x = LUPSolve(L, U, pi, b);
@@ -78,7 +78,7 @@ int test(size_t n, size_t tries) {
 			}
 			ans1 = ans1.concat_h(MatrixMultiply(A, ans2));
 			bool test_flag = true;
-			for (size_t i = 0; i < n; i++) {
+			for (std::size_t i = 0; i < n; i++) {
 				test_flag = test_flag && almost_equal(ans1[i][0], ans1[i][1]);
 				test_flag = test_flag && almost_equal(ans1[i][0], ans1[i][2]);
 				test_flag = test_flag && almost_equal(ans1[i][0], ans1[i][3]);

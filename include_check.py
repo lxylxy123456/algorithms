@@ -55,7 +55,7 @@ HEADER_TO_SYMBOL = {
 		'std::random_device::result_type',
 	],
 	'cstddef': [
-		'size_t', 'std::size_t',
+		'std::size_t',
 	],
 	'iomanip': [
 		'std::left', 'std::setw',

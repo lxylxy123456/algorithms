@@ -19,28 +19,26 @@
 #ifndef ALGORITHMS_OPTIMALBST
 #define ALGORITHMS_OPTIMALBST
 
-#define SIZT_1D std::vector<size_t>
-#define SIZT_2D std::vector<std::vector<size_t>>
+#define SIZT_1D std::vector<std::size_t>
+#define SIZT_2D std::vector<std::vector<std::size_t>>
 
 #include <vector>
 
-using std::size_t;
-
 namespace algorithms {
 
-SIZT_2D OptimalBST(SIZT_1D& p, SIZT_1D& q, size_t n) {
+SIZT_2D OptimalBST(SIZT_1D& p, SIZT_1D& q, std::size_t n) {
 	SIZT_2D e(n + 1, SIZT_1D(n + 1, 0));
 	SIZT_2D w(n + 1, SIZT_1D(n + 1, 0));
 	SIZT_2D root(n, SIZT_1D(n + 1, 0));
-	for (size_t i = 0; i < n; i++)
+	for (std::size_t i = 0; i < n; i++)
 		w[i][i] = e[i][i] = q[i];
-	for (size_t l = 1; l <= n; l++)
-		for (size_t i = 0; i <= n - l; i++) {
-			size_t j = i + l;
+	for (std::size_t l = 1; l <= n; l++)
+		for (std::size_t i = 0; i <= n - l; i++) {
+			std::size_t j = i + l;
 			e[i][j] = -1;
 			w[i][j] = w[i][j - 1] + p[j - 1] + q[j];
-			for (size_t r = i; r < j; r++) {
-				size_t t = e[i][r] + e[r + 1][j] + w[i][j];
+			for (std::size_t r = i; r < j; r++) {
+				std::size_t t = e[i][r] + e[r + 1][j] + w[i][j];
 				if (t < e[i][j]) {
 					e[i][j] = t;
 					root[i][j] = r;

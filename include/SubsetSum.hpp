@@ -21,8 +21,6 @@
 
 #include <set>
 
-using std::size_t;
-
 namespace algorithms {
 
 #define set_T typename std::set<T>
@@ -57,7 +55,7 @@ set_T Trim(set_T& L, T t, FT delta) {
 
 template <typename T, typename FT>
 T ApproxSubsetSum(set_T& S, T t, FT e) {
-	size_t n = S.size();
+	std::size_t n = S.size();
 	set_T L;
 	L.insert(0);
 	for (set_T::iterator i = S.begin(); i != S.end(); i++) {

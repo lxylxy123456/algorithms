@@ -23,8 +23,6 @@
 
 #include "Graph.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T, typename WT>
@@ -71,7 +69,7 @@ void Relax(T u, T v, umap_WT& w, umap<T, RelaxInfo<T, WT>>& inf) {
 template <typename GT, typename T, typename WT>
 bool BellmanFord(GT& G, umap_WT& w, T s, umap<T, RelaxInfo<T, WT>>& ans) {
 	InitializeSingleSource(G, s, ans);
-	for (size_t i = 0; i < G.V.size() - 1; i++)
+	for (std::size_t i = 0; i < G.V.size() - 1; i++)
 		for (auto j = G.all_edges(); !j.end(); j++)
 			Relax(j.s(), j.d(), w, ans);
 	for (auto j = G.all_edges(); !j.end(); j++)

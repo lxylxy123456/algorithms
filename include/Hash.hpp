@@ -23,37 +23,35 @@
 
 #include "random_integers.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 class DivisionHash {
 	public:
-		DivisionHash(size_t mm): m(mm) {}
-		size_t operator()(size_t k) { return k % m; }
-		size_t m;
+		DivisionHash(std::size_t mm): m(mm) {}
+		std::size_t operator()(std::size_t k) { return k % m; }
+		std::size_t m;
 };
 
 class MultiplicationHash {
 	public:
-		MultiplicationHash(size_t ww, size_t pp, float A):
+		MultiplicationHash(std::size_t ww, std::size_t pp, float A):
 			w(ww), K(1 << w), p(pp), s(A * K), m(1 << p) {}
-		size_t operator()(size_t k) {
+		std::size_t operator()(std::size_t k) {
 			return ((k * s) & (K - 1)) >> (w - p);
 		}
-		size_t w, K, p, s, m;
+		std::size_t w, K, p, s, m;
 };
 
 class UniversalHash {
 	public:
-		UniversalHash(size_t pp, size_t mm): p(pp), m(mm) {
-			a = random_integer<size_t>(1, p - 1);
-			b = random_integer<size_t>(0, p - 1);
+		UniversalHash(std::size_t pp, std::size_t mm): p(pp), m(mm) {
+			a = random_integer<std::size_t>(1, p - 1);
+			b = random_integer<std::size_t>(0, p - 1);
 		}
-		size_t operator()(size_t k) {
+		std::size_t operator()(std::size_t k) {
 			return ((a * k + b) % p) % m;
 		}
-		size_t p, m, a, b;
+		std::size_t p, m, a, b;
 };
 
 }

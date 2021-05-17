@@ -28,10 +28,10 @@ using namespace algorithms;
 int main(int argc, char *argv[]) {
 	std::cout << "n\ta\tb\ta == b" << std::endl;
 	for (int i = 1; i < std::max(argc, 2); i++) {
-		size_t n = get_argv(argc, argv, i, 10);
-		size_t a = Fib(n);
+		std::size_t n = get_argv(argc, argv, i, 10);
+		std::size_t a = Fib(n);
 		std::cout << n << '\t' << a << '\t' << std::flush;
-		size_t b = PFib(n);
+		std::size_t b = PFib(n);
 		std::cout << b << '\t';
 		std::cout << std::boolalpha << (a == b) << std::endl;
 	}

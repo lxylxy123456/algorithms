@@ -21,27 +21,25 @@
 
 #include <stdexcept>
 
-using std::size_t;
-
 namespace algorithms {
 
-const size_t NIL = -1;
+const std::size_t NIL = -1;
 
 class ProtovEB {
 	public:
-		ProtovEB(size_t kk): k(kk), u(1 << (1 << k)), sqrt_bit(1 << (k - 1)),
-							sqrtu(1 << sqrt_bit) {
+		ProtovEB(std::size_t kk): k(kk), u(1 << (1 << k)),
+			sqrt_bit(1 << (k - 1)), sqrtu(1 << sqrt_bit) {
 			if (k) {
 				summary = new ProtovEB(k - 1);
 				cluster = new ProtovEB* [sqrtu];
-				for (size_t i = 0; i < sqrtu; i++)
+				for (std::size_t i = 0; i < sqrtu; i++)
 					cluster[i] = new ProtovEB(k - 1);
 			} else {
 				A(0) = 0;
 				A(1) = 0;
 			}
 		}
-		bool& A(size_t i) {
+		bool& A(std::size_t i) {
 			switch (i) {
 				case 0:
 					return reinterpret_cast<bool*>(&summary)[0];
@@ -52,19 +50,21 @@ class ProtovEB {
 			}
 		}
 		// indexing
-		size_t high(size_t x) { return x >> sqrt_bit; }
-		size_t low(size_t x) { return x & (sqrtu - 1); }
-		size_t index(size_t x, size_t y) { return x << sqrt_bit | y; }
+		std::size_t high(std::size_t x) { return x >> sqrt_bit; }
+		std::size_t low(std::size_t x) { return x & (sqrtu - 1); }
+		std::size_t index(std::size_t x, std::size_t y) {
+			return x << sqrt_bit | y;
+		}
 		// algorithms
-		bool ProtovEBMember(size_t x) {
+		bool ProtovEBMember(std::size_t x) {
 			if (k)
 				return cluster[high(x)]->ProtovEBMember(low(x));
 			else
 				return A(x);
 		}
-		size_t ProtovEBMinimum() {
+		std::size_t ProtovEBMinimum() {
 			if (k) {
-				size_t min_c = summary->ProtovEBMinimum();
+				std::size_t min_c = summary->ProtovEBMinimum();
 				if (min_c == NIL)
 					return NIL;
 				else
@@ -78,9 +78,9 @@ class ProtovEB {
 					return NIL;
 			}
 		}
-		size_t ProtovEBMaximum() {
+		std::size_t ProtovEBMaximum() {
 			if (k) {
-				size_t min_c = summary->ProtovEBMaximum();
+				std::size_t min_c = summary->ProtovEBMaximum();
 				if (min_c == NIL)
 					return NIL;
 				else
@@ -94,17 +94,18 @@ class ProtovEB {
 					return NIL;
 			}
 		}
-		size_t ProtovEBSuccessor(size_t x) {
+		std::size_t ProtovEBSuccessor(std::size_t x) {
 			if (k) {
-				size_t offset = cluster[high(x)]->ProtovEBSuccessor(low(x));
+				std::size_t offset = \
+					cluster[high(x)]->ProtovEBSuccessor(low(x));
 				if (offset != NIL)
 					return index(high(x), offset);
 				else {
-					size_t succ_c = summary->ProtovEBSuccessor(high(x));
+					std::size_t succ_c = summary->ProtovEBSuccessor(high(x));
 					if (succ_c == NIL)
 						return NIL;
 					else {
-						size_t offset = cluster[succ_c]->ProtovEBMinimum();
+						std::size_t offset = cluster[succ_c]->ProtovEBMinimum();
 						return index(succ_c, offset);
 					}
 				}
@@ -115,17 +116,18 @@ class ProtovEB {
 					return NIL;
 			}
 		}
-		size_t ProtovEBPredecessor(size_t x) {
+		std::size_t ProtovEBPredecessor(std::size_t x) {
 			if (k) {
-				size_t offset = cluster[high(x)]->ProtovEBPredecessor(low(x));
+				std::size_t offset = \
+					cluster[high(x)]->ProtovEBPredecessor(low(x));
 				if (offset != NIL)
 					return index(high(x), offset);
 				else {
-					size_t succ_c = summary->ProtovEBPredecessor(high(x));
+					std::size_t succ_c = summary->ProtovEBPredecessor(high(x));
 					if (succ_c == NIL)
 						return NIL;
 					else {
-						size_t offset = cluster[succ_c]->ProtovEBMaximum();
+						std::size_t offset = cluster[succ_c]->ProtovEBMaximum();
 						return index(succ_c, offset);
 					}
 				}
@@ -136,14 +138,14 @@ class ProtovEB {
 					return NIL;
 			}
 		}
-		void ProtovEBInsert(size_t x) {
+		void ProtovEBInsert(std::size_t x) {
 			if (k) {
 				cluster[high(x)]->ProtovEBInsert(low(x));
 				summary->ProtovEBInsert(high(x));
 			} else
 				A(x) = true;
 		}
-		bool ProtovEBDelete(size_t x) {
+		bool ProtovEBDelete(std::size_t x) {
 			if (k) {
 				if (!cluster[high(x)]->ProtovEBDelete(low(x)))
 					if (!summary->ProtovEBDelete(high(x))) {
@@ -160,13 +162,13 @@ class ProtovEB {
 		ProtovEB** cluster; 	// A[1] when u == 2
 		~ProtovEB() {
 			if (k) {
-				for (size_t i = 0; i < sqrtu; i++)
+				for (std::size_t i = 0; i < sqrtu; i++)
 					delete cluster[i];
 				delete [] cluster;
 				delete summary;
 			}
 		}
-		size_t k, u, sqrt_bit, sqrtu;
+		std::size_t k, u, sqrt_bit, sqrtu;
 };
 
 }

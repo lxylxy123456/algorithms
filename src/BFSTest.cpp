@@ -28,17 +28,17 @@
 using namespace algorithms;
 
 int test1(bool dir) {
-	GraphAdjList<size_t> G(dir);
+	GraphAdjList<std::size_t> G(dir);
 	G.add_edge(0, 1);
 	G.add_edge(1, 2);
 	G.add_edge(2, 3);
 	G.add_edge(3, 4);
 	G.add_edge(5, 6);
-	umap<size_t, BFSInfo<size_t>> inf;
-	size_t s = 0;
+	umap<std::size_t, BFSInfo<std::size_t>> inf;
+	std::size_t s = 0;
 	graphviz(G);
 	BFS(G, s, inf);
-	std::vector<std::vector<size_t>> expected = {
+	std::vector<std::vector<std::size_t>> expected = {
 		{0},
 		{0, 1},
 		{0, 1, 2},
@@ -47,8 +47,8 @@ int test1(bool dir) {
 		{},
 		{}
 	};
-	for (size_t i = 0; i < expected.size(); i++) {
-		std::vector<size_t> ans;
+	for (std::size_t i = 0; i < expected.size(); i++) {
+		std::vector<std::size_t> ans;
 		PrintPath(s, i, inf, ans);
 		assert(ans == expected[i]);
 	}
@@ -56,7 +56,7 @@ int test1(bool dir) {
 }
 
 int test2(bool dir) {
-	GraphAdjList<size_t> G(dir);
+	GraphAdjList<std::size_t> G(dir);
 	G.add_edge(0, 1);
 	G.add_edge(0, 2);
 	G.add_edge(0, 3);
@@ -64,11 +64,11 @@ int test2(bool dir) {
 	G.add_edge(1, 5);
 	G.add_edge(2, 6);
 	G.add_edge(2, 7);
-	umap<size_t, BFSInfo<size_t>> inf;
-	size_t s = 0;
+	umap<std::size_t, BFSInfo<std::size_t>> inf;
+	std::size_t s = 0;
 	graphviz(G);
 	BFS(G, s, inf);
-	std::vector<std::vector<size_t>> expected = {
+	std::vector<std::vector<std::size_t>> expected = {
 		{0},
 		{0, 1},
 		{0, 2},
@@ -78,8 +78,8 @@ int test2(bool dir) {
 		{0, 2, 6},
 		{0, 2, 7}
 	};
-	for (size_t i = 0; i < expected.size(); i++) {
-		std::vector<size_t> ans;
+	for (std::size_t i = 0; i < expected.size(); i++) {
+		std::vector<std::size_t> ans;
 		PrintPath(s, i, inf, ans);
 		assert(ans == expected[i]);
 	}
@@ -88,7 +88,7 @@ int test2(bool dir) {
 
 
 int test3() {
-	GraphAdjList<size_t> G(true);
+	GraphAdjList<std::size_t> G(true);
 	G.add_edge(0, 1);
 	G.add_edge(0, 2);
 	G.add_edge(0, 3);
@@ -96,11 +96,11 @@ int test3() {
 	G.add_edge(1, 5);
 	G.add_edge(2, 6);
 	G.add_edge(2, 7);
-	umap<size_t, BFSInfo<size_t>> inf;
-	size_t s = 1;
+	umap<std::size_t, BFSInfo<std::size_t>> inf;
+	std::size_t s = 1;
 	graphviz(G);
 	BFS(G, s, inf);
-	std::vector<std::vector<size_t>> expected = {
+	std::vector<std::vector<std::size_t>> expected = {
 		{},
 		{1},
 		{},
@@ -110,8 +110,8 @@ int test3() {
 		{},
 		{}
 	};
-	for (size_t i = 0; i < expected.size(); i++) {
-		std::vector<size_t> ans;
+	for (std::size_t i = 0; i < expected.size(); i++) {
+		std::vector<std::size_t> ans;
 		PrintPath(s, i, inf, ans);
 		assert(ans == expected[i]);
 	}

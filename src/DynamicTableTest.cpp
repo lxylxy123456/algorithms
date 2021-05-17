@@ -42,7 +42,7 @@ int test(int n) {
 			}
 		}
 		assert(DT.num == v.size());
-		for (size_t i = 0; i < DT.num; i++)
+		for (std::size_t i = 0; i < DT.num; i++)
 			assert((*DT.table)[i] == v[i]);
 	}
 	return 0;

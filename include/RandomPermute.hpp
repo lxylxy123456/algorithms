@@ -25,13 +25,11 @@
 
 #include "random_integers.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>
 void PermuteBySorting(std::vector<T>& a) {
-	size_t n = a.size();
+	std::size_t n = a.size();
 	std::vector<int> r;
 	random_integers(r, 1, n*n*n, n);
 	std::map<int, T> b;
@@ -46,9 +44,9 @@ void PermuteBySorting(std::vector<T>& a) {
 
 template <typename T>
 void RandomizeInPlace(std::vector<T>& a) {
-	size_t n = a.size();
-	for (size_t i = 0; i + 1 < n; i++)
-		std::swap(a[i], a[random_integer<size_t>(i, n - 1)]);
+	std::size_t n = a.size();
+	for (std::size_t i = 0; i + 1 < n; i++)
+		std::swap(a[i], a[random_integer<std::size_t>(i, n - 1)]);
 }
 
 }

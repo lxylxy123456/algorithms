@@ -31,7 +31,7 @@ using namespace algorithms;
 
 template <typename T>
 void btree_walk(BNode<T>* x, std::vector<int>& ans) {
-	for (size_t i = 0; i <= x->n; i++) {
+	for (std::size_t i = 0; i <= x->n; i++) {
 		if (!x->leaf)
 			btree_walk(x->c[i], ans);
 		if (i == x->n)
@@ -65,7 +65,7 @@ void sanity_check(BTree<int>& BT, std::vector<int>& data) {
 	}
 }
 
-int test(size_t n, size_t k) {
+int test(std::size_t n, std::size_t k) {
 	std::cout << "n = " << n << "; k = " << k << std::endl;
 	BTree<int> BT(k);
 	std::vector<int> data;
@@ -80,7 +80,7 @@ int test(size_t n, size_t k) {
 	random_integers(rm, 0, 3 * n / 2, n * 2 + 2);
 	for (std::vector<int>::iterator i = rm.begin(); i != rm.end(); i++) {
 		std::cout << "rm " << *i << std::endl;
-		std::pair<BNode<int>*, size_t> searched = BT.BTreeSearch(*i);
+		std::pair<BNode<int>*, std::size_t> searched = BT.BTreeSearch(*i);
 		if (searched.first != nullptr) {
 			BT.BTreeDelete(*i);
 			std::vector<int>::iterator found;

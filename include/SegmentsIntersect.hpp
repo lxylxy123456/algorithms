@@ -24,8 +24,6 @@
 #include <iostream>
 #include <string>
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>
@@ -55,10 +53,10 @@ class Vector {
 template <typename T>
 struct VectorHash {
 	std::size_t operator()(Vector<T> t) const {
-		size_t a = std::hash<T>()(t.x);
-		size_t b = std::hash<T>()(t.y);
-		const size_t shift = sizeof(size_t) * 4;
-		size_t B = b >> shift | b << shift;
+		std::size_t a = std::hash<T>()(t.x);
+		std::size_t b = std::hash<T>()(t.y);
+		const std::size_t shift = sizeof(std::size_t) * 4;
+		std::size_t B = b >> shift | b << shift;
 		return a ^ B;
 	}
 };

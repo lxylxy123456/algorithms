@@ -27,14 +27,14 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 10);
-	const size_t a = get_argv(argc, argv, 2, 6);
-	const size_t b = get_argv(argc, argv, 3, 7);
-	const size_t c = get_argv(argc, argv, 4, 8);
+	const std::size_t n = get_argv(argc, argv, 1, 10);
+	const std::size_t a = get_argv(argc, argv, 2, 6);
+	const std::size_t b = get_argv(argc, argv, 3, 7);
+	const std::size_t c = get_argv(argc, argv, 4, 8);
 	if (n) {	// Matrix-Chain Multiplication problem
 		VECT_SIZT p;
 		std::vector<VECT_SIZT> s(n, VECT_SIZT(n + 1, 0));
-		random_integers<size_t>(p, 1, a, n + 1);
+		random_integers<std::size_t>(p, 1, a, n + 1);
 		output_integers(p);
 		if (b >> 0 & 1) {
 			std::cout << MatrixChainOrder(p, s) << std::endl;

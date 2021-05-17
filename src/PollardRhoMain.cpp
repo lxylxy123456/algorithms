@@ -26,11 +26,11 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t nn = get_argv(argc, argv, 1, 30);
-	const size_t tries = get_argv(argc, argv, 2, 1);
+	const std::size_t nn = get_argv(argc, argv, 1, 30);
+	const std::size_t tries = get_argv(argc, argv, 2, 1);
 	using T = long long int;
 	std::uniform_int_distribution<T> dis(1 << (nn - 1), 1 << nn);
-	for (size_t i = 0; i < tries; i++) {
+	for (std::size_t i = 0; i < tries; i++) {
 		T n = get_argv(argc, argv, 3 + i, random_integer(dis) << 1 | 1);
 		std::cout << n << "\t" << std::flush << PollardRho(n) << std::endl;
 	}

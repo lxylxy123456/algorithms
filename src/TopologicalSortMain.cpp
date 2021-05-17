@@ -28,21 +28,21 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t v = get_argv(argc, argv, 1, 5);
-	const size_t e = get_argv(argc, argv, 2, 10);
+	const std::size_t v = get_argv(argc, argv, 1, 5);
+	const std::size_t e = get_argv(argc, argv, 2, 10);
 	const bool dir = get_argv(argc, argv, 3, 0);
-	GraphAdjList<size_t> G(dir);
+	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	umap<size_t, DFSInfo<size_t>> inf;
-	std::deque<size_t> ans;
+	umap<std::size_t, DFSInfo<std::size_t>> inf;
+	std::deque<std::size_t> ans;
 	TopologicalSort(G, inf, ans);
-	auto f1 = [inf](size_t v) mutable {
-		DFSInfo<size_t>& i = inf[v];
+	auto f1 = [inf](std::size_t v) mutable {
+		DFSInfo<std::size_t>& i = inf[v];
 		std::cout << " [label=\"" << v << "\\nd = " << i.d << "; f = " << i.f;
 		std::cout << "; pi = " << i.pi << "\"]";
 		return true;
 	};
-	auto f2 = [](Edge<size_t> e) mutable {};
+	auto f2 = [](Edge<std::size_t> e) mutable {};
 	graphviz(G, f1, f2);
 	output_integers(ans);
 	return 0;

@@ -26,7 +26,7 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 200);
+	const std::size_t n = get_argv(argc, argv, 1, 200);
 	std::vector<int> b;
 	random_integers(b, -n, n, 8);
 	using T = double;

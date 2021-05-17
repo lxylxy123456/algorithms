@@ -27,23 +27,23 @@
 
 using namespace algorithms;
 
-int test(size_t n) {
+int test(std::size_t n) {
 	// prepare data
-	std::set<size_t> S, ans;
-	for (size_t i = 0; i < n; i++)
+	std::set<std::size_t> S, ans;
+	for (std::size_t i = 0; i < n; i++)
 		S.insert(i);
-	Matroid<size_t> M(S);
-	std::vector<size_t> weights;
-	size_t (*f)(size_t) = [](size_t a) { return a; };
-	for (std::set<size_t>::iterator i = M.S.begin(); i != M.S.end(); i++)
+	Matroid<std::size_t> M(S);
+	std::vector<std::size_t> weights;
+	std::size_t (*f)(std::size_t) = [](std::size_t a) { return a; };
+	for (std::set<std::size_t>::iterator i = M.S.begin(); i != M.S.end(); i++)
 		weights.push_back(f(*i));
 	output_integers(M.S, "\t");
 	output_integers(weights, "\t");
 	// call function
-	Greedy<size_t, size_t>(M, f, ans);
+	Greedy<std::size_t, std::size_t>(M, f, ans);
 	output_integers(ans);
 	assert(ans.size() == n);
-	for (size_t i = 0; i < n; i++)
+	for (std::size_t i = 0; i < n; i++)
 		assert(ans.find(i) != ans.end());
 	return 0;
 }

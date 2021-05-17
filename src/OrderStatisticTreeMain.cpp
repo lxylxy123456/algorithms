@@ -30,7 +30,7 @@ using namespace algorithms;
 void f(char& c, OrderStatisticTree<int>* T, Node<CData<SData<int>>>** p) {
 	OrderStatisticTree<int>& OS = *T;
 	Node<CData<SData<int>>>*& ptr = *p;
-	size_t k;
+	std::size_t k;
 	switch(c) {
 		case 'l':
 			std::cout << "r = ";
@@ -45,7 +45,7 @@ void f(char& c, OrderStatisticTree<int>* T, Node<CData<SData<int>>>** p) {
 }
 
 int main(int argc, char *argv[]) {
-	size_t n = get_argv(argc, argv, 1, 0);
+	std::size_t n = get_argv(argc, argv, 1, 0);
 	OrderStatisticTree<int> OS;
 	if (n) {
 		std::vector<int> a;

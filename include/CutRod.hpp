@@ -19,60 +19,59 @@
 #ifndef ALGORITHMS_CUTROD
 #define ALGORITHMS_CUTROD
 
-#define CUT_ROD_INFO std::pair<T, std::vector<size_t>>
+#define CUT_ROD_INFO std::pair<T, std::vector<std::size_t>>
 
 #include <algorithm>
 #include <map>
 #include <vector>
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>
-T CutRod(const std::vector<T>& p, size_t n) {
+T CutRod(const std::vector<T>& p, std::size_t n) {
 	if (!n)
 		return 0;
 	T q = p[n];
-	for (size_t i = 1; i < n; i++)
+	for (std::size_t i = 1; i < n; i++)
 		q = std::max(q, p[i] + CutRod(p, n - i));
 	return q;
 }
 
 template <typename T>
-T MemorizedCutRodAux(const std::vector<T>& p, size_t n, std::vector<T>& r) {
+T MemorizedCutRodAux(const std::vector<T>& p, std::size_t n,
+						std::vector<T>& r) {
 	if (r[n] >= 0)
 		return r[n];
 	if (n == 0)
 		return r[n] = 0;
 	T q = p[n] + MemorizedCutRodAux(p, 0, r);
-	for (size_t i = 1; i < n; i++)
+	for (std::size_t i = 1; i < n; i++)
 		q = std::max(q, p[i] + MemorizedCutRodAux(p, n - i, r));
 	r[n] = q;
 	return q;
 }
 
 template <typename T>
-T MemorizedCutRod(const std::vector<T>& p, size_t n) {
+T MemorizedCutRod(const std::vector<T>& p, std::size_t n) {
 	std::vector<T> r(n + 1, -1);
 	return MemorizedCutRodAux(p, n, r);
 }
 
 template <typename T>
-T BottomUpCutRod(const std::vector<T>& p, size_t n) {
+T BottomUpCutRod(const std::vector<T>& p, std::size_t n) {
 	std::vector<T> r(n + 1, 0);
-	for (size_t i = 1; i <= n; i++)
-		for (size_t j = 1; j <= i; j++)
+	for (std::size_t i = 1; i <= n; i++)
+		for (std::size_t j = 1; j <= i; j++)
 			r[i] = std::max(r[i], p[j] + r[i - j]);
 	return r[n];
 }
 
 template <typename T>
-CUT_ROD_INFO ExtendedBottomUpCutRod(const std::vector<T>& p, size_t n) {
+CUT_ROD_INFO ExtendedBottomUpCutRod(const std::vector<T>& p, std::size_t n) {
 	std::vector<T> r(n + 1, 0);
-	std::vector<size_t> s(n + 1, 0);
-	for (size_t j = 1; j <= n; j++)
-		for (size_t i = 1; i <= j; i++)
+	std::vector<std::size_t> s(n + 1, 0);
+	for (std::size_t j = 1; j <= n; j++)
+		for (std::size_t i = 1; i <= j; i++)
 			if (r[j] < p[i] + r[j - i]) {
 				r[j] = p[i] + r[j - i];
 				s[j] = i;
@@ -81,11 +80,11 @@ CUT_ROD_INFO ExtendedBottomUpCutRod(const std::vector<T>& p, size_t n) {
 }
 
 template <typename T>
-CUT_ROD_INFO PrintCutRodSolution(const std::vector<T>& p, size_t n) {
+CUT_ROD_INFO PrintCutRodSolution(const std::vector<T>& p, std::size_t n) {
 	CUT_ROD_INFO ans = ExtendedBottomUpCutRod(p, n);
-	std::vector<size_t>& s = ans.second;
-	std::vector<size_t> c;
-	for (size_t i = n; i; i -= s[i]) {
+	std::vector<std::size_t>& s = ans.second;
+	std::vector<std::size_t> c;
+	for (std::size_t i = n; i; i -= s[i]) {
 		if (s[i])
 			c.push_back(s[i]);
 		else {

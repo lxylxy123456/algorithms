@@ -22,18 +22,16 @@
 #include "Graph.hpp"
 #include "Simplex.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename GT, typename T, typename WT>
 void ApproxMinWeightVC(GT& G, umap<T, WT>& w, uset<T>& C, const WT epsilon) {
-	umap<size_t, umap<size_t, WT>> A;
-	umap<size_t, WT> b, c;
+	umap<std::size_t, umap<std::size_t, WT>> A;
+	umap<std::size_t, WT> b, c;
 	for (auto i = G.V.begin(); i != G.V.end(); i++)
 		c[*i + 1] = -w[*i];
-	const size_t n = G.V.size();
-	size_t e = n + 1;
+	const std::size_t n = G.V.size();
+	std::size_t e = n + 1;
 	for (auto i = G.all_edges(); !i.end(); i++, e++) {
 		for (auto j = G.V.begin(); j != G.V.end(); j++)
 			A[e][*j + 1] = 0;
@@ -47,7 +45,7 @@ void ApproxMinWeightVC(GT& G, umap<T, WT>& w, uset<T>& C, const WT epsilon) {
 		A[e][*i + 1] = 1;
 		b[e] = 1;
 	}
-	umap<size_t, WT> x = Simplex(A, b, c, epsilon);
+	umap<std::size_t, WT> x = Simplex(A, b, c, epsilon);
 	for (auto i = G.V.begin(); i != G.V.end(); i++)
 		if (x[*i + 1] >= (WT) 1 / (WT) 2)
 			C.insert(*i);

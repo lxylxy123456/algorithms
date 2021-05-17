@@ -27,7 +27,7 @@
 
 using namespace algorithms;
 
-int test(size_t n, size_t m) {
+int test(std::size_t n, std::size_t m) {
 	std::vector<int> b;
 	random_integers(b, -n, n, m * 4);
 	output_integers(b);
@@ -35,15 +35,15 @@ int test(size_t n, size_t m) {
 	T x;
 	std::vector<Segment<T>> S;
 	S.reserve(m);
-	for (size_t i = 0; i < m; i++) {
+	for (std::size_t i = 0; i < m; i++) {
 		if (b[4 * i + 0] == b[4 * i + 2])
 			b[4 * i + 2]++;
 		Vector<T> s(b[4 * i + 0], b[4 * i + 1]), e(b[4 * i + 2], b[4 * i + 3]);
 		S.push_back(Segment<T>(s, e, x));
 	}
 	bool actual = false, expected = AnySegmentsIntersect(S);
-	for (size_t i = 0; i < m; i++)
-		for (size_t j = i + 1; j < m; j++)
+	for (std::size_t i = 0; i < m; i++)
+		for (std::size_t j = i + 1; j < m; j++)
 			if (SegmentsIntersect(S[i].a, S[i].b, S[j].a, S[j].b)) {
 				actual = true;
 				break;
@@ -54,10 +54,11 @@ int test(size_t n, size_t m) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> ns = {100, 1024, 10000};
-	std::vector<size_t> ms = {2, 5, 10, 23, 49, 100};
-	for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
-		for (std::vector<size_t>::iterator m = ms.begin(); m < ms.end(); m++)
+	std::vector<std::size_t> ns = {100, 1024, 10000};
+	std::vector<std::size_t> ms = {2, 5, 10, 23, 49, 100};
+	for (std::vector<std::size_t>::iterator n = ns.begin(); n < ns.end(); n++)
+		for (std::vector<std::size_t>::iterator m = ms.begin(); m < ms.end();
+			m++)
 			test(*n, *m);
 	return 0;
 }

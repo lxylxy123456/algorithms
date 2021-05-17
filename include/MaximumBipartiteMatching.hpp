@@ -23,14 +23,12 @@
 
 #include "FordFulkerson.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename GT, typename T>
 void MaximumBipartiteMatching(GT& G, uset<Edge<T>, EdgeHash<T>>& ans) {
 	GraphAdjList<T> GF(true);
-	umap<Edge<T>, T, EdgeHash<size_t>> c, f;
+	umap<Edge<T>, T, EdgeHash<std::size_t>> c, f;
 	T s = G.V.size(), t = s + 1;
 	assert(G.V.find(s) == G.V.end() && G.V.find(t) == G.V.end());
 	for (auto i = G.L.begin(); i != G.L.end(); i++) {

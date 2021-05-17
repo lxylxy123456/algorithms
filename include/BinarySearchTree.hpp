@@ -27,8 +27,6 @@
 #include "output_integers.hpp"
 #include "print_ptr.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>

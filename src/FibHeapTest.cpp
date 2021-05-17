@@ -97,7 +97,7 @@ int test(int n, int m) {
 			break;
 		case 4:	// FibHeapDecreaseKey
 			if (V.size()) {
-				itr = V.begin() + random_integer<size_t>(0, V.size() - 1);
+				itr = V.begin() + random_integer<std::size_t>(0, V.size() - 1);
 				ptr = fnode_find(FH.min, *itr);
 				assert(ptr);
 				if (*itr > 0) {
@@ -111,7 +111,7 @@ int test(int n, int m) {
 			break;
 		case 5:	// FibHeapDelete
 			if (V.size()) {
-				itr = V.begin() + random_integer<size_t>(0, V.size() - 1);
+				itr = V.begin() + random_integer<std::size_t>(0, V.size() - 1);
 				ptr = fnode_find(FH.min, *itr);
 				assert(ptr);
 				V.erase(itr);

@@ -23,20 +23,18 @@
 
 #include "ChainedHash.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>
 class OpenAddress {
 	public:
-		OpenAddress(size_t s): size(s), data(new Pair<T>*[size]) {
-			for (size_t i = 0; i < s; i++)
+		OpenAddress(std::size_t s): size(s), data(new Pair<T>*[size]) {
+			for (std::size_t i = 0; i < s; i++)
 				data[i] = nullptr;
 		}
-		size_t HashInsert(size_t k, T v) {
-			for (size_t i = 0; i < size; i++) {
-				size_t j = h(k, i);
+		std::size_t HashInsert(std::size_t k, T v) {
+			for (std::size_t i = 0; i < size; i++) {
+				std::size_t j = h(k, i);
 				if (!data[j]) {
 					data[j] = new Pair<T>(k, v);
 					return j;
@@ -45,8 +43,8 @@ class OpenAddress {
 			throw std::invalid_argument("hash table overflow");
 		}
 		const Pair<T>* HashSearch(T k) {
-			for (size_t i = 0; i < size; i++) {
-				size_t j = h(k, i);
+			for (std::size_t i = 0; i < size; i++) {
+				std::size_t j = h(k, i);
 				if (!data[j])
 					break;
 				if (*data[j] == k)
@@ -54,17 +52,17 @@ class OpenAddress {
 			}
 			return nullptr;
 		}
-		size_t h(size_t k, size_t i) {
+		std::size_t h(std::size_t k, std::size_t i) {
 			return (k + i) % size;
 		}
 		~OpenAddress() {
-			for (size_t i = 0; i < size; i++)
+			for (std::size_t i = 0; i < size; i++)
 				if (data[i])
 					delete data[i];
 			delete [] data;
 		}
 	private:
-		size_t size;
+		std::size_t size;
 		Pair<T>** data;
 };
 

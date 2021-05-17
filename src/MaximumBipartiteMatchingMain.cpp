@@ -27,16 +27,16 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t vl = get_argv(argc, argv, 1, 5);
-	const size_t vr = get_argv(argc, argv, 2, 5);
-	const size_t e = get_argv(argc, argv, 3, 10);
+	const std::size_t vl = get_argv(argc, argv, 1, 5);
+	const std::size_t vr = get_argv(argc, argv, 2, 5);
+	const std::size_t e = get_argv(argc, argv, 3, 10);
 	const bool dir = false;
-	Bipartite<GraphAdjList<size_t>> G(dir);
+	Bipartite<GraphAdjList<std::size_t>> G(dir);
 	random_bipartite(G, vl, vr, e);
-	uset<Edge<size_t>, EdgeHash<size_t>> ans;
+	uset<Edge<std::size_t>, EdgeHash<std::size_t>> ans;
 	MaximumBipartiteMatching(G, ans);
-	auto f1 = [](size_t v) { return false; };
-	auto f2 = [ans](Edge<size_t> e) mutable {
+	auto f1 = [](std::size_t v) { return false; };
+	auto f2 = [ans](Edge<std::size_t> e) mutable {
 		if (ans.find(e) != ans.end())
 			std::cout << " [style=bold]";
 	};

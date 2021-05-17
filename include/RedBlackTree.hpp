@@ -25,8 +25,6 @@
 
 #include "BinarySearchTree.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 enum Color { red, black };

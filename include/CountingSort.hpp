@@ -21,22 +21,21 @@
 
 #include <vector>
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>
-inline size_t Self(T x) {
+inline std::size_t Self(T x) {
 	return x;
 }
 
 template <typename T, typename Predicate>
-void CountingSort(std::vector<T>& A, std::vector<T>& B, size_t k, Predicate f) {
+void CountingSort(std::vector<T>& A, std::vector<T>& B, std::size_t k,
+					Predicate f) {
 	// for i in A: i in range(k); T must be int-like
-	std::vector<size_t> C(k, 0);
+	std::vector<std::size_t> C(k, 0);
 	for (typename std::vector<T>::iterator i = A.begin(); i != A.end(); i++)
 		C[f(*i)]++;
-	for (typename std::vector<size_t>::iterator i = C.begin() + 1;
+	for (typename std::vector<std::size_t>::iterator i = C.begin() + 1;
 		i != C.end(); i++)
 		*i += *(i - 1);
 	for (typename std::vector<T>::reverse_iterator i = A.rbegin();

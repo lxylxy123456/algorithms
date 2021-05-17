@@ -26,8 +26,6 @@
 
 #include "RedBlackTree.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>
@@ -41,7 +39,7 @@ class FNode {
 			return this;
 		}
 		T key;
-		size_t degree;
+		std::size_t degree;
 		FNode<T> *p, *child, *left, *right;
 		bool mark;
 };
@@ -203,7 +201,7 @@ class FibHeap {
 			FibHeapDecreaseKey(x, minf);
 			delete FibHeapExtractMin();
 		}
-		void print_tree(FNode<T>* x, size_t indent) {
+		void print_tree(FNode<T>* x, std::size_t indent) {
 			if (!x) {
 				std::cout << std::endl;
 				return;
@@ -228,7 +226,7 @@ class FibHeap {
 				delete DLLRemove(min, min)->recursive_destruct();
 		}
 		FNode<T>* min;
-		size_t n;
+		std::size_t n;
 };
 
 }

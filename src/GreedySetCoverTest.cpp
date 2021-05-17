@@ -29,45 +29,46 @@
 
 using namespace algorithms;
 
-int test(size_t n, size_t m, size_t l) {
+int test(std::size_t n, std::size_t m, std::size_t l) {
 	std::cout << n << ' ' << m << ' ' << l << std::endl;
-	using T = size_t;
+	using T = std::size_t;
 	set_T X;
 	std::vector<set_T> F;
-	for (size_t i = 0; i < n; i++)
+	for (std::size_t i = 0; i < n; i++)
 		X.insert(i);
 	std::uniform_int_distribution<T> d1(0, n * m);
-	for (size_t i = 0; i < m; i++) {
+	for (std::size_t i = 0; i < m; i++) {
 		set_T s;
-		for (size_t j = 0; j < n; j++)
+		for (std::size_t j = 0; j < n; j++)
 			if (random_integer(d1) < l)
 				s.insert(j);
 		F.push_back(s);
 	}
 	std::uniform_int_distribution<T> d2(0, m - 1);
-	for (size_t i = 0; i < n; i++)
+	for (std::size_t i = 0; i < n; i++)
 		F[random_integer(d2)].insert(i);
 	std::uniform_int_distribution<T> d3(0, n - 1);
-	for (size_t i = 0; i < m; i++)
+	for (std::size_t i = 0; i < m; i++)
 		F[i].insert(random_integer(d3));
-	std::set<size_t> ans = GreedySetCover(X, F);
-	std::vector<size_t> covered(n, 0);
-	for (size_t i = 0; i < m; i++)
-		for (size_t j = 0; j < n; j++)
+	std::set<std::size_t> ans = GreedySetCover(X, F);
+	std::vector<std::size_t> covered(n, 0);
+	for (std::size_t i = 0; i < m; i++)
+		for (std::size_t j = 0; j < n; j++)
 			if (F[i].find(j) != F[i].end())
 				covered[j]++;
-	for (size_t i = 0; i < n; i++)
+	for (std::size_t i = 0; i < n; i++)
 		assert(covered[i]);
 	return 0;
 }
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> ns = {2, 5, 10, 23, 49, 100, 200};
-	for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
-		for (std::vector<size_t>::iterator m = ns.begin(); m < ns.end(); m++)
-			for (std::vector<size_t>::iterator l = ns.begin(); l < ns.end();
-				l++)
+	std::vector<std::size_t> ns = {2, 5, 10, 23, 49, 100, 200};
+	for (std::vector<std::size_t>::iterator n = ns.begin(); n < ns.end(); n++)
+		for (std::vector<std::size_t>::iterator m = ns.begin(); m < ns.end();
+			m++)
+			for (std::vector<std::size_t>::iterator l = ns.begin();
+				l < ns.end(); l++)
 				test(*n, *m, *l);
 	return 0;
 }

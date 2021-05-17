@@ -22,25 +22,24 @@
 #include <algorithm>
 #include <vector>
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>
 class sinfo {
 	public:
-		sinfo(size_t a, size_t b, T c): begin(a), end(b), sum(c) {}
+		sinfo(std::size_t a, std::size_t b, T c): begin(a), end(b), sum(c) {}
 		bool operator<(const sinfo& rhs) const { return sum < rhs.sum; }
-		size_t begin;
-		size_t end;
+		std::size_t begin;
+		std::size_t end;
 		T sum;
 };
 
 template <typename T>
-sinfo<T> FindMaxCrossingSubarray(std::vector<T>& A,size_t l,size_t m,size_t h) {
+sinfo<T> FindMaxCrossingSubarray(std::vector<T>& A, std::size_t l,
+									std::size_t m, std::size_t h) {
 	T lsum, rsum, sum = 0;
-	size_t lmax, rmax;
-	for (size_t i = m; (i--) > l; ) {
+	std::size_t lmax, rmax;
+	for (std::size_t i = m; (i--) > l; ) {
 		sum += A[i];
 		if (i == m - 1 || sum > lsum) {
 			lsum = sum;
@@ -48,7 +47,7 @@ sinfo<T> FindMaxCrossingSubarray(std::vector<T>& A,size_t l,size_t m,size_t h) {
 		}
 	}
 	sum = 0;
-	for (size_t j = m; j < h; j++) {
+	for (std::size_t j = m; j < h; j++) {
 		sum += A[j];
 		if (j == m || sum > rsum) {
 			rsum = sum;
@@ -59,11 +58,11 @@ sinfo<T> FindMaxCrossingSubarray(std::vector<T>& A,size_t l,size_t m,size_t h) {
 }
 
 template <typename T>
-sinfo<T> FindMaximumSubarray(std::vector<T>& A, size_t l, size_t h) {
+sinfo<T> FindMaximumSubarray(std::vector<T>& A, std::size_t l, std::size_t h) {
 	if (l == h - 1) {
 		return sinfo<T>(l, h, A[l]);
 	} else {
-		size_t m = (l + h) / 2;
+		std::size_t m = (l + h) / 2;
 		sinfo<T> si1 = FindMaximumSubarray(A, l, m);
 		sinfo<T> si2 = FindMaximumSubarray(A, m, h);
 		sinfo<T> si3 = FindMaxCrossingSubarray(A, l, m, h);
@@ -79,9 +78,9 @@ sinfo<T> FindMaximumSubarray(std::vector<T>& A) {
 template <typename T, T T0>
 sinfo<T> FindMaximumSubarray_On(std::vector<T>& A) {
 	sinfo<T> best(0, 0, T0);
-	size_t bci = 0; 	// best continuing index
+	std::size_t bci = 0; 	// best continuing index
 	T bcv = T0; 		// best continuing value
-	for (size_t i = 0; i < A.size(); i++) {
+	for (std::size_t i = 0; i < A.size(); i++) {
 		// sum([bci:i]) = bcv
 		if (bcv < 0) {
 			bci = i;

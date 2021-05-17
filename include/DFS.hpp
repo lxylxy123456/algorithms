@@ -23,8 +23,6 @@
 
 #include "Graph.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 enum DFSColor { dfs_white, dfs_gray, dfs_black };
@@ -35,7 +33,7 @@ template <typename T>
 class DFSInfo {
 	public:
 		DFSInfo(): color(dfs_white), d(-1), f(-1) {}
-		void set_color(DFSColor c, size_t& time) {
+		void set_color(DFSColor c, std::size_t& time) {
 			color = c;
 			switch (color) {
 				case dfs_white:
@@ -52,7 +50,7 @@ class DFSInfo {
 			pi = p;
 		}
 		enum DFSColor color;
-		size_t d, f;
+		std::size_t d, f;
 		T_ptr<T> pi;
 };
 
@@ -83,7 +81,7 @@ bool is_ancestor(VT& ans, T u, T v) {
 }
 
 template <typename GT, typename T, typename VT, typename ET>
-void DFSVisit(GT& G, VT& ans, ET edge_ans, T u, size_t& time) {
+void DFSVisit(GT& G, VT& ans, ET edge_ans, T u, std::size_t& time) {
 	DFSInfo<T>& info = ans[u];
 	info.set_color(dfs_gray, time);
 	for (auto i = G.edges_from(u); !i.end(); i++) {
@@ -117,7 +115,7 @@ template <typename T, typename GT, typename VT>
 void DFS(GT& G, VT& ans, umap<Edge<T>, DFSEdgeType, EdgeHash<T>>* edge_ans) {
 	for (auto i = G.V.begin(); i != G.V.end(); i++)
 		ans[*i] = DFSInfo<T>();
-	size_t time = 0;
+	std::size_t time = 0;
 	for (auto i = G.V.begin(); i != G.V.end(); i++)
 		if (ans[*i].color == dfs_white)
 			DFSVisit(G, ans, edge_ans, *i, time);

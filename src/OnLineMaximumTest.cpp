@@ -27,7 +27,7 @@
 
 using namespace algorithms;
 
-bool test_once(size_t n, size_t k) {
+bool test_once(std::size_t n, std::size_t k) {
 	std::vector<int> c;
 	random_integers(c, 0, n * 10 - 1, n);
 	output_integers(c);
@@ -38,8 +38,8 @@ bool test_once(size_t n, size_t k) {
 	return ans == max;
 }
 
-bool test(size_t n, size_t k, size_t t) {
-	size_t success = 0, total = 0;
+bool test(std::size_t n, std::size_t k, std::size_t t) {
+	std::size_t success = 0, total = 0;
 	while (true) {
 		total++;
 		if (test_once(n, k))

@@ -24,8 +24,6 @@
 
 #include "SegmentsIntersect.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>
@@ -68,7 +66,7 @@ void GrahamScan(std::vector<Vector<T>>& Q, std::vector<Vector<T>>& ans) {
 	ans.push_back(p0);
 	ans.push_back(P[0]);
 	ans.push_back(P[1]);
-	for (size_t i = 2; i < P.size(); i++) {
+	for (std::size_t i = 2; i < P.size(); i++) {
 		while (ans.size() >= 2) {
 			Vector<T>& top = ans[ans.size() - 1];
 			Vector<T>& next_to_top = ans[ans.size() - 2];

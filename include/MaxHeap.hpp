@@ -23,27 +23,26 @@
 #include <stdexcept>
 #include <vector>
 
-using std::size_t;
-
 namespace algorithms {
 
-inline size_t Left(size_t x) { return x * 2 + 1; }
+inline std::size_t Left(std::size_t x) { return x * 2 + 1; }
 
-inline size_t Right(size_t x) { return x * 2 + 2; }
+inline std::size_t Right(std::size_t x) { return x * 2 + 2; }
 
-inline size_t Parent(size_t x) { return (x - 1) / 2; }
+inline std::size_t Parent(std::size_t x) { return (x - 1) / 2; }
 
-inline size_t Root(size_t x) { return !x; }
+inline std::size_t Root(std::size_t x) { return !x; }
 
 template <typename T>
 class Heap: public std::vector<T> {
 	public:
 		Heap(void): std::vector<T>(), heap_size(0) {}
 		Heap(std::vector<T>& v): std::vector<T>(v), heap_size(0) {}
-		Heap(std::vector<T>& v, size_t hs): std::vector<T>(v), heap_size(hs) {}
-		void MaxHeapify(size_t i) {
-			size_t l = Left(i), r = Right(i);
-			size_t largest = i;
+		Heap(std::vector<T>& v, std::size_t hs):
+			std::vector<T>(v), heap_size(hs) {}
+		void MaxHeapify(std::size_t i) {
+			std::size_t l = Left(i), r = Right(i);
+			std::size_t largest = i;
 			if (l < heap_size && (*this)[l] > (*this)[i])
 				largest = l;
 			if (r < heap_size && (*this)[r] > (*this)[largest])
@@ -55,7 +54,7 @@ class Heap: public std::vector<T> {
 		}
 		void BuildMaxHeap() {
 			heap_size = std::vector<T>::size();
-			for(size_t i = heap_size / 2; i-- > 0;)
+			for(std::size_t i = heap_size / 2; i-- > 0;)
 				MaxHeapify(i);
 		}
 		void HeapSort() {
@@ -65,7 +64,7 @@ class Heap: public std::vector<T> {
 				MaxHeapify(0);
 			}
 		}
-		size_t heap_size;
+		std::size_t heap_size;
 };
 
 template <typename T>
@@ -73,12 +72,12 @@ class PriorityQueue: public Heap<T> {
 	public:
 		PriorityQueue(void): Heap<T>() {}
 		PriorityQueue(std::vector<T>& v): Heap<T>(v) {}
-		PriorityQueue(std::vector<T>& v, size_t hs): Heap<T>(v, hs) {}
+		PriorityQueue(std::vector<T>& v, std::size_t hs): Heap<T>(v, hs) {}
 		T HeapMaximum() {
 			return (*this)[0];
 		}
 		T HeapExtractMax() {
-			size_t& heap_size = Heap<T>::heap_size;
+			std::size_t& heap_size = Heap<T>::heap_size;
 			if (!heap_size)
 				throw std::invalid_argument("heap underflow");
 			heap_size--;
@@ -86,7 +85,7 @@ class PriorityQueue: public Heap<T> {
 			Heap<T>::MaxHeapify(0);
 			return (*this)[heap_size];
 		}
-		void HeapIncreaseKey(size_t i, T key) {
+		void HeapIncreaseKey(std::size_t i, T key) {
 			if (key < (*this)[i])
 				throw std::invalid_argument("new key is smaller than current");
 			(*this)[i] = key;
@@ -96,13 +95,13 @@ class PriorityQueue: public Heap<T> {
 			}
 		}
 		void MaxHeapInsert(T key) {
-			size_t& heap_size = Heap<T>::heap_size;
+			std::size_t& heap_size = Heap<T>::heap_size;
 			HeapIncreaseKey(heap_size, key);
 			heap_size += 1;
 		}
 		void BuildMaxHeap_prime() {
 			Heap<T>::heap_size = 1;
-			for(size_t i = 1; i < std::vector<T>::size(); i++)
+			for(std::size_t i = 1; i < std::vector<T>::size(); i++)
 				MaxHeapInsert((*this)[i]);
 		}
 };

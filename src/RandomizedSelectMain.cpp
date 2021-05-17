@@ -28,11 +28,11 @@ using namespace algorithms;
 
 int main(int argc, char *argv[]) {
 	std::vector<int> a;
-	const size_t n = get_argv(argc, argv, 1, 10);
-	const size_t compute = get_argv(argc, argv, 2, 7);
+	const std::size_t n = get_argv(argc, argv, 1, 10);
+	const std::size_t compute = get_argv(argc, argv, 2, 7);
 	random_integers(a, 0, n - 1, n);
 
-	size_t i = random_integer<int>(0, n - 1);
+	std::size_t i = random_integer<int>(0, n - 1);
 
 	std::vector<int> b(a);
 	int ans1, ans2, ans3;

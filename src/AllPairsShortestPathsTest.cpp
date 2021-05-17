@@ -28,11 +28,11 @@
 
 using namespace algorithms;
 
-int test(size_t v, size_t e) {
+int test(std::size_t v, std::size_t e) {
 	const bool dir = 1;
 	const int weight_lower = 0;
 	const int weight_upper = e;
-	WeightedAdjMatrix<size_t, int> G(dir);
+	WeightedAdjMatrix<std::size_t, int> G(dir);
 	random_weighted_adj_matrix(G, v, e, weight_lower, weight_upper);
 	graphviz(G);
 	Matrix<Weight<int>> W(v, v);
@@ -47,9 +47,9 @@ int test(size_t v, size_t e) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> m = {5, 10, 23, 49};
-	for (std::vector<size_t>::iterator v = m.begin(); v < m.end(); v++)
-		for (std::vector<size_t>::iterator e = m.begin(); e < m.end(); e++)
+	std::vector<std::size_t> m = {5, 10, 23, 49};
+	for (std::vector<std::size_t>::iterator v = m.begin(); v < m.end(); v++)
+		for (std::vector<std::size_t>::iterator e = m.begin(); e < m.end(); e++)
 			for (int n = 0; n < 5; n++)
 				test(*v, *e);
 	return 0;

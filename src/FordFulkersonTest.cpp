@@ -28,30 +28,30 @@
 
 using namespace algorithms;
 
-int test(size_t v, size_t e) {
+int test(std::size_t v, std::size_t e) {
 	const bool dir = true;
 	const int weight_lower = 0;
 	const int weight_upper = e;
-	GraphAdjList<size_t> G(dir);
+	GraphAdjList<std::size_t> G(dir);
 	random_flow(G, v, e);
-	umap<Edge<size_t>, int, EdgeHash<size_t>> c;
+	umap<Edge<std::size_t>, int, EdgeHash<std::size_t>> c;
 	random_weight(G, c, weight_lower, weight_upper);
-	umap<Edge<size_t>, int, EdgeHash<size_t>> f;
-	size_t s = 0, t = v - 1;
+	umap<Edge<std::size_t>, int, EdgeHash<std::size_t>> f;
+	std::size_t s = 0, t = v - 1;
 	FordFulkerson(G, c, s, t, f);
-	auto f1 = [v](size_t vv) {
+	auto f1 = [v](std::size_t vv) {
 		if (vv == v - 1 || vv == 0)
 			std::cout << " [style=bold]";
 		return false;
 	};
-	auto f2 = [c, f](Edge<size_t> e) mutable {
+	auto f2 = [c, f](Edge<std::size_t> e) mutable {
 		std::cout << " [label=\"" << f[e] << "/" << c[e] << "\"";
 		if (f[e])
 			std::cout << " style=bold";
 		std::cout << "]";
 	};
 	graphviz(G, f1, f2);
-	umap<size_t, int> flow_map;
+	umap<std::size_t, int> flow_map;
 	for (auto i = G.all_edges(); !i.end(); i++) {
 		assert(0 <= f[*i] && f[*i] <= c[*i]);
 		if (i.d() == s)
@@ -69,9 +69,9 @@ int test(size_t v, size_t e) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> m = {5, 10, 23, 49, 100};
-	for (std::vector<size_t>::iterator v = m.begin(); v < m.end(); v++)
-		for (std::vector<size_t>::iterator e = m.begin(); e < m.end(); e++)
+	std::vector<std::size_t> m = {5, 10, 23, 49, 100};
+	for (std::vector<std::size_t>::iterator v = m.begin(); v < m.end(); v++)
+		for (std::vector<std::size_t>::iterator e = m.begin(); e < m.end(); e++)
 			for (int n = 0; n < 5; n++)
 				test(*v, *e);
 	return 0;

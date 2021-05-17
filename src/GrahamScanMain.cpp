@@ -27,14 +27,14 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 200);
-	const size_t m = get_argv(argc, argv, 2, 10);
+	const std::size_t n = get_argv(argc, argv, 1, 200);
+	const std::size_t m = get_argv(argc, argv, 2, 10);
 	std::vector<int> b;
 	random_integers(b, -n, n, m * 2);
 	using T = double;
 	std::vector<Vector<T>> Q, S;
 	Q.reserve(m);
-	for (size_t i = 0; i < m; i++)
+	for (std::size_t i = 0; i < m; i++)
 		Q.push_back(Vector<T>(b[2 * i + 0], b[2 * i + 1]));
 	GrahamScan(Q, S);
 	std::cout << "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>"

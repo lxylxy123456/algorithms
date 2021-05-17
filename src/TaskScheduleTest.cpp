@@ -26,18 +26,18 @@
 
 using namespace algorithms;
 
-int test(size_t n) {
+int test(std::size_t n) {
 	// prepare data
-	std::set<Task<size_t>> S;
-	std::vector<size_t> d, w;
-	random_integers<size_t>(d, 1, n, n);
-	random_integers<size_t>(w, 1, n, n);
-	for (size_t i = 0; i < n; i++)
-		S.insert(Task<size_t>(i, d[i], w[i]));
-	TaskMatroid<size_t> M(S);
+	std::set<Task<std::size_t>> S;
+	std::vector<std::size_t> d, w;
+	random_integers<std::size_t>(d, 1, n, n);
+	random_integers<std::size_t>(w, 1, n, n);
+	for (std::size_t i = 0; i < n; i++)
+		S.insert(Task<std::size_t>(i, d[i], w[i]));
+	TaskMatroid<std::size_t> M(S);
 	output_integers(M.S, "\t");
 	// call function
-	std::vector<Task<size_t>> ans;
+	std::vector<Task<std::size_t>> ans;
 	TaskSchedule(M, ans);
 	output_integers(ans, "\t");
 	return 0;

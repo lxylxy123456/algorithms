@@ -28,27 +28,27 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t v = get_argv(argc, argv, 1, 10);
-	const size_t e = get_argv(argc, argv, 2, 20);
+	const std::size_t v = get_argv(argc, argv, 1, 10);
+	const std::size_t e = get_argv(argc, argv, 2, 20);
 	const bool dir = 0;
-	GraphAdjList<size_t> G(dir);
+	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	uset<size_t> ans;
+	uset<std::size_t> ans;
 	std::vector<int> weight;
 	random_integers(weight, 1, v, v);
 	using WT = double;
-	umap<size_t, WT> w;
-	for (size_t i = 0; i < v; i++)
+	umap<std::size_t, WT> w;
+	for (std::size_t i = 0; i < v; i++)
 		w[i] = weight[i];
 	ApproxMinWeightVC(G, w, ans, 1e-7);
-	auto f1 = [w, ans](size_t v) mutable {
+	auto f1 = [w, ans](std::size_t v) mutable {
 		std::cout << " [label=" << w[v];
 		if (ans.find(v) != ans.end())
 			std::cout << " color=green";
 		std::cout << "]";
 		return true;
 	};
-	auto f2 = [](Edge<size_t>) mutable {};
+	auto f2 = [](Edge<std::size_t>) mutable {};
 	graphviz(G, f1, f2);
 	return 0;
 }

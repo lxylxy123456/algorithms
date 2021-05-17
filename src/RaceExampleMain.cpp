@@ -25,8 +25,8 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	size_t n = get_argv(argc, argv, 1, 100);
-	for (size_t i = 0; i < n; i++)
-		std::cout << RaceExample<size_t>() << std::endl;
+	std::size_t n = get_argv(argc, argv, 1, 100);
+	for (std::size_t i = 0; i < n; i++)
+		std::cout << RaceExample<std::size_t>() << std::endl;
 	return 0;
 }

@@ -27,14 +27,14 @@
 using namespace algorithms;
 
 template <typename T>
-void main_T(const size_t n, const size_t m) {
+void main_T(const std::size_t n, const std::size_t m) {
 	std::vector<int> int_a, int_b;
 	random_integers(int_a, 0, m, m * n);
 	random_integers(int_b, 0, m, m);
 	std::vector<T> buf_a(m * n), buf_b(m);
-	for (size_t i = 0; i < int_a.size(); i++)
+	for (std::size_t i = 0; i < int_a.size(); i++)
 		buf_a[i] = int_a[i];
-	for (size_t i = 0; i < int_b.size(); i++)
+	for (std::size_t i = 0; i < int_b.size(); i++)
 		buf_b[i] = int_b[i];
 	Matrix<T> A(m, n, buf_a);
 	Matrix<T> b(m, 1, buf_b);
@@ -44,11 +44,11 @@ void main_T(const size_t n, const size_t m) {
 	ans2 = ans2.concat_h(x);
 	Matrix<T> bb = SquareMatrixMultiply(A, x, (T) 0);
 	ans1 = ans1.concat_h(bb);
-	for (size_t i = 0; i < m; i++) {
+	for (std::size_t i = 0; i < m; i++) {
 		output_integers(ans1[i], "\t");
 	}
 	std::cout << std::endl;
-	for (size_t i = 0; i < n; i++) {
+	for (std::size_t i = 0; i < n; i++) {
 		std::cout << "\t";
 		output_integers(ans2[i], "\t");
 	}
@@ -56,9 +56,9 @@ void main_T(const size_t n, const size_t m) {
 }
 
 int main(int argc, char *argv[]) {
-	const size_t type = get_argv(argc, argv, 1, 0);
-	const size_t m = get_argv(argc, argv, 2, 10);
-	const size_t n = get_argv(argc, argv, 3, 5);
+	const std::size_t type = get_argv(argc, argv, 1, 0);
+	const std::size_t m = get_argv(argc, argv, 2, 10);
+	const std::size_t n = get_argv(argc, argv, 3, 5);
 	if (!type)
 		main_T<double>(n, m);
 	else

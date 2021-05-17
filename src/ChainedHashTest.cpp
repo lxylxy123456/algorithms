@@ -34,7 +34,7 @@ int test(int n, int m) {
 		D.ChainedHashInsert(i, i ^ 0xaa);
 	for (int i = 0; i < m; i++) {
 		Element<Pair<int>>* searched = D.ChainedHashSearch(i);
-		assert(searched->key.key == (size_t) i);
+		assert(searched->key.key == (std::size_t) i);
 		assert(searched->key.value == (i ^ 0xaa));
 		if (i % 2 == 0)
 			D.ChainedHashDelete(searched);

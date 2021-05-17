@@ -25,13 +25,11 @@
 
 #include "InsertSort.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>
 void BucketSort(std::vector<T>& A, T a_min, T a_max) {
-	const size_t n = A.size();
+	const std::size_t n = A.size();
 	const T a_diff = a_max - a_min;
 	// for all i, a_min <= A[i] < a_max
 	std::vector<std::vector<T>> B;

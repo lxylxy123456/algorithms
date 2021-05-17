@@ -28,18 +28,18 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t v = get_argv(argc, argv, 1, 5);
-	const size_t e = get_argv(argc, argv, 2, 10);
+	const std::size_t v = get_argv(argc, argv, 1, 5);
+	const std::size_t e = get_argv(argc, argv, 2, 10);
 	const bool dir = get_argv(argc, argv, 3, 1);
-	GraphAdjList<size_t> G(dir);
+	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	DisjointSetForest<size_t> ans;
+	DisjointSetForest<std::size_t> ans;
 	StronglyConnectedComponents(G, ans);
-	auto f1 = [](size_t v) { return false; };
-	auto f2 = [](Edge<size_t> e) {};
+	auto f1 = [](std::size_t v) { return false; };
+	auto f2 = [](Edge<std::size_t> e) {};
 	graphviz(G, f1, f2);
 	// print ans
-	std::map<size_t, uset<size_t>> components;
+	std::map<std::size_t, uset<std::size_t>> components;
 	for (auto i = G.V.begin(); i != G.V.end(); i++)
 		components[ans.FindSet(*i)].insert(*i);
 	for (auto i = components.begin(); i != components.end(); i++)

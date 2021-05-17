@@ -28,39 +28,39 @@
 
 using namespace algorithms;
 
-int test(size_t v, size_t e) {
+int test(std::size_t v, std::size_t e) {
 	const bool dir = 1;
 	const int weight_lower = 0;
 	const int weight_upper = e;
-	WeightedAdjMatrix<size_t, int> G(dir);
+	WeightedAdjMatrix<std::size_t, int> G(dir);
 	random_weighted_adj_matrix(G, v, e, weight_lower, weight_upper);
 	graphviz(G);
 	Matrix<Weight<int>> W(v, v);
 	G.to_matrix(W);
 	auto ans = FloydWarshall(W);
 	Matrix<Weight<int>> D = ans.first;
-	Matrix<T_ptr<size_t>> PI = ans.second;
-	GraphAdjList<size_t> GG(dir);
-	umap<Edge<size_t>, int, EdgeHash<size_t>> w;
-	for (size_t i = 0; i < v; i++) {
+	Matrix<T_ptr<std::size_t>> PI = ans.second;
+	GraphAdjList<std::size_t> GG(dir);
+	umap<Edge<std::size_t>, int, EdgeHash<std::size_t>> w;
+	for (std::size_t i = 0; i < v; i++) {
 		GG.add_vertex(i);
-		for (size_t j = 0; j < v; j++)
+		for (std::size_t j = 0; j < v; j++)
 			if (i != j && !G.get_edge(i, j).inf) {
 				GG.add_edge(i, j);
-				w[Edge<size_t>(i, j, dir)] = G.get_edge(i, j).val;
+				w[Edge<std::size_t>(i, j, dir)] = G.get_edge(i, j).val;
 			}
 	}
-	for (size_t i = 0; i < v; i++) {
-		umap<size_t, RelaxInfo<size_t, int>> ans_bf;
+	for (std::size_t i = 0; i < v; i++) {
+		umap<std::size_t, RelaxInfo<std::size_t, int>> ans_bf;
 		assert(BellmanFord(GG, w, i, ans_bf));
-		for (size_t j = 0; j < v; j++)
+		for (std::size_t j = 0; j < v; j++)
 			if (i != j) {
-				std::vector<size_t> ans;
+				std::vector<std::size_t> ans;
 				PrintAllPairsShortestPath(PI, i, j, ans);
 				if (ans.size()) {
 					assert(!ans_bf[j].d.inf && D[i][j].val == ans_bf[j].d.val);
 					int d = 0;
-					for (std::vector<size_t>::iterator k = ans.begin();
+					for (std::vector<std::size_t>::iterator k = ans.begin();
 						k + 1 < ans.end(); k++) {
 						assert(!G.get_edge(*k, *(k + 1)).inf);
 						d += G.get_edge(*k, *(k + 1)).val;
@@ -75,9 +75,9 @@ int test(size_t v, size_t e) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> m = {5, 10, 23, 49};
-	for (std::vector<size_t>::iterator v = m.begin(); v < m.end(); v++)
-		for (std::vector<size_t>::iterator e = m.begin(); e < m.end(); e++)
+	std::vector<std::size_t> m = {5, 10, 23, 49};
+	for (std::vector<std::size_t>::iterator v = m.begin(); v < m.end(); v++)
+		for (std::vector<std::size_t>::iterator e = m.begin(); e < m.end(); e++)
 			for (int n = 0; n < 5; n++)
 				test(*v, *e);
 	return 0;

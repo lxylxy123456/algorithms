@@ -27,19 +27,19 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t v = get_argv(argc, argv, 1, 10);
-	const size_t e = get_argv(argc, argv, 2, 20);
+	const std::size_t v = get_argv(argc, argv, 1, 10);
+	const std::size_t e = get_argv(argc, argv, 2, 20);
 	const bool dir = 0;
-	GraphAdjList<size_t> G(dir);
+	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	uset<size_t> ans;
+	uset<std::size_t> ans;
 	ApproxVertexCover(G, ans);
-	auto f1 = [ans](size_t v) {
+	auto f1 = [ans](std::size_t v) {
 		if (ans.find(v) != ans.end())
 			std::cout << " [color=green]";
 		return false;
 	};
-	auto f2 = [](Edge<size_t>) mutable {};
+	auto f2 = [](Edge<std::size_t>) mutable {};
 	graphviz(G, f1, f2);
 	return 0;
 }

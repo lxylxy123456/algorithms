@@ -27,36 +27,36 @@
 
 using namespace algorithms;
 
-int test(size_t n, size_t m) {
+int test(std::size_t n, std::size_t m) {
 	const bool dir = 0;
 	std::vector<int> b;
 	random_integers(b, -n, n, m * 2);
 	output_integers(b);
-	using T = size_t;
+	using T = std::size_t;
 	using WT = double;
-	GraphAdjList<size_t> G(dir);
+	GraphAdjList<std::size_t> G(dir);
 	umap_WT c;
 	std::vector<Vector<T>> S;
 	S.reserve(m);
-	for (size_t i = 0; i < m; i++) {
+	for (std::size_t i = 0; i < m; i++) {
 		S.push_back(Vector<T>(b[2 * i + 0], b[2 * i + 1]));
-		for (size_t j = 0; j < i; j++) {
+		for (std::size_t j = 0; j < i; j++) {
 			G.add_edge(i, j);
 			c[Edge<T>(i, j, false)] = (S[i] - S[j]).Length();
 		}
 	}
-	std::vector<size_t> H;
+	std::vector<std::size_t> H;
 	ApproxTSPTour(G, c, H);
 	assert(H.size() == m + 1 && H[m] == H[0]);
 	WT approx_dist = 0.0, random_dist = 0.0;
-	std::vector<size_t> visited(m, 0), R(H);
+	std::vector<std::size_t> visited(m, 0), R(H);
 	RandomizeInPlace(R);
-	for (size_t i = 0; i < m; i++) {
+	for (std::size_t i = 0; i < m; i++) {
 		approx_dist += sqrt((S[H[i]] - S[H[i + 1]]).Length());
 		random_dist += sqrt((S[R[i]] - S[R[i + 1]]).Length());
 		visited[H[i]]++;
 	}
-	for (size_t i = 0; i < m; i++)
+	for (std::size_t i = 0; i < m; i++)
 		assert(visited[i] == 1);
 	assert(random_dist * 2 >= approx_dist);
 	return 0;
@@ -64,10 +64,11 @@ int test(size_t n, size_t m) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> ns = {100, 1024, 10000};
-	std::vector<size_t> ms = {2, 5, 10, 23, 49, 100};
-	for (std::vector<size_t>::iterator n = ns.begin(); n < ns.end(); n++)
-		for (std::vector<size_t>::iterator m = ms.begin(); m < ms.end(); m++)
+	std::vector<std::size_t> ns = {100, 1024, 10000};
+	std::vector<std::size_t> ms = {2, 5, 10, 23, 49, 100};
+	for (std::vector<std::size_t>::iterator n = ns.begin(); n < ns.end(); n++)
+		for (std::vector<std::size_t>::iterator m = ms.begin(); m < ms.end();
+			m++)
 			test(*n, *m);
 	return 0;
 }

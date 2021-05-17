@@ -25,14 +25,12 @@
 
 #include "MergeSort.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>
-void MergeSort_prime(std::vector<T>* A, size_t p, size_t r) {
+void MergeSort_prime(std::vector<T>* A, std::size_t p, std::size_t r) {
 	if (p < r - 1) {
-		size_t q = (p + r) / 2;
+		std::size_t q = (p + r) / 2;
 		std::thread t1(MergeSort_prime<T>, A, p, q);
 		MergeSort_prime(A, q, r);
 		t1.join();
@@ -46,11 +44,11 @@ void MergeSort_prime(std::vector<T>& A) {
 }
 
 template <typename T>
-size_t BinarySearch(T x, std::vector<T>& S, size_t p, size_t r) {
-	size_t low = p;
-	size_t high = std::max(p, r);
+std::size_t BinarySearch(T x, std::vector<T>& S, std::size_t p, std::size_t r) {
+	std::size_t low = p;
+	std::size_t high = std::max(p, r);
 	while (low < high) {
-		size_t mid = (low + high + 1) / 2;
+		std::size_t mid = (low + high + 1) / 2;
 		if (x <= S[mid - 1])
 			high = mid - 1;
 		else
@@ -60,10 +58,10 @@ size_t BinarySearch(T x, std::vector<T>& S, size_t p, size_t r) {
 }
 
 template <typename T>
-void PMerge(std::vector<T>* S, size_t p1, size_t r1, size_t p2, size_t r2,
-			std::vector<T>* A, size_t p3) {
-	size_t n1 = r1 - p1;
-	size_t n2 = r2 - p2;
+void PMerge(std::vector<T>* S, std::size_t p1, std::size_t r1, std::size_t p2,
+			std::size_t r2, std::vector<T>* A, std::size_t p3) {
+	std::size_t n1 = r1 - p1;
+	std::size_t n2 = r2 - p2;
 	if (n1 < n2) {
 		std::swap(p1, p2);
 		std::swap(r1, r2);
@@ -71,9 +69,9 @@ void PMerge(std::vector<T>* S, size_t p1, size_t r1, size_t p2, size_t r2,
 	}
 	if (!n1)
 		return;
-	size_t q1 = (p1 + r1) / 2;
-	size_t q2 = BinarySearch((*S)[q1], *S, p2, r2);
-	size_t q3 = p3 + (q1 - p1) + (q2 - p2);
+	std::size_t q1 = (p1 + r1) / 2;
+	std::size_t q2 = BinarySearch((*S)[q1], *S, p2, r2);
+	std::size_t q3 = p3 + (q1 - p1) + (q2 - p2);
 	(*A)[q3] = (*S)[q1];
 	std::thread t1(PMerge<T>, S, p1, q1, p2, q2, A, p3);
 	PMerge(S, q1 + 1, r1, q2, r2, A, q3 + 1);
@@ -81,15 +79,15 @@ void PMerge(std::vector<T>* S, size_t p1, size_t r1, size_t p2, size_t r2,
 }
 
 template <typename T>
-void PMergeSort(std::vector<T>* A, size_t p, size_t r, std::vector<T>* B,
-				size_t s) {
-	size_t n = r - p;
+void PMergeSort(std::vector<T>* A, std::size_t p, std::size_t r,
+				std::vector<T>* B, std::size_t s) {
+	std::size_t n = r - p;
 	if (n == 1)
 		(*B)[s] = (*A)[p];
 	else {
 		std::vector<T> S(n);
-		size_t q = (p + r) / 2;
-		size_t qq = q - p;
+		std::size_t q = (p + r) / 2;
+		std::size_t qq = q - p;
 		std::thread t1(PMergeSort<T>, A, p, q, &S, 0);
 		PMergeSort(A, q, r, &S, qq);
 		t1.join();

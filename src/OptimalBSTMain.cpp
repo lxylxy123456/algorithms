@@ -31,7 +31,8 @@ enum PQ { red, black };
 
 class PQData {
 	public:
-		PQData(size_t r, size_t d, PQ c): rank(r), data(d), color(c) {}
+		PQData(std::size_t r, std::size_t d, PQ c):
+			rank(r), data(d), color(c) {}
 		bool operator<(const PQData& rhs) const {
 			if (rank != rhs.rank)
 				return rank < rhs.rank;
@@ -44,7 +45,7 @@ class PQData {
 			else
 				return os << rhs.data;
 		}
-		size_t rank, data;
+		std::size_t rank, data;
 		enum PQ color;
 };
 
@@ -67,29 +68,30 @@ class OBSTNavigator {
 		NodeType nil;
 };
 
-void insert_OBST(SIZT_1D& p, SIZT_1D& q, SIZT_2D& root, size_t i, size_t j,
+void insert_OBST(SIZT_1D& p, SIZT_1D& q, SIZT_2D& root, std::size_t i,
+				std::size_t j,
 	BinarySearchTree<PQData>& T) {
 	if (i == j) {
 		T.TreeInsert(PQData(i, q[i], red));
 	} else {
-		size_t r = root[i][j];
+		std::size_t r = root[i][j];
 		T.TreeInsert(PQData(r, p[r], black));
 		insert_OBST(p, q, root, i, r, T);
 		insert_OBST(p, q, root, r + 1, j, T);
 	}
 }
 
-void print_OBST(SIZT_1D& p, SIZT_1D& q, size_t n, SIZT_2D& root) {
+void print_OBST(SIZT_1D& p, SIZT_1D& q, std::size_t n, SIZT_2D& root) {
 	BinarySearchTree<PQData> T;
 	insert_OBST(p, q, root, 0, n, T);
 	TreePrint(T.root, OBSTNavigator<Node<PQData>*>(T.nil));
 }
 
 int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 8);
+	const std::size_t n = get_argv(argc, argv, 1, 8);
 	SIZT_1D p, q;
-	random_integers<size_t>(p, 1, n, n);
-	random_integers<size_t>(q, 1, n, n + 1);
+	random_integers<std::size_t>(p, 1, n, n);
+	random_integers<std::size_t>(q, 1, n, n + 1);
 	output_integers(p);
 	output_integers(q);
 	SIZT_2D root = OptimalBST(p, q, n);

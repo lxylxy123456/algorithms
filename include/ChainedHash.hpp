@@ -23,42 +23,41 @@
 
 #include "LinkedList.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>
 class Pair {
 	public:
-		Pair(size_t k): key(k) {}
-		Pair(size_t k, T v): key(k), value(v) {}
+		Pair(std::size_t k): key(k) {}
+		Pair(std::size_t k, T v): key(k), value(v) {}
 		bool operator==(const Pair& rhs) const { return key == rhs.key; }
 		bool operator!=(const Pair& rhs) const { return key != rhs.key; }
-		size_t key;
+		std::size_t key;
 		T value;
 };
 
 template <typename T>
 class ChainedHash {
 	public:
-		ChainedHash(size_t s): size(s), data(new LinkedList<Pair<T>>[size]) {}
-		void ChainedHashInsert(size_t k, T x) {
+		ChainedHash(std::size_t s):
+			size(s), data(new LinkedList<Pair<T>>[size]) {}
+		void ChainedHashInsert(std::size_t k, T x) {
 			data[h(k)].ListInsert(Pair<T>(k, x));
 		}
-		Element<Pair<T>>* ChainedHashSearch(size_t k) {
+		Element<Pair<T>>* ChainedHashSearch(std::size_t k) {
 			return data[h(k)].ListSearch(k);
 		}
 		void ChainedHashDelete(Element<Pair<T>>* p) {
 			data[h(p->key.key)].ListDelete(p);
 		}
-		size_t h(size_t k) {
+		std::size_t h(std::size_t k) {
 			return k % size;
 		}
 		~ChainedHash() {
 			delete [] data;
 		}
 	private:
-		size_t size;
+		std::size_t size;
 		LinkedList<Pair<T>>* data;
 };
 

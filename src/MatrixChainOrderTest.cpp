@@ -30,13 +30,13 @@ using namespace algorithms;
 int test_chain(int n, int a) {
 	VECT_SIZT p;
 	std::vector<VECT_SIZT> s(n, VECT_SIZT(n + 1, 0));
-	random_integers<size_t>(p, 1, a, n + 1);
+	random_integers<std::size_t>(p, 1, a, n + 1);
 	output_integers(p);
-	size_t mco = MatrixChainOrder(p, s);
-	size_t mmc = MemorizedMatrixChain(p);
+	std::size_t mco = MatrixChainOrder(p, s);
+	std::size_t mmc = MemorizedMatrixChain(p);
 	assert(mco == mmc);
 	if (n <= 16) {
-		size_t rmc = RecursiveMatrixChain(p);
+		std::size_t rmc = RecursiveMatrixChain(p);
 		assert(mco == rmc);
 	}
 	PrintOptimalParens(s, 0, n);

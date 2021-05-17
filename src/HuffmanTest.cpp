@@ -51,12 +51,12 @@ class HuffmanNavigator {
 		bool is_nil(NodeType node) { return !node; }
 };
 
-int test(size_t n) {
+int test(std::size_t n) {
 	// prepare data
 	std::vector<CNode<char>> C;
-	std::vector<size_t> freq_list;
-	random_integers<size_t>(freq_list, 1, n, n);
-	for (size_t i = 0; i < n; i++)
+	std::vector<std::size_t> freq_list;
+	random_integers<std::size_t>(freq_list, 1, n, n);
+	for (std::size_t i = 0; i < n; i++)
 		C.push_back(CNode<char>('a' + i, freq_list[i]));
 	output_integers(C, "\t");
 	output_integers(freq_list, "\t");

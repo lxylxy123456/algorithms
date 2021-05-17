@@ -28,12 +28,12 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t v = get_argv(argc, argv, 1, 5);
-	const size_t e = get_argv(argc, argv, 2, 10);
+	const std::size_t v = get_argv(argc, argv, 1, 5);
+	const std::size_t e = get_argv(argc, argv, 2, 10);
 	const bool dir = 1;
 	const int weight_lower = get_argv<int>(argc, argv, 3, 0);
 	const int weight_upper = get_argv<int>(argc, argv, 4, e);
-	WeightedAdjMatrix<size_t, int> G(dir);
+	WeightedAdjMatrix<std::size_t, int> G(dir);
 	random_weighted_adj_matrix(G, v, e, weight_lower, weight_upper);
 	graphviz(G);
 	std::cout << std::endl;
@@ -41,14 +41,14 @@ int main(int argc, char *argv[]) {
 	G.to_matrix(W);
 	auto ans = FloydWarshall(W);
 	Matrix<Weight<int>> D = ans.first;
-	Matrix<T_ptr<size_t>> PI = ans.second;
+	Matrix<T_ptr<std::size_t>> PI = ans.second;
 	std::cout << D << std::endl;
 	std::cout << PI << std::endl;
-	for (size_t i = 0; i < v; i++)
-		for (size_t j = 0; j < v; j++)
+	for (std::size_t i = 0; i < v; i++)
+		for (std::size_t j = 0; j < v; j++)
 			if (i != j) {
 				std::cout << i << " ~> " << j << ": ";
-				std::vector<size_t> ans;
+				std::vector<std::size_t> ans;
 				PrintAllPairsShortestPath(PI, i, j, ans);
 				if (ans.size())
 					output_integers(ans);

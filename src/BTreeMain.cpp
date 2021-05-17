@@ -26,7 +26,7 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	size_t t = get_argv(argc, argv, 1, 3);
+	std::size_t t = get_argv(argc, argv, 1, 3);
 	debug = get_argv(argc, argv, 2, 1);
 	BTree<int> BT(t);
 	std::cout << "s / S: search" << std::endl;
@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
 	// In Figure 18.7: i2 i17 i12 i6
 	// In Figure 18.8: d6 d13 d7 d4 d2
 	while (true) {
-		char c; int x; std::pair<BNode<int>*, size_t> search_ans;
+		char c; int x; std::pair<BNode<int>*, std::size_t> search_ans;
 		std::cout << ">> ";
 		if (!(std::cin >> c)) {
 			std::cout << std::endl;

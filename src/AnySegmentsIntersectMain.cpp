@@ -28,15 +28,15 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 200);
-	const size_t m = get_argv(argc, argv, 2, 5);
+	const std::size_t n = get_argv(argc, argv, 1, 200);
+	const std::size_t m = get_argv(argc, argv, 2, 5);
 	std::vector<int> b;
 	random_integers(b, -n, n, m * 4);
 	using T = double;
 	T x;
 	std::vector<Segment<T>> S;
 	S.reserve(m);
-	for (size_t i = 0; i < m; i++) {
+	for (std::size_t i = 0; i < m; i++) {
 		if (b[4 * i + 0] == b[4 * i + 2])
 			b[4 * i + 2]++;
 		Vector<T> s(b[4 * i + 0], b[4 * i + 1]), e(b[4 * i + 2], b[4 * i + 3]);

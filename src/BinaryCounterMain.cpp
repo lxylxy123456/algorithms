@@ -25,14 +25,14 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	const size_t n = get_argv(argc, argv, 1, 1000);
-	const size_t k = get_argv(argc, argv, 2, 10);
-	const size_t compute = get_argv(argc, argv, 3, 1);
+	const std::size_t n = get_argv(argc, argv, 1, 1000);
+	const std::size_t k = get_argv(argc, argv, 2, 10);
+	const std::size_t compute = get_argv(argc, argv, 3, 1);
 	BinaryCounter A(k);
-	for (size_t i = 0; i < n; i++) {
+	for (std::size_t i = 0; i < n; i++) {
 		A.Increment();
-		compute && std::cout << A.x<size_t>() << std::endl;
+		compute && std::cout << A.x<std::size_t>() << std::endl;
 	}
-	std::cout << A.x<size_t>() << std::endl;
+	std::cout << A.x<std::size_t>() << std::endl;
 	return 0;
 }

@@ -26,7 +26,7 @@
 
 using namespace algorithms;
 
-void print(size_t x) {
+void print(std::size_t x) {
 	if (x == NIL)
 		std::cout << "NIL" << std::endl;
 	else
@@ -38,7 +38,7 @@ void print(bool x) {
 }
 
 int main(int argc, char *argv[]) {
-	const size_t k = get_argv(argc, argv, 1, 4);
+	const std::size_t k = get_argv(argc, argv, 1, 4);
 	if (k > 4)
 		throw std::invalid_argument("k too large");
 	ProtovEB Pv(k);
@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
 	std::cout << "P: print all" << std::endl;
 	std::cout << "q: quit" << std::endl;
 	while (true) {
-		char c; size_t x; std::vector<size_t> l;
+		char c; std::size_t x; std::vector<std::size_t> l;
 		std::cout << ">> ";
 		if (!(std::cin >> c)) {
 			std::cout << std::endl;
@@ -91,7 +91,7 @@ int main(int argc, char *argv[]) {
 				Pv.ProtovEBDelete(x);
 				break;
 			case 'P':
-				for (size_t i = 0; i < Pv.u; i++)
+				for (std::size_t i = 0; i < Pv.u; i++)
 					if (Pv.ProtovEBMember(i))
 						l.push_back(i);
 				output_integers(l);

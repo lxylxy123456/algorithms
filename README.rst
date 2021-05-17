@@ -490,7 +490,7 @@ Example
 
 .. code:: bash
 
-	$ ls include/Fib.hpp src/FibMain.cpp src/FibTest.cpp 
+	$ ls include/Fib.hpp src/FibMain.cpp src/FibTest.cpp
 	include/Fib.hpp  src/FibMain.cpp  src/FibTest.cpp
 	$ make bin/FibMain > /dev/null
 	$ bin/FibMain
@@ -528,7 +528,9 @@ Example
 
 Continuous Integration
 ----------------------
-``.github/workflows/build.yml`` defines the continuous integration workflow of this project. All the targets are built and tested. The CI succeeds if all tests pass.
+``.github/workflows/build.yml`` defines the continuous integration workflow of
+this project. All the targets are built and tested. The CI succeeds if all tests
+pass.
 
 Difference from the "algorithm" project
 ---------------------------------------

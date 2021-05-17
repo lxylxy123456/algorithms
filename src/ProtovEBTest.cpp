@@ -29,16 +29,16 @@ using namespace algorithms;
 
 int test(int k, int n) {
 	ProtovEB v(k);
-	RedBlackTree<size_t> t;
+	RedBlackTree<std::size_t> t;
 	std::vector<int> actions;
-	std::vector<size_t> values;
+	std::vector<std::size_t> values;
 	random_integers(actions, 0, 6, n);
 	random_integers(values, 0lu, v.u - 1, n);
 	output_integers(actions);
 	output_integers(values);
 	for (int i = 0; i < n; i++) {
-		size_t x = values[i], y;
-		Node<CData<size_t>>* n;
+		std::size_t x = values[i], y;
+		Node<CData<std::size_t>>* n;
 		switch(actions[i]) {
 		case 0:	// ProtovEBMember
 			assert(v.ProtovEBMember(x) == (t.TreeSearch(x) != t.nil));

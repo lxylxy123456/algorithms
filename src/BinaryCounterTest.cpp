@@ -27,13 +27,13 @@
 
 using namespace algorithms;
 
-int test(size_t n, size_t k) {
+int test(std::size_t n, std::size_t k) {
 	BinaryCounter A(k);
-	for (size_t i = 0; i < n; i++) {
+	for (std::size_t i = 0; i < n; i++) {
 		A.Increment();
 	}
-	std::cout << n << '\t' << A.x<size_t>() << std::endl;
-	assert(A.x<size_t>() == (n & ((1 << k) - 1)));
+	std::cout << n << '\t' << A.x<std::size_t>() << std::endl;
+	assert(A.x<std::size_t>() == (n & ((1 << k) - 1)));
 	return 0;
 }
 

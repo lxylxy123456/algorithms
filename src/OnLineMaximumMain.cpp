@@ -27,8 +27,8 @@
 using namespace algorithms;
 
 int main(int argc, char *argv[]) {
-	size_t n = get_argv(argc, argv, 1, 27);
-	size_t k = get_argv(argc, argv, 2, 10);
+	std::size_t n = get_argv(argc, argv, 1, 27);
+	std::size_t k = get_argv(argc, argv, 2, 10);
 	std::vector<int> c;
 	random_integers(c, 0, n - 1, n);
 	output_integers(c);

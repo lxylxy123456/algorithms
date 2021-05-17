@@ -23,34 +23,34 @@
 
 #include "ProtovEB.hpp"
 
-using std::size_t;
-
 namespace algorithms {
 
 class vEB {
 	public:
-		vEB(size_t kk): k(kk), u(1 << k), min(NIL), max(NIL),
-						lsqrt_bit(k / 2), lsqrtu(1 << lsqrt_bit),
-						usqrt_bit((k - 1) / 2 + 1), usqrtu(1 << usqrt_bit) {
+		vEB(std::size_t kk): k(kk), u(1 << k), min(NIL), max(NIL),
+							lsqrt_bit(k / 2), lsqrtu(1 << lsqrt_bit),
+							usqrt_bit((k - 1) / 2 + 1), usqrtu(1 << usqrt_bit) {
 			if (k > 1) {
 				summary = new vEB(usqrt_bit);
 				cluster = new vEB* [usqrtu];
-				for (size_t i = 0; i < usqrtu; i++)
+				for (std::size_t i = 0; i < usqrtu; i++)
 					cluster[i] = new vEB(lsqrt_bit);
 			}
 		}
 		// indexing
-		size_t high(size_t x) { return x >> lsqrt_bit; }
-		size_t low(size_t x) { return x & (lsqrtu - 1); }
-		size_t index(size_t x, size_t y) { return x << lsqrt_bit | y; }
+		std::size_t high(std::size_t x) { return x >> lsqrt_bit; }
+		std::size_t low(std::size_t x) { return x & (lsqrtu - 1); }
+		std::size_t index(std::size_t x, std::size_t y) {
+			return x << lsqrt_bit | y;
+		}
 		// algorithms
-		size_t vEBTreeMinimum() {
+		std::size_t vEBTreeMinimum() {
 			return min;
 		}
-		size_t vEBTreeMaximum() {
+		std::size_t vEBTreeMaximum() {
 			return max;
 		}
-		bool vEBTreeMember(size_t x) {
+		bool vEBTreeMember(std::size_t x) {
 			if (x == min || x == max)
 				return true;
 			else if (k == 1)
@@ -58,7 +58,7 @@ class vEB {
 			else
 				return cluster[high(x)]->vEBTreeMember(low(x));
 		}
-		size_t vEBTreeSuccessor(size_t x) {
+		std::size_t vEBTreeSuccessor(std::size_t x) {
 			if (k == 1) {
 				if (x == 0 && max == 1)
 					return 1;
@@ -67,23 +67,23 @@ class vEB {
 			} else if (min != NIL && x < min)
 				return min;
 			else {
-				size_t hx = high(x), lx = low(x);
-				size_t max_low = cluster[hx]->vEBTreeMaximum();
+				std::size_t hx = high(x), lx = low(x);
+				std::size_t max_low = cluster[hx]->vEBTreeMaximum();
 				if (max_low != NIL && lx < max_low) {
-					size_t offset = cluster[hx]->vEBTreeSuccessor(lx);
+					std::size_t offset = cluster[hx]->vEBTreeSuccessor(lx);
 					return index(hx, offset);
 				} else {
-					size_t succ_c = summary->vEBTreeSuccessor(hx);
+					std::size_t succ_c = summary->vEBTreeSuccessor(hx);
 					if (succ_c == NIL)
 						return NIL;
 					else {
-						size_t offset = cluster[succ_c]->vEBTreeMinimum();
+						std::size_t offset = cluster[succ_c]->vEBTreeMinimum();
 						return index(succ_c, offset);
 					}
 				}
 			}
 		}
-		size_t vEBTreePredecessor(size_t x) {
+		std::size_t vEBTreePredecessor(std::size_t x) {
 			if (k == 1) {
 				if (x == 1 && min == 0)
 					return 0;
@@ -92,30 +92,30 @@ class vEB {
 			} else if (max != NIL && x > max)
 				return max;
 			else {
-				size_t hx = high(x), lx = low(x);
-				size_t min_low = cluster[hx]->vEBTreeMinimum();
+				std::size_t hx = high(x), lx = low(x);
+				std::size_t min_low = cluster[hx]->vEBTreeMinimum();
 				if (min_low != NIL && lx > min_low) {
-					size_t offset = cluster[hx]->vEBTreePredecessor(lx);
+					std::size_t offset = cluster[hx]->vEBTreePredecessor(lx);
 					return index(hx, offset);
 				} else {
-					size_t pred_c = summary->vEBTreePredecessor(hx);
+					std::size_t pred_c = summary->vEBTreePredecessor(hx);
 					if (pred_c == NIL) {
 						if (min != NIL && x > min)
 							return min;
 						else
 							return NIL;
 					} else {
-						size_t offset = cluster[pred_c]->vEBTreeMaximum();
+						std::size_t offset = cluster[pred_c]->vEBTreeMaximum();
 						return index(pred_c, offset);
 					}
 				}
 			}
 		}
-		void vEBEmptyTreeInsert(size_t x) {
+		void vEBEmptyTreeInsert(std::size_t x) {
 			min = x;
 			max = x;
 		}
-		void vEBTreeInsert(size_t x) {
+		void vEBTreeInsert(std::size_t x) {
 			if (min == NIL)
 				vEBEmptyTreeInsert(x);
 			else {
@@ -132,7 +132,7 @@ class vEB {
 					max = x;
 			}
 		}
-		void vEBTreeDelete(size_t x) {
+		void vEBTreeDelete(std::size_t x) {
 			if (min == max) {
 				min = NIL;
 				max = NIL;
@@ -144,7 +144,7 @@ class vEB {
 				max = min;
 			} else {
 				if (x == min) {
-					size_t first_c = summary->vEBTreeMinimum();
+					std::size_t first_c = summary->vEBTreeMinimum();
 					x = index(first_c, cluster[first_c]->vEBTreeMinimum());
 					min = x;
 				}
@@ -152,11 +152,12 @@ class vEB {
 				if (cluster[high(x)]->vEBTreeMinimum() == NIL) {
 					summary->vEBTreeDelete(high(x));
 					if (x == max) {
-						size_t summ_max = summary->vEBTreeMaximum();
+						std::size_t summ_max = summary->vEBTreeMaximum();
 						if (summ_max == NIL)
 							max = min;
 						else {
-							size_t offset = cluster[summ_max]->vEBTreeMaximum();
+							std::size_t offset = \
+								cluster[summ_max]->vEBTreeMaximum();
 							max = index(summ_max, offset);
 						}
 					}
@@ -170,13 +171,13 @@ class vEB {
 		vEB** cluster;
 		~vEB() {
 			if (k > 1) {
-				for (size_t i = 0; i < usqrtu; i++)
+				for (std::size_t i = 0; i < usqrtu; i++)
 					delete cluster[i];
 				delete [] cluster;
 				delete summary;
 			}
 		}
-		size_t k, u, min, max, lsqrt_bit, lsqrtu, usqrt_bit, usqrtu;
+		std::size_t k, u, min, max, lsqrt_bit, lsqrtu, usqrt_bit, usqrtu;
 };
 
 }

@@ -29,18 +29,18 @@
 
 using namespace algorithms;
 
-int test(size_t v, size_t e) {
+int test(std::size_t v, std::size_t e) {
 	const bool dir = 0;
-	GraphAdjList<size_t> G(dir);
+	GraphAdjList<std::size_t> G(dir);
 	random_graph(G, v, e);
-	umap<Edge<size_t>, size_t, EdgeHash<size_t>> w;
-	random_weight(G, w, (size_t) 0, e - 1);
-	uset<Edge<size_t>, EdgeHash<size_t>> A;
+	umap<Edge<std::size_t>, std::size_t, EdgeHash<std::size_t>> w;
+	random_weight(G, w, (std::size_t) 0, e - 1);
+	uset<Edge<std::size_t>, EdgeHash<std::size_t>> A;
 	MSTKruskal(G, w, A);
-	umap<size_t, MSTPrimInfo<size_t, size_t>> ans;
+	umap<std::size_t, MSTPrimInfo<std::size_t, std::size_t>> ans;
 	MSTPrim(G, w, *G.V.begin(), ans);
-	DisjointSetForest<size_t> F_kruskal, F_prim, F_all;
-	size_t span_kruskal = 0, span_prim = 0;
+	DisjointSetForest<std::size_t> F_kruskal, F_prim, F_all;
+	std::size_t span_kruskal = 0, span_prim = 0;
 	graphviz(G);
 	for (auto i = G.V.begin(); i != G.V.end(); i++) {
 		F_kruskal.MakeSet(*i);
@@ -72,8 +72,8 @@ int test(size_t v, size_t e) {
 					(F_prim.FindSet(*i) == F_prim.FindSet(*j)));
 		}
 	}
-	auto f1 = [](size_t v) { return false; };
-	auto f2 = [w, ans, A](Edge<size_t> e) mutable {
+	auto f1 = [](std::size_t v) { return false; };
+	auto f2 = [w, ans, A](Edge<std::size_t> e) mutable {
 		std::cout << " [label=\"" << w[e] << "\"";
 		if ((!ans[e.s].pi_nil && ans[e.s].pi == e.d) ||
 			(!ans[e.d].pi_nil && ans[e.d].pi == e.s))
@@ -88,9 +88,9 @@ int test(size_t v, size_t e) {
 
 int main(int argc, char *argv[]) {
 	parse_args(argc, argv);
-	std::vector<size_t> m = {5, 10, 23, 49, 100};
-	for (std::vector<size_t>::iterator v = m.begin(); v < m.end(); v++)
-		for (std::vector<size_t>::iterator e = m.begin(); e < m.end(); e++)
+	std::vector<std::size_t> m = {5, 10, 23, 49, 100};
+	for (std::vector<std::size_t>::iterator v = m.begin(); v < m.end(); v++)
+		for (std::vector<std::size_t>::iterator e = m.begin(); e < m.end(); e++)
 			for (int n = 0; n < 5; n++)
 				test(*v, *e);
 	return 0;

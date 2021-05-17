@@ -30,9 +30,9 @@ using namespace algorithms;
 
 int main(int argc, char *argv[]) {
 	std::vector<int> a;
-	const size_t n = get_argv(argc, argv, 1, 10);
+	const std::size_t n = get_argv(argc, argv, 1, 10);
 	const int k = get_argv(argc, argv, 2, int(log(n) / log(2)));
-	const size_t compute = get_argv(argc, argv, 3, 3);
+	const std::size_t compute = get_argv(argc, argv, 3, 3);
 	random_integers(a, 0, pow(2, k) - 1, n);
 	std::vector<int> b(a);
 	if (compute >> 0 & 1) {

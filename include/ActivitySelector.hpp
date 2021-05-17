@@ -25,8 +25,6 @@
 #include <iostream>
 #include <vector>
 
-using std::size_t;
-
 namespace algorithms {
 
 template <typename T>
@@ -45,9 +43,9 @@ class Event {
 };
 
 template <typename T>
-void RecursiveActivitySelector(const EVENTS& e, size_t k, EVENTS& ans) {
-	const size_t n = e.size();
-	size_t m = k;
+void RecursiveActivitySelector(const EVENTS& e, std::size_t k, EVENTS& ans) {
+	const std::size_t n = e.size();
+	std::size_t m = k;
 	while (m < n && k && e[m].s < e[k - 1].f)
 		m++;
 	if (m < n) {
@@ -58,9 +56,9 @@ void RecursiveActivitySelector(const EVENTS& e, size_t k, EVENTS& ans) {
 
 template <typename T>
 void GreedyActivitySelector(const EVENTS& e, EVENTS& ans) {
-	const size_t n = e.size();
+	const std::size_t n = e.size();
 	T k = e[0].s;
-	for (size_t i = 0; i < n; i++) {
+	for (std::size_t i = 0; i < n; i++) {
 		if (e[i].s >= k) {
 			ans.push_back(e[i]);
 			k = e[i].f;
