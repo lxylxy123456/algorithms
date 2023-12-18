@@ -26,5 +26,5 @@ else
 fi
 
 B=`mktemp /tmp/.dot.sh/XXXXXXXX.png`
-dot $A -Tpng -o $B && gnome-open $B 2> /dev/null > /dev/null
+dot $A -Tpng -o $B && xdg-open $B 2> /dev/null > /dev/null
 
