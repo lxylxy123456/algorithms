@@ -111,7 +111,8 @@ void InitializeSimplex(usetst& N, usetst& B, matst& A, vectst& b, vectst& c,
 		if (B.find(0) != B.end()) {
 			std::size_t e = NIL;
 			for (auto i = N.begin(); i != N.end(); i++)
-				if (!(-epsilon < A[0][*i] && A[0][*i] < epsilon)) {
+				// A[0][*i] is not zero
+				if (!(!(A[0][*i] < -epsilon) && !(epsilon < A[0][*i]))) {
 					e = *i;
 					break;
 				}
