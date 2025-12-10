@@ -40,14 +40,14 @@ jobs:
     - name: make
       run: make all CXX=${{ matrix.cxx }} CPPSTD=${{ matrix.cppstd }} -j `nproc`
     - name: upload bin
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: bin-${{ matrix.cxx }}-${{ matrix.cppstd }}
         path: |
           bin/*Main
           bin/*Test
     - name: upload dependencies
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: dependencies-${{ matrix.cxx }}-${{ matrix.cppstd }}
         path: bin/*.d
@@ -96,12 +96,12 @@ jobs:
         sudo apt-get install -y valgrind
         mkdir bin
     - name: download bin
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v5
       with:
         name: bin-${{ matrix.cxx }}-${{ matrix.cppstd }}
         path: bin/
     - name: download dependencies
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v5
       with:
         name: dependencies-${{ matrix.cxx }}-${{ matrix.cppstd }}
         path: bin/
