@@ -18,22 +18,11 @@ jobs:
           - 'gnu++14'
           - 'c++17'
           - 'gnu++17'
+          - 'c++20'
+          - 'gnu++20'
         cxx:
           - 'g++'
           - 'clang++'
-        include:
-          - os: 'ubuntu-20.04'
-            cppstd: 'c++2a'
-            cxx: 'clang++-10'
-          - os: 'ubuntu-20.04'
-            cppstd: 'gnu++2a'
-            cxx: 'clang++-10'
-          - os: 'ubuntu-20.04'
-            cppstd: 'c++20'
-            cxx: 'g++-10'
-          - os: 'ubuntu-20.04'
-            cppstd: 'gnu++20'
-            cxx: 'g++-10'
 
     steps:
     - uses: actions/checkout@v2
@@ -72,18 +61,11 @@ jobs:
           - 'gnu++14'
           - 'c++17'
           - 'gnu++17'
+          - 'c++20'
+          - 'gnu++20'
         cxx:
           - 'g++'
           - 'clang++'
-        include:
-          - cppstd: 'c++2a'
-            cxx: 'clang++-10'
-          - cppstd: 'gnu++2a'
-            cxx: 'clang++-10'
-          - cppstd: 'c++20'
-            cxx: 'g++-10'
-          - cppstd: 'gnu++20'
-            cxx: 'g++-10'
 
     runs-on: ubuntu-latest
     needs: build
