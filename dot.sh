@@ -16,7 +16,7 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-mkdir /tmp/.dot.sh/ 2> /dev/null
+mkdir -m 700 /tmp/.dot.sh/ 2> /dev/null
 
 if [ $# == 0 ]; then
 	A=`mktemp /tmp/.dot.sh/XXXXXXXX.dot`
