@@ -31,26 +31,30 @@ std::size_t debug;
 
 template <typename T>
 T* DiskRead(T* x) {
-	debug > 0 && std::cout << "read  " << static_cast<void*>(x) << std::endl;
+	if (debug > 0)
+		std::cout << "read  " << static_cast<void*>(x) << std::endl;
 	return x;
 }
 
 template <typename T>
 T* DiskWrite(T* x) {
-	debug > 0 && std::cout << "write " << static_cast<void*>(x) << std::endl;
+	if (debug > 0)
+		std::cout << "write " << static_cast<void*>(x) << std::endl;
 	return x;
 }
 
 template <typename T>
 T* AllocateNode(bool l) {
 	T* x = new T(l);
-	debug > 1 && std::cout << "alloc " << static_cast<void*>(x) << std::endl;
+	if (debug > 1)
+		std::cout << "alloc " << static_cast<void*>(x) << std::endl;
 	return x;
 }
 
 template <typename T>
 void FreeNode(T* x) {
-	debug > 1 && std::cout << "free  " << static_cast<void*>(x) << std::endl;
+	if (debug > 1)
+		std::cout << "free  " << static_cast<void*>(x) << std::endl;
 	delete x;
 }
 
