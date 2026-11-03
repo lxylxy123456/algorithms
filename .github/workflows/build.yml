@@ -12,30 +12,20 @@ jobs:
         os:
           - 'ubuntu-latest'
         cppstd:
-          #- 'c++11'
+          - 'c++11'
           - 'gnu++11'
-          #- 'c++14'
-          #- 'gnu++14'
-          #- 'c++17'
-          #- 'gnu++17'
-          #- 'c++20'
-          #- 'gnu++20'
+          - 'c++14'
+          - 'gnu++14'
+          - 'c++17'
+          - 'gnu++17'
+          - 'c++20'
+          - 'gnu++20'
         cxx:
-          #- 'g++'
+          - 'g++'
           - 'clang++'
 
     steps:
     - uses: actions/checkout@v2
-    - name: tmp1
-      run: |
-        make test/BellmanFordTest CXX=g++ CPPSTD=c++11
-        make clean
-        echo SUCCESS 1
-    - name: tmp2
-      run: |
-        make test/BellmanFordTest CXX=${{ matrix.cxx }} CPPSTD=${{ matrix.cppstd }}
-        make clean
-        echo SUCCESS 2
     - name: make
       run: make all CXX=${{ matrix.cxx }} CPPSTD=${{ matrix.cppstd }} -j `nproc`
     - name: upload bin
@@ -58,24 +48,23 @@ jobs:
         touch bin/*Main
         touch bin/*Test
     - name: test
-      run: make test
-      # -j `nproc`
+      run: make test -j `nproc`
 
   valgrind:
 
     strategy:
       matrix:
         cppstd:
-          #- 'c++11'
+          - 'c++11'
           - 'gnu++11'
-          #- 'c++14'
-          #- 'gnu++14'
-          #- 'c++17'
-          #- 'gnu++17'
-          #- 'c++20'
-          #- 'gnu++20'
+          - 'c++14'
+          - 'gnu++14'
+          - 'c++17'
+          - 'gnu++17'
+          - 'c++20'
+          - 'gnu++20'
         cxx:
-          #- 'g++'
+          - 'g++'
           - 'clang++'
 
     runs-on: ubuntu-latest
