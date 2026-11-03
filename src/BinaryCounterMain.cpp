@@ -31,7 +31,8 @@ int main(int argc, char *argv[]) {
 	BinaryCounter A(k);
 	for (std::size_t i = 0; i < n; i++) {
 		A.Increment();
-		compute && std::cout << A.x<std::size_t>() << std::endl;
+		if (compute)
+			std::cout << A.x<std::size_t>() << std::endl;
 	}
 	std::cout << A.x<std::size_t>() << std::endl;
 	return 0;
