@@ -26,6 +26,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: tmp1
+      run: |
+        make test/BellmanFordTest CXX=g++ CPPSTD=c++11
+        make clean
+        echo SUCCESS 1
+    - name: tmp2
+      run: |
+        make test/BellmanFordTest CXX=${{ matrix.cxx }} CPPSTD=${{ matrix.cppstd }}
+        make clean
+        echo SUCCESS 2
     - name: make
       run: make all CXX=${{ matrix.cxx }} CPPSTD=${{ matrix.cppstd }} -j `nproc`
     - name: upload bin
