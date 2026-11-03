@@ -198,7 +198,7 @@ void random_flow(Graph<T>& G, T v, std::size_t e) {
 
 template <typename WT, typename T, typename GT>
 void random_weight(GT& G, umap_WT& w, WT l, WT u) {
-	std::uniform_int_distribution<T> d(l, u);
+	std::uniform_int_distribution<WT> d(l, u);
 	for (typename GT::iterator i = G.all_edges(); !i.end(); i++)
 		w[*i] = random_integer(d);
 }
